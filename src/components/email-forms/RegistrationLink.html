@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supplier Qualification System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            font-size: small;
+        }
+
+        .container {
+            background-color: lightgray;
+            width: 50%;
+            margin: 20px auto;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+
+        .header {
+            background-color: #c00;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 40px;
+            font-size: large;
+            padding: 10px;
+            border-radius: 8px 8px 0 0;
+        }
+
+        .footer {
+            font-size: smaller;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 40px;
+            border-radius: 0 0 8px 8px;
+            background-color: rgb(99, 94, 94);
+            color: white;
+        }
+
+        .button {
+            display: block;
+            width: 200px;
+            padding: 10px;
+            background-color: #c00;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .note {
+            padding: 10px;
+            background-color: rgb(166, 166, 166);
+        }
+
+        .content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 0;
+            background-color: white;
+            padding: 20px;
+        }
+
+        .content>* {
+            margin: 2px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            Supplier Qualification System
+        </div>
+        <div style="padding-left: 15px; background-color: lightgray;">
+            <p style="font-size: large; padding: 7px;">เรียน/Dear ท่านคู่ค้า</p>
+            <p>เนื่องด้วยทางบริษัท เฟรเซอร์ส พร็อพเพอร์ตี้ (ประเทศไทย) จำกัด (มหาชน) และบริษัทในกลุ่มได้พัฒนา<br>
+                ระบบข้อมูลคู่ค้า เพื่อเพิ่มประสิทธิภาพการติดต่อกับคู่ค้าให้ดียิ่งขึ้น
+                จึงขอเรียนเชิญคู่ค้าทุกท่านลงทะเบียน Supplier <br>
+                Qualification System! เพื่อร่วมเป็นส่วนหนึ่งในพันธมิตรทางธุรกิจกับเรา<br> </p>
+            <p style="color: rgb(95, 53, 53);">Frasers Property (Thailand) Public Co., Ltd. has implemented a Supplier
+                Information System to <br>
+                enhance partner communication efficiency. We extend an invitation to all our business partners to<br>
+                register for the Supplier Qualification System and become a valued member of our business alliance. <br>
+            </p>
+        </div>
+        <div class="content">
+            <h3>คุณได้รับเชิญให้เข้าร่วม Supplier Qualification System!</h3><br>
+            <p style="color: rgb(95, 53, 53);">You've been invited to join the Supplier Qualification System!</p><br>
+            <a href="#" id="resetPasswordButton" class="button">ลงทะเบียน/Register</a><br>
+        </div>
+
+        <div style="padding-left: 15px; background-color: lightgray;">
+            <!-- <p style="font-size: large;">เรียน/Dear ท่านคู่ค้า</p> -->
+            <p>โปรดกรอกแบบฟอร์มภายใน 14 วัน หลังจากที่ได้รับอีเมลฉบับนี้</p>
+            <p style="color: rgb(95, 53, 53);">Please fill out within 14 days from the time of this email.</p>
+        </div>
+
+        <div style="padding-left: 15px; background-color: lightgray;">
+            <!-- <p style="font-size: large;">เรียน/Dear ท่านคู่ค้า</p> -->
+            <p>หากลิงก์หมดอายุ หรือมีปัญหาใดๆ โปรดติดต่อ (contact owner email)</p>
+            <p style="color: rgb(95, 53, 53);">If the link expires, or you encounter any issues, kindly contact (contact
+                owner email)</p>
+        </div>
+
+
+        <div class="note">
+            <p>หมายเหตุ: อีเมลนี้เป็นการแจ้งจากระบบอัตโนมัติของ Supplier Qualification System กรุณาอย่าตอบกลับ <br>
+                หากต้องการสอบถามข้อมูลเพิ่มเติมหรือมีปัญหาในการบริการสามารถติดต่อได้ที่<br>
+                callcenter.sqs@fraserspropety.com หรือ 02-123-4567 ต่อ 12</p>
+
+            <p>Note: This email is a notification from the
+                Supplier Qualification System's automated system. Please<br>
+                refrain from replying. If you require additional information or encounter any service-related issues,
+                feel<br>
+                free to reach out to us at callcenter.sqs@fraserspropety.com or 02-123-4567 to 12</p>
+        </div>
+        <div class="footer">
+            <p>Copyright © 2020 Frasers Property (Thailand) Public Company Limited. All rights reserved.</p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('resetPasswordButton').addEventListener('click', function (event) {
+            event.preventDefault();
+            alert('You clicked the RegistrationLink button!');
+        });
+    </script>
+</body>
+
+</html>

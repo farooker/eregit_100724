@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supplier Qualification System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            font-size: small;
+        }
+
+        .container {
+            background-color: lightgray;
+            width: 50%;
+            margin: 20px auto;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+
+        .header {
+            background-color: #c00;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 40px;
+            font-size: large;
+            padding: 10px;
+            border-radius: 8px 8px 0 0;
+        }
+
+        .footer {
+            font-size: smaller;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 40px;
+            border-radius: 0 0 8px 8px;
+            background-color: rgb(99, 94, 94);
+            color: white;
+        }
+
+        .button {
+            display: block;
+            width: 200px;
+            padding: 10px;
+            background-color: #c00;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .note {
+            padding: 10px;
+            background-color: rgb(166, 166, 166);
+        }
+
+        .content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 0;
+            background-color: white;
+            padding: 20px;
+        }
+
+        .content>* {
+            margin: 2px 0;
+        }
+
+        input[type="text"] {
+            background-color: lightgray; /* สีพื้นหลัง */
+            color: darkgray; /* สีของข้อความ */
+            border: none; /* ไม่มีเส้นขอบ */
+            padding: 8px; /* เพิ่มช่องว่างรอบขอบ */
+            text-align: center; /* จัดข้อความให้อยู่ตรงกลาง */
+        }
+        
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            Supplier Qualification System
+        </div>
+        <div style="padding-left: 15px; background-color: lightgray;">
+            <p style="font-size: large;">เรียน/Dear ทีมบัญชี</p>
+            <p>คุณได้รับคำขอเพิ่มโรล</p>
+            <p style="color: rgb(95, 53, 53);">An Extend Role Case was received.</p>
+
+            <p>Name: บริษัท แอ็คทีฟคอน จำกัด</p>
+            <p style="color: rgb(95, 53, 53);">Contact owner: Saraluck.ia@frasersproperty.com</p>
+
+        </div>
+        <div class="content">
+            <h3>โปรดตรวจสอบและดำเนินการต่อ</h3>
+            <p style="color: rgb(95, 53, 53);">Please review and proceed further.</p>
+            <a href="#" id="resetPasswordButton" class="button">ดูข้อมูล/View task</a>
+        </div>
+
+        <div class="note">
+            <p>หมายเหตุ: อีเมลนี้เป็นการแจ้งจากระบบอัตโนมัติของ Supplier Qualification System กรุณาอย่าตอบกลับ <br>
+                หากต้องการสอบถามข้อมูลเพิ่มเติมหรือมีปัญหาในการบริการสามารถติดต่อได้ที่<br>
+                callcenter.sqs@fraserspropety.com หรือ 02-123-4567 ต่อ 12</p>
+
+            <p>Note: This email is a notification from the
+                     Supplier Qualification System's automated system. Please<br>
+                      refrain from replying. If you require additional information or encounter any service-related issues, feel<br> 
+                       free to reach out to us at callcenter.sqs@fraserspropety.com or 02-123-4567 to 12</p>
+        </div>
+        <div class="footer">
+            <p>Copyright © 2020 Frasers Property (Thailand) Public Company Limited. All rights reserved.</p>
+        </div>
+    </div>
+    <script>
+        document.getElementById('resetPasswordButton').addEventListener('click', function (event) {
+            event.preventDefault();
+            alert('You clicked the extend role button!');
+        });
+    </script>
+</body>
+
+</html>

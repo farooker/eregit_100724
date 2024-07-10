@@ -1,0 +1,27 @@
+{
+    "is_success": true,
+    "code": "200",
+    "message": "Ok",
+    "data": [
+        {
+            "id": 4,
+            "code": "0004",
+            "name": "Embassy"
+        },
+        {
+            "id": 3,
+            "code": "0003",
+            "name": "Government"
+        },
+        {
+            "id": 2,
+            "code": "0002",
+            "name": "Corporate"
+        },
+        {
+            "id": 1,
+            "code": "0001",
+            "name": "Person/ Group of Person"
+        }
+    ]
+}

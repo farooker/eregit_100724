@@ -1,0 +1,17 @@
+{
+    "is_success": true,
+    "code": "201",
+    "message": "Created",
+    "data": {
+        "id": 12,
+        "name_th": "ลม",
+        "name_en": "lm",
+        "is_natural_person": false,
+        "is_default": true,
+        "do_rsp_activity": false,
+        "created_at": "2024-01-28T21:44:46.007Z",
+        "created_user_id": 1,
+        "updated_at": "2024-01-28T21:44:46.007Z",
+        "updated_user_id": 1
+    }
+}

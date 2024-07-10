@@ -1,0 +1,28 @@
+{
+    "is_success": true,
+    "code": "200",
+    "message": "Ok",
+    "data": [
+        {
+            "id": 14,
+            "bank_key": "025",
+            "name_th": "ธ. กรุงศรีอยุธยา จำกัด (มหาชน)",
+            "name_en": "",
+            "abbreviation": "BAY"
+        },
+        {
+            "id": 1,
+            "bank_key": "002",
+            "name_th": "ธ. กรุงเทพ จำกัด (มหาชน) ",
+            "name_en": "",
+            "abbreviation": "BBL "
+        },
+        {
+            "id": 3,
+            "bank_key": "006",
+            "name_th": "ธ. กรุงไทย จำกัด (มหาชน)",
+            "name_en": "",
+            "abbreviation": "KTB"
+        }
+    ]
+}

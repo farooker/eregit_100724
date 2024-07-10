@@ -1,0 +1,55 @@
+{
+    "is_success": true,
+    "code": "200",
+    "message": "Ok",
+    "data": [
+        {
+            "id": 8,
+            "business_partner_role_id": 3,
+            "code": "16000090",
+            "name": "Pretty Cash"
+        },
+        {
+            "id": 7,
+            "business_partner_role_id": 3,
+            "code": "25005030",
+            "name": "Other Payables"
+        },
+        {
+            "id": 6,
+            "business_partner_role_id": 3,
+            "code": "25000010",
+            "name": "Vendors - Trade"
+        },
+        {
+            "id": 5,
+            "business_partner_role_id": 2,
+            "code": "25000010",
+            "name": "CUSTOMERS - NON-TRADE"
+        },
+        {
+            "id": 4,
+            "business_partner_role_id": 2,
+            "code": "15020010",
+            "name": "CUSTOMERS - TRADE"
+        },
+        {
+            "id": 3,
+            "business_partner_role_id": 1,
+            "code": "16000090",
+            "name": "Pretty Cash"
+        },
+        {
+            "id": 2,
+            "business_partner_role_id": 1,
+            "code": "25005030",
+            "name": "Other Payables"
+        },
+        {
+            "id": 1,
+            "business_partner_role_id": 1,
+            "code": "25000010",
+            "name": "Vendors - Trade"
+        }
+    ]
+}

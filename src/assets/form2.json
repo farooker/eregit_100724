@@ -1,0 +1,137 @@
+{
+  "rspActivityStatusId" : 1,
+  "inprogressSectionId" :1,
+  "nameQuestionnaire": {
+    "title": "แบบสำรวจด้านความยังยืนคู่ค้า 2023",
+    "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi, ratione debitis quis est labore voluptatibus! Eaque cupiditate minima, at placeat totam, magni doloremque veniam neque porro libero rerum unde voluptatem!"
+  },
+  "name": "คำถามเพิ่มเติม",
+  "createQuestionnaire": [
+    {
+      "id": 1,
+      "index": 1,
+      "disabled" : false,
+      "typeQuestionCard": "None",
+      "data": {
+        "controlType": "Paragraph",
+        "metaData": {
+          "question": "แบบสำรวจด้านความยังยืนคู่ค้า 2023",
+          "answer": "",
+          "isRequired": true,
+          "nextQuestionId": 0
+        }
+      }
+    },
+    {
+      "id": 2,
+      "index": 2,
+      "disabled" : false,
+      "typeQuestionCard": "None",
+      "data": {
+        "controlType": "Multichoice",
+        "metaData": {
+          "question": "Multichoice",
+          "isRequired": true,
+          "answer": null,
+          "choices": [
+            {
+              "id" :1,
+              "title": "chioce",
+              "answer": "next-3",
+              "nextQuestionId": 3
+            },
+            {
+              "id" :2,
+              "title": "chioce",
+              "answer": "next-4",
+              "nextQuestionId": 4
+            },
+            {
+              "id" :3,
+              "title": "other",
+              "answer": "เพิมเติม next-0",
+              "specify": "",
+              "nextQuestionId": 0 
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": 3,
+      "index": 3,
+      "disabled" : false,
+      "typeQuestionCard": "None",
+      "data": {
+        "controlType": "Checkbox",
+        "metaData": {
+          "question": "Checkbox",
+          "isRequired": true,
+          "answer": [],
+          "choices": [
+            {
+              "id" :1,
+              "title": "chioce",
+              "answer": "ตอบ-1",
+              "nextQuestionId": 5
+            },
+            {
+              "id" :2,
+              "title": "chioce",
+              "answer": "ตอบ-2",
+              "nextQuestionId": 4
+            },
+            {
+              "id" :3,
+              "title": "other",
+              "answer": "เพิมเติม",
+              "specify": "",
+              "nextQuestionId": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": 4,
+      "index": 4,
+      "disabled" : false,
+      "typeQuestionCard": "None",
+      "data": {
+        "controlType": "Dropdown",
+        "metaData": {
+          "question": "Dropdown",
+          "isRequired": true,
+          "answer": null,
+          "choices": [
+            {
+              "id" :1,
+              "answer": "next-5",
+              "nextQuestionId": 5
+            },
+            {
+              "id" :2,
+              "answer": "next-3",
+              "nextQuestionId": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": 5,
+      "index": 5,
+      "disabled" : false,
+      "typeQuestionCard": "None",
+      "data": {
+        "controlType": "Uploads",
+        "metaData": {
+          "question": "Uploads files",
+          "isRequired": true,
+          "files": null,
+          "nextQuestionId": 4 
+        }
+      }
+    }
+  ]
+}

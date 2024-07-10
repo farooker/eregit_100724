@@ -1,0 +1,180 @@
+@font-face {
+    font-family: 'FC Paragraph';
+    src: url('FCParagraph-Black.woff2') format('woff2'),
+        url('FCParagraph-Black.woff') format('woff');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'FC Paragraph';
+    src: url('FCParagraph-BoldItalic.woff2') format('woff2'),
+        url('FCParagraph-BoldItalic.woff') format('woff');
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'FC Paragraph';
+    src: url('FCParagraph-BlackItalic.woff2') format('woff2'),
+        url('FCParagraph-BlackItalic.woff') format('woff');
+    font-weight: 900;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'FC Paragraph';
+    src: url('FCParagraph-BlackItalic.woff2') format('woff2'),
+        url('FCParagraph-BlackItalic.woff') format('woff');
+    font-weight: 900;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'FC Paragraph';
+    src: url('FCParagraph-ExtraBold.woff2') format('woff2'),
+        url('FCParagraph-ExtraBold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'FC Paragraph ExtBd';
+    src: url('FCParagraph-ExtraBoldItalic.woff2') format('woff2'),
+        url('FCParagraph-ExtraBoldItalic.woff') format('woff');
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'FC Paragraph';
+    src: url('FCParagraph-Bold.woff2') format('woff2'),
+        url('FCParagraph-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'FC Paragraph';
+    src: url('FCParagraph-Light.woff2') format('woff2'),
+        url('FCParagraph-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'FC Paragraph';
+    src: url('FCParagraph-Italic.woff2') format('woff2'),
+        url('FCParagraph-Italic.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'FC Paragraph ExtLt';
+    src: url('FCParagraph-ExtraLight.woff2') format('woff2'),
+        url('FCParagraph-ExtraLight.woff') format('woff');
+    font-weight: 200;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'FC Paragraph';
+    src: url('FCParagraph-ExtraLightItalic.woff2') format('woff2'),
+        url('FCParagraph-ExtraLightItalic.woff') format('woff');
+    font-weight: 200;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'FC Paragraph';
+    src: url('FCParagraph-LightItalic.woff2') format('woff2'),
+        url('FCParagraph-LightItalic.woff') format('woff');
+    font-weight: 300;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'FC Paragraph';
+    src: url('FCParagraph-SemiBold.woff2') format('woff2'),
+        url('FCParagraph-SemiBold.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'FC Paragraph';
+    src: url('FCParagraph-MediumItalic.woff2') format('woff2'),
+        url('FCParagraph-MediumItalic.woff') format('woff');
+    font-weight: 500;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'FC Paragraph';
+    src: url('FCParagraph-Regular.woff2') format('woff2'),
+        url('FCParagraph-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'FC Paragraph Med';
+    src: url('FCParagraph-Medium.woff2') format('woff2'),
+        url('FCParagraph-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'FC Paragraph SemBd';
+    src: url('FCParagraph-SemiBoldItalic.woff2') format('woff2'),
+        url('FCParagraph-SemiBoldItalic.woff') format('woff');
+    font-weight: 600;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'FC Paragraph SemBd';
+    src: url('FCParagraph-SemiBold.woff2') format('woff2'),
+        url('FCParagraph-SemiBold.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'FC Paragraph';
+    src: url('FCParagraph-Thin.woff2') format('woff2'),
+        url('FCParagraph-Thin.woff') format('woff');
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'FC Paragraph';
+    src: url('FCParagraph-ThinItalic.woff2') format('woff2'),
+        url('FCParagraph-ThinItalic.woff') format('woff');
+    font-weight: 100;
+    font-style: italic;
+    font-display: swap;
+}
+

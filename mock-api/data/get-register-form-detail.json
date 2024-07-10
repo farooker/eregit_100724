@@ -1,0 +1,252 @@
+{
+  "is_success": true,
+  "code": "200",
+  "message": "Ok",
+  "data": {
+    "business_partner_register_form": {
+      "form_number": "01700640914000",
+      "taxpayer_id_number": "1234567890123",
+      "name_th": "ชื่อธุรกิจ บริษัท ตัวอย่าง จํากัด",
+      "name_en": "Business Name Sample Company Ltd.",
+      "form_status": {
+        "id": 1,
+        "name": "Pending",
+        "description": "Form is pending for review"
+      },
+      "business_partner_role": {
+        "id": 1,
+        "name": "Supplier",
+        "description": "Supplier role in the business partnership"
+      },
+      "fill_type": {
+        "id": 1,
+        "business_partner_role_id": 1,
+        "name_th": "Online",
+        "name_en": "Online",
+        "description": "Online form submission for supplier role"
+      },
+      "company": [
+        {
+          "id": 48,
+          "company_code": "2000",
+          "name_th": "บริษัท แผ่นดินทอง พร็อพเพอร์ตี้ ดีเวลลอปเม้นท์ จํากัด (มหาชน)",
+          "name_en": "Golden Land Property Development PLC.",
+          "taxpayer_id_number": "0107537002273",
+          "address_th": "944 มิตรทาวน์ ออฟฟิศ ทาวเวอร์ ชั้นที่ 20 ถนนพระราม 4 แขวงวังใหม่ เขตปทุมวัน กรุงเทพมหานคร 10330",
+          "address_en": "944 aaa 10330",
+          "business_unit": {
+            "id": 1,
+            "name_th": "Commercial",
+            "name_en": "Commercial",
+            "purchasing_organization": "GL00",
+            "corporation": {
+              "id": 1,
+              "name_th": "บริษัท เฟรเซอร์ส พร็อพเพอร์ตี้ โฮม (ประเทศไทย) จํากัด",
+              "name_en": "Frasers Property (Thailand) Public Company Limited"
+            }
+          }
+        },
+        {
+          "id": 49,
+          "company_code": "2500",
+          "name_th": "บริษัท แผ่นดินทอง พร็อพเพอร์ตี้ ดีเวลลอปเม้นท์ จํากัด (มหาชน)",
+          "name_en": "Golden Land Property Development PLC.",
+          "taxpayer_id_number": "0107537002273",
+          "address_th": "944 มิตรทาวน์ ออฟฟิศ ทาวเวอร์ ชั้นที่ 20 ถนนพระราม 4 แขวงวังใหม่ เขตปทุมวัน กรุงเทพมหานคร 10330",
+          "address_en": "944 aaa 10330",
+          "business_unit": {
+            "id": 1,
+            "name_th": "Commercial",
+            "name_en": "Commercial",
+            "purchasing_organization": "GL00",
+            "corporation": {
+              "id": 1,
+              "name_th": "บริษัท เฟรเซอร์ส พร็อพเพอร์ตี้ โฮม (ประเทศไทย) จํากัด",
+              "name_en": "Frasers Property (Thailand) Public Company Limited"
+            }
+          }
+        }
+      ],
+      "employee_type": [
+        {
+          "id": 1,
+          "name_th": "พนักงาน",
+          "name_en": "Employee",
+          "description": "Employee role"
+        },
+        {
+          "id": 2,
+          "name_th": "บริหาร",
+          "name_en": "Management",
+          "description": "Employee role"
+        }
+      ],
+      "payment_term": {
+        "id": 9,
+        "business_partner_role_id": 1,
+        "code": "NET30",
+        "description": "Net 30 Days",
+        "is_default": 1
+      },
+      "registered_user_email": "user@example.com",
+      "created_at": "2023-11-10T14:20:12",
+      "created_user_id": 123,
+      "updated_at": "2023-11-10T14:30:00",
+      "updated_user_id": 456
+    },
+    "business_partner_profile_form": {
+      "id": 3,
+      "form_number": "1",
+      "business_partner_type": {
+        "id": 2,
+        "name_th": "บริษัทเอกชน",
+        "name_en": "Corperate",
+        "is_natural_person": false,
+        "is_default": true,
+        "do_rsp_activity": true
+      },
+      "business_register_type": {
+        "id": 2,
+        "name_th": "ห้างหุ้นส่วนสามัญนิติบุคคล",
+        "name_en": "Juristic General Partnership",
+        "created_at": "2023-09-26T15:06:25Z",
+        "created_user_id": 1,
+        "updated_at": "2023-09-26T15:06:25Z",
+        "updated_user_id": 1
+      },
+      "is_vat_registered": false,
+      "is_head_office": false,
+      "branch_code": "branch_code1",
+      "company_category": {
+        "id": 1,
+        "name_th": "ธุรกิจการเกษตร",
+        "name_en": "Agribusiness",
+        "is_default": true,
+        "created_at": "2023-09-26T14:47:44Z",
+        "created_user_id": 1,
+        "updated_at": "2023-09-26T14:47:44Z",
+        "updated_user_id": 1
+      },
+      "product_category": "product_category1",
+      "customer_category": "customer_category1",
+      "address_th": "address_th",
+      "province_th": {
+        "id": 65,
+        "name_th": "กระบี่",
+        "name_en": "Kabi"
+      },
+      "district_th": {
+        "id": 179,
+        "province": {
+          "id": 65,
+          "name_th": "กระบี่",
+          "name_en": "Kabi"
+        },
+        "name_th": "เมือง",
+        "name_en": "Meang"
+      },
+      "subdistrict_th": {
+        "id": 3692,
+        "district": {
+          "id": 179,
+          "province": {
+            "id": 65,
+            "name_th": "กระบี่",
+            "name_en": "Kabi"
+          },
+          "name_th": "เมือง",
+          "name_en": "Meang"
+        },
+        "name_th": "เกาะพีพี",
+        "name_en": "Koh Phi Phi"
+      },
+      "postal_code_th": {
+        "id": 7537,
+        "subdistrict": {
+          "id": 3692,
+          "district": {
+            "id": 179,
+            "province": {
+              "id": 65,
+              "name_th": "กระบี่",
+              "name_en": "Kabi"
+            },
+            "name_th": "เมือง",
+            "name_en": "Meang"
+          },
+          "name_th": "เกาะพีพี",
+          "name_en": "Koh Phi Phi"
+        },
+        "code": "96130"
+      },
+      "address_en": "address_en",
+      "province_en": "province_en",
+      "district_en": "district_en",
+      "subdistrict_en": "subdistrict_en",
+      "postal_code_en": {
+        "id": 1,
+        "subdistrict": {
+          "id": 1,
+          "district": {
+            "id": 1,
+            "province": {
+              "id": 1,
+              "name_th": "กรุงเทพมหานคร ",
+              "name_en": ""
+            },
+            "name_th": "พระนคร",
+            "name_en": ""
+          },
+          "name_th": "พระบรมมหาราชวัง",
+          "name_en": ""
+        },
+        "code": "10200"
+      },
+      "contact_name_1": "contact_name_1",
+      "contact_mobile_number_1": "contact_mobile_number_1",
+      "contact_email_1": "contact_email_1",
+      "contact_name_2": "contact_name_2",
+      "contact_mobile_number_2": "contact_mobile_number_2",
+      "contact_email_2": "contact_email_2",
+      "contact_name_3": "contact_name_3",
+      "contact_mobile_number_3": "contact_mobile_number_3",
+      "contact_email_3": "contact_email_3",
+      "bank_account_name": "bank_account_name",
+      "bank": {
+        "id": 1,
+        "bank_key": "002",
+        "name_th": "ธ. กรุงเทพ จํากัด (มหาชน) ",
+        "name_en": "",
+        "abbreviation": "BBL "
+      },
+      "bank_branch": "bank_branch",
+      "bank_account_number": "bank_account_number",
+      "created_at": "2023-11-28T15:47:46.024Z",
+      "created_user_id": 1
+    },
+    "uploaded_document": [
+      {
+        "id": 123,
+        "form_number": "01700640914000",
+        "document_name": "Document 1",
+        "document_path": "/path/to/document1.pdf",
+        "is_active": 1,
+        "created_at": "2023-11-10T14:20:12",
+        "created_user_id": 456,
+        "updated_at": "2023-11-12T09:30:45",
+        "updated_user_id": 789
+      },
+      {
+        "id": 124,
+        "form_number": "01700640914001",
+        "document_name": "Document 2",
+        "document_path": "/path/to/document2.pdf",
+        "is_active": 1,
+        "created_at": "2023-11-11T09:45:30",
+        "created_user_id": 457,
+        "updated_at": "2023-11-13T11:15:22",
+        "updated_user_id": 790
+      }
+    ]
+  }
+}

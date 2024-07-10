@@ -1,0 +1,15 @@
+{
+    "is_success": true,
+    "code": "200",
+    "message": "Ok",
+    "data": {
+        "id": 30,
+        "name_th": "ลูกหมู3",
+        "name_en": "Loogmoo3",
+        "is_default": true,
+        "created_at": "{datetime UTC+7}",
+        "created_user_id": 1,
+        "updated_at": "{datetime UTC+7}",
+        "updated_user_id": 1
+    }
+}

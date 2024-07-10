@@ -1,0 +1,142 @@
+{
+  "is_success": true,
+  "code": "200",
+  "message": "Ok",
+  "data": {
+      "id": 1,
+      "bp_number": "097938",
+      "taxpayer_id_number": "taxpayer_number_id101",
+      "name_th": "name1_th101",
+      "name1_th": "name1_th101",
+      "name2_th": "name2_th101",
+      "name3_th": "name3_th101",
+      "name4_th": "name4_th101",
+      "search_term1_th": "branch_search_term1_th101",
+      "search_term2_th": "branch_search_term2_th101",
+      "name_en": "name1_en101",
+      "name1_en": "name1_en101",
+      "name2_en": "name2_en101",
+      "name3_en": "name3_en101",
+      "name4_en": "name4_en101",
+      "search_term1_en": "branch_search_term1_en101",
+      "search_term2_en": "branch_search_term1_en101",
+      "employee_type": [
+          {
+              "id": 1,
+              "name_th": "พนักงานบริษัทฯ กรณีเป็นผู้ถือวงเงินสดย่อย",
+              "name_en": "Petty cash limit holders"
+          }
+      ],
+      "payment_term": {
+          "id": 1,
+          "business_partner_role_id": 1,
+          "code": "P015",
+          "description": "15 Days",
+          "is_default": true
+      },
+      "business_partner_type": {
+          "id": 3,
+          "name_th": "หน่วยงานราชการ",
+          "name_en": "Government",
+          "is_natural_person": false,
+          "is_default": true,
+          "do_rsp_activity": false
+      },
+      "business_register_type": {
+          "id": 1,
+          "name_th": "",
+          "name_en": "",
+          "created_at": "2023-09-26T15:06:25+07:00",
+          "created_user_id": 1,
+          "updated_at": "2023-09-26T15:06:25+07:00",
+          "updated_user_id": 1
+      },
+      "is_vat_registered": true,
+      "is_head_office": true,
+      "branch_code": "default_branch_code101",
+      "branch_description": "branch_description101",
+      "default_branch_code": "default_branch_code101",
+      "company_category": {
+          "id": 10,
+          "name_th": "วัสดุอุตสาหกรรมและเครื่องจักร",
+          "name_en": "Industrial Materials & Machine",
+          "is_default": true,
+          "created_at": "2023-11-12T13:04:03+07:00",
+          "created_user_id": 1,
+          "updated_at": "2023-11-12T13:04:03+07:00",
+          "updated_user_id": 1
+      },
+      "product_category": "product_category",
+      "customer_category": "customer_category",
+      "business_partner_number": "097938101",
+      "business_partner_group": null,
+      "business_partner_role": "Vendor & Customer",
+      "business_partner_category": "business_partner_category101",
+      "account_business_partner_type": {
+          "id": 1,
+          "code": "0001",
+          "name": "Person/ Group of Person"
+      },
+      "is_natural_person": true,
+      "tax_category": "tax_category101",
+      "industry": "industry101",
+      "trading_partner": "trading_partner101",
+      "valid_from": "valid_from101",
+      "valid_to": "valid_to101",
+      "language": "th",
+      "long_text_general": "long_text_general101",
+      "contact_owner_user": {
+          "id": 1,
+          "email": "test1@fakduai.com",
+          "firstname": "test",
+          "lastname": "dev",
+          "is_register": true,
+          "is_active": true,
+          "member_type": {
+              "id": 1,
+              "name": "Employee"
+          },
+          "team": {
+              "id": 15,
+              "name_th": "test7",
+              "name_en": "test7",
+              "is_active": true,
+              "company": {
+                  "id": 2,
+                  "company_code": "1100",
+                  "name_th": "บริษัท โกลเด้น แลนด์ (เมย์แฟร์) จำกัด",
+                  "name_en": "Golden Land (Mayfair)  Co.,Ltd.",
+                  "taxpayer_id_number": "0105544119359",
+                  "address_th": "60 อาคารเมย์แฟร์แมริออทเอ็คเซ็คคิวทิฟอพาร์ทเม้นท์ ซอยหลังสวน แขวงลุมพินี เขตปทุมวัน กรุงเทพฯ 10330",
+                  "address_en": "Mayfair Marriot Executive Apartment Building,60 Soi Langsuan,Lumpini,Pathumwan,Bangkok 10330",
+                  "business_unit": {
+                      "id": 1,
+                      "name_th": "Commercial",
+                      "name_en": "Commercial",
+                      "purchasing_organization": "GL00"
+                  },
+                  "created_at": "2023-09-25T16:48:40+07:00",
+                  "created_user_id": 1,
+                  "updated_at": "2023-09-25T16:48:40+07:00",
+                  "updated_user_id": 1
+              }
+          },
+          "role": {
+              "id": 4,
+              "name": "Account",
+              "description": ""
+          },
+          "created_at": "2023-09-25T12:27:21+07:00",
+          "created_user_id": 1,
+          "updated_at": "2024-01-25T16:36:43.676+07:00",
+          "updated_user_id": 1
+      },
+      "is_integrated_sap": true,
+      "is_completed_profile": false,
+      "is_blocked": false,
+      "created_at": "2024-01-12T00:36:17.084+07:00",
+      "created_user_id": 1,
+      "updated_at": "2024-03-04T22:55:56.552+07:00",
+      "updated_user_id": 1
+  }
+}

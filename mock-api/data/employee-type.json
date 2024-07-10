@@ -1,0 +1,17 @@
+{
+    "is_success": true,
+    "code": "200",
+    "message": "Ok",
+    "data": [
+        {
+            "id": 2,
+            "name_th": "พนักงานบริษัทฯ กรณี Advance / Reimbursement",
+            "name_en": "Advance / Reimbursement"
+        },
+        {
+            "id": 1,
+            "name_th": "พนักงานบริษัทฯ กรณีเป็นผู้ถือวงเงินสดย่อย",
+            "name_en": "Petty cash limit holders"
+        }
+    ]
+}

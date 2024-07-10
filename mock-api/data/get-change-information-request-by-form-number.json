@@ -1,0 +1,292 @@
+{
+  "is_success": true,
+  "code": 200,
+  "message": "Ok",
+  "data": {
+    "form_number": "01700640914000",
+    "bp_number": "123456789",
+    "request_status": {
+      "id": 1,
+      "name": "Pending",
+      "created_at": "2023-11-10T14:20:12",
+      "created_user_id": 1001,
+      "updated_at": "2023-11-12T08:45:30",
+      "updated_user_id": 1002
+    },
+    "changed_part": [
+      {
+        "id": 1,
+        "name_th": "เปลี่ยนข้อมูลธนาคาร",
+        "name_en": "Change bank information"
+      },
+      {
+        "id": 2,
+        "name_th": "เปลี่ยนข้อมูลชื่อ",
+        "name_en": "Change name information"
+      },
+      {
+        "id": 3,
+        "name_th": "เพิ่มสาขา",
+        "name_en": "Add branch"
+      },
+      {
+        "id": 4,
+        "name_th": "เปลี่ยนข้อมูลที่อยู่",
+        "name_en": "Change address information"
+      },
+      {
+        "id": 5,
+        "name_th": "เปลี่ยนข้อมูลผู้ติดต่อ",
+        "name_en": "Change contact person"
+      }
+    ],
+    "change_bank_information": [
+      {
+        "id": 1,
+        "form_number": "01707192668000",
+        "business_partner_number": "1000011700",
+        "business_partner_name": "บริษัท ทดสอบ จํากัด",
+        "bank_account_name": "John Doe",
+        "bank": {
+          "id": 1,
+          "bank_key": "002",
+          "name_th": "ธ. กรุงเทพ จํากัด (มหาชน) ",
+          "name_en": "",
+          "abbreviation": "BBL "
+        },
+        "bank_key": "0021234",
+        "bank_account_holder": "BBL",
+        "bank_branch": "พระโขนง",
+        "bank_account_number": "0025647891",
+        "remark": "เพิ่ม",
+        "created_at": "2024-01-17T01:57:51.163+07:00",
+        "created_user_id": 1,
+        "updated_at": "2024-03-07T22:07:32.381+07:00",
+        "updated_user_id": 1
+      }
+    ],
+    "change_name_information": [
+      {
+        "id": 1,
+        "form_number": "01700640914000",
+        "business_partner_number": "BP123456",
+        "name_th": "บริษัท ทดสอบ จำกัด",
+        "name1_th": "บริษัท ทดสอบ",
+        "name2_th": "จำกัด",
+        "name3_th": "",
+        "name4_th": "",
+        "search_term1_th": "ทดสอบ",
+        "name_en": "Test Company Ltd.",
+        "name1_en": "Test Company",
+        "name2_en": "Company",
+        "name3_en": "Ltd.",
+        "name4_en": "",
+        "search_term1_en": "Test",
+        "created_at": "2023-11-10T14:20:12",
+        "created_user_id": 1,
+        "updated_at": "2023-11-12T10:30:45",
+        "updated_user_id": 2
+      }
+    ],
+    "add_branch_information": [
+      {
+        "id": 1,
+        "form_number": "01707192668000",
+        "business_partner_number": "1000011700",
+        "branch_code": "00002",
+        "branch_description": "สาขาที่ 00002",
+        "business_partner_role": {
+          "id": 1,
+          "name": "Vendor"
+        },
+        "name1_th": "บริษัท ทดสอบ จํากัด",
+        "name2_th": "",
+        "name3_th": "",
+        "name4_th": "",
+        "search_term1_th": "สาขาที่ 00002",
+        "address_th": "32 ซอยนาคนิวาส 12 ถนนนาคนิวาส",
+        "address1_th": "32 ซอยนาคนิวาส 12 ถนนนาคนิวาส",
+        "address2_th": "",
+        "province_th": {
+          "id": 1,
+          "name_th": "กรุงเทพมหานคร ",
+          "name_en": "",
+          "created_at": "2023-10-04T15:40:00+07:00",
+          "created_user_id": 1,
+          "updated_at": "2023-10-04T15:40:00+07:00",
+          "updated_user_id": 1
+        },
+        "district_th": {
+          "id": 1,
+          "province_id": 1,
+          "name_th": "พระนคร",
+          "name_en": "",
+          "created_at": "2023-10-04T15:40:00+07:00",
+          "created_user_id": 1,
+          "updated_at": "2023-10-04T15:40:00+07:00",
+          "updated_user_id": 1
+        },
+        "subdistrict_th": {
+          "id": 1,
+          "district_id": 1,
+          "name_th": "พระบรมมหาราชวัง",
+          "name_en": "",
+          "created_at": "2023-11-12T21:45:50+07:00",
+          "created_user_id": 1,
+          "updated_at": "2023-11-12T21:45:50+07:00",
+          "updated_user_id": 1
+        },
+        "postal_code_th": {
+          "id": 1,
+          "subdistrict_id": 1,
+          "code": "10200",
+          "created_at": "2023-11-12T22:47:34+07:00",
+          "created_user_id": 1,
+          "updated_at": "2023-11-12T22:47:34+07:00",
+          "updated_user_id": 1
+        },
+        "name1_en": "บริษัท ทดสอบ จํากัด",
+        "name2_en": "",
+        "name3_en": "",
+        "name4_en": "",
+        "search_term1_en": "Branch No. 00002",
+        "address_en": "32 Soi Nakniwat 12, Nakniwat Road,",
+        "address1_en": "32 Soi Nakniwat 12, Nakniwat Road,",
+        "address2_en": "",
+        "province_en": "Bangkok",
+        "district_en": "Saimai,",
+        "subdistrict_en": "Saimai,",
+        "postal_code_en": {
+          "id": 1,
+          "subdistrict_id": 1,
+          "code": "10200",
+          "created_at": "2023-11-12T22:47:34+07:00",
+          "created_user_id": 1,
+          "updated_at": "2023-11-12T22:47:34+07:00",
+          "updated_user_id": 1
+        },
+        "country": "TH",
+        "created_at": "2024-01-17T01:57:51.708+07:00",
+        "created_user_id": 1,
+        "updated_at": "2024-03-07T22:07:32.893+07:00",
+        "updated_user_id": 1
+      }
+    ],
+    "change_address_information": [
+      {
+        "id": 1,
+        "form_number": "01707192668000",
+        "business_partner_number": "1000011700",
+        "branch_code": "00002",
+        "branch_description": "สาขาที่ 00002",
+        "name1_th": "บริษัท ทดสอบ จํากัด",
+        "name2_th": "",
+        "name3_th": "",
+        "name4_th": "",
+        "search_term1_th": "สาขาที่ 00002",
+        "address_th": "32 ซอยนาคนิวาส 12 ถนนนาคนิวาส",
+        "address1_th": "32 ซอยนาคนิวาส 12 ถนนนาคนิวาส",
+        "address2_th": "",
+        "province_th": {
+          "id": 1,
+          "name_th": "กรุงเทพมหานคร ",
+          "name_en": "",
+          "created_at": "2023-10-04T15:40:00+07:00",
+          "created_user_id": 1,
+          "updated_at": "2023-10-04T15:40:00+07:00",
+          "updated_user_id": 1
+        },
+        "district_th": {
+          "id": 1,
+          "province_id": 1,
+          "name_th": "พระนคร",
+          "name_en": "",
+          "created_at": "2023-10-04T15:40:00+07:00",
+          "created_user_id": 1,
+          "updated_at": "2023-10-04T15:40:00+07:00",
+          "updated_user_id": 1
+        },
+        "subdistrict_th": {
+          "id": 1,
+          "district_id": 1,
+          "name_th": "พระบรมมหาราชวัง",
+          "name_en": "",
+          "created_at": "2023-11-12T21:45:50+07:00",
+          "created_user_id": 1,
+          "updated_at": "2023-11-12T21:45:50+07:00",
+          "updated_user_id": 1
+        },
+        "postal_code_th": {
+          "id": 1,
+          "subdistrict_id": 1,
+          "code": "10200",
+          "created_at": "2023-11-12T22:47:34+07:00",
+          "created_user_id": 1,
+          "updated_at": "2023-11-12T22:47:34+07:00",
+          "updated_user_id": 1
+        },
+        "name1_en": "Testing Co. LTD",
+        "name2_en": "",
+        "name3_en": "",
+        "name4_en": "",
+        "search_term1_en": "Branch No. 00002",
+        "address_en": "32 Soi Nakniwat 12, Nakniwat Road,",
+        "address1_en": "32 Soi Nakniwat 12, Nakniwat Road,",
+        "address2_en": "",
+        "province_en": "Bangkok",
+        "district_en": "Saimai,",
+        "subdistrict_en": "Saimai,",
+        "postal_code_en": {
+          "id": 1,
+          "subdistrict_id": 1,
+          "code": "10200",
+          "created_at": "2023-11-12T22:47:34+07:00",
+          "created_user_id": 1,
+          "updated_at": "2023-11-12T22:47:34+07:00",
+          "updated_user_id": 1
+        },
+        "country": "TH",
+        "created_at": "2024-01-17T01:57:52.126+07:00",
+        "created_user_id": 1,
+        "updated_at": "2024-03-07T22:07:33.344+07:00",
+        "updated_user_id": 1
+      }
+    ],
+    "change_contact_information": [
+      {
+        "id": 1,
+        "form_number": "01700640914000",
+        "business_partner_number": "BP123456",
+        "branch_code": "00001",
+        "business_partner_name": "ธุรกิจทดสอบ",
+        "name": "John Doe",
+        "mobile_number": "1234567890",
+        "email": "john.doe@example.com",
+        "remark": "เพิ่ม",
+        "created_at": "2023-11-10T14:20:12",
+        "created_user_id": 1,
+        "updated_at": "2023-11-12T10:30:45",
+        "updated_user_id": 2
+      },
+      {
+        "id": 2,
+        "form_number": "01700640914000",
+        "business_partner_number": "BP123456",
+        "branch_code": "00001",
+        "business_partner_name": "ธุรกิจทดสอบ",
+        "name": "John Dev",
+        "mobile_number": "1234567890",
+        "email": "john.dev@example.com",
+        "remark": "ยกเลิก",
+        "created_at": "2023-11-10T14:20:12",
+        "created_user_id": 1,
+        "updated_at": "2023-11-12T10:30:45",
+        "updated_user_id": 2
+      }
+    ],
+    "created_at": "2023-11-10T14:20:12",
+    "created_user_id": 123,
+    "updated_at": "2023-11-10T14:30:30",
+    "updated_user_id": 456
+  }
+}

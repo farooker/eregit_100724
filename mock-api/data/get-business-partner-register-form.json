@@ -1,0 +1,74 @@
+{
+    "is_success": true,
+    "code": 200,
+    "message": "Ok",
+    "data": {
+        "form_number": "01700640914000",
+        "taxpayer_id_number": "1234567890123",
+        "name_th": "ชื่อธุรกิจ บริษัท ตัวอย่าง จำกัด",
+        "name_en": "Business Name Sample Company Ltd.",
+        "form_status": {
+            "id": 1,
+            "name": "Pending",
+            "description": "Form is pending for review"
+        },
+        "business_partner_role": {
+            "id": 1,
+            "name": "Supplier",
+            "description": "Supplier role in the business partnership"
+        },
+        "fill_type": {
+            "id": 1,
+            "business_partner_role_id": 1,
+            "name_th": "Online",
+            "name_en": "Online",
+            "description": "Online form submission for supplier role"
+        },
+        "company": {
+            "id": 1,
+            "company_code": "1000",
+            "name_th": "บริษัท แผ่นดินทอง พร็อพเพอร์ตี้ ดีเวลลอปเม้นท์ จำกัด (มหาชน)",
+            "name_en": "Golden Land Property Development PLC.",
+            "taxpayer_id_number": "0107537002273",
+            "address_th": "944 มิตรทาวน์ ออฟฟิศ ทาวเวอร์ ชั้นที่ 20 ถนนพระราม 4 แขวงวังใหม่ เขตปทุมวัน กรุงเทพมหานคร 10330",
+            "address_en": "944 aaa 10330",
+            "business_unit": {
+                "id": 1,
+                "name_th": "Commercial",
+                "name_en": "Commercial",
+                "purchasing_organization": "GL00",
+                "corporation": {
+                    "id": 1,
+                    "name_th": "บริษัท เฟรเซอร์ส พร็อพเพอร์ตี้ โฮม (ประเทศไทย) จำกัด",
+                    "name_en": "Frasers Property (Thailand) Public Company Limited"
+                }
+            }
+        },
+        "employee_type": [
+            {
+                "id": 1,
+                "name_th": "พนักงาน",
+                "name_en": "Employee",
+                "description": "Employee role"
+            },
+            {
+                "id": 2,
+                "name_th": "บริหาร",
+                "name_en": "Management",
+                "description": "Employee role"
+            }
+        ],
+        "payment_term": {
+            "id": 1,
+            "business_partner_role_id": 1,
+            "code": "NET30",
+            "description": "Net 30 Days",
+            "is_default": 1
+        },
+        "registered_user_email": "user@example.com",
+        "created_at": "2023-11-10T14:20:12",
+        "created_user_id": 123,
+        "updated_at": "2023-11-10T14:30:00",
+        "updated_user_id": 456
+    }
+}

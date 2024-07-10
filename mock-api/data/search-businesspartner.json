@@ -1,0 +1,39 @@
+{
+    "is_success": true,
+    "code": "200",
+    "message": "Ok",
+    "data": [
+      {
+        "business_partners": [
+          {
+            "bp_number": "01700640914000",
+            "name_th": "บริษัท ตัวอย่าง 1",
+            "name_en": "Sample Company 1",
+            "taxpayer_id_number": "1234567890123",
+            "business_partner_role": "Vendor",
+            "contact_owner": {
+              "email": "owner1@example.com",
+              "team": "Sales",
+              "company": "Sample Corporation",
+              "business_unit": "BU1"
+            },
+            "created_at": "2023-11-10T14:20:12"
+          },
+          {
+            "bp_number": "01700640914001",
+            "name_th": "บริษัท ตัวอย่าง 2",
+            "name_en": "Sample Company 2",
+            "taxpayer_id_number": "9876543210123",
+            "business_partner_role": "Customer",
+            "contact_owner": {
+              "email": "owner2@example.com",
+              "team": "Support",
+              "company": "Example Enterprises",
+              "business_unit": "BU2"
+            },
+            "created_at": "2023-11-11T09:45:30"
+          }
+        ]
+      }
+    ]
+  }

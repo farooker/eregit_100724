@@ -1,0 +1,55 @@
+{
+    "is_success": true,
+    "code": "200",
+    "message": "Ok",
+    "data": [
+        {
+            "id": 8,
+            "business_partner_role_id": 3,
+            "name_th": "พนักงานเป็น Vendor",
+            "name_en": "Employee is vendor"
+        },
+        {
+            "id": 7,
+            "business_partner_role_id": 3,
+            "name_th": "กรอกข้อมูลให้ Vendor",
+            "name_en": "Fill in information for vendor"
+        },
+        {
+            "id": 6,
+            "business_partner_role_id": 3,
+            "name_th": "ส่ง Email ให้ Vendor กรอกเอง",
+            "name_en": "Send email to vendor to fill in"
+        },
+        {
+            "id": 5,
+            "business_partner_role_id": 2,
+            "name_th": "พนักงานเป็น Customer",
+            "name_en": "Employee is customer"
+        },
+        {
+            "id": 4,
+            "business_partner_role_id": 2,
+            "name_th": "กรอกข้อมูลให้ Customer",
+            "name_en": "Fill in information for customer"
+        },
+        {
+            "id": 3,
+            "business_partner_role_id": 1,
+            "name_th": "พนักงานเป็น Vendor",
+            "name_en": "Employee is vendor"
+        },
+        {
+            "id": 2,
+            "business_partner_role_id": 1,
+            "name_th": "กรอกข้อมูลให้ Vendor",
+            "name_en": "Fill in information for vendor"
+        },
+        {
+            "id": 1,
+            "business_partner_role_id": 1,
+            "name_th": "ส่ง Email ให้ Vendor กรอกเอง",
+            "name_en": "Send email to vendor to fill in"
+        }
+    ]
+}

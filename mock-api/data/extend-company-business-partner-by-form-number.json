@@ -1,0 +1,27 @@
+{
+  "is_success": true,
+  "code": 200,
+  "message": "Ok",
+  "data": {
+    "id": 1,
+    "form_number": "01700640914000",
+    "bp_number": "123456789",
+    "request_status": {
+      "id": 1,
+      "name": "Pending",
+      "created_at": "2023-11-10T14:20:12",
+      "created_user_id": 123,
+      "updated_at": "2023-11-10T14:30:30",
+      "updated_user_id": 456
+    },
+    "business_partner_role": {
+      "id": 1,
+      "name": "Vendor"
+    },
+    "company_id": "1,2,3",
+    "created_at": "2023-11-10T14:20:12",
+    "created_user_id": 123,
+    "updated_at": "2023-11-10T14:30:30",
+    "updated_user_id": 456
+  }
+}

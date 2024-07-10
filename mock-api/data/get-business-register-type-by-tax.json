@@ -1,0 +1,13 @@
+{
+    "is_success": true,
+    "code": "200",
+    "message": "Ok",
+    "data": {
+        "id": 4,
+        "name_th": "สถานทูต",
+        "name_en": "Embrassy",
+        "is_natural_person": false,
+        "is_default": true,
+        "do_rsp_activity": false
+    }
+}

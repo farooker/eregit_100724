@@ -1,0 +1,19 @@
+{
+    "is_success": true,
+    "code": "200",
+    "message": "Ok",
+    "data": [
+        {
+            "id": 3,
+            "name": "Vendor & Customer"
+        },
+        {
+            "id": 2,
+            "name": "Customer"
+        },
+        {
+            "id": 1,
+            "name": "Vendor"
+        }
+    ]
+}

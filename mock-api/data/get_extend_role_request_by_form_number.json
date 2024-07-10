@@ -1,0 +1,52 @@
+{
+    "is_success": true,
+    "code": 200,
+    "message": "Ok",
+    "data": {
+        "id": 1,
+        "form_number": "01700640914000",
+        "bp_number": "BP123456",
+        "request_status": {
+            "id": 1,
+            "name": "Pending",
+            "created_at": "2023-11-10T14:20:12",
+            "created_user_id": 1001,
+            "updated_at": "2023-11-12T08:45:30",
+            "updated_user_id": 1002
+        },
+        "extend_to_bp_role": {
+            "id": 1,
+            "name": "Vendor"
+        },
+        "business_partner_number": "BP789012",
+        "name": "Business Partner Name",
+        "branch_code": "00000",
+        "branch_description": "Head Office",
+        "reconciliation_account": {
+            "id": 1,
+            "business_partner_role_id": 1,
+            "code": "123456",
+            "name": "Reconciliation Account A"
+        },
+        "sort_key": "A123",
+        "payment_term": {
+            "id": 1,
+            "business_partner_role_id": 1,
+            "code": "NET30",
+            "description": "Net 30 Days",
+            "created_at": "2023-11-10T14:20:12",
+            "created_user_id": 123,
+            "updated_at": "2023-11-10T14:30:30",
+            "updated_user_id": 456
+        },
+        "payment_methods": "ABCDEFGHIJ",
+        "withholding_tax_type_1": "TypeA",
+        "withholding_tax_type_2": "TypeB",
+        "withholding_tax_type_3": "TypeC",
+        "company_id": "1,2",
+        "created_at": "2023-11-10T14:20:12",
+        "created_user_id": 1001,
+        "updated_at": "2023-11-12T08:45:30",
+        "updated_user_id": 1002
+    }
+}

@@ -1,0 +1,63 @@
+{
+    "is_success": true,
+    "code": "200",
+    "message": "Ok",
+    "data": [
+        {
+            "bp_number": "01234567890000",
+            "name_th": "บริษัท ABC จำกัด",
+            "name_en": "Company ABC Co., Ltd.",
+            "contact_owner": {
+                "email": "contact@companyabc.com",
+                "team": "Team XYZ",
+                "company": "Company ABC Co., Ltd.",
+                "business_unit": "Sales"
+            },
+            "rsp": {
+                "policy": {
+                    "status": "Completed",
+                    "completed_at": "2023-11-10T14:20:12"
+                },
+                "survey": {
+                    "status": "In Progress",
+                    "progress_percentage": 70,
+                    "completed_at": null
+                },
+                "training": {
+                    "status": "Completed",
+                    "completed_amount": 5,
+                    "total_amount": 5,
+                    "completed_at": "2023-11-15T19:20:33"
+                }
+            }
+        },
+        {
+            "bp_number": "01234567890001",
+            "name_th": "บริษัท XYZ จำกัด",
+            "name_en": "Company XYZ Co., Ltd.",
+            "contact_owner": {
+                "email": "contact@companyxyz.com",
+                "team": "Team ABC",
+                "company": "Company XYZ Co., Ltd.",
+                "business_unit": "Marketing"
+            },
+            "rsp": {
+                "policy": {
+                    "status": "In Progress",
+                    "completed_at": null
+                },
+                "survey": {
+                    "status": "Not Started",
+                    "progress_percentage": 0,
+                    "completed_at": null
+                },
+                "training": {
+                    "status": "Not Started",
+                    "completed_amount": 0,
+                    "total_amount": 10,
+                    "completed_at": null
+                }
+            }
+        }
+    ]
+}

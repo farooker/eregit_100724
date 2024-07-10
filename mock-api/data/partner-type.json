@@ -1,0 +1,71 @@
+{
+    "is_success": true,
+    "code": "200",
+    "message": "Ok",
+    "data": [
+        {
+            "id": 1,
+            "name_th": "บุคคลธรรมดา",
+            "name_en": "Natural Person",
+            "is_natural_person": true,
+            "is_default": true,
+            "do_rsp_activity": false
+        },
+        {
+            "id": 2,
+            "name_th": "บริษัทเอกชน",
+            "name_en": "Corperate",
+            "is_natural_person": false,
+            "is_default": true,
+            "do_rsp_activity": true
+        },
+        {
+            "id": 3,
+            "name_th": "หน่วยงานราชการ",
+            "name_en": "Government",
+            "is_natural_person": false,
+            "is_default": true,
+            "do_rsp_activity": false
+        },
+        {
+            "id": 4,
+            "name_th": "สถานทูต",
+            "name_en": "Embrassy",
+            "is_natural_person": false,
+            "is_default": true,
+            "do_rsp_activity": false
+        },
+        {
+            "id": 5,
+            "name_th": "รัฐวิสาหกิจ",
+            "name_en": "State Enterprise",
+            "is_natural_person": false,
+            "is_default": true,
+            "do_rsp_activity": false
+        },
+        {
+            "id": 6,
+            "name_th": "มูลนิธิและสมาคม",
+            "name_en": "Foundation and Association",
+            "is_natural_person": false,
+            "is_default": true,
+            "do_rsp_activity": false
+        },
+        {
+            "id": 7,
+            "name_th": "สถานศึกษา",
+            "name_en": "School",
+            "is_natural_person": false,
+            "is_default": true,
+            "do_rsp_activity": false
+        },
+        {
+            "id": 8,
+            "name_th": "สถาบันการเงิน",
+            "name_en": "Bank",
+            "is_natural_person": false,
+            "is_default": true,
+            "do_rsp_activity": true
+        }
+    ]
+}

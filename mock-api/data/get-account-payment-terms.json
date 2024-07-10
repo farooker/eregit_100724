@@ -1,0 +1,107 @@
+{
+    "is_success": true,
+    "code": "200",
+    "message": "Ok",
+    "data": [
+        {
+            "id": 24,
+            "business_partner_role_id": 2,
+            "code": "RD03",
+            "description": "Day 1 of month+2",
+            "created_at": "2023-11-09T13:26:42Z",
+            "created_user_id": 1,
+            "updated_at": "2023-11-09T13:26:42Z",
+            "updated_user_id": 1
+        },
+        {
+            "id": 23,
+            "business_partner_role_id": 2,
+            "code": "RD02",
+            "description": "Day 5 of next month",
+            "created_at": "2023-11-09T13:26:42Z",
+            "created_user_id": 1,
+            "updated_at": "2023-11-09T13:26:42Z",
+            "updated_user_id": 1
+        },
+        {
+            "id": 22,
+            "business_partner_role_id": 2,
+            "code": "RD01",
+            "description": "Day 1 of next month",
+            "created_at": "2023-11-09T13:26:42Z",
+            "created_user_id": 1,
+            "updated_at": "2023-11-09T13:26:42Z",
+            "updated_user_id": 1
+        },
+        {
+            "id": 21,
+            "business_partner_role_id": 2,
+            "code": "R999",
+            "description": "No default baseline date",
+            "created_at": "2023-11-09T13:26:42Z",
+            "created_user_id": 1,
+            "updated_at": "2023-11-09T13:26:42Z",
+            "updated_user_id": 1
+        },
+        {
+            "id": 20,
+            "business_partner_role_id": 2,
+            "code": "R090",
+            "description": "90 Days from invoice date",
+            "created_at": "2023-11-09T13:26:41Z",
+            "created_user_id": 1,
+            "updated_at": "2023-11-09T13:26:41Z",
+            "updated_user_id": 1
+        },
+        {
+            "id": 19,
+            "business_partner_role_id": 2,
+            "code": "R060",
+            "description": "60 Days from invoice date",
+            "created_at": "2023-11-09T13:26:41Z",
+            "created_user_id": 1,
+            "updated_at": "2023-11-09T13:26:41Z",
+            "updated_user_id": 1
+        },
+        {
+            "id": 18,
+            "business_partner_role_id": 2,
+            "code": "R045",
+            "description": "45 Days from invoice date",
+            "created_at": "2023-11-09T13:26:41Z",
+            "created_user_id": 1,
+            "updated_at": "2023-11-09T13:26:41Z",
+            "updated_user_id": 1
+        },
+        {
+            "id": 17,
+            "business_partner_role_id": 2,
+            "code": "R030",
+            "description": "30 Days from invoice date",
+            "created_at": "2023-11-09T13:26:41Z",
+            "created_user_id": 1,
+            "updated_at": "2023-11-09T13:26:41Z",
+            "updated_user_id": 1
+        },
+        {
+            "id": 16,
+            "business_partner_role_id": 2,
+            "code": "R015",
+            "description": "15 Days from invoice date",
+            "created_at": "2023-11-09T13:26:41Z",
+            "created_user_id": 1,
+            "updated_at": "2023-11-09T13:26:41Z",
+            "updated_user_id": 1
+        },
+        {
+            "id": 15,
+            "business_partner_role_id": 2,
+            "code": "R007",
+            "description": "7 Days from invoice date",
+            "created_at": "2023-11-09T13:26:41Z",
+            "created_user_id": 1,
+            "updated_at": "2023-11-09T13:26:41Z",
+            "updated_user_id": 1
+        }
+    ]
+}

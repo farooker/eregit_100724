@@ -1,0 +1,48 @@
+{
+  "is_success": true,
+  "code": 200,
+  "message": "Ok",
+  "data": [
+    {
+      "id": 1,
+      "bp_number": "BP123456",
+      "rsp_survey": {
+        "id": 101,
+        "name": "Sample RSP Survey",
+        "description": "This is a sample RSP survey.",
+        "version": 1,
+        "rsp_state": {
+          "id": 201,
+          "name": "active"
+        },
+        "total_score": 100,
+        "published_at": "2023-11-10T14:20:12",
+        "is_deleted": 0,
+        "is_permanently_deleted": 0,
+        "created_at": "2023-11-10T14:20:12",
+        "created_user_id": 301,
+        "updated_at": "2023-11-11T09:30:45",
+        "updated_user_id": 302
+      },
+      "rsp_activity_status": "inprogress",
+      "inprogress_section_id": 2,
+      "progress_percentage": 50,
+      "evaluation": {
+        "id": 401,
+        "rsp_survey_id": 101,
+        "name": "Quality of Service",
+        "minimum_score_criteria": 0,
+        "description": "Evaluate the quality of service provided",
+        "image_url": "https://example.com/images/quality_of_service.jpg"
+      },
+      "score": 75,
+      "is_aligned": 1,
+      "created_at": "2023-11-12T12:45:30",
+      "created_user_id": 501,
+      "updated_at": "2023-11-12T14:55:20",
+      "updated_user_id": 502,
+      "completed_at": "2023-11-12T15:30:00",
+      "completed_user_id": 503
+    }
+  ]
+}

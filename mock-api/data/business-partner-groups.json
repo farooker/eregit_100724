@@ -1,0 +1,32 @@
+{
+    "is_success": true,
+    "code": "200",
+    "message": "Ok",
+    "data": [
+        {
+            "id": 5,
+            "code": "BP05",
+            "name": "Employee"
+        },
+        {
+            "id": 4,
+            "code": "BP04",
+            "name": "Petty Cash"
+        },
+        {
+            "id": 3,
+            "code": "BP03",
+            "name": "Loan"
+        },
+        {
+            "id": 2,
+            "code": "BP02",
+            "name": "One-time"
+        },
+        {
+            "id": 1,
+            "code": "BP01",
+            "name": "General"
+        }
+    ]
+}

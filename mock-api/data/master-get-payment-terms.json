@@ -1,0 +1,49 @@
+{
+    "is_success": true,
+    "code": "200",
+    "message": "Ok",
+    "data": [
+        {
+            "id": 9,
+            "business_partner_role_id": 3,
+            "code": "P015",
+            "description": "15 Days",
+            "is_default": true
+        },
+        {
+            "id": 8,
+            "business_partner_role_id": 2,
+            "code": "P060",
+            "description": "60 Days",
+            "is_default": true
+        },
+        {
+            "id": 7,
+            "business_partner_role_id": 2,
+            "code": "P045",
+            "description": "45 Days",
+            "is_default": true
+        },
+        {
+            "id": 6,
+            "business_partner_role_id": 2,
+            "code": "P030",
+            "description": "30 Days",
+            "is_default": true
+        },
+        {
+            "id": 5,
+            "business_partner_role_id": 2,
+            "code": "P015",
+            "description": "15 Days",
+            "is_default": true
+        },
+        {
+            "id": 4,
+            "business_partner_role_id": 1,
+            "code": "P060",
+            "description": "60 Days",
+            "is_default": true
+        }
+    ]
+}

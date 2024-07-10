@@ -1,0 +1,137 @@
+{
+    "is_success": true,
+    "code": "201",
+    "message": "Created",
+    "data": {
+        "id": 20,
+        "form_number": "1701617296",
+        "business_partner_type": {
+            "id": 1,
+            "name_th": "บุคคลธรรมดา",
+            "name_en": "Natural Person",
+            "is_natural_person": true,
+            "is_default": true,
+            "do_rsp_activity": false
+        },
+        "business_register_type": {
+            "id": 1,
+            "name_th": "",
+            "name_en": "",
+            "created_at": "2023-09-26T15:06:25+07:00",
+            "created_user_id": 1,
+            "updated_at": "2023-09-26T15:06:25+07:00",
+            "updated_user_id": 1
+        },
+        "is_vat_registered": true,
+        "is_head_office": true,
+        "branch_code": "branch_code",
+        "company_category": {
+            "id": 1,
+            "name_th": "ธุรกิจการเกษตร",
+            "name_en": "Agribusiness",
+            "is_default": true,
+            "created_at": "2023-09-26T14:47:44+07:00",
+            "created_user_id": 1,
+            "updated_at": "2023-09-26T14:47:44+07:00",
+            "updated_user_id": 1
+        },
+        "product_category": "product_category",
+        "customer_category": "customer_category",
+        "address_th": "address_th",
+        "province_th": {
+            "id": 1,
+            "name_th": "กรุงเทพมหานคร ",
+            "name_en": ""
+        },
+        "district_th": {
+            "id": 1,
+            "province": {
+                "id": 1,
+                "name_th": "กรุงเทพมหานคร ",
+                "name_en": ""
+            },
+            "name_th": "พระนคร",
+            "name_en": ""
+        },
+        "subdistrict_th": {
+            "id": 1,
+            "district": {
+                "id": 1,
+                "province": {
+                    "id": 1,
+                    "name_th": "กรุงเทพมหานคร ",
+                    "name_en": ""
+                },
+                "name_th": "พระนคร",
+                "name_en": ""
+            },
+            "name_th": "พระบรมมหาราชวัง",
+            "name_en": ""
+        },
+        "postal_code_th": {
+            "id": 1,
+            "subdistrict": {
+                "id": 1,
+                "district": {
+                    "id": 1,
+                    "province": {
+                        "id": 1,
+                        "name_th": "กรุงเทพมหานคร ",
+                        "name_en": ""
+                    },
+                    "name_th": "พระนคร",
+                    "name_en": ""
+                },
+                "name_th": "พระบรมมหาราชวัง",
+                "name_en": ""
+            },
+            "code": "10200"
+        },
+        "address_en": "address_en",
+        "province_en": "province_en",
+        "district_en": "district_en",
+        "subdistrict_en": "subdistrict_en",
+        "postal_code_en": {
+            "id": 1,
+            "subdistrict": {
+                "id": 1,
+                "district": {
+                    "id": 1,
+                    "province": {
+                        "id": 1,
+                        "name_th": "กรุงเทพมหานคร ",
+                        "name_en": ""
+                    },
+                    "name_th": "พระนคร",
+                    "name_en": ""
+                },
+                "name_th": "พระบรมมหาราชวัง",
+                "name_en": ""
+            },
+            "code": "10200"
+        },
+        "contact_name_1": "contact_name_1",
+        "contact_mobile_number_1": "contact_mobile_number_1",
+        "contact_email_1": "contact_email_1",
+        "contact_name_2": "contact_name_2",
+        "contact_mobile_number_2": "contact_mobile_number_2",
+        "contact_email_2": "contact_email_2",
+        "contact_name_3": "contact_name_3",
+        "contact_mobile_number_3": "contact_mobile_number_3",
+        "contact_email_3": "contact_email_3",
+        "bank_account_name": "bank_account_name",
+        "bank": {
+            "id": 1,
+            "bank_key": "002",
+            "name_th": "ธ. กรุงเทพ จำกัด (มหาชน) ",
+            "name_en": "",
+            "abbreviation": "BBL "
+        },
+        "bank_branch": "bank_branch",
+        "bank_account_number": "bank_account_number",
+        "created_at": "2024-02-21T21:54:50.843+07:00",
+        "created_user_id": 1,
+        "updated_at": "2024-02-21T21:54:50.843+07:00",
+        "updated_user_id": 1
+    }
+}

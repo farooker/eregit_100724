@@ -1,0 +1,2273 @@
+{
+    "is_success": true,
+    "code": "200",
+    "message": "Ok",
+    "data": {
+        "rsp_survey_id": 1,
+        "sections": [
+            {
+                "rsp_survey_section_id": 1,
+                "section_type": {
+                    "id": 1,
+                    "name": "additional question"
+                },
+                "name": "คำถามเพิ่มเติม",
+                "sequence": 0,
+                "score": 0,
+                "next_section_id": 0,
+                "questions": [
+                    {
+                        "rsp_survey_question_id": 1,
+                        "is_alignment_question": false,
+                        "question_type": {
+                            "id": 1,
+                            "name": "Paragraph"
+                        },
+                        "question": "ชื่อ",
+                        "sequence": 1,
+                        "score": 0,
+                        "is_required": true,
+                        "choices": []
+                    },
+                    {
+                        "rsp_survey_question_id": 2,
+                        "is_alignment_question": false,
+                        "question_type": {
+                            "id": 1,
+                            "name": "Paragraph"
+                        },
+                        "question": "ตำแหน่ง",
+                        "sequence": 2,
+                        "score": 0,
+                        "is_required": true,
+                        "choices": []
+                    },
+                    {
+                        "rsp_survey_question_id": 3,
+                        "is_alignment_question": false,
+                        "question_type": {
+                            "id": 1,
+                            "name": "Paragraph"
+                        },
+                        "question": "หน่วยงาน",
+                        "sequence": 3,
+                        "score": 0,
+                        "is_required": true,
+                        "choices": []
+                    },
+                    {
+                        "rsp_survey_question_id": 4,
+                        "is_alignment_question": false,
+                        "question_type": {
+                            "id": 1,
+                            "name": "Paragraph"
+                        },
+                        "question": "หมายเลขโทรศัพท์",
+                        "sequence": 4,
+                        "score": 0,
+                        "is_required": true,
+                        "choices": []
+                    },
+                    {
+                        "rsp_survey_question_id": 5,
+                        "is_alignment_question": false,
+                        "question_type": {
+                            "id": 1,
+                            "name": "Paragraph"
+                        },
+                        "question": "ที่อยู่อีเมล",
+                        "sequence": 5,
+                        "score": 0,
+                        "is_required": true,
+                        "choices": []
+                    }
+                ]
+            },
+            {
+                "rsp_survey_section_id": 2,
+                "section_type": {
+                    "id": 2,
+                    "name": "main question"
+                },
+                "name": "การดำเนินการทางธุรกิจ และ จรรยาบรรณทางธุรกิจ",
+                "sequence": 1,
+                "score": 24,
+                "next_section_id": 3,
+                "questions": [
+                    {
+                        "rsp_survey_question_id": 6,
+                        "is_alignment_question": true,
+                        "question_type": {
+                            "id": 2,
+                            "name": "Multiple choice"
+                        },
+                        "question": "1.1) บริษัทของท่านมีนโยบายด้านการดำเนินธุรกิจและจริยธรรมทางธุรกิจหรือไม่",
+                        "sequence": 1,
+                        "score": 10,
+                        "is_required": true,
+                        "choices": [
+                            {
+                                "rsp_survey_choice_id": 1,
+                                "answer": "มี",
+                                "is_aligned": true,
+                                "is_other_choice": false,
+                                "sequence": 1,
+                                "score": 10,
+                                "next_question_id": 2
+                            },
+                            {
+                                "rsp_survey_choice_id": 2,
+                                "answer": "ไม่มี",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 2,
+                                "score": 0,
+                                "next_question_id": 8
+                            },
+                            {
+                                "rsp_survey_choice_id": 3,
+                                "answer": "กำลังดำเนินการให้มีและเป้าหมายจะแล้วเสร็จในวันที่",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 3,
+                                "score": 0,
+                                "next_question_id": 8
+                            }
+                        ]
+                    },
+                    {
+                        "rsp_survey_question_id": 7,
+                        "is_alignment_question": false,
+                        "question_type": {
+                            "id": 3,
+                            "name": "Checkboxes"
+                        },
+                        "question": "โปรดเลือกประเด็นที่ท่านจะนำมาปรับใช้ซึ่งถูกบรรจุในจริยธรรมในการดำเนินธุรกิจของท่าน",
+                        "sequence": 2,
+                        "score": 8,
+                        "is_required": true,
+                        "choices": [
+                            {
+                                "rsp_survey_choice_id": 4,
+                                "answer": "การติดสินบนและการคอร์รัปชั่น",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 1,
+                                "score": 1,
+                                "next_question_id": 8
+                            },
+                            {
+                                "rsp_survey_choice_id": 5,
+                                "answer": "ความลับทางธุรกิจ",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 2,
+                                "score": 1,
+                                "next_question_id": 8
+                            },
+                            {
+                                "rsp_survey_choice_id": 6,
+                                "answer": "การขัดแย้งทางผลประโยชน์",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 3,
+                                "score": 1,
+                                "next_question_id": 8
+                            },
+                            {
+                                "rsp_survey_choice_id": 7,
+                                "answer": "การแข่งขันทางธุรกิจที่ยุติธรรมและการต่อต้านการผูกขาด",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 4,
+                                "score": 1,
+                                "next_question_id": 8
+                            },
+                            {
+                                "rsp_survey_choice_id": 8,
+                                "answer": "การฉ้อโกง",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 5,
+                                "score": 1,
+                                "next_question_id": 8
+                            },
+                            {
+                                "rsp_survey_choice_id": 9,
+                                "answer": "ความปลอดภัยด้าน IT",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 6,
+                                "score": 1,
+                                "next_question_id": 8
+                            },
+                            {
+                                "rsp_survey_choice_id": 10,
+                                "answer": "การฟอกเงินและการจัดหาเงินทุนเพื่อการก่อการร้าย",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 7,
+                                "score": 1,
+                                "next_question_id": 8
+                            },
+                            {
+                                "rsp_survey_choice_id": 11,
+                                "answer": "การป้องกันข้อมูลส่วนบุคคล",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 8,
+                                "score": 1,
+                                "next_question_id": 8
+                            },
+                            {
+                                "rsp_survey_choice_id": 12,
+                                "answer": "อื่นๆ (โปรดระบุ):",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 9,
+                                "score": 0,
+                                "next_question_id": 8
+                            }
+                        ]
+                    },
+                    {
+                        "rsp_survey_question_id": 8,
+                        "is_alignment_question": false,
+                        "question_type": {
+                            "id": 5,
+                            "name": "File upload"
+                        },
+                        "question": "โปรดแนบนโยบาย เอกสารหรือเว็ปลิ้งค์ที่เกี่ยวข้อง",
+                        "sequence": 3,
+                        "score": 0,
+                        "is_required": true,
+                        "choices": []
+                    },
+                    {
+                        "rsp_survey_question_id": 9,
+                        "is_alignment_question": false,
+                        "question_type": {
+                            "id": 1,
+                            "name": "Paragraph"
+                        },
+                        "question": "หมายเหตุเพิ่มเติม (ถ้ามี)",
+                        "sequence": 4,
+                        "score": 0,
+                        "is_required": false,
+                        "choices": []
+                    },
+                    {
+                        "rsp_survey_question_id": 10,
+                        "is_alignment_question": false,
+                        "question_type": {
+                            "id": 2,
+                            "name": "Multiple choice"
+                        },
+                        "question": "1.2) ปกติบริษัทของท่านมีกระบวนการติดตามผลการดำเนินงานและดำเนินการเกี่ยวกับจรรยาบรรณในการดำเนินธุรกิจหรือไม่",
+                        "sequence": 5,
+                        "score": 0,
+                        "is_required": true,
+                        "choices": [
+                            {
+                                "rsp_survey_choice_id": 13,
+                                "answer": "มี",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 1,
+                                "score": 0,
+                                "next_question_id": 11
+                            },
+                            {
+                                "rsp_survey_choice_id": 14,
+                                "answer": "ไม่มี",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 2,
+                                "score": 0,
+                                "next_question_id": 13
+                            },
+                            {
+                                "rsp_survey_choice_id": 15,
+                                "answer": "อยู่ระหว่างการดำเนินการให้มีและมีหมายกำหนดการแล้วเสร็จภายในวันที่",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 3,
+                                "score": 0,
+                                "next_question_id": 13
+                            }
+                        ]
+                    },
+                    {
+                        "rsp_survey_question_id": 11,
+                        "is_alignment_question": false,
+                        "question_type": {
+                            "id": 3,
+                            "name": "Checkboxes"
+                        },
+                        "question": "โปรดเลือกประเด็นที่ท่านจะนำมาปรับใช้ในการดำเนินธุรกิจของท่าน",
+                        "sequence": 6,
+                        "score": 6,
+                        "is_required": true,
+                        "choices": [
+                            {
+                                "rsp_survey_choice_id": 16,
+                                "answer": "ศูนย์ช่วยเหลือและสายด่วน (Hot Lines)",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 1,
+                                "score": 1,
+                                "next_question_id": 13
+                            },
+                            {
+                                "rsp_survey_choice_id": 17,
+                                "answer": "การดำเนินการทางวินัยในกรณีที่มีการฝ่าฝืนเช่นการตักเตือน การไล่ออกนโยบายการยินยอมให้เป็นศูนย์ (Zero Tolerance Policy)",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 2,
+                                "score": 1,
+                                "next_question_id": 13
+                            },
+                            {
+                                "rsp_survey_choice_id": 18,
+                                "answer": "การประเมินผลการปฏิบัติงานของพนักงานรวมการปฏิบัติตามจรรยาบรรณ",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 3,
+                                "score": 1,
+                                "next_question_id": 13
+                            },
+                            {
+                                "rsp_survey_choice_id": 19,
+                                "answer": "ความรับผิดชอบและสายงานการรายงานทีถูกกำหนดไว้อย่างเป็นระบบในหน่วยงานและกลุ่มบริษัททั้งหมด",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 4,
+                                "score": 1,
+                                "next_question_id": 13
+                            },
+                            {
+                                "rsp_survey_choice_id": 20,
+                                "answer": "การฝึกอบรมที่เกี่ยวข้องกับความเสี่ยงด้านการกากับดูแลสำหรับพนักงาน (ตอบได้หลายข้อ)",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 5,
+                                "score": 1,
+                                "next_question_id": 12
+                            },
+                            {
+                                "rsp_survey_choice_id": 21,
+                                "answer": "การร้องเรียน (Whistleblowing)",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 6,
+                                "score": 1,
+                                "next_question_id": 13
+                            },
+                            {
+                                "rsp_survey_choice_id": 22,
+                                "answer": "อื่นๆ (โปรดระบุ):",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 7,
+                                "score": 0,
+                                "next_question_id": 13
+                            }
+                        ]
+                    },
+                    {
+                        "rsp_survey_question_id": 12,
+                        "is_alignment_question": false,
+                        "question_type": {
+                            "id": 2,
+                            "name": "Multiple choice"
+                        },
+                        "question": "การฝึกอบรมที่เกี่ยวข้องกับความเสี่ยงด้านการกำกับดูแลสำหรับพนักงาน",
+                        "sequence": 7,
+                        "score": 0,
+                        "is_required": true,
+                        "choices": [
+                            {
+                                "rsp_survey_choice_id": 23,
+                                "answer": "มีการจัดการฝึกอบรมเป็นประจำ",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 1,
+                                "score": 0,
+                                "next_question_id": 13
+                            },
+                            {
+                                "rsp_survey_choice_id": 24,
+                                "answer": "เมื่อมีพนักงานใหม่",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 2,
+                                "score": 0,
+                                "next_question_id": 13
+                            }
+                        ]
+                    },
+                    {
+                        "rsp_survey_question_id": 13,
+                        "is_alignment_question": false,
+                        "question_type": {
+                            "id": 5,
+                            "name": "File upload"
+                        },
+                        "question": "โปรดแนบนโยบาย เอกสารหรือเว็ปลิ้งค์ที่เกี่ยวข้อง",
+                        "sequence": 8,
+                        "score": 0,
+                        "is_required": false,
+                        "choices": []
+                    },
+                    {
+                        "rsp_survey_question_id": 14,
+                        "is_alignment_question": false,
+                        "question_type": {
+                            "id": 1,
+                            "name": "Paragraph"
+                        },
+                        "question": "หมายเหตุเพิ่มเติม (ถ้ามี)",
+                        "sequence": 9,
+                        "score": 0,
+                        "is_required": false,
+                        "choices": []
+                    }
+                ]
+            },
+            {
+                "rsp_survey_section_id": 3,
+                "section_type": {
+                    "id": 2,
+                    "name": "main question"
+                },
+                "name": "การจัดการด้านสิ่งแวดล้อม",
+                "sequence": 2,
+                "score": 33,
+                "next_section_id": 4,
+                "questions": [
+                    {
+                        "rsp_survey_question_id": 15,
+                        "is_alignment_question": true,
+                        "question_type": {
+                            "id": 3,
+                            "name": "Checkboxes"
+                        },
+                        "question": "2.1) บริษัทของท่านมีนโยบายหรือมาตรฐานด้านสิ่งแวดล้อมหรือประเด็นความยั่งยืนหรือไม่",
+                        "sequence": 1,
+                        "score": 10,
+                        "is_required": true,
+                        "choices": [
+                            {
+                                "rsp_survey_choice_id": 25,
+                                "answer": "มี",
+                                "is_aligned": true,
+                                "is_other_choice": false,
+                                "sequence": 1,
+                                "score": 10,
+                                "next_question_id": 16
+                            },
+                            {
+                                "rsp_survey_choice_id": 26,
+                                "answer": "ไม่มี",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 2,
+                                "score": 0,
+                                "next_question_id": 17
+                            },
+                            {
+                                "rsp_survey_choice_id": 27,
+                                "answer": "กำลังดำเนินการให้มีและคาดว่าจะแล้วเสร็จภายในวันที่",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 3,
+                                "score": 0,
+                                "next_question_id": 17
+                            }
+                        ]
+                    },
+                    {
+                        "rsp_survey_question_id": 16,
+                        "is_alignment_question": false,
+                        "question_type": {
+                            "id": 2,
+                            "name": "Multiple choice"
+                        },
+                        "question": "โปรดเลือกประเด็นที่จะนำมาปรับใช้ซึ่งถูกรวมอยู่ในนโยบายสิ่งแวดล้อมหรือมาตรฐานสิ่งแวดล้อม",
+                        "sequence": 2,
+                        "score": 9,
+                        "is_required": true,
+                        "choices": [
+                            {
+                                "rsp_survey_choice_id": 28,
+                                "answer": "ความหลากหลายทางชีวภาพ",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 1,
+                                "score": 1,
+                                "next_question_id": 17
+                            },
+                            {
+                                "rsp_survey_choice_id": 29,
+                                "answer": "เศรษฐกิจหมุนเวียน (Circular Economy) เช่น การรีไซเคิล และการนำวัสดุกลับมาใช้ใหม่",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 2,
+                                "score": 1,
+                                "next_question_id": 17
+                            },
+                            {
+                                "rsp_survey_choice_id": 30,
+                                "answer": "การเพิ่มประสิทธิภาพการใช้พลังงาน",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 3,
+                                "score": 1,
+                                "next_question_id": 17
+                            },
+                            {
+                                "rsp_survey_choice_id": 31,
+                                "answer": "การปล่อยก๊าซเรือนกระจก (Greenhouse Gas)",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 4,
+                                "score": 1,
+                                "next_question_id": 17
+                            },
+                            {
+                                "rsp_survey_choice_id": 32,
+                                "answer": "การใช้พลังงานทดแทน (Renewable Energy)",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 5,
+                                "score": 1,
+                                "next_question_id": 17
+                            },
+                            {
+                                "rsp_survey_choice_id": 33,
+                                "answer": "การใช้น้ำอย่างมีประสิทธิภาพ",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 6,
+                                "score": 1,
+                                "next_question_id": 17
+                            },
+                            {
+                                "rsp_survey_choice_id": 34,
+                                "answer": "การบริหารจัดการขยะ (Waste Management)",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 7,
+                                "score": 1,
+                                "next_question_id": 17
+                            },
+                            {
+                                "rsp_survey_choice_id": 35,
+                                "answer": "การป้องกันมลพิษ (Pollution Prevention)",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 8,
+                                "score": 1,
+                                "next_question_id": 17
+                            },
+                            {
+                                "rsp_survey_choice_id": 36,
+                                "answer": "การจัดซื้อจัดจ้างหรือการหาวัสดุแบบยั่งยืน (Sustainable Procurement / Sustainable Material Sourcing)",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 9,
+                                "score": 1,
+                                "next_question_id": 17
+                            },
+                            {
+                                "rsp_survey_choice_id": 37,
+                                "answer": "อื่นๆ (โปรดระบุ): ",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 10,
+                                "score": 0,
+                                "next_question_id": 17
+                            }
+                        ]
+                    },
+                    {
+                        "rsp_survey_question_id": 17,
+                        "is_alignment_question": false,
+                        "question_type": {
+                            "id": 5,
+                            "name": "File upload"
+                        },
+                        "question": "โปรดแนบนโยบาย เอกสารหรือเว็ปลิ้งค์ที่เกี่ยวข้อง",
+                        "sequence": 3,
+                        "score": 0,
+                        "is_required": false,
+                        "choices": []
+                    },
+                    {
+                        "rsp_survey_question_id": 18,
+                        "is_alignment_question": false,
+                        "question_type": {
+                            "id": 1,
+                            "name": "Paragraph"
+                        },
+                        "question": "หมายเหตุเพิ่มเติม (ถ้ามี)",
+                        "sequence": 4,
+                        "score": 0,
+                        "is_required": false,
+                        "choices": []
+                    },
+                    {
+                        "rsp_survey_question_id": 19,
+                        "is_alignment_question": false,
+                        "question_type": {
+                            "id": 3,
+                            "name": "Checkboxes"
+                        },
+                        "question": "2.2) บริษัทของท่านมีระบบการจัดการสิ่งแวดล้อมหรือระบบการจัดการพลังงานหรือไม่",
+                        "sequence": 5,
+                        "score": 0,
+                        "is_required": true,
+                        "choices": [
+                            {
+                                "rsp_survey_choice_id": 38,
+                                "answer": "มี",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 1,
+                                "score": 0,
+                                "next_question_id": 20
+                            },
+                            {
+                                "rsp_survey_choice_id": 39,
+                                "answer": "ไม่มี",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 2,
+                                "score": 0,
+                                "next_question_id": 21
+                            },
+                            {
+                                "rsp_survey_choice_id": 40,
+                                "answer": "กำลังดำเนินการให้มีและคาดว่าจะแล้วเสร็จภายในวันที่",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 3,
+                                "score": 0,
+                                "next_question_id": 21
+                            }
+                        ]
+                    },
+                    {
+                        "rsp_survey_question_id": 20,
+                        "is_alignment_question": false,
+                        "question_type": {
+                            "id": 2,
+                            "name": "Multiple choice"
+                        },
+                        "question": "โปรดเลือกระบบการจัดการที่ท่านจะนำมาใช้",
+                        "sequence": 6,
+                        "score": 3,
+                        "is_required": true,
+                        "choices": [
+                            {
+                                "rsp_survey_choice_id": 41,
+                                "answer": "ISO 14001",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 1,
+                                "score": 1,
+                                "next_question_id": 21
+                            },
+                            {
+                                "rsp_survey_choice_id": 42,
+                                "answer": "ISO 50001",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 2,
+                                "score": 1,
+                                "next_question_id": 21
+                            },
+                            {
+                                "rsp_survey_choice_id": 43,
+                                "answer": "EMAS (EU Eco-Management and Audit Scheme)",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 3,
+                                "score": 1,
+                                "next_question_id": 21
+                            },
+                            {
+                                "rsp_survey_choice_id": 44,
+                                "answer": "มาตรฐานอื่นๆ (โปรดระบุ):",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 4,
+                                "score": 0,
+                                "next_question_id": 21
+                            }
+                        ]
+                    },
+                    {
+                        "rsp_survey_question_id": 21,
+                        "is_alignment_question": false,
+                        "question_type": {
+                            "id": 5,
+                            "name": "File upload"
+                        },
+                        "question": "โปรดแนบนโยบาย เอกสารหรือเว็ปลิ้งค์ที่เกี่ยวข้อง",
+                        "sequence": 7,
+                        "score": 0,
+                        "is_required": false,
+                        "choices": []
+                    },
+                    {
+                        "rsp_survey_question_id": 22,
+                        "is_alignment_question": false,
+                        "question_type": {
+                            "id": 1,
+                            "name": "Paragraph"
+                        },
+                        "question": "หมายเหตุเพิ่มเติม (ถ้ามี)",
+                        "sequence": 8,
+                        "score": 0,
+                        "is_required": false,
+                        "choices": []
+                    },
+                    {
+                        "rsp_survey_question_id": 23,
+                        "is_alignment_question": false,
+                        "question_type": {
+                            "id": 2,
+                            "name": "Multiple choice"
+                        },
+                        "question": "2.3) ปกติบริษัทของท่านมีกระบวนการการติดตามการดำเนินการตามนโยบายด้านสิ่งแวดล้อมหรือไม่",
+                        "sequence": 9,
+                        "score": 0,
+                        "is_required": true,
+                        "choices": [
+                            {
+                                "rsp_survey_choice_id": 45,
+                                "answer": "มี",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 1,
+                                "score": 0,
+                                "next_question_id": 24
+                            },
+                            {
+                                "rsp_survey_choice_id": 46,
+                                "answer": "ไม่มี",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 2,
+                                "score": 0,
+                                "next_question_id": 26
+                            },
+                            {
+                                "rsp_survey_choice_id": 47,
+                                "answer": "กำลังดำเนินการและคาดว่าจะแล้วเสร็จภายในวันที่",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 3,
+                                "score": 0,
+                                "next_question_id": 26
+                            }
+                        ]
+                    },
+                    {
+                        "rsp_survey_question_id": 24,
+                        "is_alignment_question": false,
+                        "question_type": {
+                            "id": 3,
+                            "name": "Checkboxes"
+                        },
+                        "question": "โปรดเลือกหัวข้อที่ท่านจะนำมาปรับใช้",
+                        "sequence": 10,
+                        "score": 3,
+                        "is_required": true,
+                        "choices": [
+                            {
+                                "rsp_survey_choice_id": 48,
+                                "answer": "การเก็บรวบรวมข้อมูลทางด้านสิ่งแวดล้อม",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 1,
+                                "score": 1,
+                                "next_question_id": 26
+                            },
+                            {
+                                "rsp_survey_choice_id": 49,
+                                "answer": "การฝึกอบรมพนักงานในหัวข้อประเด็นและนโยบายด้านสิ่งแวดล้อม",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 2,
+                                "score": 1,
+                                "next_question_id": 25
+                            },
+                            {
+                                "rsp_survey_choice_id": 50,
+                                "answer": "นโยบายด้านการร้องเรียน (Whistleblowing)",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 3,
+                                "score": 1,
+                                "next_question_id": 26
+                            },
+                            {
+                                "rsp_survey_choice_id": 51,
+                                "answer": "อื่นๆ (โปรดระบุ):",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 4,
+                                "score": 0,
+                                "next_question_id": 26
+                            }
+                        ]
+                    },
+                    {
+                        "rsp_survey_question_id": 25,
+                        "is_alignment_question": false,
+                        "question_type": {
+                            "id": 3,
+                            "name": "Checkboxes"
+                        },
+                        "question": "การฝึกอบรมพนักงานในหัวข้อประเด็นและนโยบายด้านสิ่งแวดล้อม(สามารถตอบได้มากกว่า 1 ข้อ)",
+                        "sequence": 11,
+                        "score": 0,
+                        "is_required": true,
+                        "choices": [
+                            {
+                                "rsp_survey_choice_id": 52,
+                                "answer": "การจัดการอบรมเป็นประจำ",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 1,
+                                "score": 0,
+                                "next_question_id": 26
+                            },
+                            {
+                                "rsp_survey_choice_id": 53,
+                                "answer": "จัดอบรมกับพนักงานใหม่",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 2,
+                                "score": 0,
+                                "next_question_id": 26
+                            }
+                        ]
+                    },
+                    {
+                        "rsp_survey_question_id": 26,
+                        "is_alignment_question": false,
+                        "question_type": {
+                            "id": 5,
+                            "name": "File upload"
+                        },
+                        "question": "โปรดแนบนโยบาย เอกสารหรือเว็ปลิ้งค์ที่เกี่ยวข้อง",
+                        "sequence": 12,
+                        "score": 0,
+                        "is_required": false,
+                        "choices": []
+                    },
+                    {
+                        "rsp_survey_question_id": 27,
+                        "is_alignment_question": false,
+                        "question_type": {
+                            "id": 1,
+                            "name": "Paragraph"
+                        },
+                        "question": "หมายเหตุเพิ่มเติม (ถ้ามี)",
+                        "sequence": 13,
+                        "score": 0,
+                        "is_required": false,
+                        "choices": []
+                    },
+                    {
+                        "rsp_survey_question_id": 28,
+                        "is_alignment_question": false,
+                        "question_type": {
+                            "id": 2,
+                            "name": "Multiple choice"
+                        },
+                        "question": "2.4) ปกติบริษัทของท่านมีนโยบายหรือการดำเนินการติดตามผลการดำเนินการบริษัทคู่ค้าตามนโยบายหรือมาตรฐานด้านสิ่งแวดล้อมหรือไม่",
+                        "sequence": 14,
+                        "score": 0,
+                        "is_required": true,
+                        "choices": [
+                            {
+                                "rsp_survey_choice_id": 54,
+                                "answer": "มี",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 1,
+                                "score": 0,
+                                "next_question_id": 29
+                            },
+                            {
+                                "rsp_survey_choice_id": 55,
+                                "answer": "ไม่มี",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 2,
+                                "score": 0,
+                                "next_question_id": 30
+                            },
+                            {
+                                "rsp_survey_choice_id": 56,
+                                "answer": "กำลังดำเนินการให้มีและคาดว่าจะแล้วเสร็จภายในวันที่",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 3,
+                                "score": 0,
+                                "next_question_id": 30
+                            }
+                        ]
+                    },
+                    {
+                        "rsp_survey_question_id": 29,
+                        "is_alignment_question": false,
+                        "question_type": {
+                            "id": 3,
+                            "name": "Checkboxes"
+                        },
+                        "question": "โปรดเลือกหัวข้อที่ท่านจะนำมาปรับใช้",
+                        "sequence": 15,
+                        "score": 4,
+                        "is_required": true,
+                        "choices": [
+                            {
+                                "rsp_survey_choice_id": 57,
+                                "answer": "การตรวจสอบสถานที่ทำงานของบริษัทคู่ค้า",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 1,
+                                "score": 1,
+                                "next_question_id": 30
+                            },
+                            {
+                                "rsp_survey_choice_id": 58,
+                                "answer": "การเก็บรวบรวมข้อมูลจากบริษัทคู่ค้าของท่าน",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 2,
+                                "score": 1,
+                                "next_question_id": 30
+                            },
+                            {
+                                "rsp_survey_choice_id": 59,
+                                "answer": "จัดการศึกษาและฝึกอบรมให้บริษัทคู่ค้า",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 3,
+                                "score": 1,
+                                "next_question_id": 30
+                            },
+                            {
+                                "rsp_survey_choice_id": 60,
+                                "answer": "การตั้งเป้าหมายร่วมกับบริษัทคู่ค้าของท่าน",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 4,
+                                "score": 1,
+                                "next_question_id": 30
+                            },
+                            {
+                                "rsp_survey_choice_id": 61,
+                                "answer": "อื่นๆ (โปรดระบุ):",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 5,
+                                "score": 0,
+                                "next_question_id": 30
+                            }
+                        ]
+                    },
+                    {
+                        "rsp_survey_question_id": 30,
+                        "is_alignment_question": false,
+                        "question_type": {
+                            "id": 5,
+                            "name": "File upload"
+                        },
+                        "question": "โปรดแนบนโยบาย เอกสารหรือเว็ปลิ้งค์ที่เกี่ยวข้อง",
+                        "sequence": 16,
+                        "score": 0,
+                        "is_required": false,
+                        "choices": []
+                    },
+                    {
+                        "rsp_survey_question_id": 31,
+                        "is_alignment_question": false,
+                        "question_type": {
+                            "id": 1,
+                            "name": "Paragraph"
+                        },
+                        "question": "หมายเหตุเพิ่มเติม (ถ้ามี)",
+                        "sequence": 17,
+                        "score": 0,
+                        "is_required": false,
+                        "choices": []
+                    },
+                    {
+                        "rsp_survey_question_id": 32,
+                        "is_alignment_question": false,
+                        "question_type": {
+                            "id": 2,
+                            "name": "Multiple choice"
+                        },
+                        "question": "2.5) บริษัทของท่านมีการนำเสนอสินค้าที่เป็นมิตรกับแวดล้อมและหรือสินค้าหรือระบบบริการที่มีความยั่งยืนหรือไม่?",
+                        "sequence": 18,
+                        "score": 0,
+                        "is_required": true,
+                        "choices": [
+                            {
+                                "rsp_survey_choice_id": 62,
+                                "answer": "มี",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 1,
+                                "score": 0,
+                                "next_question_id": 33
+                            },
+                            {
+                                "rsp_survey_choice_id": 63,
+                                "answer": "ไม่มี",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 2,
+                                "score": 0,
+                                "next_question_id": 34
+                            },
+                            {
+                                "rsp_survey_choice_id": 64,
+                                "answer": "กำลังดำเนินการให้มีและคาดว่าจะแล้วเสร็จภายในวันที่",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 3,
+                                "score": 0,
+                                "next_question_id": 34
+                            }
+                        ]
+                    },
+                    {
+                        "rsp_survey_question_id": 33,
+                        "is_alignment_question": false,
+                        "question_type": {
+                            "id": 3,
+                            "name": "Checkboxes"
+                        },
+                        "question": "โปรดเลือกสินค้าหรือบริการที่จะนำมาใช้",
+                        "sequence": 19,
+                        "score": 4,
+                        "is_required": true,
+                        "choices": [
+                            {
+                                "rsp_survey_choice_id": 65,
+                                "answer": "ผลิตภัณฑ์หรือระบบประหยัดพลังงาน",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 1,
+                                "score": 1,
+                                "next_question_id": 34
+                            },
+                            {
+                                "rsp_survey_choice_id": 66,
+                                "answer": "ผลิตภัณฑ์หรือระบบที่ได้ฉลากสิ่งแวดล้อม (ECO)",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 2,
+                                "score": 1,
+                                "next_question_id": 34
+                            },
+                            {
+                                "rsp_survey_choice_id": 67,
+                                "answer": "ผลิตภัณฑ์ที่สามารถรีไซเคิลได้หรือทำจากวัสดุธรรมชาติ",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 3,
+                                "score": 1,
+                                "next_question_id": 34
+                            },
+                            {
+                                "rsp_survey_choice_id": 68,
+                                "answer": "ผลิตภัณฑ์ที่มี Carbon Footprint ต่ำ",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 4,
+                                "score": 1,
+                                "next_question_id": 34
+                            },
+                            {
+                                "rsp_survey_choice_id": 69,
+                                "answer": "อื่นๆ (โปรดระบุ):",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 5,
+                                "score": 0,
+                                "next_question_id": 34
+                            }
+                        ]
+                    },
+                    {
+                        "rsp_survey_question_id": 34,
+                        "is_alignment_question": false,
+                        "question_type": {
+                            "id": 5,
+                            "name": "File upload"
+                        },
+                        "question": "โปรดแนบนโยบาย เอกสารหรือเว็ปลิ้งค์ที่เกี่ยวข้อง",
+                        "sequence": 20,
+                        "score": 0,
+                        "is_required": false,
+                        "choices": []
+                    },
+                    {
+                        "rsp_survey_question_id": 35,
+                        "is_alignment_question": false,
+                        "question_type": {
+                            "id": 1,
+                            "name": "Paragraph"
+                        },
+                        "question": "หมายเหตุเพิ่มเติม (ถ้ามี)",
+                        "sequence": 21,
+                        "score": 0,
+                        "is_required": false,
+                        "choices": []
+                    }
+                ]
+            },
+            {
+                "rsp_survey_section_id": 4,
+                "section_type": {
+                    "id": 2,
+                    "name": "main question"
+                },
+                "name": "สุขภาพความปลอดภัยและความเป็นอยู่ที่ดีในสถานที่ทำงาน",
+                "sequence": 3,
+                "score": 20,
+                "next_section_id": 5,
+                "questions": [
+                    {
+                        "rsp_survey_question_id": 36,
+                        "is_alignment_question": true,
+                        "question_type": {
+                            "id": 2,
+                            "name": "Multiple choice"
+                        },
+                        "question": "3.1) บริษัทของท่านมีนโยบายหรือมาตรฐานสุขภาพ ความปลอดภัยและความเป็นอยู่ที่ดีในสถานที่ทำงานหรือไม่",
+                        "sequence": 1,
+                        "score": 10,
+                        "is_required": true,
+                        "choices": [
+                            {
+                                "rsp_survey_choice_id": 70,
+                                "answer": "มี",
+                                "is_aligned": true,
+                                "is_other_choice": false,
+                                "sequence": 1,
+                                "score": 10,
+                                "next_question_id": 37
+                            },
+                            {
+                                "rsp_survey_choice_id": 71,
+                                "answer": "ไม่มี",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 2,
+                                "score": 0,
+                                "next_question_id": 40
+                            },
+                            {
+                                "rsp_survey_choice_id": 72,
+                                "answer": "กำลังดำเนินการให้มีและคาดว่าจะแล้วเสร็จภายในวันที่",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 3,
+                                "score": 0,
+                                "next_question_id": 40
+                            }
+                        ]
+                    },
+                    {
+                        "rsp_survey_question_id": 37,
+                        "is_alignment_question": false,
+                        "question_type": {
+                            "id": 3,
+                            "name": "Checkboxes"
+                        },
+                        "question": "โปรดเลือกประเด็นซึ่งจะถูกบรรจุในนโยบายหรือมาตรฐานดังกล่าว",
+                        "sequence": 2,
+                        "score": 4,
+                        "is_required": true,
+                        "choices": [
+                            {
+                                "rsp_survey_choice_id": 73,
+                                "answer": "การมีส่วนร่วมของพนักงาน (Employee Engagement)",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 1,
+                                "score": 1,
+                                "next_question_id": 40
+                            },
+                            {
+                                "rsp_survey_choice_id": 74,
+                                "answer": "สุขภาพความปลอดภัยและความเป็นอยู่ที่ดีของพนักงาน",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 2,
+                                "score": 1,
+                                "next_question_id": 40
+                            },
+                            {
+                                "rsp_survey_choice_id": 75,
+                                "answer": "สุขภาพความปลอดภัยและความเป็นอยู่ที่ดีของลูกค้า",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 3,
+                                "score": 1,
+                                "next_question_id": 40
+                            },
+                            {
+                                "rsp_survey_choice_id": 76,
+                                "answer": "สุขภาพความปลอดภัยและความเป็นอยู่ที่ดีของบริษัทคู่ค้า",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 4,
+                                "score": 1,
+                                "next_question_id": 40
+                            },
+                            {
+                                "rsp_survey_choice_id": 77,
+                                "answer": "อื่นๆ (โปรดระบุ):",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 5,
+                                "score": 0,
+                                "next_question_id": 40
+                            }
+                        ]
+                    },
+                    {
+                        "rsp_survey_question_id": 38,
+                        "is_alignment_question": false,
+                        "question_type": {
+                            "id": 5,
+                            "name": "File upload"
+                        },
+                        "question": "โปรดแนบนโยบาย เอกสารหรือเว็ปลิ้งค์ที่เกี่ยวข้อง",
+                        "sequence": 6,
+                        "score": 0,
+                        "is_required": false,
+                        "choices": []
+                    },
+                    {
+                        "rsp_survey_question_id": 39,
+                        "is_alignment_question": false,
+                        "question_type": {
+                            "id": 1,
+                            "name": "Paragraph"
+                        },
+                        "question": "หมายเหตุเพิ่มเติม (ถ้ามี)",
+                        "sequence": 7,
+                        "score": 0,
+                        "is_required": false,
+                        "choices": []
+                    },
+                    {
+                        "rsp_survey_question_id": 40,
+                        "is_alignment_question": false,
+                        "question_type": {
+                            "id": 2,
+                            "name": "Multiple choice"
+                        },
+                        "question": "3.2) บริษัทของท่านมีระบบการจัดการอาชีวะอนามัยและความปลอดภัยหรือไม่",
+                        "sequence": 3,
+                        "score": 0,
+                        "is_required": true,
+                        "choices": [
+                            {
+                                "rsp_survey_choice_id": 78,
+                                "answer": "มี",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 1,
+                                "score": 0,
+                                "next_question_id": 41
+                            },
+                            {
+                                "rsp_survey_choice_id": 79,
+                                "answer": "ไม่มี",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 2,
+                                "score": 0,
+                                "next_question_id": 43
+                            },
+                            {
+                                "rsp_survey_choice_id": 80,
+                                "answer": "กำลังดำเนินการให้มีและคาดว่าจะแล้วเสร็จวันที่",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 3,
+                                "score": 0,
+                                "next_question_id": 43
+                            }
+                        ]
+                    },
+                    {
+                        "rsp_survey_question_id": 41,
+                        "is_alignment_question": false,
+                        "question_type": {
+                            "id": 3,
+                            "name": "Checkboxes"
+                        },
+                        "question": "โปรดเลือกระบบการจัดการที่ท่านจะนำมาใช้",
+                        "sequence": 4,
+                        "score": 3,
+                        "is_required": true,
+                        "choices": [
+                            {
+                                "rsp_survey_choice_id": 81,
+                                "answer": "ISO 45001",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 1,
+                                "score": 1,
+                                "next_question_id": 43
+                            },
+                            {
+                                "rsp_survey_choice_id": 82,
+                                "answer": "OHSAS 18001",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 2,
+                                "score": 1,
+                                "next_question_id": 43
+                            },
+                            {
+                                "rsp_survey_choice_id": 83,
+                                "answer": "Bizsafe",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 3,
+                                "score": 1,
+                                "next_question_id": 42
+                            },
+                            {
+                                "rsp_survey_choice_id": 84,
+                                "answer": "มาตรฐานอื่นๆ (โปรดระบุ):",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 4,
+                                "score": 0,
+                                "next_question_id": 43
+                            }
+                        ]
+                    },
+                    {
+                        "rsp_survey_question_id": 42,
+                        "is_alignment_question": false,
+                        "question_type": {
+                            "id": 1,
+                            "name": "Paragraph"
+                        },
+                        "question": "Bizsafe Level:",
+                        "sequence": 5,
+                        "score": 0,
+                        "is_required": true,
+                        "choices": []
+                    },
+                    {
+                        "rsp_survey_question_id": 43,
+                        "is_alignment_question": false,
+                        "question_type": {
+                            "id": 5,
+                            "name": "File upload"
+                        },
+                        "question": "โปรดแนบนโยบาย เอกสารหรือเว็ปลิ้งค์ที่เกี่ยวข้อง",
+                        "sequence": 6,
+                        "score": 0,
+                        "is_required": false,
+                        "choices": []
+                    },
+                    {
+                        "rsp_survey_question_id": 44,
+                        "is_alignment_question": false,
+                        "question_type": {
+                            "id": 1,
+                            "name": "Paragraph"
+                        },
+                        "question": "หมายเหตุเพิ่มเติม (ถ้ามี)",
+                        "sequence": 7,
+                        "score": 0,
+                        "is_required": false,
+                        "choices": []
+                    },
+                    {
+                        "rsp_survey_question_id": 45,
+                        "is_alignment_question": false,
+                        "question_type": {
+                            "id": 2,
+                            "name": "Multiple choice"
+                        },
+                        "question": "3.3) ปกติบริษัทของท่านมีการติดตามผลการจัดการอาชีวอนามัย ความปลอดภัยและความเป็นอยู่ที่ดีหรือไม่",
+                        "sequence": 8,
+                        "score": 0,
+                        "is_required": true,
+                        "choices": [
+                            {
+                                "rsp_survey_choice_id": 85,
+                                "answer": "มี",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 1,
+                                "score": 0,
+                                "next_question_id": 46
+                            },
+                            {
+                                "rsp_survey_choice_id": 86,
+                                "answer": "ไม่มี",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 2,
+                                "score": 0,
+                                "next_question_id": 48
+                            },
+                            {
+                                "rsp_survey_choice_id": 87,
+                                "answer": "กำลังดำเนินการและคาดว่าจะแล้วเสร็จภายในวันที่",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 3,
+                                "score": 0,
+                                "next_question_id": 48
+                            }
+                        ]
+                    },
+                    {
+                        "rsp_survey_question_id": 46,
+                        "is_alignment_question": false,
+                        "question_type": {
+                            "id": 3,
+                            "name": "Checkboxes"
+                        },
+                        "question": "โปรดเลือกหัวข้อที่ท่านจะนำมาใช้",
+                        "sequence": 9,
+                        "score": 3,
+                        "is_required": true,
+                        "choices": [
+                            {
+                                "rsp_survey_choice_id": 88,
+                                "answer": "การเก็บข้อมูลด้านอาชีวะอนามัย ความปลอดภัยและความเป็นอยู่ที่ดี",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 1,
+                                "score": 1,
+                                "next_question_id": 48
+                            },
+                            {
+                                "rsp_survey_choice_id": 89,
+                                "answer": "การจัดฝึกอบรมพนักงานด้านอาชีวะอนามัย และความปลอดภัย",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 2,
+                                "score": 1,
+                                "next_question_id": 47
+                            },
+                            {
+                                "rsp_survey_choice_id": 90,
+                                "answer": "นโยบายการร้องเรียน (Whistleblowing)",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 3,
+                                "score": 1,
+                                "next_question_id": 48
+                            },
+                            {
+                                "rsp_survey_choice_id": 91,
+                                "answer": "อื่นๆ (โปรดระบุ)",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 4,
+                                "score": 0,
+                                "next_question_id": 48
+                            }
+                        ]
+                    },
+                    {
+                        "rsp_survey_question_id": 47,
+                        "is_alignment_question": false,
+                        "question_type": {
+                            "id": 3,
+                            "name": "Checkboxes"
+                        },
+                        "question": "การจัดฝึกอบรมพนักงานด้านอาชีวะอนามัย และความปลอดภัย (ตอบได้มากกว่า 1 ข้อ)",
+                        "sequence": 10,
+                        "score": 0,
+                        "is_required": true,
+                        "choices": [
+                            {
+                                "rsp_survey_choice_id": 92,
+                                "answer": "มีการจัดฝึกอบรมเป็นประจำ",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 1,
+                                "score": 0,
+                                "next_question_id": 48
+                            },
+                            {
+                                "rsp_survey_choice_id": 93,
+                                "answer": "ฝึกอบรมพนักงานใหม่",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 2,
+                                "score": 0,
+                                "next_question_id": 48
+                            }
+                        ]
+                    },
+                    {
+                        "rsp_survey_question_id": 48,
+                        "is_alignment_question": false,
+                        "question_type": {
+                            "id": 5,
+                            "name": "File upload"
+                        },
+                        "question": "โปรดแนบนโยบาย เอกสารหรือเว็ปลิ้งค์ที่เกี่ยวข้อง",
+                        "sequence": 11,
+                        "score": 0,
+                        "is_required": false,
+                        "choices": []
+                    },
+                    {
+                        "rsp_survey_question_id": 49,
+                        "is_alignment_question": false,
+                        "question_type": {
+                            "id": 1,
+                            "name": "Paragraph"
+                        },
+                        "question": "หมายเหตุเพิ่มเติม (ถ้ามี)",
+                        "sequence": 12,
+                        "score": 0,
+                        "is_required": false,
+                        "choices": []
+                    }
+                ]
+            },
+            {
+                "rsp_survey_section_id": 5,
+                "section_type": {
+                    "id": 2,
+                    "name": "main question"
+                },
+                "name": "สิทธิมนุษยชนและการจัดการแรงงาน",
+                "sequence": 4,
+                "score": 23,
+                "next_section_id": 6,
+                "questions": [
+                    {
+                        "rsp_survey_question_id": 50,
+                        "is_alignment_question": true,
+                        "question_type": {
+                            "id": 2,
+                            "name": "Multiple choice"
+                        },
+                        "question": "4.1) บริษัทของท่านมีนโยบายหรือมาตรฐานด้านสิทธิมนุษยชนหรือไม่",
+                        "sequence": 1,
+                        "score": 10,
+                        "is_required": true,
+                        "choices": [
+                            {
+                                "rsp_survey_choice_id": 94,
+                                "answer": "มี",
+                                "is_aligned": true,
+                                "is_other_choice": false,
+                                "sequence": 1,
+                                "score": 10,
+                                "next_question_id": 51
+                            },
+                            {
+                                "rsp_survey_choice_id": 95,
+                                "answer": "ไม่มี",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 2,
+                                "score": 0,
+                                "next_question_id": 52
+                            },
+                            {
+                                "rsp_survey_choice_id": 96,
+                                "answer": "กำลังดำเนินการให้มีและคาดว่าจะแล้วเสร็จภายในวันที่",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 3,
+                                "score": 0,
+                                "next_question_id": 52
+                            }
+                        ]
+                    },
+                    {
+                        "rsp_survey_question_id": 51,
+                        "is_alignment_question": false,
+                        "question_type": {
+                            "id": 3,
+                            "name": "Checkboxes"
+                        },
+                        "question": "โปรดเลือกประเด็นที่จะถูกบรรจุในนโยบายหรือมาตรฐานดังกล่าว",
+                        "sequence": 2,
+                        "score": 7,
+                        "is_required": true,
+                        "choices": [
+                            {
+                                "rsp_survey_choice_id": 97,
+                                "answer": "การพัฒนาทรัพยากรบุคคล เช่น มีการกำหนดจำนวนชั่วโมงการฝึกอบรมขั้นต่ำ",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 1,
+                                "score": 1,
+                                "next_question_id": 52
+                            },
+                            {
+                                "rsp_survey_choice_id": 98,
+                                "answer": "ความหลากหลายและการยอมรับ",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 2,
+                                "score": 1,
+                                "next_question_id": 52
+                            },
+                            {
+                                "rsp_survey_choice_id": 99,
+                                "answer": "มาตรฐานแรงงานและจำนวนชั่วโมงการทำงาน",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 3,
+                                "score": 1,
+                                "next_question_id": 52
+                            },
+                            {
+                                "rsp_survey_choice_id": 100,
+                                "answer": "การไม่เลือกปฏิบัติ",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 4,
+                                "score": 1,
+                                "next_question_id": 52
+                            },
+                            {
+                                "rsp_survey_choice_id": 101,
+                                "answer": "การจำกัดการใช้แรงงานเด็ก",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 5,
+                                "score": 1,
+                                "next_question_id": 52
+                            },
+                            {
+                                "rsp_survey_choice_id": 102,
+                                "answer": "การจำกัดการใช้แรงงานภาคบังคับ",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 6,
+                                "score": 1,
+                                "next_question_id": 52
+                            },
+                            {
+                                "rsp_survey_choice_id": 103,
+                                "answer": "ค่าจ้างและสวัสดิการ",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 7,
+                                "score": 1,
+                                "next_question_id": 52
+                            },
+                            {
+                                "rsp_survey_choice_id": 104,
+                                "answer": "อื่นๆ โปรดระบุ",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 8,
+                                "score": 0,
+                                "next_question_id": 52
+                            }
+                        ]
+                    },
+                    {
+                        "rsp_survey_question_id": 52,
+                        "is_alignment_question": false,
+                        "question_type": {
+                            "id": 5,
+                            "name": "File upload"
+                        },
+                        "question": "โปรดแนบนโยบาย เอกสารหรือเว็ปลิ้งค์ที่เกี่ยวข้อง",
+                        "sequence": 3,
+                        "score": 0,
+                        "is_required": false,
+                        "choices": []
+                    },
+                    {
+                        "rsp_survey_question_id": 53,
+                        "is_alignment_question": false,
+                        "question_type": {
+                            "id": 1,
+                            "name": "Paragraph"
+                        },
+                        "question": "หมายเหตุเพิ่มเติม (ถ้ามี)",
+                        "sequence": 4,
+                        "score": 0,
+                        "is_required": false,
+                        "choices": []
+                    },
+                    {
+                        "rsp_survey_question_id": 54,
+                        "is_alignment_question": false,
+                        "question_type": {
+                            "id": 2,
+                            "name": "Multiple choice"
+                        },
+                        "question": "4.2) ปกติบริษัทของท่านที่การติดตามผลการดำเนินการด้านสิทธิมนุษยชนและนโยบายด้านการจัดการแรงงานหรือไม่",
+                        "sequence": 5,
+                        "score": 0,
+                        "is_required": true,
+                        "choices": [
+                            {
+                                "rsp_survey_choice_id": 105,
+                                "answer": "มี",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 1,
+                                "score": 0,
+                                "next_question_id": 55
+                            },
+                            {
+                                "rsp_survey_choice_id": 106,
+                                "answer": "ไม่มี",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 2,
+                                "score": 0,
+                                "next_question_id": 57
+                            },
+                            {
+                                "rsp_survey_choice_id": 107,
+                                "answer": "กำลังดำเนินการและคาดว่าจะแล้วเสร็จภายในวันที่",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 3,
+                                "score": 0,
+                                "next_question_id": 57
+                            }
+                        ]
+                    },
+                    {
+                        "rsp_survey_question_id": 55,
+                        "is_alignment_question": false,
+                        "question_type": {
+                            "id": 3,
+                            "name": "Checkboxes"
+                        },
+                        "question": "โปรดเลือกการดำเนินการที่จะนำมาใช้",
+                        "sequence": 6,
+                        "score": 3,
+                        "is_required": true,
+                        "choices": [
+                            {
+                                "rsp_survey_choice_id": 108,
+                                "answer": "การตรวจสอบอิสระ",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 1,
+                                "score": 1,
+                                "next_question_id": 57
+                            },
+                            {
+                                "rsp_survey_choice_id": 109,
+                                "answer": "การฝึกอบรมเกี่ยวกับการตระหนักถึงการละเมิดสิทธิมนุษยชน",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 2,
+                                "score": 1,
+                                "next_question_id": 56
+                            },
+                            {
+                                "rsp_survey_choice_id": 110,
+                                "answer": "นโยบายร้องเรียน (Whistleblowing)",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 3,
+                                "score": 1,
+                                "next_question_id": 57
+                            },
+                            {
+                                "rsp_survey_choice_id": 111,
+                                "answer": "อื่นๆ โปรดระบุ:",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 4,
+                                "score": 0,
+                                "next_question_id": 57
+                            }
+                        ]
+                    },
+                    {
+                        "rsp_survey_question_id": 56,
+                        "is_alignment_question": false,
+                        "question_type": {
+                            "id": 3,
+                            "name": "Checkboxes"
+                        },
+                        "question": "การฝึกอบรมเกี่ยวกับการตระหนักถึงการละเมิดสิทธิมนุษยชน (สามารถตอบได้มากกว่า 1 ข้อ)",
+                        "sequence": 7,
+                        "score": 0,
+                        "is_required": true,
+                        "choices": [
+                            {
+                                "rsp_survey_choice_id": 112,
+                                "answer": "มีการจัดการฝึกอบรมเป็นประจำ",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 1,
+                                "score": 0,
+                                "next_question_id": 57
+                            },
+                            {
+                                "rsp_survey_choice_id": 113,
+                                "answer": "จัดฝึกอบรมพนักงานใหม่",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 2,
+                                "score": 0,
+                                "next_question_id": 57
+                            }
+                        ]
+                    },
+                    {
+                        "rsp_survey_question_id": 57,
+                        "is_alignment_question": false,
+                        "question_type": {
+                            "id": 5,
+                            "name": "File upload"
+                        },
+                        "question": "โปรดแนบนโยบาย เอกสารหรือเว็ปลิ้งค์ที่เกี่ยวข้อง",
+                        "sequence": 8,
+                        "score": 0,
+                        "is_required": false,
+                        "choices": []
+                    },
+                    {
+                        "rsp_survey_question_id": 58,
+                        "is_alignment_question": false,
+                        "question_type": {
+                            "id": 1,
+                            "name": "Paragraph"
+                        },
+                        "question": "หมายเหตุเพิ่มเติม (ถ้ามี)",
+                        "sequence": 9,
+                        "score": 0,
+                        "is_required": false,
+                        "choices": []
+                    },
+                    {
+                        "rsp_survey_question_id": 59,
+                        "is_alignment_question": false,
+                        "question_type": {
+                            "id": 2,
+                            "name": "Multiple choice"
+                        },
+                        "question": "4.3) ปกติบริษัทของท่านมีการติดตามผลการดำเนินการกับบริษัทคู่ค้าตามนโยบายสิทธิมนุษยชนและการบริหารจัดการแรงงานหรือไม่",
+                        "sequence": 10,
+                        "score": 0,
+                        "is_required": true,
+                        "choices": [
+                            {
+                                "rsp_survey_choice_id": 114,
+                                "answer": "มี",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 1,
+                                "score": 0,
+                                "next_question_id": 60
+                            },
+                            {
+                                "rsp_survey_choice_id": 115,
+                                "answer": "ไม่มี",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 2,
+                                "score": 0,
+                                "next_question_id": 61
+                            },
+                            {
+                                "rsp_survey_choice_id": 116,
+                                "answer": "กำลังดำเนินการและคาดว่าจะแล้วเสร็จภายในวันที่",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 3,
+                                "score": 0,
+                                "next_question_id": 61
+                            }
+                        ]
+                    },
+                    {
+                        "rsp_survey_question_id": 60,
+                        "is_alignment_question": false,
+                        "question_type": {
+                            "id": 3,
+                            "name": "Checkboxes"
+                        },
+                        "question": "โปรดเลือกหัวข้อที่จะนำมาใช้",
+                        "sequence": 11,
+                        "score": 3,
+                        "is_required": true,
+                        "choices": [
+                            {
+                                "rsp_survey_choice_id": 117,
+                                "answer": "การตรวจสอบสถานที่ทำงานของบริษัทคู่ค้า",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 1,
+                                "score": 1,
+                                "next_question_id": 61
+                            },
+                            {
+                                "rsp_survey_choice_id": 118,
+                                "answer": "การแนะแนวและจัดฝึกอบรมสำหรับบริษัทคู่ค้า",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 2,
+                                "score": 1,
+                                "next_question_id": 61
+                            },
+                            {
+                                "rsp_survey_choice_id": 119,
+                                "answer": "การกำหนดเป้าหมายร่วมกับบริษัทคู่ค้า",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 3,
+                                "score": 1,
+                                "next_question_id": 61
+                            },
+                            {
+                                "rsp_survey_choice_id": 120,
+                                "answer": "อื่น โปรดระบุ:",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 4,
+                                "score": 0,
+                                "next_question_id": 61
+                            }
+                        ]
+                    },
+                    {
+                        "rsp_survey_question_id": 61,
+                        "is_alignment_question": false,
+                        "question_type": {
+                            "id": 5,
+                            "name": "File upload"
+                        },
+                        "question": "โปรดแนบนโยบาย เอกสารหรือเว็ปลิ้งค์ที่เกี่ยวข้อง",
+                        "sequence": 12,
+                        "score": 0,
+                        "is_required": false,
+                        "choices": []
+                    },
+                    {
+                        "rsp_survey_question_id": 62,
+                        "is_alignment_question": false,
+                        "question_type": {
+                            "id": 1,
+                            "name": "Paragraph"
+                        },
+                        "question": "หมายเหตุเพิ่มเติม (ถ้ามี)",
+                        "sequence": 13,
+                        "score": 0,
+                        "is_required": false,
+                        "choices": []
+                    }
+                ]
+            },
+            {
+                "rsp_survey_section_id": 6,
+                "section_type": {
+                    "id": 2,
+                    "name": "main question"
+                },
+                "name": "การบริหารจัดการบริษัทคู่ค้า",
+                "sequence": 5,
+                "score": 0,
+                "next_section_id": 7,
+                "questions": [
+                    {
+                        "rsp_survey_question_id": 63,
+                        "is_alignment_question": true,
+                        "question_type": {
+                            "id": 2,
+                            "name": "Multiple choice"
+                        },
+                        "question": "5.1) บริษัทของท่านมีการคัดกรองหรือกำหนดหลักเกณฑ์การประเมินบริษัทคู่ค้าหรือไม่?",
+                        "sequence": 1,
+                        "score": 0,
+                        "is_required": true,
+                        "choices": [
+                            {
+                                "rsp_survey_choice_id": 121,
+                                "answer": "มี",
+                                "is_aligned": true,
+                                "is_other_choice": false,
+                                "sequence": 1,
+                                "score": 0,
+                                "next_question_id": 64
+                            },
+                            {
+                                "rsp_survey_choice_id": 122,
+                                "answer": "ไม่มี",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 2,
+                                "score": 0,
+                                "next_question_id": 64
+                            },
+                            {
+                                "rsp_survey_choice_id": 123,
+                                "answer": "กำลังดำเนินการและคาดว่าจะแล้วเสร็จภายในวันที่",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 3,
+                                "score": 0,
+                                "next_question_id": 64
+                            }
+                        ]
+                    },
+                    {
+                        "rsp_survey_question_id": 64,
+                        "is_alignment_question": false,
+                        "question_type": {
+                            "id": 5,
+                            "name": "File upload"
+                        },
+                        "question": "โปรดแนบนโยบาย เอกสารหรือเว็ปลิ้งค์ที่เกี่ยวข้อง",
+                        "sequence": 2,
+                        "score": 0,
+                        "is_required": false,
+                        "choices": []
+                    },
+                    {
+                        "rsp_survey_question_id": 65,
+                        "is_alignment_question": false,
+                        "question_type": {
+                            "id": 1,
+                            "name": "Paragraph"
+                        },
+                        "question": "หมายเหตุเพิ่มเติม (ถ้ามี)",
+                        "sequence": 3,
+                        "score": 0,
+                        "is_required": false,
+                        "choices": []
+                    }
+                ]
+            },
+            {
+                "rsp_survey_section_id": 7,
+                "section_type": {
+                    "id": 2,
+                    "name": "main question"
+                },
+                "name": "การติดตามผลการดำเนินการและการรายงาน (Monitoring and Reporting)",
+                "sequence": 6,
+                "score": 0,
+                "next_section_id": 8,
+                "questions": [
+                    {
+                        "rsp_survey_question_id": 66,
+                        "is_alignment_question": true,
+                        "question_type": {
+                            "id": 2,
+                            "name": "Multiple choice"
+                        },
+                        "question": "6.1) บริษัทของท่านมีกระบวนการหรือขั้นตอนติดตามผลการดำเนินการและรายงานเกี่ยวกับความประพฤติมิชอบ บทลงโทษ เหตุการณ์ อุบัติเหตุหรือการฝ่าฝืนที่เกี่ยวข้องกับความยั่งยืนหรือไม่",
+                        "sequence": 1,
+                        "score": 0,
+                        "is_required": true,
+                        "choices": [
+                            {
+                                "rsp_survey_choice_id": 124,
+                                "answer": "มี",
+                                "is_aligned": true,
+                                "is_other_choice": false,
+                                "sequence": 1,
+                                "score": 0,
+                                "next_question_id": 67
+                            },
+                            {
+                                "rsp_survey_choice_id": 125,
+                                "answer": "ไม่มี",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 2,
+                                "score": 0,
+                                "next_question_id": 67
+                            },
+                            {
+                                "rsp_survey_choice_id": 126,
+                                "answer": "กำลังดำเนินการและคาดว่าจะแล้วเสร็จภายในวันที่",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 3,
+                                "score": 0,
+                                "next_question_id": 67
+                            }
+                        ]
+                    },
+                    {
+                        "rsp_survey_question_id": 67,
+                        "is_alignment_question": false,
+                        "question_type": {
+                            "id": 5,
+                            "name": "File upload"
+                        },
+                        "question": "โปรดแนบนโยบาย เอกสารหรือเว็ปลิ้งค์ที่เกี่ยวข้อง",
+                        "sequence": 2,
+                        "score": 0,
+                        "is_required": false,
+                        "choices": []
+                    },
+                    {
+                        "rsp_survey_question_id": 68,
+                        "is_alignment_question": false,
+                        "question_type": {
+                            "id": 1,
+                            "name": "Paragraph"
+                        },
+                        "question": "หมายเหตุเพิ่มเติม (ถ้ามี)",
+                        "sequence": 3,
+                        "score": 0,
+                        "is_required": false,
+                        "choices": []
+                    },
+                    {
+                        "rsp_survey_question_id": 69,
+                        "is_alignment_question": false,
+                        "question_type": {
+                            "id": 2,
+                            "name": "Multiple choice"
+                        },
+                        "question": "6.2) บริษัทของท่านได้จัดทำรายงานและเปิดเผยเป้าหมายที่เกี่ยวข้องกับความยั่งยืนต่อสาธารณะหรือไม่",
+                        "sequence": 4,
+                        "score": 0,
+                        "is_required": true,
+                        "choices": [
+                            {
+                                "rsp_survey_choice_id": 127,
+                                "answer": "มี",
+                                "is_aligned": true,
+                                "is_other_choice": false,
+                                "sequence": 1,
+                                "score": 0,
+                                "next_question_id": 70
+                            },
+                            {
+                                "rsp_survey_choice_id": 128,
+                                "answer": "ไม่มี",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 2,
+                                "score": 0,
+                                "next_question_id": 70
+                            },
+                            {
+                                "rsp_survey_choice_id": 129,
+                                "answer": "กำลังดำเนินการและคาดว่าจะแล้วเสร็จภายในวันที่",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 3,
+                                "score": 0,
+                                "next_question_id": 70
+                            }
+                        ]
+                    },
+                    {
+                        "rsp_survey_question_id": 70,
+                        "is_alignment_question": false,
+                        "question_type": {
+                            "id": 5,
+                            "name": "File upload"
+                        },
+                        "question": "โปรดแนบนโยบาย เอกสารหรือเว็ปลิ้งค์ที่เกี่ยวข้อง",
+                        "sequence": 5,
+                        "score": 0,
+                        "is_required": false,
+                        "choices": []
+                    },
+                    {
+                        "rsp_survey_question_id": 71,
+                        "is_alignment_question": false,
+                        "question_type": {
+                            "id": 1,
+                            "name": "Paragraph"
+                        },
+                        "question": "หมายเหตุเพิ่มเติม (ถ้ามี)",
+                        "sequence": 6,
+                        "score": 0,
+                        "is_required": false,
+                        "choices": []
+                    }
+                ]
+            },
+            {
+                "rsp_survey_section_id": 8,
+                "section_type": {
+                    "id": 2,
+                    "name": "main question"
+                },
+                "name": "โครงการแนวร่วมปฏิบัติของภาคเอกชนไทยในการต่อต้านการทุจริต Thai Private Sector Collective Action Against Corruption (CAC)",
+                "sequence": 7,
+                "score": 0,
+                "next_section_id": 0,
+                "questions": [
+                    {
+                        "rsp_survey_question_id": 72,
+                        "is_alignment_question": false,
+                        "question_type": {
+                            "id": 2,
+                            "name": "Multiple choice"
+                        },
+                        "question": "บริษัทของท่านเข้าร่วมเป็นสมาชิกภาคีเครือข่ายโครงการแนวร่วมปฏิบัติของภาคเอกชนไทยในการต่อต้านการทุจริต (CAC) แล้วหรือไม่ \n(ท่านสามารถอ่านเอกสารได้ที่ https://www.frasersproperty.co.th/storage/download/cg/fpt-thai-private-sector-collective-action-against-corruption.pdf)",
+                        "sequence": 1,
+                        "score": 0,
+                        "is_required": true,
+                        "choices": [
+                            {
+                                "rsp_survey_choice_id": 130,
+                                "answer": "เป็นสมาชิก และได้รับการรับรองเมื่อวันที่",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 1,
+                                "score": 0,
+                                "next_question_id": 0
+                            },
+                            {
+                                "rsp_survey_choice_id": 131,
+                                "answer": "ไม่เป็นสมาชิก",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 2,
+                                "score": 0,
+                                "next_question_id": 0
+                            },
+                            {
+                                "rsp_survey_choice_id": 132,
+                                "answer": "อยู่ระหว่างการพิจารณาเข้าร่วม",
+                                "is_aligned": false,
+                                "is_other_choice": false,
+                                "sequence": 3,
+                                "score": 0,
+                                "next_question_id": 0
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "created_user_id": 0
+    }
+}

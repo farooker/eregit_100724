@@ -1,0 +1,674 @@
+<template>
+  <v-row dense>
+    <!-- {{ props.registerFormDetail.business_partner_profile_form.address_th }} -->
+<!-- {{ props.stepInfoDetail.customer_info.th.address }} -->
+<v-col cols="12"><h2>ที่อยู่</h2></v-col>
+    <!-- {{ props.register_type }} -->
+    <v-col cols="12">
+      <!-- <AddressInputTH
+        tag-desc="(TH)"
+        :is-not-team="false"
+        :isDisableAddress="false"
+        class="pr-5"
+        :tax-payer-id-number="props.taxPayerIdNumber"
+        :address-item="data_input_head_comp.address_th.location"
+        :name="props.nameTh"
+        :address="props.addressTh"
+        @on-input="handleAddressTH"
+    /> -->
+      <v-card class="pl-5 pr-5">
+        <v-row dense>
+          <v-col cols="12">
+            <v-card-title>
+              <h6>Name 1 (TH)</h6>
+            </v-card-title>
+            <v-text-field
+              class="ml-0 mr-0"
+              density="compact"
+              :rules="rules_valid.namerequire"
+              dense
+              v-model="data_input_head_comp.address_th.name.one"
+              variant="outlined"
+            ></v-text-field>
+          </v-col>
+ 
+          <v-col cols="12" class="mt-n7">
+            <v-card-title>
+              <h6>Name 2 (TH)</h6>
+            </v-card-title>
+            <v-text-field
+              class="ml-0 mr-0"
+              density="compact"
+              :rules="rules_valid.name"
+              dense
+              v-model="data_input_head_comp.address_th.name.two"
+              variant="outlined"
+            ></v-text-field>
+          </v-col>
+ 
+          <v-col cols="12" class="mt-n7">
+            <v-card-title>
+              <h6>Name 3 (TH)</h6>
+            </v-card-title>
+            <v-text-field
+              class="ml-0 mr-0"
+              :rules="rules_valid.name"
+              density="compact"
+              dense
+              v-model="data_input_head_comp.address_th.name.three"
+              variant="outlined"
+            ></v-text-field>
+          </v-col>
+ 
+          <v-col cols="12" class="mt-n7">
+            <v-card-title>
+              <h6>Name 4 (TH)</h6>
+            </v-card-title>
+            <v-text-field
+              class="ml-0 mr-0"
+              :rules="rules_valid.name"
+              density="compact"
+              dense
+              v-model="data_input_head_comp.address_th.name.four"
+              variant="outlined"
+            ></v-text-field>
+          </v-col>
+ 
+          <v-col cols="12" class="mt-n7" v-if="!props.isNotTeam">
+            <v-card-title>
+              <h6>Search Term 1 (ชื่อย่อ)</h6>
+            </v-card-title>
+            <v-text-field
+              class="ml-0 mr-0"
+              :rules="textRequired"
+              density="compact"
+              dense
+              v-model="data_input_head_comp.address_th.search.one"
+              variant="outlined"
+            ></v-text-field>
+          </v-col>
+ 
+          <v-col cols="12" class="mt-n7" v-if="!props.isNotTeam">
+            <v-card-title>
+              <h6>Search Term 2 (เลข 13 หลัก)</h6>
+            </v-card-title>
+            <v-text-field
+              class="ml-0 mr-0"
+              density="compact"
+              :rules="textRequired"
+              dense
+              v-model="data_input_head_comp.address_th.search.two"
+              variant="outlined"
+            ></v-text-field>
+          </v-col>
+ 
+          <v-col cols="12" class="mt-n7">
+            <v-card-title>
+              <h6>Address 1 (TH)</h6>
+            </v-card-title>
+            <v-text-field
+              class="ml-0 mr-0"
+              density="compact"
+              dense
+              v-model="data_input_head_comp.address_th.address.one"
+              variant="outlined"
+              :rules="rules_valid.addressrequire"
+            ></v-text-field>
+          </v-col>
+ 
+          <v-col cols="12" class="mt-n7">
+            <v-card-title>
+              <h6>Address 2 (TH)</h6>
+            </v-card-title>
+            <v-text-field
+              class="ml-0 mr-0"
+              density="compact"
+              :rules="rules_valid.address2"
+              dense
+              v-model="data_input_head_comp.address_th.address.two"
+              variant="outlined"
+            ></v-text-field>
+          </v-col>
+          <v-col cols="12">
+            <!-- <AddressInputControl
+            tag-desc="(ภาษาไทย)"
+            key-value="id"
+            key-title="name_th"
+            :is-disable-address="false"
+            :address-item="data_input_head_comp.address_th.location"
+            @on-input="handleAddressInput"
+            class="ml-5 mt-n5"
+          /> -->
+            <v-row dense>
+              <v-col cols="12" class="mt-n1">
+                <v-card-title class="ml-n5">
+                  <h6>จังหวัด</h6>
+                </v-card-title>
+                <v-autocomplete
+                  v-model="data_input.province"
+                  :items="store.provinces"
+                  item-title="name_th"
+                  item-value="id"
+                  density="compact"
+                  :rules="textRequired"
+                  variant="outlined"
+                ></v-autocomplete>
+              </v-col>
+ 
+              <v-col cols="12" class="mt-n7">
+                <v-card-title class="ml-n5">
+                  <h6>เขต/อำเภอ</h6>
+                </v-card-title>
+                <v-autocomplete
+                  v-model="data_input.district"
+                  :items="itemsDistrict"
+                  :rules="textRequired"
+                  item-title="name_th"
+                  item-value="id"
+                  density="compact"
+                  variant="outlined"
+                ></v-autocomplete>
+              </v-col>
+ 
+              <v-col cols="12" class="mt-n7">
+                <v-card-title class="ml-n5">
+                  <h6>แขวง/ตำบล</h6>
+                </v-card-title>
+                <v-autocomplete
+                  v-model="data_input.parish"
+                  :rules="textRequired"
+                  :items="itemsSubDistrict"
+                  item-title="name_th"
+                  item-value="id"
+                  density="compact"
+                  variant="outlined"
+                ></v-autocomplete>
+              </v-col>
+ 
+              <v-col cols="12" class="mt-n7">
+                <v-card-title class="ml-n5">
+                  <h6>รหัสไปรษณีย์</h6>
+                </v-card-title>
+                <v-text-field
+                  v-model="data_input.zip_code_value"
+                  item-title="code"
+                  :rules="textRequired"
+                  item-value="id"
+                  density="compact"
+                  dense
+                  disabled
+                  variant="outlined"
+                  readonly
+                  bg-color="#dfdfdf"
+                ></v-text-field>
+              </v-col>
+            </v-row>
+          </v-col>
+        </v-row>
+      </v-card>
+    </v-col>
+    <v-col cols="12">
+      <AddressInputEN
+        tag-desc="(EN)"
+        :stepInfoDetail="props.stepInfoDetail"
+        :is-not-team="false"
+        :is-address="true"
+        :register_type="props.register_type"
+        :isDisableAddress="false"
+        key-title="name_en"
+        class="pr-5"
+        :is-address-manual="true"
+        :register-form-detail="props.registerFormDetail"
+        :tax-payer-id-number="props.taxPayerIdNumber"
+        :address-item="data_input_head_comp.address_en.location"
+        :name="props.nameEn"
+        :address="props.addressEn"
+        @on-input="handleAddressEN"
+      />
+ 
+      <!-- <v-card>
+        <ManaulAddressInputControl
+          class="ma-5"
+          :address-item="data_input_head_comp.address_en.location"
+          tag-desc="(EN Branch)"
+          @on-input="handleAddressEN"
+        />
+      </v-card> -->
+    </v-col>
+    <v-col cols="12"><CountryInput @on-input="handleCountry" /></v-col>
+    <v-col cols="12" v-for="(item, index) in props.contactItems" :key="index"
+      ><ContactInput
+        :index="index"
+        :name="item.name"
+        :email="item.email"
+        :phone="item.phone"
+        @on-input="handleContact"
+    /></v-col>
+  </v-row>
+</template>
+ 
+<script setup>
+import { ref, watch, watchEffect } from "vue";
+ 
+const textRequired = [(v) => !!v || "กรุณากรอกข้อมูลให้ครบถ้วน"];
+ 
+// import AddressInputTH from "../controls/AddressInput.vue";
+import AddressInputEN from "../controls/AddressInput.vue";
+// import AddressInputControl from "@/components/controls/AddressInputControl.vue";
+// import ManaulAddressInputControl from "@/components/controls/ManaulAddressInputControl.vue";
+import CountryInput from "../controls/CountryInput.vue";
+import ContactInput from "../controls/ContactInput.vue";
+ 
+import { useMyAddressStore } from "@/stores/addressDataStore";
+ 
+const store = useMyAddressStore();
+ 
+const props = defineProps({
+  nameEn: String,
+  nameTh: String,
+  addressEn: String,
+  addressTh: String,
+  taxPayerIdNumber: {
+    type: String,
+  },
+ 
+  register_type: {
+    type: Number,
+  },
+  addressItem: {
+    type: Object,
+    default: null,
+  },
+  addressItemEn: {
+    type: Object,
+    default: null,
+  },
+  contactItems: {
+    type: Array,
+    default: () => [{ index: 0, name: "", email: "", phone: "" }],
+  },
+  registerFormDetail: {
+    type: Object,
+    default: () => {},
+  },
+  stepInfoDetail: {
+    type: Object,
+    default: () => {},
+  },
+});
+// const company_en = ref(props.stepInfoDetail.customer_info.en.company_name);
+// watch(() => props.stepInfoDetail.customer_info.en.company_name, (newValue) => {
+//   company_en.value = newValue;
+// });
+ 
+// const address_en = ref(props.stepInfoDetail.customer_info.en.address);
+// watch(() => props.stepInfoDetail.customer_info.en.address, (newValue) => {
+//   address_en.value = newValue;
+// });
+ 
+const company_th = ref(props.stepInfoDetail?.customer_info?.th.company_name ?? null);
+watch(() => props.stepInfoDetail?.customer_info?.th.company_name?? null, (newValue) => {
+  company_th.value = newValue;
+});
+ 
+const address_th = ref(props.stepInfoDetail?.customer_info?.th.address?? null);
+watch(() => props.stepInfoDetail?.customer_info?.th?.address ?? null, (newValue) => {
+  address_th.value = newValue;
+});
+// const rules_valid = ref({
+//   companyData: [(v) => !!v || "กรุณากรอกข้อมูลให้ครบ"],
+//   role: [
+//     () =>
+//       data_input.value.employee_data.data.some(Boolean) ||
+//       "กรุณากรอกข้อมูลให้ครบ",
+//   ],
+//   namerequire: [
+//     (v) => v.length <= 35 || "*กรุณากรอกชื่อไม่เกิน 35 ตัวอักษร",
+//     (v) => /^\S+(\s\S+)*$/.test(v) || "* กรุณากรอกข้อมูลให้ถูกต้อง",
+//   ],
+//   name: [
+//     (v) => v.length <= 35 || "*กรุณากรอกชื่อไม่เกิน 35 ตัวอักษร",
+//   ],
+//   addressrequire: [
+//     (v) => v.length <= 60 || "*กรุณากรอกชื่อไม่เกิน 60 ตัวอักษร",
+//     (v) => /^\S+(\s\S+)*$/.test(v) || "* กรุณากรอกข้อมูลให้ถูกต้อง",
+//   ],
+//   address2: [
+//     (v) => v.length <= 40 || "*กรุณากรอกชื่อไม่เกิน 40 ตัวอักษร",
+//   ],
+//   // radioRules: [(v) => !!v || "กรุณาเลือก 1 อัน"],
+// });
+const rules_valid = ref({
+  companyData: [(v) => !!v || "กรุณากรอกข้อมูลให้ครบ"],
+  role: [
+    () =>
+      data_input.value.employee_data.data.some(Boolean) ||
+      "กรุณากรอกข้อมูลให้ครบ",
+  ],
+  namerequire: [
+    (v) => (v != null && v.length <= 35) || "*กรุณากรอกชื่อไม่เกิน 35 ตัวอักษร",
+    (v) => (v != null && /^\S+(\s\S+)*$/.test(v)) || "* กรุณากรอกข้อมูลให้ถูกต้อง",
+  ],
+  name: [
+    (v) => (v != null && v.length <= 35) || "*กรุณากรอกชื่อไม่เกิน 35 ตัวอักษร",
+  ],
+  addressrequire: [
+    (v) => (v != null && v.length <= 60) || "*กรุณากรอกชื่อไม่เกิน 60 ตัวอักษร",
+    (v) => (v != null && /^\S+(\s\S+)*$/.test(v)) || "* กรุณากรอกข้อมูลให้ถูกต้อง",
+  ],
+  address2: [
+    (v) => (v != null && v.length <= 40) || "*กรุณากรอกชื่อไม่เกิน 40 ตัวอักษร",
+  ],
+  // radioRules: [(v) => !!v || "กรุณาเลือก 1 อัน"],
+});
+const emit = defineEmits(["on-input"]);
+ 
+const data_input = ref({
+  province: props.addressItem.province,
+  district: props.addressItem.district,
+  parish: props.addressItem.parish,
+  zip_code: props.addressItem.zip_code,
+  zip_code_value: "",
+});
+ 
+const itemsDistrict = ref([]);
+const itemsSubDistrict = ref([]);
+const itemsPostCode = ref([]);
+ 
+const data_input_head_comp = ref({
+  address_th: {
+    name: {
+      one: "",
+      two: "",
+      three: "",
+      four: "",
+    },
+    search: {
+      one: "",
+      two: "",
+    },
+    address: {
+      one: "",
+      two: "",
+    },
+    location: props.addressItem,
+  },
+  address_en: {
+    location: props.addressItemEn,
+  },
+  country_info: {},
+  contact_info: props.contactItems,
+});
+ 
+// const handleAddressInput = (newValue) => {
+//   data_input_head_comp.value.address_th.location = newValue;
+// };
+ 
+const initail = ref(true);
+ 
+ 
+function splitText(text) {
+  // กำหนดความยาวแต่ละส่วน
+  const partLength = 35;
+ 
+  // ตรวจสอบและตัดข้อความตามความยาวที่กำหนด
+  let part1 = "";
+  let part2 = "";
+  let part3 = "";
+  let part4 = "";
+ 
+  if (text) {
+    part1 = text.length > 0 ? text.substring(0, partLength) : "";
+    part2 = text.length > partLength ? text.substring(partLength, partLength * 2) : "";
+    part3 = text.length > partLength * 2 ? text.substring(partLength * 2, partLength * 3) : "";
+    part4 = text.length > partLength * 3 ? text.substring(partLength * 3, partLength * 4) : "";
+  }
+ 
+  console.log("111", part1);
+  console.log("2222", part2);
+  console.log("3333", part3);
+  console.log("4444", part4);
+ 
+  // คืนค่า
+  return {
+    part1: part1,
+    part2: part2,
+    part3: part3,
+    part4: part4,
+  };
+}
+ 
+ 
+function splitTextAddress(text) {
+  const partLength1 = 60;
+  const partLength2 = 40;
+ 
+  let part1 = null;
+  let part2 = null;
+ 
+  if (text) {
+    part1 = text.length > 0 ? text.substring(0, partLength1) : "";
+    part2 =
+      text.length > partLength1
+        ? text.substring(partLength1, partLength1 + partLength2)
+        : "";
+        console.log("111", part1)
+        console.log("2222", part2)
+  }
+ 
+  return {
+    part1: part1,
+    part2: part2,
+  };
+}
+watchEffect(async () => {
+  // console.log(
+  //   "props.registerFormDetail",
+  //   props.registerFormDetail.account_information_form
+  // );
+  if (initail.value && props.registerFormDetail) {
+    // if (
+    //   props.registerFormDetail.account_information_form.name1_th.length < 0
+    // )
+    //  {
+    //   data_input_head_comp.value.address_th.name.one =
+    //     props.registerFormDetail?.business_partner_register_form?.name_th ?? null;
+    // }
+    // else {
+    //   data_input_head_comp.value.address_th.name.one =
+    //     props.registerFormDetail?.account_information_form?.name1_th ?? null;
+    // }
+    const txtSprict = splitText(
+      company_th.value
+    );
+    const txtSprictAdress = splitTextAddress(
+      address_th.value
+    );
+ 
+    // data_input_head_comp.value.address_th.name.one =
+    //   props.registerFormDetail?.account_information_form?.name1_th ??
+    //   splitText(
+    //     props.registerFormDetail?.business_partner_register_form?.name_th
+    //   ).part1;
+ 
+    if(props.registerFormDetail?.account_information_form?.name1_th && props.registerFormDetail?.account_information_form?.name1_th !=''){
+      data_input_head_comp.value.address_th.name.one =
+      props.registerFormDetail?.account_information_form?.name1_th
+    } else {
+      data_input_head_comp.value.address_th.name.one = txtSprict.part1;
+    }
+ 
+    if(props.registerFormDetail?.account_information_form?.name2_th && props.registerFormDetail?.account_information_form?.name2_th !=''){
+      data_input_head_comp.value.address_th.name.two =
+      props.registerFormDetail?.account_information_form?.name2_th
+    } else {
+      data_input_head_comp.value.address_th.name.two = txtSprict.part2;
+    }
+ 
+    // data_input_head_comp.value.address_th.name.two =
+    //   props.registerFormDetail?.account_information_form?.name2_th ??
+    //   splitText(
+    //     props.registerFormDetail?.business_partner_register_form?.name_th
+    //   ).part2;
+ 
+    if(props.registerFormDetail?.account_information_form?.name3_th && props.registerFormDetail?.account_information_form?.name3_th !=''){
+      data_input_head_comp.value.address_th.name.three =
+      props.registerFormDetail?.account_information_form?.name3_th
+    } else {
+      data_input_head_comp.value.address_th.name.three = txtSprict.part3;
+    }
+ 
+    // data_input_head_comp.value.address_th.name.three =
+    //   props.registerFormDetail?.account_information_form?.name3_th ??
+    //   splitText(
+    //     props.registerFormDetail?.business_partner_register_form?.name_th
+    //   ).part3;
+    if(props.registerFormDetail?.account_information_form?.name4_th && props.registerFormDetail?.account_information_form?.name4_th !=''){
+      data_input_head_comp.value.address_th.name.four =
+      props.registerFormDetail?.account_information_form?.name4_th
+    } else {
+      data_input_head_comp.value.address_th.name.four = txtSprict.part4;
+    }
+ 
+    // data_input_head_comp.value.address_th.name.four =
+    //   props.registerFormDetail?.account_information_form?.name4_th ??
+    //   splitText(
+    //     props.registerFormDetail?.business_partner_register_form?.name_th
+    //   ).part4;
+ 
+    data_input_head_comp.value.address_th.search.one =
+      props.registerFormDetail?.account_information_form?.search_term1_th ??
+      null;
+ 
+      // data_input_head_comp.value.address_th.address.one = props.addressTh ?? null;
+    // data_input_head_comp.value.address_th.address.two =
+    //   props.registerFormDetail?.account_information_form?.address2_th ?? null;
+    if(props.registerFormDetail?.account_information_form?.address1_th && props.registerFormDetail?.account_information_form?.address1_th !='' )   {
+      data_input_head_comp.value.address_th.address.one =
+      props.registerFormDetail?.account_information_form?.address1_th
+    } else {
+      data_input_head_comp.value.address_th.address.one = txtSprictAdress.part1
+    }
+ 
+    if(props.registerFormDetail?.account_information_form?.address2_th && props.registerFormDetail?.account_information_form?.address2_th !='' )   {
+      data_input_head_comp.value.address_th.address.two =
+      props.registerFormDetail?.account_information_form?.address2_th
+    } else {
+      data_input_head_comp.value.address_th.address.two = txtSprictAdress.part2
+ 
+    }
+ 
+ 
+    data_input_head_comp.value.address_th.search.two =
+      props.taxPayerIdNumber ?? null;
+    // data_input_head_comp.value.address_th.address.one = props.addressTh ?? null;
+ 
+    data_input_head_comp.value.address_th.location = props.addressItem;
+    data_input_head_comp.value.address_en.location = props.addressItemEn;
+    data_input_head_comp.value.contact_info = props.contactItems;
+ 
+    // console.log(JSON.stringify(data_input_head_comp.value.address_th.location))
+ 
+    // data_input.value = props.addressItem;
+    data_input.value.zip_code = props.addressItem.zip_code;
+    if (data_input.value.province)
+      await store.getDistrict(data_input.value.province);
+    itemsDistrict.value = store.districts;
+    if (data_input.value.parish)
+      await store.getPostCode(data_input.value.parish);
+    itemsPostCode.value = store.postCodes;
+    data_input.value.zip_code_value = itemsPostCode.value[0]?.code;
+ 
+    initail.value = false;
+  }
+});
+ 
+// const handleAddressTH = (data_obj) => {
+//   data_input_head_comp.value.address_th = data_obj;
+//   // data_input_head_comp.value.address_en = data_obj;
+// };
+ 
+const handleAddressEN = (data_obj) => {
+  data_input_head_comp.value.address_en = data_obj;
+};
+ 
+const handleCountry = (data_obj) => {
+  data_input_head_comp.value.country_info = data_obj;
+};
+ 
+const handleContact = (data_obj) => {
+  data_input_head_comp.value.contact_info[data_obj.index] = data_obj;
+};
+ 
+watch(
+  () => data_input.value.province,
+  async () => {
+    if (data_input.value.province) {
+      console.log("Proveic Change");
+      data_input.value.district = null;
+      data_input.value.parish = null;
+      await store.getDistrict(data_input.value.province);
+      itemsDistrict.value = store.districts;
+      itemsSubDistrict.value = [];
+ 
+      data_input_head_comp.value.location = data_input.value;
+    }
+  },
+  { deep: true, immediate: false }
+);
+ 
+watch(
+  () => data_input.value.district,
+  async (newdata, oledata) => {
+    if (data_input.value.district) {
+      await store.getSubDistrict(data_input.value.district);
+      itemsSubDistrict.value = store.subDistricts;
+      console.log("District Change");
+      data_input_head_comp.value.location = data_input.value;
+    }
+    if (oledata) {
+      data_input.value.parish = null;
+ 
+      //
+    }
+    // data_input.value.parish = null;
+  },
+  { deep: true, immediate: true }
+);
+ 
+watch(
+  () => data_input.value.parish,
+  async () => {
+    if (data_input.value.parish) {
+      await store.getPostCode(data_input.value.parish);
+      itemsPostCode.value = store.postCodes;
+      data_input.value.zip_code = itemsPostCode.value[0]?.id;
+      data_input.value.zip_code_value = itemsPostCode.value[0]?.code;
+      console.log("SubDistrict Change");
+      data_input_head_comp.value.location = data_input.value;
+      // console.log(JSON.stringify(itemsPostCode.value[0]?.id));
+      // console.log(JSON.stringify(itemsPostCode.value));
+    }
+  },
+  { deep: true, immediate: true }
+);
+ 
+watch(
+  data_input_head_comp.value,
+  (newValue) => {
+    emit("on-input", newValue);
+  },
+  { deep: true }
+);
+</script>
+ 
+<style scoped>
+:deep(.v-field) {
+  border-radius: 10px !important;
+  border: 1px solid #ededed !important;
+  -webkit-border-radius: 10px !important;
+  -moz-border-radius: 10px !important;
+  -ms-border-radius: 10px !important;
+  -o-border-radius: 10px !important;
+}
+</style>

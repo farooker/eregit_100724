@@ -1,0 +1,69 @@
+{
+  "is_success": true,
+  "code": "200",
+  "message": "Ok",
+  "data": {
+    "bp_number": "01700640914000",
+    "name_th": "ชื่อธุรกิจ บริษัท ตัวอย่าง จํากัด",
+    "name_en": "Business Name Sample Company Ltd.",
+    "taxpayer_id_number": "1234567890123",
+    "business_partner_role": "Role Name",
+    "contact_owner": {
+      "email": "admin@example.com",
+      "team": "Admin Team",
+      "company": "Example Company",
+      "business_unit": "Business Unit A"
+    },
+    "created_at": "2023-11-10T14:20:12",
+    "created_user_email": "creator@example.com",
+    "company_information": {
+      "business_partner_number": "BP123456",
+      "is_fpt_affiliate": 1,
+      "business_partner_type": "Corporate",
+      "account_business_partner_type": "Corporate",
+      "business_register_type": "Private Limited",
+      "company_category": "IT",
+      "product_category": "Software",
+      "vendor_number": "V123",
+      "company_code_of_vendor": "1200,1100",
+      "customer_number": "C456",
+      "company_code_of_customer": "1200,1100"
+    },
+    "payment_information": {
+      "is_vat_registered": 1,
+      "bank_account_name": "Business Account",
+      "bank": "Sample Bank",
+      "bank_account_number": "1234567890"
+    },
+    "do_rsp_activity": 1,
+    "branch": {
+      "branch_code": "00000",
+      "branch_description": "สำนักงานใหญ่",
+      "business_partner_role": "Vendor",
+      "branch_address": "123 Main Street",
+      "contact_person": [
+        {
+          "name": "John Doe",
+          "mobile": "123-456-7890",
+          "email": "john.doe@example.com"
+        },
+        {
+          "name": "Jane Smith",
+          "mobile": "987-654-3210",
+          "email": "jane.smith@example.com"
+        }
+      ]
+    },
+    "branch_list": [
+      {
+        "branch_code": "00000"
+      },
+      {
+        "branch_code": "00001"
+      },
+      {
+        "branch_code": "00002"
+      }
+    ]
+  }
+}

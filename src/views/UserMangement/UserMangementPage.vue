@@ -1,0 +1,58 @@
+<template>
+  <v-container>
+    <h2>User Mangement</h2>
+    <div class="text-center mt-5">
+      <h2>{{isTitle}}</h2>
+    </div>
+
+    <component
+        :is="currentComponent"
+        :index="1"
+        :item="{}"
+        @is-title="toggleTitle"
+        @is-view="toggleView" />
+  </v-container>
+</template>
+<script setup>
+/*eslint-disable no-unused-vars  */
+import { ref, onBeforeMount  } from 'vue';
+import ListUser from '@/views/UserMangement/ListUser';
+import TabsUser from '@/views/UserMangement/TabsUser';
+import UserForm from '@/components/forms/UserForm';
+
+
+
+const currentComponent = ref(null);
+const isTitle = ref(null);
+const isItem = ref({});
+
+onBeforeMount(() => {
+  currentComponent.value = ListUser;
+
+});
+
+const toggleTitle =(e)=> { console.log(e); isTitle.value = e}
+
+const toggleView =(view, payload = {})=> {
+  switch (view) {
+    case "user-main":
+        currentComponent.value = ListUser;
+      break;
+    case "user-add":{
+        currentComponent.value = TabsUser;
+    }
+    break;
+    case "user-edit":{
+        currentComponent.value = UserForm;
+        isItem.value =  {... payload}
+    }
+    break;
+    default:
+       currentComponent.value = ListUser;
+    break;
+  }
+}
+
+
+</script>
+
