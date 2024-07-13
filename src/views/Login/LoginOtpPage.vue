@@ -33,6 +33,9 @@ import { useRouter } from "vue-router";
 import { ref, onMounted } from "vue";
 import { useRoute } from "vue-router";
 import ExceptionHandleDialog from "@/components/dialogs/ExceptionHandleDialog.vue";
+import { useSessionInfoStore } from "@/stores/papdStore";
+
+const store = useSessionInfoStore();
 
 const route = useRoute();
 const router = useRouter();
@@ -49,9 +52,11 @@ const handleTryAgine = async () => {
   window.location.reload();
 };
 
-const handleVertifySuccess = () => {
+const handleVertifySuccess = async () => {
   localStorage.removeItem("temp_new_register");
-  router.push("/Authorization");
+  await handleAuthorization(email);
+  store.setsessionlinkstore(1,null,"AuthorizationPage")
+  router.push("/term-condition");
 };
 
 const handleVertiFailed = (message) => {
@@ -71,6 +76,28 @@ const getOptByEmail = async () => {
       return;
     }
     handlingErrorsMessage("unknown", e.message);
+  }
+};
+
+const handleAuthorization = async (email) => {
+  try {
+    const response = await VerifyService.getAuthenInfo(email);
+    if (response.data?.is_success) {
+      console.log("authen", response.data.data[0]);
+      const authInfo = response.data.data[0];
+      console.log("authenisactive", authInfo.is_active);
+      if (!authInfo.is_active) {
+        router.push("/Error?err=EXP_FORM");
+        return;
+      }
+      sessionStorage.setItem("userId", authInfo.id);
+      const modulesId = Array.from(authInfo.modules, (x) => x.id);
+
+      const modulesJson = JSON.stringify(modulesId);
+      sessionStorage.setItem("auth_modules", modulesJson);
+    }
+  } catch (e) {
+    router.push("/Error?err=NOT_FOUND");
   }
 };
 

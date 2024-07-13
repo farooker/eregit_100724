@@ -37,6 +37,8 @@ import { ref, onMounted } from "vue";
 import { useRoute } from "vue-router";
 import ExceptionHandleDialog from "@/components/dialogs/ExceptionHandleDialog.vue";
 const router = useRouter();
+import { useSessionInfoStore } from "@/stores/papdStore";
+const store = useSessionInfoStore();
 
 const route = useRoute();
 const email = route.query.email;
@@ -71,6 +73,7 @@ const getOptByEmail = async () => {
 
 const handleVertifySuccess = async () => {
   await signup();
+
 };
 
 const handleVertiFailed = (message) => {
@@ -112,12 +115,14 @@ const signup = async () => {
       if (form_number && to) {
         // sessionStorage.removeItem("auth_modules");
         await handleAuthorization(email);
-        router.push({
-          name: to,
-          query: { form_number: form_number },
-        });
+        store.setsessionlinkstore(2,form_number,to)
+        // router.push({
+        //   name: to,
+        //   query: { form_number: form_number },
+        // });
       } else {
-        router.push("/Authorization");
+        // router.push("/Authorization");
+        store.setsessionlinkstore(1,null,"AuthorizationPage")
       }
     }
   } catch (e) {

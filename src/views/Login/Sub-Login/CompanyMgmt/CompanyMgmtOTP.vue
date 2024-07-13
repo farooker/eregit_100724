@@ -40,6 +40,8 @@ const { handlingErrorsMessage } = useErrorHandlingDialog();
 import { useRouter } from "vue-router";
 import { ref, onMounted } from "vue";
 import { useRoute } from "vue-router";
+import { useSessionInfoStore } from "@/stores/papdStore";
+const store = useSessionInfoStore();
 
 const route = useRoute();
 const router = useRouter();
@@ -96,10 +98,11 @@ const handleVertifySuccess = async () => {
   localStorage.removeItem("temp_new_register");
   // sessionStorage.removeItem("auth_modules");
   await handleAuthorization(email);
-  router.push({
-    name: "CompanyManagementNon",
-    query: { form_number: form_number },
-  });
+  store.setsessionlinkstore(3,form_number,"CompanyManagementNon")
+  // router.push({
+  //   name: "CompanyManagementNon",
+  //   query: { form_number: form_number },
+  // });
 };
 
 const handleVertiFailed = (message) => {

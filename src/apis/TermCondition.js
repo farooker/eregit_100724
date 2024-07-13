@@ -27,7 +27,7 @@ const getCurrentPrivacyPolicyAll = async () => {
 const getPrivacyPolicybyId = async (userId) => {
   return await axiosBase({
     method: "get",
-    url: `/pdpa/get-terms-and-conditions-acceptance/${userId}`,
+    url: `/pdpa/get-privacy-policy-acceptance/${userId}`,
     data: {},
   });
 };
@@ -39,17 +39,19 @@ const createTermandConditionAcceptance = async (terms_and_conditions_id,user_id)
     data: {
       terms_and_conditions_id: Number(terms_and_conditions_id),
       user_id: Number(sessionStorage.getItem("userId")),
+      created_user_id: Number(sessionStorage.getItem("userId")),
     },
   });
 };
 
-const createPrivacyPolicyAcceptance = async (terms_and_conditions_id,user_id) => {
+const createPrivacyPolicyAcceptance = async (privacy_policy_id,user_id) => {
   return await axiosBase({
     method: "post",
     url: `/pdpa/create-privacy-policy-acceptance`,
     data: {
-      terms_and_conditions_id: Number(terms_and_conditions_id),
+      privacy_policy_id: Number(privacy_policy_id),
       user_id: Number(sessionStorage.getItem("userId")),
+      created_user_id: Number(sessionStorage.getItem("userId")),
     },
   });
 };
