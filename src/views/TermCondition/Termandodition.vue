@@ -159,18 +159,18 @@ onMounted(async () => {
   await getRspPolicyState();
   // console.log("term_condition_id.value",term_condition_id.value)
   // console.log("current_term_condition_id.value", current_term_condition_id.value)
-  if (term_condition_id !== current_term_condition_id) {
-    await getTermbyId(user_id.value);
-    await getCurrentTermsAll();
-    await getPrivacyPolicybyId(user_id.value);
-    await getCurrentPrivacyPolicyAll();
-    // current_view.value ++
-  }
+  // if (term_condition_id !== current_term_condition_id) {
+  await getTermbyId(user_id.value);
+  await getCurrentTermsAll();
+  await getPrivacyPolicybyId(user_id.value);
+  await getCurrentPrivacyPolicyAll();
+  // current_view.value ++
+  // }
   if (
     term_condition_id.value == current_term_condition_id.value &&
     privacy_policy_id.value == current_privacy_id.value
   ) {
-    console.log("coditionTerm")
+    console.log("coditionTerm");
     switch (store.sessionInfo.actions) {
       case 1:
         router.push({ name: store.sessionInfo.link_to });
@@ -181,19 +181,18 @@ onMounted(async () => {
           query: store.sessionInfo.data,
         });
         break;
-        case 3:
+      case 3:
         router.push({
           name: store.sessionInfo.link_to,
           query: store.sessionInfo.data,
         });
         break;
-        case 4:
+      case 4:
         router.push({
           name: store.sessionInfo.link_to,
           query: store.sessionInfo.data,
         });
         break;
-
     }
   }
 
@@ -368,30 +367,30 @@ const createPrivacyPolicyAcceptance = async () => {
     if (response.data?.is_success) {
       // rsp_survey_result_id.value = response.data.data.id;
       console.log("Save 222");
-    //   switch (store.sessionInfo.actions) {
-    //   case 1:
-    //     router.push({ name: store.sessionInfo.link_to });
-    //     break;
-    //   case 2:
-    //     router.push({
-    //       name: store.sessionInfo.link_to,
-    //       query: store.sessionInfo.data,
-    //     });
-    //     break;
-    //     case 3:
-    //     router.push({
-    //       name: store.sessionInfo.link_to,
-    //       query: store.sessionInfo.data,
-    //     });
-    //     break;
-    //     case 4:
-    //     router.push({
-    //       name: store.sessionInfo.link_to,
-    //       query: store.sessionInfo.data,
-    //     });
-    //     break;
+      //   switch (store.sessionInfo.actions) {
+      //   case 1:
+      //     router.push({ name: store.sessionInfo.link_to });
+      //     break;
+      //   case 2:
+      //     router.push({
+      //       name: store.sessionInfo.link_to,
+      //       query: store.sessionInfo.data,
+      //     });
+      //     break;
+      //     case 3:
+      //     router.push({
+      //       name: store.sessionInfo.link_to,
+      //       query: store.sessionInfo.data,
+      //     });
+      //     break;
+      //     case 4:
+      //     router.push({
+      //       name: store.sessionInfo.link_to,
+      //       query: store.sessionInfo.data,
+      //     });
+      //     break;
 
-    // }
+      // }
     }
   } catch (e) {
     if (e.response) {
@@ -447,7 +446,37 @@ const handleConfirm = async () => {
       );
       if (response.data?.is_success) {
         location.reload();
-        current_view.value++;
+        // current_view.value++;
+
+        if (
+          term_condition_id.value == current_term_condition_id.value &&
+          privacy_policy_id.value == current_privacy_id.value
+        ) {
+          console.log("coditionTerm");
+          switch (store.sessionInfo.actions) {
+            case 1:
+              router.push({ name: store.sessionInfo.link_to });
+              break;
+            case 2:
+              router.push({
+                name: store.sessionInfo.link_to,
+                query: store.sessionInfo.data,
+              });
+              break;
+            case 3:
+              router.push({
+                name: store.sessionInfo.link_to,
+                query: store.sessionInfo.data,
+              });
+              break;
+            case 4:
+              router.push({
+                name: store.sessionInfo.link_to,
+                query: store.sessionInfo.data,
+              });
+              break;
+          }
+        }
       }
     } catch (e) {
       if (e.response && e.response.data) {
@@ -458,8 +487,6 @@ const handleConfirm = async () => {
       }
       handlingErrorsMessage("unknown", e.message);
     }
-  } else {
-    current_view.value++;
   }
 };
 
@@ -483,7 +510,37 @@ const handleConfirmPolicy = async () => {
         current_privacy_id.value
       );
       if (response.data?.is_success) {
-        current_view.value++;
+        // current_view.value++;
+        if (
+    term_condition_id.value == current_term_condition_id.value &&
+    privacy_policy_id.value == current_privacy_id.value
+  ) {
+    console.log("coditionTerm")
+    switch (store.sessionInfo.actions) {
+      case 1:
+        router.push({ name: store.sessionInfo.link_to });
+        break;
+      case 2:
+        router.push({
+          name: store.sessionInfo.link_to,
+          query: store.sessionInfo.data,
+        });
+        break;
+        case 3:
+        router.push({
+          name: store.sessionInfo.link_to,
+          query: store.sessionInfo.data,
+        });
+        break;
+        case 4:
+        router.push({
+          name: store.sessionInfo.link_to,
+          query: store.sessionInfo.data,
+        });
+        break;
+
+    }
+  }
       }
     } catch (e) {
       if (e.response && e.response.data) {

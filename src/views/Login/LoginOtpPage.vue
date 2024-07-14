@@ -56,7 +56,11 @@ const handleVertifySuccess = async () => {
   localStorage.removeItem("temp_new_register");
   await handleAuthorization(email);
   store.setsessionlinkstore(1,null,"AuthorizationPage")
-  router.push("/term-condition");
+  // router.push("/term-condition");
+  router.push({
+    name: "TermCondition",
+    // query: { form_number: form_number },
+  });
 };
 
 const handleVertiFailed = (message) => {
