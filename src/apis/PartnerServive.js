@@ -103,6 +103,8 @@ const createExtendRole = async (body) => {
   });
 };
 
+import { isStringEmpty } from "../utils/util.issue";
+
 const getSearchBusinessPartner = async (
   offset = 0,
   limit = 1000,
@@ -117,12 +119,24 @@ const getSearchBusinessPartner = async (
   completed_to,
   company_category_id
 ) => {
-  let url = `/partner/search-business-partner?offset=${offset}&limit=${limit}&company_id=${company_id}&pb_role_id=${pb_role_id}&bu_id=${bu_id}&is_fpt_affiliate=${is_fpt_affiliate}&bp_type_id=${bp_type_id}&completed_from=${completed_from}&completed_to=${completed_to}&company_category_id=${company_category_id}`;
+  let url = `/partner/search-business-partner?offset=${offset}&limit=${limit}`;
+  if(!isStringEmpty(search_field)) url += `&search_field=${search_field}`;
+  if(!isStringEmpty(search_value)) url += `&search_value=${search_value}`;
+  if(!isStringEmpty(company_id)) url += `&company_id=${company_id}`;
+  if(!isStringEmpty(pb_role_id)) url += `&pb_role_id=${pb_role_id}`;
+  if(!isStringEmpty(bu_id)) url += `&bu_id=${bu_id}`;
+  if(!isStringEmpty(is_fpt_affiliate)) url += `&is_fpt_affiliate=${is_fpt_affiliate}`;
+  if(!isStringEmpty(bp_type_id)) url += `&bp_type_id=${bp_type_id}`;
+  if(!isStringEmpty(completed_from)) url += `&completed_from=${completed_from}`;
+  if(!isStringEmpty(completed_to)) url += `&completed_to=${completed_to}`;
+  if(!isStringEmpty(company_category_id)) url += `&company_category_id=${company_category_id}`;
+
+  //&company_id=${company_id}&pb_role_id=${pb_role_id}&bu_id=${bu_id}&is_fpt_affiliate=${is_fpt_affiliate}&bp_type_id=${bp_type_id}&completed_from=${completed_from}&completed_to=${completed_to}&company_category_id=${company_category_id}`;
 
   // Check if search_value is not null or undefined
-  if (search_value !== null && search_value !== undefined) {
-    url += `&search_field=${search_field}&search_value=${search_value}`;
-  }
+  // if (search_value !== null && search_value !== undefined) {
+  //   url += `&search_field=${search_field}&search_value=${search_value}`;
+  // }
 
   return await axiosBase({
     method: "get",
