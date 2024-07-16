@@ -10,7 +10,8 @@ const getVendorRspStatus = async (
   activity_id,
   activity_status,
   completed_from,
-  completed_to
+  completed_to,
+  sort_by
 ) => {
   let url = `/rsp/get-vendor-rsp-status?offset=${
     offset > 0 ? (offset -= 1) : offset
@@ -23,6 +24,7 @@ const getVendorRspStatus = async (
   if (activity_status) url += `&activity_status=${activity_status}`;
   if (completed_from) url += `&completed_from=${completed_from}`;
   if (completed_to) url += `&completed_from=${completed_from}`;
+  if (sort_by) url += `&sort-by=${sort_by}`;
 
   return await axiosBase({
     method: "get",
@@ -53,10 +55,7 @@ const getRspPolicies = async (state = "active") => {
   });
 };
 
-const getRspVendorSatus = async (
-  search_field,
-  search_value,
-) => {
+const getRspVendorSatus = async (search_field, search_value) => {
   return await axiosBase({
     method: "get",
     url: `/rsp/get-vendor-rsp-status?search_field=${search_field}&search_value=${search_value}`,
@@ -142,7 +141,6 @@ const downloadSurveyResult = async (_bp_number, rsp_survey_id) => {
   });
 };
 
-
 const getRspSurveyResultDetail = async (_bp_number) => {
   return await axiosBase({
     method: "post",
@@ -172,7 +170,7 @@ const exportRspActivityReport = async (bp_number = []) => {
           bp_number: i,
         };
       }),
-      exporter_user_id: Number(sessionStorage.getItem("userId"))
+      exporter_user_id: Number(sessionStorage.getItem("userId")),
     },
   });
 };
@@ -180,14 +178,21 @@ const getExportRspPolicyByVendor = async (bp_number) => {
   return await axiosBase({
     method: "post",
     url: `/rsp/export-rsp-policy-by-vendor`,
-    data: { bp_number, exporter_user_id: Number(sessionStorage.getItem("userId")) },
+    data: {
+      bp_number,
+      exporter_user_id: Number(sessionStorage.getItem("userId")),
+    },
   });
 };
 const getExportRspSurveyByVendor = async (rsp_survey_id, bp_number) => {
   return await axiosBase({
     method: "post",
     url: `/rsp/export-rsp-survey-by-vendor`,
-    data: { rsp_survey_id, bp_number, exporter_user_id: Number(sessionStorage.getItem("userId")) },
+    data: {
+      rsp_survey_id,
+      bp_number,
+      exporter_user_id: Number(sessionStorage.getItem("userId")),
+    },
   });
 };
 
@@ -286,7 +291,10 @@ const updateRspSurveyResult = async (data) => {
   return await axiosBase({
     method: "post",
     url: `/rsp/update-rsp-survey-result`,
-    data: { ...data, updated_user_id: Number(sessionStorage.getItem("userId")), },
+    data: {
+      ...data,
+      updated_user_id: Number(sessionStorage.getItem("userId")),
+    },
     // data:{
     //   "bp_number": "c",
     //   "rsp_survey_id": 4,
@@ -384,7 +392,6 @@ const PermanentlyDeleteRspRolicy = async (_rsp_policy_id) => {
   });
 };
 
-
 export default {
   getVendorRspStatus,
   sendFollowUpVendor,
@@ -417,6 +424,4 @@ export default {
   updateRspPolicy,
   exportRspPolicyResult,
   PermanentlyDeleteRspRolicy,
-
-
 };

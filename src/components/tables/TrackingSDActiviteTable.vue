@@ -1,5 +1,8 @@
 <template>
   <div>
+    <!-- {{  businessPartnerDetail.taxpayer_id_number }} -->
+       <!-- {{ survey_result_details }} -->
+       <!-- {{ grade }} -->
     <v-card class="mx-auto elevation-1" color="secondary" height="50">
       <v-card-item dense>
         <v-row no-gutters dense justify="space-around">
@@ -11,7 +14,14 @@
             ></v-checkbox>
           </v-col>
           <v-col cols="2" align-self="center" class="mt-n3">
-            <strong>Name</strong>
+            <strong @click="sortByName" style="cursor: pointer">
+              <v-icon>
+                {{
+                  sortDirection === "name_en:asc" ? "mdi-arrow-up" : "mdi-arrow-down"
+                }}
+              </v-icon>
+              Name
+            </strong>
           </v-col>
           <v-col cols="2" align-self="center" class="mt-n3">
             <strong>RSP Policy</strong>
@@ -67,7 +77,7 @@
                 label
                 size="small"
               >
-                <strong >{{ i.rsp?.policy?.status }}</strong>
+                <strong>{{ i.rsp?.policy?.status }}</strong>
               </v-chip>
               <p
                 class="mt-2 text-grey"
@@ -199,6 +209,7 @@
                             ?.business_partner_type
                         }}</span>
                       </v-col>
+
                       <v-col cols="3">
                         <label class="font-weight-medium text-grey-lighten-1"
                           >Juristic Type</label
@@ -219,7 +230,7 @@
                             ?.company_category
                         }}</span>
                       </v-col>
-                      <v-col cols="9">
+                      <v-col cols="12">
                         <label class="font-weight-medium text-grey-lighten-1"
                           >Product / Service Category</label
                         >
@@ -234,7 +245,7 @@
                       <br />
                       <span class="font-weight-black">?</span>
                     </v-col> -->
-                      <v-col cols="12">
+                      <v-col cols="3">
                         <label class="font-weight-medium text-grey-lighten-1"
                           >Vendor Number</label
                         >
@@ -243,6 +254,17 @@
                           preFrill(
                             businessPartnerDetail.company_information
                               ?.vendor_number
+                          )
+                        }}</span>
+                      </v-col>
+                      <v-col cols="3">
+                        <label class="font-weight-medium text-grey-lighten-1"
+                          >Tax ID</label
+                        >
+                        <br />
+                        <span class="font-weight-black">{{
+                          preFrill(
+                            businessPartnerDetail?.taxpayer_id_number
                           )
                         }}</span>
                       </v-col>
@@ -409,9 +431,25 @@
                             class="text-h6 text-light-green-accent-4 font-weight-black"
                             >Align</span
                           >
+
                         </div>
                       </v-col>
                       <v-col cols="12">
+
+
+                        <!-- <div>{{ grade}}</div> -->
+                        <v-row align="center">
+                          <v-col cols="3">
+                            <v-list-item-title class="font-weight-black ml-4">
+                              Score
+                            </v-list-item-title>
+                          </v-col>
+                          <v-col cols="4">
+                            <v-chip color="red  " label>
+                            <span style="font-size: 18px; color: red; font-weight: bold;">{{grade}}</span>
+                            </v-chip>
+                          </v-col>
+                        </v-row>
                         <v-list lines="two" width="100%" dense>
                           <v-list-item
                             dense
@@ -422,17 +460,20 @@
                             <v-list-item-title class="font-weight-black">{{
                               item.name
                             }}</v-list-item-title>
-                            <v-list-item-subtitle class="font-weight-medium"
+
+                            <v-list-item-subtitle  style="font-size: 15px; color: red; font-weight: bold;"
                               >{{ item.score }}/{{
                                 item.total_score
                               }}</v-list-item-subtitle
                             >
                             <template v-slot:append>
-                              <v-avatar color="secondary">
-                                <span style="font-size: 13px">{{
+                              <!-- <v-avatar color="secondary"> -->
+                                <span
+                                 style="font-size: 18px; color: red; font-weight: bold;">
+                                 {{
                                   item.score_percentage
-                                }}</span>
-                              </v-avatar>
+                                }}%</span>
+                              <!-- </v-avatar> -->
                             </template>
                           </v-list-item>
                         </v-list>
@@ -450,7 +491,7 @@
                         <v-list-item-subtitle class="font-weight-medium"
                           >Progress
                           {{ survey_result_details?.progress_percentage }}
-                          %</v-list-item-subtitle
+                          </v-list-item-subtitle
                         >
                       </v-col>
                     </v-row>
@@ -464,11 +505,7 @@
                         variant="outlined"
                         :disabled="loader.bp_detail"
                         :loading="loader.bp_detail"
-                        :to="`/SDTeamDashboard/FollowUp?bp_number=${
-                          businessPartnerDetail.bp_number
-                        }&email=${
-                          businessPartnerDetail?.contact_owner?.email
-                        }`"
+                        :to="`/SDTeamDashboard/FollowUp?bp_number=${businessPartnerDetail.bp_number}&email=${businessPartnerDetail?.contact_owner?.email}`"
                         block
                         class="text-capitalize rounded-pill"
                         color="black"
@@ -508,8 +545,9 @@ import PartnerServive from "@/apis/PartnerServive";
 import RspService from "@/apis/RspService";
 import { useErrorHandlingDialog } from "@/components/dialogs/ExceptionHandleDialogService";
 const { handlingErrorsMessage } = useErrorHandlingDialog();
- 
-const emit = defineEmits(["action-edit", "selected"]);
+
+// const emit = defineEmits(["action-edit", "selected"]);
+const emit = defineEmits(["action-edit", "selected", "sort-change"]);
 // eslint-disable-next-line no-unused-vars
 const props = defineProps({
   items: {
@@ -538,19 +576,40 @@ const Selected = computed({
     emit("selected", value);
   },
 });
- 
+
 const panel = ref([]);
 const selected_all = ref(false);
- 
+
+const totalScore = ref(null);
+const grade = ref(null);
+
 const businessPartnerDetail = ref({});
 const survey_result_details = ref({});
 const business_branch = ref(null);
- 
+
 const loader = ref({
   bp_detail: false,
   branch_code: false,
   survey_result: false,
 });
+const sortDirection = ref("name_en:asc");
+
+const sortByName = () => {
+  if (sortDirection.value === "name_en:asc") {
+    sortDirection.value = "name_en:desc";
+  } else {
+    sortDirection.value = "name_en:asc";
+  }
+  emit('sort-change', sortDirection.value)
+};
+
+watch(
+  () => sortDirection.value,
+  () => {
+    console.warn(sortDirection.value);
+  },
+  { deep: true, immediate: false }
+);
 watch(selected_all, (newValue) => {
   if (newValue) {
     const bp_numbers = Array.from(props.items, (i) => i.bp_number);
@@ -564,6 +623,8 @@ watch(panel, (i) => {
     const bp_number = props.items[i].bp_number;
     getBusinessPartnerDetail(bp_number);
     getRspSurveyResultDetail(bp_number);
+    // calculateGrade();
+
   }
 });
 watch(business_branch, (branch_code) => {
@@ -572,31 +633,31 @@ watch(business_branch, (branch_code) => {
     getBusinessPartnerDetailฺBranchCode(bp_number, branch_code);
   }
 });
- 
+
 const preFrill = (text) => {
   if (text && text != "") return text;
   return "-";
 };
- 
+
 const onColor = (type) => {
   switch (type.toString().toLowerCase()) {
     case "completed":
       return "teal-accent-4";
- 
+
     case "not completed":
       return "red";
- 
+
     case "in progress":
       return "amber";
- 
+
     case "not started":
       return "cyan";
- 
+
     default:
       return "";
   }
 };
- 
+
 const getBusinessPartnerDetail = async (bp_number) => {
   try {
     loader.value.bp_detail = true;
@@ -712,75 +773,32 @@ const getBusinessPartnerDetailฺBranchCode = async (bp_number, branch_code) => 
     loader.value.branch_code = false;
   }
 };
+
+function calculateGrade() {
+  console.log("totalScore.value", totalScore.value)
+  console.log("grade.value", grade.value)
+  if (totalScore.value >= 90) {
+    grade.value = 'A';
+  } else if (totalScore.value >= 80) {
+    grade.value = 'B';
+  } else if (totalScore.value >= 70) {
+    grade.value = 'C';
+  } else if (totalScore.value >= 60) {
+    grade.value = 'D';
+  } else {
+    grade.value = 'F';
+  }
+}
 const getRspSurveyResultDetail = async (bp_number) => {
   try {
     loader.value.survey_result = true;
     const response = await RspService.getRspSurveyResultDetail(bp_number);
     if (response.data?.is_success) {
-      // survey_result_details.value = {
-      //   bp_number: "01707129375000",
-      //   status: {
-      //     id: 3,
-      //     name: "completed",
-      //   },
-      //   progress_percentage: 100,
-      //   survey_result: {
-      //     is_aligned: true,
-      //     score: 44,
-      //     total_score: 90,
-      //     evaluation: {
-      //       id: 11,
-      //       rsp_survey_id: 3,
-      //       name: "C",
-      //       minimum_score_criteria: 65,
-      //       description: "Description for criteria CC",
-      //       image_url: "http://example.com/image3.jpg",
-      //       created_at: "2024-03-05T17:50:04.968+07:00",
-      //       created_user_id: 1,
-      //       updated_at: "2024-03-05T17:50:04.968+07:00",
-      //       updated_user_id: 1,
-      //     },
-      //     section: [
-      //       {
-      //         name: "การดําเนินการทางธุรกิจ และ จรรยาบรรณทางธุรกิจ",
-      //         score: 14,
-      //         total_score: 24,
-      //         score_percentage: 58,
-      //       },
-      //       {
-      //         name: "การจัดการด้านสิ่งแวดล้อม",
-      //         score: 10,
-      //         total_score: 23,
-      //         score_percentage: 43,
-      //       },
-      //       {
-      //         name: "สุขภาพความปลอดภัยและความเป็นอยู่ที่ดีในสถานที่ทํางาน",
-      //         score: 10,
-      //         total_score: 20,
-      //         score_percentage: 50,
-      //       },
-      //       {
-      //         name: "สิทธิมนุษยชนและการจัดการแรงงาน",
-      //         score: 10,
-      //         total_score: 23,
-      //         score_percentage: 43,
-      //       },
-      //       {
-      //         name: "การบริหารจัดการบริษัทคู่ค้า",
-      //         score: 0,
-      //         total_score: 0,
-      //         score_percentage: 0,
-      //       },
-      //       {
-      //         name: "การติดตามผลการดําเนินการและการรายงาน (Monitoring and Reporting)",
-      //         score: 0,
-      //         total_score: 0,
-      //         score_percentage: 0,
-      //       },
-      //     ],
-      //   },
-      // };
       survey_result_details.value = response.data?.data;
+      console.log("survey_result_details", survey_result_details.value)
+      totalScore.value = Number (survey_result_details.value.survey_result.total_score)
+     calculateGrade();
+
     }
   } catch (e) {
     if (e.response) {

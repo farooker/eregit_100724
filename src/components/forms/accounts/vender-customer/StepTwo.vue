@@ -1,8 +1,7 @@
 <template>
   <v-row dense>
-    <!-- {{ props.registerFormDetail.business_partner_profile_form.address_th }} -->
-<!-- {{ props.stepInfoDetail.customer_info.th.address }} -->
-<v-col cols="12"><h2>ที่อยู่</h2></v-col>
+    <!-- {{ data_name.nameth1 }} -->
+    <v-col cols="12"><h2>ที่อยู่สำนักงานใหญ่</h2></v-col>
     <!-- {{ props.register_type }} -->
     <v-col cols="12">
       <!-- <AddressInputTH
@@ -31,7 +30,7 @@
               variant="outlined"
             ></v-text-field>
           </v-col>
- 
+
           <v-col cols="12" class="mt-n7">
             <v-card-title>
               <h6>Name 2 (TH)</h6>
@@ -45,7 +44,7 @@
               variant="outlined"
             ></v-text-field>
           </v-col>
- 
+
           <v-col cols="12" class="mt-n7">
             <v-card-title>
               <h6>Name 3 (TH)</h6>
@@ -59,7 +58,7 @@
               variant="outlined"
             ></v-text-field>
           </v-col>
- 
+
           <v-col cols="12" class="mt-n7">
             <v-card-title>
               <h6>Name 4 (TH)</h6>
@@ -73,10 +72,10 @@
               variant="outlined"
             ></v-text-field>
           </v-col>
- 
+
           <v-col cols="12" class="mt-n7" v-if="!props.isNotTeam">
             <v-card-title>
-              <h6>Search Term 1 (ชื่อย่อ)</h6>
+              <h6>Search Term 1 (ชื่อย่อ)sss</h6>
             </v-card-title>
             <v-text-field
               class="ml-0 mr-0"
@@ -87,7 +86,7 @@
               variant="outlined"
             ></v-text-field>
           </v-col>
- 
+
           <v-col cols="12" class="mt-n7" v-if="!props.isNotTeam">
             <v-card-title>
               <h6>Search Term 2 (เลข 13 หลัก)</h6>
@@ -101,7 +100,7 @@
               variant="outlined"
             ></v-text-field>
           </v-col>
- 
+
           <v-col cols="12" class="mt-n7">
             <v-card-title>
               <h6>Address 1 (TH)</h6>
@@ -115,7 +114,7 @@
               :rules="rules_valid.addressrequire"
             ></v-text-field>
           </v-col>
- 
+
           <v-col cols="12" class="mt-n7">
             <v-card-title>
               <h6>Address 2 (TH)</h6>
@@ -141,6 +140,7 @@
           /> -->
             <v-row dense>
               <v-col cols="12" class="mt-n1">
+                {{ data_input.value }}
                 <v-card-title class="ml-n5">
                   <h6>จังหวัด</h6>
                 </v-card-title>
@@ -154,7 +154,7 @@
                   variant="outlined"
                 ></v-autocomplete>
               </v-col>
- 
+
               <v-col cols="12" class="mt-n7">
                 <v-card-title class="ml-n5">
                   <h6>เขต/อำเภอ</h6>
@@ -169,7 +169,7 @@
                   variant="outlined"
                 ></v-autocomplete>
               </v-col>
- 
+
               <v-col cols="12" class="mt-n7">
                 <v-card-title class="ml-n5">
                   <h6>แขวง/ตำบล</h6>
@@ -184,7 +184,7 @@
                   variant="outlined"
                 ></v-autocomplete>
               </v-col>
- 
+
               <v-col cols="12" class="mt-n7">
                 <v-card-title class="ml-n5">
                   <h6>รหัสไปรษณีย์</h6>
@@ -210,7 +210,6 @@
     <v-col cols="12">
       <AddressInputEN
         tag-desc="(EN)"
-        :stepInfoDetail="props.stepInfoDetail"
         :is-not-team="false"
         :is-address="true"
         :register_type="props.register_type"
@@ -225,7 +224,7 @@
         :address="props.addressEn"
         @on-input="handleAddressEN"
       />
- 
+
       <!-- <v-card>
         <ManaulAddressInputControl
           class="ma-5"
@@ -246,23 +245,23 @@
     /></v-col>
   </v-row>
 </template>
- 
+
 <script setup>
 import { ref, watch, watchEffect } from "vue";
- 
+
 const textRequired = [(v) => !!v || "กรุณากรอกข้อมูลให้ครบถ้วน"];
- 
+
 // import AddressInputTH from "../controls/AddressInput.vue";
 import AddressInputEN from "../controls/AddressInput.vue";
 // import AddressInputControl from "@/components/controls/AddressInputControl.vue";
 // import ManaulAddressInputControl from "@/components/controls/ManaulAddressInputControl.vue";
 import CountryInput from "../controls/CountryInput.vue";
 import ContactInput from "../controls/ContactInput.vue";
- 
+
 import { useMyAddressStore } from "@/stores/addressDataStore";
- 
+
 const store = useMyAddressStore();
- 
+
 const props = defineProps({
   nameEn: String,
   nameTh: String,
@@ -271,7 +270,7 @@ const props = defineProps({
   taxPayerIdNumber: {
     type: String,
   },
- 
+
   register_type: {
     type: Number,
   },
@@ -291,53 +290,8 @@ const props = defineProps({
     type: Object,
     default: () => {},
   },
-  stepInfoDetail: {
-    type: Object,
-    default: () => {},
-  },
 });
-// const company_en = ref(props.stepInfoDetail.customer_info.en.company_name);
-// watch(() => props.stepInfoDetail.customer_info.en.company_name, (newValue) => {
-//   company_en.value = newValue;
-// });
- 
-// const address_en = ref(props.stepInfoDetail.customer_info.en.address);
-// watch(() => props.stepInfoDetail.customer_info.en.address, (newValue) => {
-//   address_en.value = newValue;
-// });
- 
-const company_th = ref(props.stepInfoDetail?.customer_info?.th.company_name ?? null);
-watch(() => props.stepInfoDetail?.customer_info?.th.company_name?? null, (newValue) => {
-  company_th.value = newValue;
-});
- 
-const address_th = ref(props.stepInfoDetail?.customer_info?.th.address?? null);
-watch(() => props.stepInfoDetail?.customer_info?.th?.address ?? null, (newValue) => {
-  address_th.value = newValue;
-});
-// const rules_valid = ref({
-//   companyData: [(v) => !!v || "กรุณากรอกข้อมูลให้ครบ"],
-//   role: [
-//     () =>
-//       data_input.value.employee_data.data.some(Boolean) ||
-//       "กรุณากรอกข้อมูลให้ครบ",
-//   ],
-//   namerequire: [
-//     (v) => v.length <= 35 || "*กรุณากรอกชื่อไม่เกิน 35 ตัวอักษร",
-//     (v) => /^\S+(\s\S+)*$/.test(v) || "* กรุณากรอกข้อมูลให้ถูกต้อง",
-//   ],
-//   name: [
-//     (v) => v.length <= 35 || "*กรุณากรอกชื่อไม่เกิน 35 ตัวอักษร",
-//   ],
-//   addressrequire: [
-//     (v) => v.length <= 60 || "*กรุณากรอกชื่อไม่เกิน 60 ตัวอักษร",
-//     (v) => /^\S+(\s\S+)*$/.test(v) || "* กรุณากรอกข้อมูลให้ถูกต้อง",
-//   ],
-//   address2: [
-//     (v) => v.length <= 40 || "*กรุณากรอกชื่อไม่เกิน 40 ตัวอักษร",
-//   ],
-//   // radioRules: [(v) => !!v || "กรุณาเลือก 1 อัน"],
-// });
+
 const rules_valid = ref({
   companyData: [(v) => !!v || "กรุณากรอกข้อมูลให้ครบ"],
   role: [
@@ -346,35 +300,40 @@ const rules_valid = ref({
       "กรุณากรอกข้อมูลให้ครบ",
   ],
   namerequire: [
-    (v) => (v != null && v.length <= 35) || "*กรุณากรอกชื่อไม่เกิน 35 ตัวอักษร",
-    (v) => (v != null && /^\S+(\s\S+)*$/.test(v)) || "* กรุณากรอกข้อมูลให้ถูกต้อง",
+    (v) =>
+      (v != null && v.length <= 35) || "* กรุณากรอกชื่อไม่เกิน 35 ตัวอักษร",
+    (v) =>
+      (v != null && v.trim().length > 0 && /^\S+(?: \S+)*$/.test(v.trim())) ||
+      "* กรุณากรอกข้อมูลให้ถูกต้อง",
   ],
   name: [
     (v) => (v != null && v.length <= 35) || "*กรุณากรอกชื่อไม่เกิน 35 ตัวอักษร",
   ],
   addressrequire: [
     (v) => (v != null && v.length <= 60) || "*กรุณากรอกชื่อไม่เกิน 60 ตัวอักษร",
-    (v) => (v != null && /^\S+(\s\S+)*$/.test(v)) || "* กรุณากรอกข้อมูลให้ถูกต้อง",
+    (v) =>
+      (v != null && /^\S+(\s\S+)*$/.test(v)) || "* กรุณากรอกข้อมูลให้ถูกต้อง",
   ],
   address2: [
-    (v) => (v != null && v.length <= 40) || "*กรุณากรอกชื่อไม่เกิน 40 ตัวอักษร",
+    (v) => v == null || v.length <= 40 || "*กรุณากรอกชื่อไม่เกิน 40 ตัวอักษร",
   ],
   // radioRules: [(v) => !!v || "กรุณาเลือก 1 อัน"],
 });
+
 const emit = defineEmits(["on-input"]);
- 
+
 const data_input = ref({
-  province: props.addressItem.province,
-  district: props.addressItem.district,
-  parish: props.addressItem.parish,
-  zip_code: props.addressItem.zip_code,
+  province: props.addressItem?.province,
+  district: props.addressItem?.district,
+  parish: props.addressItem?.parish,
+  zip_code: props.addressItem?.zip_code,
   zip_code_value: "",
 });
- 
+
 const itemsDistrict = ref([]);
 const itemsSubDistrict = ref([]);
 const itemsPostCode = ref([]);
- 
+
 const data_input_head_comp = ref({
   address_th: {
     name: {
@@ -391,44 +350,60 @@ const data_input_head_comp = ref({
       one: "",
       two: "",
     },
-    location: props.addressItem,
+    location: {
+      province: null,
+      district: null,
+      parish: null,
+      zip_code: null,
+      zip_code_value: "",
+    },
   },
   address_en: {
-    location: props.addressItemEn,
+    location: {
+      province: null,
+      district: null,
+      parish: null,
+      zip_code: null,
+      zip_code_value: "",
+    },
   },
   country_info: {},
   contact_info: props.contactItems,
 });
- 
-// const handleAddressInput = (newValue) => {
-//   data_input_head_comp.value.address_th.location = newValue;
-// };
- 
+
 const initail = ref(true);
- 
- 
+
 function splitText(text) {
   // กำหนดความยาวแต่ละส่วน
   const partLength = 35;
- 
+
   // ตรวจสอบและตัดข้อความตามความยาวที่กำหนด
   let part1 = "";
   let part2 = "";
   let part3 = "";
   let part4 = "";
- 
+
   if (text) {
     part1 = text.length > 0 ? text.substring(0, partLength) : "";
-    part2 = text.length > partLength ? text.substring(partLength, partLength * 2) : "";
-    part3 = text.length > partLength * 2 ? text.substring(partLength * 2, partLength * 3) : "";
-    part4 = text.length > partLength * 3 ? text.substring(partLength * 3, partLength * 4) : "";
+    part2 =
+      text.length > partLength
+        ? text.substring(partLength, partLength * 2)
+        : "";
+    part3 =
+      text.length > partLength * 2
+        ? text.substring(partLength * 2, partLength * 3)
+        : "";
+    part4 =
+      text.length > partLength * 3
+        ? text.substring(partLength * 3, partLength * 4)
+        : "";
   }
- 
+
   console.log("111", part1);
   console.log("2222", part2);
   console.log("3333", part3);
   console.log("4444", part4);
- 
+
   // คืนค่า
   return {
     part1: part1,
@@ -437,140 +412,121 @@ function splitText(text) {
     part4: part4,
   };
 }
- 
- 
+
 function splitTextAddress(text) {
   const partLength1 = 60;
   const partLength2 = 40;
- 
-  let part1 = null;
-  let part2 = null;
- 
+
+  let part1 = "";
+  let part2 = "";
+
   if (text) {
-    part1 = text.length > 0 ? text.substring(0, partLength1) : "";
-    part2 =
-      text.length > partLength1
-        ? text.substring(partLength1, partLength1 + partLength2)
-        : "";
-        console.log("111", part1)
-        console.log("2222", part2)
+    if (text.length >= partLength1) {
+      part1 = text.substring(0, partLength1);
+      part2 =
+        text.length > partLength1
+          ? text.substring(partLength1, partLength1 + partLength2)
+          : "";
+    } else {
+      part1 = text.substring(0, text.length);
+    }
   }
- 
+
   return {
     part1: part1,
     part2: part2,
   };
 }
+
+const company_th = ref(props.nameTh);
+const address_th = ref(props.addressTh);
+
 watchEffect(async () => {
-  // console.log(
-  //   "props.registerFormDetail",
-  //   props.registerFormDetail.account_information_form
-  // );
   if (initail.value && props.registerFormDetail) {
-    // if (
-    //   props.registerFormDetail.account_information_form.name1_th.length < 0
-    // )
-    //  {
-    //   data_input_head_comp.value.address_th.name.one =
-    //     props.registerFormDetail?.business_partner_register_form?.name_th ?? null;
-    // }
-    // else {
-    //   data_input_head_comp.value.address_th.name.one =
-    //     props.registerFormDetail?.account_information_form?.name1_th ?? null;
-    // }
-    const txtSprict = splitText(
-      company_th.value
-    );
-    const txtSprictAdress = splitTextAddress(
-      address_th.value
-    );
- 
-    // data_input_head_comp.value.address_th.name.one =
-    //   props.registerFormDetail?.account_information_form?.name1_th ??
-    //   splitText(
-    //     props.registerFormDetail?.business_partner_register_form?.name_th
-    //   ).part1;
- 
-    if(props.registerFormDetail?.account_information_form?.name1_th && props.registerFormDetail?.account_information_form?.name1_th !=''){
+    const txtSprict = splitText(company_th.value);
+    const txtSprictAdress = splitTextAddress(address_th.value);
+
+    if (
+      props.registerFormDetail?.account_information_form?.name1_th &&
+      props.registerFormDetail?.account_information_form?.name1_th != ""
+    ) {
       data_input_head_comp.value.address_th.name.one =
-      props.registerFormDetail?.account_information_form?.name1_th
+        props.registerFormDetail?.account_information_form?.name1_th;
     } else {
       data_input_head_comp.value.address_th.name.one = txtSprict.part1;
     }
- 
-    if(props.registerFormDetail?.account_information_form?.name2_th && props.registerFormDetail?.account_information_form?.name2_th !=''){
+
+    if (
+      props.registerFormDetail?.account_information_form?.name2_th &&
+      props.registerFormDetail?.account_information_form?.name2_th != ""
+    ) {
       data_input_head_comp.value.address_th.name.two =
-      props.registerFormDetail?.account_information_form?.name2_th
+        props.registerFormDetail?.account_information_form?.name2_th;
     } else {
       data_input_head_comp.value.address_th.name.two = txtSprict.part2;
     }
- 
-    // data_input_head_comp.value.address_th.name.two =
-    //   props.registerFormDetail?.account_information_form?.name2_th ??
-    //   splitText(
-    //     props.registerFormDetail?.business_partner_register_form?.name_th
-    //   ).part2;
- 
-    if(props.registerFormDetail?.account_information_form?.name3_th && props.registerFormDetail?.account_information_form?.name3_th !=''){
+
+    if (
+      props.registerFormDetail?.account_information_form?.name3_th &&
+      props.registerFormDetail?.account_information_form?.name3_th != ""
+    ) {
       data_input_head_comp.value.address_th.name.three =
-      props.registerFormDetail?.account_information_form?.name3_th
+        props.registerFormDetail?.account_information_form?.name3_th;
     } else {
       data_input_head_comp.value.address_th.name.three = txtSprict.part3;
     }
- 
-    // data_input_head_comp.value.address_th.name.three =
-    //   props.registerFormDetail?.account_information_form?.name3_th ??
-    //   splitText(
-    //     props.registerFormDetail?.business_partner_register_form?.name_th
-    //   ).part3;
-    if(props.registerFormDetail?.account_information_form?.name4_th && props.registerFormDetail?.account_information_form?.name4_th !=''){
+
+    if (
+      props.registerFormDetail?.account_information_form?.name4_th &&
+      props.registerFormDetail?.account_information_form?.name4_th != ""
+    ) {
       data_input_head_comp.value.address_th.name.four =
-      props.registerFormDetail?.account_information_form?.name4_th
+        props.registerFormDetail?.account_information_form?.name4_th;
     } else {
       data_input_head_comp.value.address_th.name.four = txtSprict.part4;
     }
- 
-    // data_input_head_comp.value.address_th.name.four =
-    //   props.registerFormDetail?.account_information_form?.name4_th ??
-    //   splitText(
-    //     props.registerFormDetail?.business_partner_register_form?.name_th
-    //   ).part4;
- 
-    data_input_head_comp.value.address_th.search.one =
-      props.registerFormDetail?.account_information_form?.search_term1_th ??
-      null;
- 
-      // data_input_head_comp.value.address_th.address.one = props.addressTh ?? null;
-    // data_input_head_comp.value.address_th.address.two =
-    //   props.registerFormDetail?.account_information_form?.address2_th ?? null;
-    if(props.registerFormDetail?.account_information_form?.address1_th && props.registerFormDetail?.account_information_form?.address1_th !='' )   {
+
+    if (
+      props.registerFormDetail?.account_information_form?.address1_th &&
+      props.registerFormDetail?.account_information_form?.address1_th != ""
+    ) {
       data_input_head_comp.value.address_th.address.one =
-      props.registerFormDetail?.account_information_form?.address1_th
+        props.registerFormDetail?.account_information_form?.address1_th;
     } else {
-      data_input_head_comp.value.address_th.address.one = txtSprictAdress.part1
+      data_input_head_comp.value.address_th.address.one = txtSprictAdress.part1;
     }
- 
-    if(props.registerFormDetail?.account_information_form?.address2_th && props.registerFormDetail?.account_information_form?.address2_th !='' )   {
+
+    if (
+      props.registerFormDetail?.account_information_form?.address2_th &&
+      props.registerFormDetail?.account_information_form?.address2_th != ""
+    ) {
       data_input_head_comp.value.address_th.address.two =
-      props.registerFormDetail?.account_information_form?.address2_th
+        props.registerFormDetail?.account_information_form?.address2_th;
     } else {
-      data_input_head_comp.value.address_th.address.two = txtSprictAdress.part2
- 
+      data_input_head_comp.value.address_th.address.two = txtSprictAdress.part2;
     }
- 
- 
+
     data_input_head_comp.value.address_th.search.two =
       props.taxPayerIdNumber ?? null;
-    // data_input_head_comp.value.address_th.address.one = props.addressTh ?? null;
- 
-    data_input_head_comp.value.address_th.location = props.addressItem;
-    data_input_head_comp.value.address_en.location = props.addressItemEn;
+
     data_input_head_comp.value.contact_info = props.contactItems;
- 
-    // console.log(JSON.stringify(data_input_head_comp.value.address_th.location))
- 
-    // data_input.value = props.addressItem;
+
+    data_input_head_comp.value.address_en.location.province =
+      props.addressItemEn?.province;
+    data_input_head_comp.value.address_en.location.district =
+      props.addressItemEn?.district;
+    data_input_head_comp.value.address_en.location.parish =
+      props.addressItemEn?.parish;
+    data_input_head_comp.value.address_en.location.zip_code =
+      props.addressItemEn?.zip_code;
+    data_input_head_comp.value.address_en.location.zip_code_value =
+      props.addressItemEn?.zip_code_value;
+
+    data_input.value.province = props.addressItem.province;
+    data_input.value.district = props.addressItem.district;
+    data_input.value.parish = props.addressItem.parish;
     data_input.value.zip_code = props.addressItem.zip_code;
+
     if (data_input.value.province)
       await store.getDistrict(data_input.value.province);
     itemsDistrict.value = store.districts;
@@ -578,28 +534,25 @@ watchEffect(async () => {
       await store.getPostCode(data_input.value.parish);
     itemsPostCode.value = store.postCodes;
     data_input.value.zip_code_value = itemsPostCode.value[0]?.code;
- 
+
+    data_input_head_comp.value.address_th.location = data_input.value;
+
     initail.value = false;
   }
 });
- 
-// const handleAddressTH = (data_obj) => {
-//   data_input_head_comp.value.address_th = data_obj;
-//   // data_input_head_comp.value.address_en = data_obj;
-// };
- 
+
 const handleAddressEN = (data_obj) => {
   data_input_head_comp.value.address_en = data_obj;
 };
- 
+
 const handleCountry = (data_obj) => {
   data_input_head_comp.value.country_info = data_obj;
 };
- 
+
 const handleContact = (data_obj) => {
   data_input_head_comp.value.contact_info[data_obj.index] = data_obj;
 };
- 
+
 watch(
   () => data_input.value.province,
   async () => {
@@ -610,13 +563,13 @@ watch(
       await store.getDistrict(data_input.value.province);
       itemsDistrict.value = store.districts;
       itemsSubDistrict.value = [];
- 
+
       data_input_head_comp.value.location = data_input.value;
     }
   },
   { deep: true, immediate: false }
 );
- 
+
 watch(
   () => data_input.value.district,
   async (newdata, oledata) => {
@@ -628,14 +581,11 @@ watch(
     }
     if (oledata) {
       data_input.value.parish = null;
- 
-      //
     }
-    // data_input.value.parish = null;
   },
   { deep: true, immediate: true }
 );
- 
+
 watch(
   () => data_input.value.parish,
   async () => {
@@ -646,13 +596,11 @@ watch(
       data_input.value.zip_code_value = itemsPostCode.value[0]?.code;
       console.log("SubDistrict Change");
       data_input_head_comp.value.location = data_input.value;
-      // console.log(JSON.stringify(itemsPostCode.value[0]?.id));
-      // console.log(JSON.stringify(itemsPostCode.value));
     }
   },
   { deep: true, immediate: true }
 );
- 
+
 watch(
   data_input_head_comp.value,
   (newValue) => {
@@ -661,7 +609,7 @@ watch(
   { deep: true }
 );
 </script>
- 
+
 <style scoped>
 :deep(.v-field) {
   border-radius: 10px !important;

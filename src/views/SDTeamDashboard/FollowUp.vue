@@ -9,7 +9,7 @@
         <div class="font-weight-bold">
           ต้องการส่ง Email ติดตามให้คู้ค้าทำ SD Activities แบบใด
         </div>
- 
+
         <v-radio-group v-model="selected">
           <v-radio
             class="font-weight-medium"
@@ -27,7 +27,7 @@
         <div class="font-weight-bold">
           ต้องการส่ง Email ติดตามให้คู้ค้าทำ SD Activities แบบใด
         </div>
- 
+
         <v-radio-group v-model="selected">
           <v-radio
             class="font-weight-medium"
@@ -131,22 +131,22 @@ import { useAlertDialogDialog } from "@/components/dialogs/AlertSuccessDialogSer
 import { useFaildDialogDialog } from "@/components/dialogs/FailedDialogService";
 const { handlingErrorsMessage } = useErrorHandlingDialog();
 const router = useRouter();
- 
+
 const { showDialog } = useConfirmationDialog();
 const { showAlert } = useAlertDialogDialog();
 const { showFaildAlert } = useFaildDialogDialog();
- 
+
 const isVendors = ref(true);
 const selected = ref("1");
 const bp_number = ref(null);
 const email_owner = ref(null);
 const additional_message = ref(null);
 const laoding_sent = ref(false);
- 
+
 const combobox = ref(null);
 const selectedEmail = ref(null);
 const emails = ref([null]);
- 
+
 const addNewItem = () => {
   nextTick(() => {
     if (combobox.value) {
@@ -166,7 +166,7 @@ const addNewItem = () => {
     });
   }
 };
- 
+
 onBeforeMount(async () => {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
@@ -177,11 +177,11 @@ onBeforeMount(async () => {
   isVendors.value = _bp_number === null && _email === null;
   if (bp_number.value) await getBusinessPartnerDetail(bp_number.value);
 });
- 
+
 const getBusinessPartnerDetail = async (bp_number) => {
   try {
     const response = await PartnerServive.getBusinessPartnerDetail(bp_number);
- 
+
     if (
       response.data?.is_success &&
       response.data?.data?.admin_vendors &&
@@ -200,7 +200,7 @@ const getBusinessPartnerDetail = async (bp_number) => {
     handlingErrorsMessage("unknown", e.message);
   }
 };
- 
+
 const handleSend = async () => {
   try {
     laoding_sent.value = true;
@@ -266,7 +266,7 @@ const handleSend = async () => {
       if (
         await showFaildAlert(
           `ไม่มี Email ${email_owner.value} นี้ในระบบ`,
-          "กรุณาตรวจสอบอีกครั้ง\nหรือทาง super admin ให้ เพิ่มบัญชีในระบบ"
+          "กรุณาตรวจสอบอีกครั้ง\nหรือติดต่อทาง super admin ให้ เพิ่มบัญชีในระบบ"
         )
       ) {
         return;

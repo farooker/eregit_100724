@@ -49,8 +49,6 @@
                     class="ml-2"
                     density="compact"
                     dense
-                    bg-color="rgb(223 223 223 / 30%)"
-                    readonly
                     v-model="input_data.company_name"
                     :rules="rules_valid.require"
                     variant="outlined"
@@ -72,8 +70,6 @@
                     :rules="rules_valid.require"
                     dense
                     variant="outlined"
-                    bg-color="rgb(223 223 223 / 30%)"
-                    readonly
                   ></v-text-field>
                 </v-col>
 
@@ -709,10 +705,15 @@ const handleForm = async () => {
 //   });
 // };
 
-const handleFileRemoved = (index) => {
-  if (index >= 0 && index < createDocumentBody.value.length) {
-    createDocumentBody.value.splice(index, 1);
-    console.log("Updated document body", createDocumentBody.value);
+const handleFileRemoved = async (files) => {
+  createDocumentBody.value = [];
+  for (let index = 0; index < files.length; index++) {
+    const el = files[index];
+    const base64String = await encodeFile(el);
+    createDocumentBody.value.push({
+      document_name: el.name,
+      data: base64String.split(",")[1],
+    });
   }
 };
 
@@ -726,8 +727,6 @@ const handleInputFiles = async (files) => {
       data: base64String.split(",")[1],
     });
   }
-
-  console.log(createDocumentBody.value);
 };
 
 const encodeFile = (file) => {

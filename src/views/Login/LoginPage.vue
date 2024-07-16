@@ -15,7 +15,6 @@
         class="d-flex justify-center"
         @on-forget-password="handleForgetPassword"
         @on-login-success="handleLoginSuccessfully"
-        @on-login-failed="handleLoginFailed"
       />
     </div>
   </div>

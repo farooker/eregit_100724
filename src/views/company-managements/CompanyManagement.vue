@@ -7,34 +7,40 @@
             prepend-icon="mdi mdi-domain"
             width="300"
             :class="{ ' btn-active': toggle === 0 }"
-          >ข้อมูลคู่ค้า</v-btn>
+            >ข้อมูลคู่ค้า</v-btn
+          >
           <v-btn
             prepend-icon="mdi mdi-file-document-check-outline"
             width="300"
             :class="{ ' btn-active': toggle === 1 }"
-          >นโยบาย RSP</v-btn>
+            >นโยบาย RSP</v-btn
+          >
           <v-btn
             prepend-icon="mdi mdi-list-box-outline"
             width="300"
             :class="{ ' btn-active': toggle === 2 }"
-          >แบบสำรวจ</v-btn>
+            >แบบสำรวจ</v-btn
+          >
           <v-btn
             prepend-icon="mdi mdi-laptop-account"
             width="300"
             :class="{ ' btn-active': toggle === 3 }"
-          >การฝึกอบรม</v-btn>
+            >การฝึกอบรม</v-btn
+          >
         </v-btn-toggle>
       </div>
       <v-row dense>
-        <v-col cols="12" class="d-flex-justify-center ">
+        <v-col cols="12" class="d-flex-justify-center">
           <StepperControl
             v-show="step !== 4"
             :titles="['ประเภทคู่ค้า', 'ข้อมูลคู่ค้า', 'เอกสารแนบ']"
             :current-step-number="step"
           />
-          <br/>
-          <br/>
-          <h1 v-if="step === 4" style="color: red; text-align: center">*กรุณาตรวจสอบข้อมูลก่อนส่ง*</h1>
+          <br />
+          <br />
+          <h1 v-if="step === 4" style="color: red; text-align: center">
+            *กรุณาตรวจสอบข้อมูลก่อนส่ง*
+          </h1>
           <PartnersRegister
             :tax-payer-id-number="company_info.taxpayer_number_id"
             :is-vender="isVender"
@@ -60,7 +66,6 @@
             @on-button-cancel-click="handleReverse"
             @on-button-ok-click="handleNext"
             @on-input="handlePartnerInfoInput"
-
           />
           <AttacheDocument
             v-if="step == 3 || step == 4"
@@ -83,15 +88,27 @@
             @remove-file="handleFileRemoved"
           />
         </v-col>
-        <v-col cols="6" class="d-flex justify-end mt-5 mb-5" v-if="isHideButton">
+        <v-col
+          cols="6"
+          class="d-flex justify-end mt-5 mb-5"
+          v-if="isHideButton"
+        >
           <!-- <ButtonControl
             color="black"
             text="แก้ไข"
             @button-clicked="handleButtonClick"
           />-->
         </v-col>
-        <v-col cols="6" class="d-flex justify-start mt-5 mb-5" v-if="isHideButton">
-          <ButtonControl style="min-width: 100px; height: 35px;"  text="ส่ง" @button-clicked="handleButtonSend" />
+        <v-col
+          cols="6"
+          class="d-flex justify-start mt-5 mb-5"
+          v-if="isHideButton"
+        >
+          <ButtonControl
+            style="min-width: 100px; height: 35px"
+            text="ส่ง"
+            @button-clicked="handleButtonSend"
+          />
         </v-col>
       </v-row>
     </div>
@@ -135,8 +152,8 @@ const dataForm = ref({
       company_category: "",
       customer_category: "",
       product_category: "",
-      business_register_type: ""
-    }
+      business_register_type: "",
+    },
   },
   partnerInfo: {
     partner_info: {
@@ -148,8 +165,8 @@ const dataForm = ref({
           province: null,
           district: null,
           parish: null,
-          zip_code: null
-        }
+          zip_code: null,
+        },
       },
       en: {
         gender: "",
@@ -159,9 +176,9 @@ const dataForm = ref({
           province: null,
           district: null,
           parish: null,
-          zip_code: null
-        }
-      }
+          zip_code: null,
+        },
+      },
     },
     items_contects: [],
     bank_info: {
@@ -169,10 +186,10 @@ const dataForm = ref({
       acc_name_en: "",
       bank_name: "",
       bank_branch: "",
-      acc_number: ""
-    }
+      acc_number: "",
+    },
   },
-  partnerDocs: {}
+  partnerDocs: {},
 });
 
 const createBusinessPartnerProfileBody = ref({
@@ -211,59 +228,71 @@ const createBusinessPartnerProfileBody = ref({
   bank_branch: "",
   bank_account_number: "",
   gender: "",
-  taxpayer_id_number: ""
+  taxpayer_id_number: "",
 });
 
 const createDocumentBody = ref([]);
 
-const handlePartnerInfoInput = data => {
+const handlePartnerInfoInput = (data) => {
   dataForm.value.partnerInfo = data;
   // console.log(JSON.stringify(dataForm.value.partnerInfo));
 };
 
-const handlePartnerRegisterInput = data => {
+const handlePartnerRegisterInput = (data) => {
   dataForm.value.partnerRegister = data;
 };
 
-const encodeFile = file => {
+const encodeFile = (file) => {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
-    reader.onload = e => {
+    reader.onload = (e) => {
       resolve(e.target.result);
     };
-    reader.onerror = e => {
+    reader.onerror = (e) => {
       reject(e);
     };
     reader.readAsDataURL(file);
   });
 };
 
-const handleFileRemoved = (index, removedFile) => {
-  if (index >= 0 && index < createDocumentBody.value.length) {
-    createDocumentBody.value.splice(index, 1);
-    console.log('Updated document body', createDocumentBody.value);
-  }
-};
-
-const handleInputDocuments = async documents => {
+const handleFileRemoved = async (documents) => {
+  createDocumentBody.value = [];
   dataForm.value.partnerDocs = documents;
   for (let index = 0; index < dataForm.value.partnerDocs.length; index++) {
     const el = dataForm.value.partnerDocs[index];
-    if (!createDocumentBody.value.some(doc => doc.document_name === el.name)) {
+    if (
+      !createDocumentBody.value.some((doc) => doc.document_name === el.name)
+    ) {
       const base64String = await encodeFile(el);
       createDocumentBody.value.push({
         document_name: el.name,
-        data: base64String.split(",")[1]
+        data: base64String.split(",")[1],
       });
     }
   }
 };
 
-
-const handleButtonClick = () => {
-  step.value = 1;
-  isHideButton.value = false;
+const handleInputDocuments = async (documents) => {
+  createDocumentBody.value = [];
+  dataForm.value.partnerDocs = documents;
+  for (let index = 0; index < dataForm.value.partnerDocs.length; index++) {
+    const el = dataForm.value.partnerDocs[index];
+    if (
+      !createDocumentBody.value.some((doc) => doc.document_name === el.name)
+    ) {
+      const base64String = await encodeFile(el);
+      createDocumentBody.value.push({
+        document_name: el.name,
+        data: base64String.split(",")[1],
+      });
+    }
+  }
 };
+
+// const handleButtonClick = () => {
+//   step.value = 1;
+//   isHideButton.value = false;
+// };
 
 const handleNext = async () => {
   if (step.value < 4) {
@@ -283,7 +312,6 @@ const handleNext = async () => {
 
 const handleReverse = () => {
   if (step.value === 3) {
-
     dataForm.value.partnerDocs = [];
     createDocumentBody.value = [];
   }
@@ -292,7 +320,6 @@ const handleReverse = () => {
     step.value--;
   }
 };
-
 
 onMounted(async () => {
   await onLoadBusinessPartnerByFormNumber();
@@ -305,110 +332,84 @@ watch(
       newValue?.partnerRegister?.register?.business_partner_type ?? null
     );
 
-
     createBusinessPartnerProfileBody.value.business_register_type_id = Number(
       newValue?.partnerRegister?.register?.business_partner_type ?? null
     );
 
-
     createBusinessPartnerProfileBody.value.taxpayer_id_number =
       newValue?.partnerRegister?.register?.taxpayer_id_number ?? null;
 
-
     if (createBusinessPartnerProfileBody.value.taxpayer_id_number == "")
       createBusinessPartnerProfileBody.value.taxpayer_id_number = null;
-
 
     createBusinessPartnerProfileBody.value.is_vat_registered =
       newValue?.partnerRegister?.register?.is_vat_registered == "1"
         ? true
         : false;
 
-
     createBusinessPartnerProfileBody.value.is_head_office =
       newValue?.partnerRegister?.register.is_head_office == "1" ? true : false;
-
 
     createBusinessPartnerProfileBody.value.branch_code =
       newValue?.partnerRegister?.register?.branch_code ?? null;
 
-
     createBusinessPartnerProfileBody.value.company_category_id =
       newValue?.partnerRegister?.register?.company_category ?? null;
-
 
     // if (createBusinessPartnerProfileBody.value.company_category_id == "")
     //   createBusinessPartnerProfileBody.value.company_category_id = 0;
 
-
     createBusinessPartnerProfileBody.value.customer_category =
       newValue?.partnerRegister?.register?.customer_category ?? null;
-
 
     createBusinessPartnerProfileBody.value.product_category =
       newValue?.partnerRegister?.register?.product_category ?? null;
 
-
     ////////////
-
 
     createBusinessPartnerProfileBody.value.address_th =
       newValue?.partnerInfo?.partner_info?.th.address_th ?? null;
 
-
     createBusinessPartnerProfileBody.value.province_th_id =
       newValue?.partnerInfo?.partner_info?.th?.info?.province ?? null;
-
 
     createBusinessPartnerProfileBody.value.district_th_id =
       newValue?.partnerInfo?.partner_info?.th?.info?.district ?? null;
 
-
     createBusinessPartnerProfileBody.value.subdistrict_th_id =
       newValue?.partnerInfo?.partner_info?.th?.info?.parish ?? null;
 
-
     createBusinessPartnerProfileBody.value.postal_code_th_id =
       newValue?.partnerInfo?.partner_info?.th?.info?.zip_code ?? null;
-
 
     ///////////
     createBusinessPartnerProfileBody.value.address_en =
       newValue?.partnerInfo?.partner_info?.en?.address_en ?? null;
 
-
     createBusinessPartnerProfileBody.value.province_en =
       newValue?.partnerInfo?.partner_info?.en?.info?.province ?? null;
-
 
     createBusinessPartnerProfileBody.value.district_en =
       newValue?.partnerInfo?.partner_info?.en?.info?.district ?? null;
 
-
     createBusinessPartnerProfileBody.value.subdistrict_en =
       newValue?.partnerInfo?.partner_info?.en?.info?.parish ?? null;
 
-
     createBusinessPartnerProfileBody.value.postal_code_en_id =
       newValue?.partnerInfo?.partner_info?.th?.info?.zip_code ?? null;
-
 
     /////////
     createBusinessPartnerProfileBody.value.bank_account_name =
       newValue?.partnerInfo?.bank_info?.acc_name_en ?? null;
 
-
     createBusinessPartnerProfileBody.value.bank_account_number =
       newValue?.partnerInfo?.bank_info?.acc_number ?? null;
-
 
     createBusinessPartnerProfileBody.value.bank_branch =
       newValue?.partnerInfo?.bank_info?.bank_branch ?? null;
 
-
     createBusinessPartnerProfileBody.value.bank_id =
       newValue?.partnerInfo?.bank_info?.bank_name ?? null;
-
 
     createBusinessPartnerProfileBody.value.name_th = `${newValue.partnerInfo.partner_info.th.gender}${newValue.partnerInfo.partner_info.th.name_th}`;
     createBusinessPartnerProfileBody.value.name_en = `${newValue.partnerInfo.partner_info.en.gender}${newValue.partnerInfo.partner_info.en.name_en}`;
@@ -495,7 +496,7 @@ const onSumbitDataInsert = async () => {
     ) {
       router.push({
         name: "DisclosureManagement",
-        query: { form_number: formNumberOnUrl.value }
+        query: { form_number: formNumberOnUrl.value },
       });
     } else if (
       company_info.value.fill_type.id === 2 ||
@@ -513,7 +514,7 @@ const onSumbitDataInsert = async () => {
         );
         if (response.data.is_success) {
           router.push({
-            name: "BusinessPartnerList"
+            name: "BusinessPartnerList",
           });
         }
       }
@@ -528,12 +529,12 @@ const onSumbitDataInsert = async () => {
       );
       if (response.data.is_success) {
         router.push({
-          name: "BusinessPartnerList"
+          name: "BusinessPartnerList",
         });
       }
     } else {
       router.push({
-        name: "BusinessPartnerList"
+        name: "BusinessPartnerList",
       });
     }
   } catch (e) {
@@ -546,7 +547,6 @@ const onSumbitDataInsert = async () => {
 };
 
 const onCreateBusinessPartnerProfileForm = async () => {
-
   try {
     createBusinessPartnerProfileBody.value.bank_id = Number(
       createBusinessPartnerProfileBody.value.bank_id
@@ -625,7 +625,7 @@ const onLoadBusinessPartnerByFormNumber = async () => {
 // };
 
 const isIsNaturalPerson = ref(false);
-const handleIsNaturalPerson = value => {
+const handleIsNaturalPerson = (value) => {
   isIsNaturalPerson.value = value;
 };
 const handleButtonSend = async () => {

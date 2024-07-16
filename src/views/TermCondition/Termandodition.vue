@@ -18,14 +18,14 @@
     <v-main class="d-flex align-center justify-center">
       <v-container fluid>
         <!-- {{ privacy_is_accepted  }} -->
-        {{ current_view }}
+        <!-- {{ current_view }} -->
         <!-- {{ current_term_condition_url }} -->
         <!-- {{ privacy_policy_id }} -->
 
         <!-- {{ current_term_condition_url }} -->
         <div v-if="term_condition_id !== current_term_condition_id">
           <v-card-text>
-            <h6>Term and Condition</h6>
+            <!-- <h6>Term and Condition</h6> -->
             <div class="d-flex align-center pdf-container">
               <PDF :src="fileBase64" class="pdf-viewer"></PDF>
             </div>
@@ -56,7 +56,7 @@
         </div>
         <div v-else-if="privacy_policy_id !== current_privacy_id">
           <v-card-text>
-            <h6>Policy</h6>
+            <!-- <h6>Policy</h6> -->
             <div class="d-flex align-center pdf-container">
               <PDF :src="fileBase64Policy" class="pdf-viewer"></PDF>
             </div>
@@ -165,11 +165,14 @@ onMounted(async () => {
   await getPrivacyPolicybyId(user_id.value);
   await getCurrentPrivacyPolicyAll();
   // current_view.value ++
+  store.getsessionlinkstore();
+  console.log("ommount", store.sessionInfo);
   // }
   if (
     term_condition_id.value == current_term_condition_id.value &&
     privacy_policy_id.value == current_privacy_id.value
-  ) {
+  )
+  {
     console.log("coditionTerm");
     switch (store.sessionInfo.actions) {
       case 1:
@@ -210,7 +213,7 @@ const getUrlArraybuffer = async () => {
     const response = await axios({
       method: "get",
       responseType: "arraybuffer",
-      url: pdf_url.value,
+      url: current_term_condition_url.value,
     });
     const base64 = arrayBufferToBase64(response.data);
     fileBase64.value = base64;
@@ -224,7 +227,7 @@ const getUrlArraybufferpolicy = async () => {
     const response = await axios({
       method: "get",
       responseType: "arraybuffer",
-      url: pdf_url.value,
+      url: current_privacy_url.value,
     });
     const base64 = arrayBufferToBase64(response.data);
     fileBase64Policy.value = base64;
@@ -238,12 +241,12 @@ const getTermbyId = async () => {
     const response = await TermService.getTermsConditionsbyId(user_id.value);
     if (response.data?.is_success) {
       if (response.data.data) {
-        console.log("termm1111");
+        // console.log("termm1111");
         const termData = response.data.data[0];
-        console.log("t", termData);
-        term_condition_id.value = termData.terms_and_conditions.id;
-        console.log("term_condition_id.value", term_condition_id.value);
-        term_is_accepted.value = termData.is_accepted;
+        // console.log("t", termData);
+        term_condition_id.value = termData?.terms_and_conditions?.id ?? null;
+        // console.log("term_condition_id.value", term_condition_id.value);
+        term_is_accepted.value = termData?.is_accepted ?? null;
         // term_condition_id.value = response.data.data
         // term_is_accepted.value = response.data.data.is_accepted;
 
@@ -269,9 +272,9 @@ const getCurrentTermsAll = async () => {
       //   if (response.data?.data && response.data.data.length > 0) {
       // console.log("ifffffffff");
       // pdf_url.value = response.data.data[0]?.file_url;
-      current_term_condition_id.value = response.data.data.id;
+      current_term_condition_id.value = response?.data?.data?.id ?? null;
       // console.log("current_term_condition_id", current_term_condition_id.value);
-      current_term_condition_url.value = response.data.data.data;
+      current_term_condition_url.value = response?.data?.data?.data?? null;
       //   }
     } else {
       const val = e.response.data;
@@ -294,9 +297,9 @@ const getPrivacyPolicybyId = async () => {
     if (response.data?.is_success) {
       if (response.data.data) {
         const policyData = response.data.data[0];
-        privacy_policy_id.value = policyData.privacy_policy.id;
-        console.log("policyData", policyData.privacy_policy.id);
-        privacy_is_accepted.value = policyData.is_accepted;
+        privacy_policy_id.value = policyData?.privacy_policy?.id ?? null;
+        // console.log("policyData", policyData.privacy_policy.id);
+        privacy_is_accepted.value = policyData?.is_accepted ?? null;
         // is_can_do_next_step.value = true;
         // is_progress.value = true;
         return;
@@ -431,6 +434,7 @@ const arrayBufferToBase64 = (buffer) => {
 };
 
 const handleConfirm = async () => {
+  console.log("coditionTermbrfor", store.sessionInfo);
   // alert("Proceeding to the next step");
   // console.log("term_condition_id.value",term_condition_id.value)
   // console.log("current_term_condition_id.value", current_term_condition_id.value)
@@ -445,14 +449,16 @@ const handleConfirm = async () => {
         current_term_condition_id.value
       );
       if (response.data?.is_success) {
-        location.reload();
+        // location.reload();
         // current_view.value++;
-
+        // console.log("ooooooooooo", store.sessionInfo);
+        // console.log("term_condition_id.value", term_condition_id.value)
+        // console.log("current_term_condition_id.value", current_term_condition_id.value)
         if (
-          term_condition_id.value == current_term_condition_id.value &&
           privacy_policy_id.value == current_privacy_id.value
         ) {
-          console.log("coditionTerm");
+          store.getsessionlinkstore();
+          console.log("coditionTerm", store.sessionInfo);
           switch (store.sessionInfo.actions) {
             case 1:
               router.push({ name: store.sessionInfo.link_to });
@@ -460,27 +466,32 @@ const handleConfirm = async () => {
             case 2:
               router.push({
                 name: store.sessionInfo.link_to,
-                query: store.sessionInfo.data,
+                query: { form_number: store.sessionInfo.data },
               });
               break;
             case 3:
               router.push({
                 name: store.sessionInfo.link_to,
-                query: store.sessionInfo.data,
+                 query: { form_number: store.sessionInfo.data },
               });
               break;
             case 4:
               router.push({
                 name: store.sessionInfo.link_to,
-                query: store.sessionInfo.data,
+                 query: { form_number: store.sessionInfo.data },
               });
               break;
           }
+        } else {
+          location.reload();
+          store.getsessionlinkstore();
         }
+
       }
     } catch (e) {
       if (e.response && e.response.data) {
         // current_view.value == 2;
+        // console.log("oooooooocathooo");
         const val = e.response.data;
         handlingErrorsMessage(val.message, val?.data?.error);
         return;
@@ -499,48 +510,49 @@ const handleConfirmPolicy = async () => {
     "current_term_condition_id.value",
     current_term_condition_id.value
   );
-  if (privacy_policy_id !== current_privacy_id) {
-    console.log("term_condition_id.value", term_condition_id.value);
-    console.log(
-      "current_term_condition_id.value",
-      current_term_condition_id.value
-    );
+  if (privacy_policy_id?.value !== current_privacy_id.value ) {
+    // console.log("term_condition_id.value", term_condition_id.value);
+    // console.log(
+    //   "current_term_condition_id.value",
+    //   current_term_condition_id.value
+    // );
     try {
       const response = await TermService.createPrivacyPolicyAcceptance(
         current_privacy_id.value
       );
       if (response.data?.is_success) {
-        // current_view.value++;
+        // console.log("privacy_policy_id", privacy_policy_id.value);
+        // console.log("term_condition_id.value", term_condition_id.value)
+        // console.log("current_term_condition_id.value", current_term_condition_id.value)
         if (
-    term_condition_id.value == current_term_condition_id.value &&
-    privacy_policy_id.value == current_privacy_id.value
-  ) {
-    console.log("coditionTerm")
-    switch (store.sessionInfo.actions) {
-      case 1:
-        router.push({ name: store.sessionInfo.link_to });
-        break;
-      case 2:
-        router.push({
-          name: store.sessionInfo.link_to,
-          query: store.sessionInfo.data,
-        });
-        break;
-        case 3:
-        router.push({
-          name: store.sessionInfo.link_to,
-          query: store.sessionInfo.data,
-        });
-        break;
-        case 4:
-        router.push({
-          name: store.sessionInfo.link_to,
-          query: store.sessionInfo.data,
-        });
-        break;
-
-    }
-  }
+          term_condition_id.value == current_term_condition_id.value
+        ) {
+          store.getsessionlinkstore();
+          console.log("coditionTerm", store.sessionInfo);
+          switch (store.sessionInfo.actions) {
+            case 1:
+              router.push({ name: store.sessionInfo.link_to });
+              break;
+            case 2:
+              router.push({
+                name: store.sessionInfo.link_to,
+                query: { form_number: store.sessionInfo.data },
+              });
+              break;
+            case 3:
+              router.push({
+                name: store.sessionInfo.link_to,
+                 query: { form_number: store.sessionInfo.data },
+              });
+              break;
+            case 4:
+              router.push({
+                name: store.sessionInfo.link_to,
+                 query: { form_number: store.sessionInfo.data },
+              });
+              break;
+          }
+        }
       }
     } catch (e) {
       if (e.response && e.response.data) {

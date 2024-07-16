@@ -18,7 +18,8 @@
       <v-col cols="12" v-if="itemsOfAccountTask.length >= 1">
         <PaginationControl
           class="mt-3"
-          :value="filter.offset"
+          :value="filter.page"
+          :length="filter.pageSize"
           @value="handlePaginationEvent"
         />
       </v-col>
@@ -41,17 +42,19 @@ const { showDialog } = useConfirmationDialog();
 const router = useRouter();
 
 const itemsOfAccountTask = ref([]);
-// const itemsOfAccountTaskFormNumber = ref([]);
 const isLoading = ref(true);
 
 const filter = ref({
-  offset: 1,
-  limit: 10,
+  offset: 0,
+  page: 1,
+  limit:10,
+  pageSize: 1,
 });
 
 const handlePaginationEvent = (page) => {
   filter.value.page = page;
   filter.value.offset = paginationUtils.pageOffset(page, filter.value.limit);
+  getAccountTasksAll();
 };
 
 onMounted(async () => {
@@ -73,21 +76,24 @@ const getAccountTasksAll = async () => {
   setLoading();
   clearOldItem();
   try {
-    const response = await AccountService.getAccountTasksAll();
+    const response = await AccountService.getAccountTasksAll(
+      "NewTasks",
+      filter.value.offset,
+      filter.value.limit
+    );
 
-    // const headers = response.headers;
-    // const itemsOffset = Number(headers["items-offset"]);
-    // const itemsLimit = Number(headers["items-limit"]);
-    // const itemsTotal = Number(headers["items-total"]);
+    const headers = response.headers;
+    const itemsOffset = Number(headers["items-offset"]);
+    const itemsLimit = Number(headers["items-limit"]);
+    const itemsTotal = Number(headers["items-total"]);
 
-    // filter.value.offset = itemsOffset;
-    // filter.value.limit = itemsLimit;
-    // filter.value.pageSize = paginationUtils.pageSize(itemsLimit, itemsTotal);
+    filter.value.offset = itemsOffset;
+    filter.value.limit = itemsLimit;
+    filter.value.pageSize = paginationUtils.pageSize(itemsLimit, itemsTotal);
 
     if (response.data?.is_success) {
       itemsOfAccountTask.value = response.data?.data;
       // console.log("itemsOfAccountTask.value", itemsOfAccountTask.value)
-
     }
   } catch (e) {
     if (e.response) {

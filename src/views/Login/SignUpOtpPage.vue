@@ -119,7 +119,11 @@ const signup = async () => {
         // router.push({
         //   name: to,
         //   query: { form_number: form_number },
-        // });
+        // });\
+        router.push({
+    name: "TermCondition",
+  });
+
       } else {
         // router.push("/Authorization");
         store.setsessionlinkstore(1,null,"AuthorizationPage")

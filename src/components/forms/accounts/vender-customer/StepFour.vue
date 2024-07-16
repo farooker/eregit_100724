@@ -1,7 +1,7 @@
 <template>
   <v-row>
-    <!-- {{  props.registerFormDetail?.business_partner_register_form  }} -->
-
+    <!-- {{ props.BusinessPartnerGroup }}
+      {{ props.bpType }} -->
        <!-- {{ registerFormDetail }} -->
        <!-- {{   props.registerFormDetail.business_partner_register_form.payment_term.id
        }} -->
@@ -757,6 +757,7 @@
             </v-card-title>
             <v-text-field
               class="ml-6 mr-6"
+              :rules="textRequired"
               density="compact"
               v-model="data_input.vander_info.head_office"
               dense
@@ -882,7 +883,7 @@ const arrayCompCode = ref(props.compCode ?? []);
 watchEffect(async () => {
 
   data_input.value.more_data_one.pyment_term_selection =
-  props.registerFormDetail?.business_partner_register_form?.payment_term.id ??null;
+  props.registerFormDetail?.business_partner_register_form?.payment_term.id;
 
   data_input.value.more_data_one.reconcliation_acct_seletion =
     props.registerFormDetail?.account_information_form
@@ -890,10 +891,8 @@ watchEffect(async () => {
   // data_input.value.more_data_one.pyment_term_selection =
   //   props.registerFormDetail?.account_information_form?.payment_term_id ?? null;
   data_input.value.more_data_one.payment_terms_selection =
-  props.registerFormDetail?.business_partner_register_form?.payment_term.id ??null;
-    // props.registerFormDetail?.account_information_form?.payment_terms_id ??
-    // null;
-
+    props.registerFormDetail?.account_information_form?.payment_terms_id ??
+    null;
   data_input.value.vander_info.head_office =
     props.registerFormDetail?.account_information_form?.head_office ?? null;
 });
@@ -955,18 +954,16 @@ onMounted(async () => {
   await getBusinessPartnerGroupAll();
   await getAccounrBusinessPartnerTypeAll();
   await getAccountReconciliation(props.typeForm);
+  console.log("props.compCode", props.compCode)
 
   const result = [];
   for (let index = 0; index < arrayCompCode.value.length; index++) {
     const el = arrayCompCode.value[index];
-    // console.error(el);
-    // console.error(TAG_GL00.includes(el));
     if (TAG_GL00.includes(el)) result.push("GL00");
     if (TAG_FPT.includes(el)) result.push("FTP");
     if (TAG_FPHT.includes(el)) result.push("FPHT");
   }
-  const dataPruch = Array.from(new Set(result));
-  data_input.value.vander_info.pruch = dataPruch.join(",");
+  data_input.value.vander_info.pruch = result.join(",");
 });
 
 const getAccounrBusinessPartnerTypeAll = async () => {
@@ -1074,7 +1071,6 @@ watchEffect(async () => {
 
     if (props.BusinessPartnerGroup !== 4 && props.BusinessPartnerGroup !== 5)
       indexFind = -1;
-    console.log(" props.BusinessPartnerGroup", props.BusinessPartnerGroup);
 
     if (indexFind > -1) {
       const itemFind = itemsAccountBusinessPartnerType.value[indexFind];
