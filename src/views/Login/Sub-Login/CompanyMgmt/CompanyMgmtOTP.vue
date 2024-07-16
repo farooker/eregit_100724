@@ -25,7 +25,6 @@
           class="d-flex justify-center"
           @on-try-agine="handleTryAgine"
           @on-vertfy-success="handleVertifySuccess"
-          @on-vertify-failed="handleVertiFailed"
         />
       </v-col>
     </v-row>
@@ -105,9 +104,9 @@ const handleVertifySuccess = async () => {
   // });
 };
 
-const handleVertiFailed = (message) => {
-  handlingErrorsMessage("Error", message);
-};
+// const handleVertiFailed = (message) => {
+//   handlingErrorsMessage("Error", message);
+// };
 </script>
 
 <style scoped>
