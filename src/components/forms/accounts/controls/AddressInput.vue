@@ -227,10 +227,7 @@ const rules_valid = ref({
   address2: [
     (v) => v == null || v.length <= 40 || "*กรุณากรอกชื่อไม่เกิน 40 ตัวอักษร",
   ],
-
-  // radioRules: [(v) => !!v || "กรุณาเลือก 1 อัน"],
 });
-// const textRequired = [(v) => !!v || "กรุณากรอกข้อมูลให้ครบถ้วน"];
 const data_input = ref({
   name: {
     one: "",
@@ -246,7 +243,6 @@ const data_input = ref({
     one: "",
     two: "",
   },
-  // location: props.addressItem,
   location: {
     province: null,
     district: null,
@@ -256,10 +252,7 @@ const data_input = ref({
 });
 
 function splitText(text) {
-  // กำหนดความยาวแต่ละส่วน
   const partLength = 35;
-
-  // ตรวจสอบและตัดข้อความตามความยาวที่กำหนด
   let part1 = "";
   let part2 = "";
   let part3 = "";
@@ -286,7 +279,6 @@ function splitText(text) {
   console.log("3333", part3);
   console.log("4444", part4);
 
-  // คืนค่า
   return {
     part1: part1,
     part2: part2,
