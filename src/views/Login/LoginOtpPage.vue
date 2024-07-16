@@ -64,7 +64,7 @@ const handleVertifySuccess = async () => {
 };
 
 const handleVertiFailed = (message) => {
-  handlingErrorsMessage("Error", message);
+  // handlingErrorsMessage("Error", message);
 };
 
 const getOptByEmail = async () => {
