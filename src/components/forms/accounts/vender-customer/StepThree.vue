@@ -82,7 +82,6 @@
           tag-desc="(TH Branch)"
           :is-not-team="true"
           :isDisableAddress="false"
-          :address-item="props.addressItem"
           :register-form-detail="props.registerFormDetail"
           :name="props.nameTh"
           :register_type="3"
@@ -161,23 +160,15 @@
         tag-desc="(EN Branch)"
         :is-not-team="true"
         :isDisableAddress="false"
+        :address-item="props.addressItemEn"
         :steptwoFormDetail="props.steptwoFormDetail"
         :register-form-detail="props.registerFormDetail"
         :is-address-manual="true"
         key-title="name_en"
-        :address-item="data_input_head_comp_branch.address_en.location"
         :name="props.nameEn"
         :address="props.addressEn"
         @on-input="handleAddressEN"
       />
-      <!-- <v-card>
-        <ManaulAddressInputControl
-          :address-item="data_input_head_comp_branch.address_en.location"
-          class="ma-5"
-          tag-desc="(EN Branch)"
-          @on-input="handleAddressEN"
-        />
-      </v-card> -->
     </v-col>
     <v-col cols="12"><CountryInput /></v-col>
     <v-col cols="12" v-for="(item, index) in props.contactItems" :key="index"
@@ -197,7 +188,6 @@ import { watch, watchEffect } from "vue";
 
 import AddressInputTH from "../controls/AddressInput.vue";
 import AddressInputEN from "../controls/AddressInput.vue";
-// import ManaulAddressInputControl from "@/components/controls/ManaulAddressInputControl.vue";
 import CountryInput from "../controls/CountryInput.vue";
 import ContactInput from "../controls/ContactInput.vue";
 import AccountType from "@/utils/enum.util";
@@ -248,22 +238,10 @@ const textRequired = [(v) => !!v || "กรุณากรอกข้อมู�
 const emit = defineEmits(["on-input"]);
 
 const data_input = ref({
-  province: props.registerFormDetail?.account_information_form
-    ?.branch_province_th_id ??null
-    ? props.registerFormDetail?.account_information_form?.branch_province_th_id ?? null
-    : props.addressItem?.province?? null,
-  district: props.registerFormDetail?.account_information_form
-    ?.branch_distict_th_id ?? null
-    ? props.registerFormDetail?.account_information_form?.branch_distict_th_id ?? null
-    : props.addressItem?.district ?? null,
-  parish: props.registerFormDetail?.account_information_form
-    ?.branch_subdisticte_th_id ?? null
-    ? props.registerFormDetail?.account_information_form?.branch_subdisticte_th_id ?? null
-    : props.addressItem.parish ?? null,
-  zip_code: props.registerFormDetail?.account_information_form
-    ?.branch_postal_code_th_id ?? null
-    ? props.registerFormDetail?.account_information_form?.branch_postal_code_th_id ?? null
-    : props.addressItem?.zip_code ?? null,
+  province: null,
+  district: null,
+  parish: null,
+  zip_code: null,
   zip_code_value: "",
 });
 
@@ -273,10 +251,22 @@ const itemsPostCode = ref([]);
 
 const data_input_head_comp_branch = ref({
   address_th: {
-    location: props.addressItem ?? null,
+    location: {
+      province: null,
+      district: null,
+      parish: null,
+      zip_code: null,
+      zip_code_value: null,
+    },
   },
   address_en: {
-    location: null,
+    location: {
+      province: null,
+      district: null,
+      parish: null,
+      zip_code: null,
+      zip_code_value: null,
+    },
   },
   info: {
     branch_code: props.branchCode,
@@ -305,46 +295,135 @@ const data_input_head_comp_branch = ref({
   contacts: props.contactItems,
 });
 
-watchEffect(async () => {
-  data_input.value.zip_code = props.addressItem.zip_code;
-  if (data_input.value.province)
-    await store.getDistrict(data_input.value.province);
-  itemsDistrict.value = store.districts;
-  if (data_input.value.parish) await store.getPostCode(data_input.value.parish);
-  itemsPostCode.value = store.postCodes;
-  data_input.value.zip_code_value = itemsPostCode.value[0]?.code;
+const initail = ref(true);
 
-  if (props.registerFormDetail?.account_information_form?.branch_province_en ?? null) {
+const setDataFromFormDetail = async (formDetail) => {
+  data_input.value.province = formDetail.branch_province_th_id;
+  data_input.value.district = formDetail.branch_distict_th_id;
+  data_input.value.parish = formDetail.branch_subdisticte_th_id;
+  data_input.value.zip_code = formDetail.branch_postal_code_th_id;
+
+  if (data_input.value.province) {
+    await store.getDistrict(data_input.value.province);
+    itemsDistrict.value = store.districts;
+  }
+
+  if (data_input.value.parish) {
+    await store.getPostCode(data_input.value.parish);
+    itemsPostCode.value = store.postCodes;
+  }
+
+  data_input.value.zip_code_value = itemsPostCode.value[0]?.code;
+};
+
+const setDataFromAddressItem = async (addressItem) => {
+  if (addressItem) {
+    data_input.value.province = addressItem.province;
+
+    if (data_input.value.province) {
+      await store.getDistrict(data_input.value.province);
+      itemsDistrict.value = store.districts;
+      data_input.value.district = addressItem.district;
+
+      if (data_input.value.district) {
+        await store.getSubDistrict(data_input.value.district);
+        itemsSubDistrict.value = store.subDistricts;
+        data_input.value.parish = addressItem.parish;
+
+        if (data_input.value.parish) {
+          await store.getPostCode(data_input.value.parish);
+          itemsPostCode.value = store.postCodes;
+          data_input.value.zip_code = addressItem.zip_code;
+          data_input.value.zip_code_value = itemsPostCode.value[0]?.code;
+        }
+      }
+    }
+  }
+};
+const setEnglishDataFromFormDetail = (formDetail) => {
+  data_input_head_comp_branch.value.address_en.location.province =
+    formDetail.branch_province_en;
+  data_input_head_comp_branch.value.address_en.location.district =
+    formDetail.branch_distict_en;
+  data_input_head_comp_branch.value.address_en.location.parish =
+    formDetail.branch_subdisticte_en;
+  data_input_head_comp_branch.value.address_en.location.zip_code =
+    formDetail.branch_postal_code_en_id;
+  data_input_head_comp_branch.value.address_en.location.zip_code_value =
+    formDetail.branch_postal_code_en_id;
+};
+
+const setEnglishDataFromAddressItem = (addressItemEn) => {
+  if (addressItemEn) {
     data_input_head_comp_branch.value.address_en.location.province =
-      props.registerFormDetail.account_information_form.branch_province_en;
+      addressItemEn.province;
     data_input_head_comp_branch.value.address_en.location.district =
-      props.registerFormDetail.account_information_form.branch_distict_en;
+      addressItemEn.district;
     data_input_head_comp_branch.value.address_en.location.parish =
-      props.registerFormDetail.account_information_form.branch_subdisticte_en;
+      addressItemEn.parish;
     data_input_head_comp_branch.value.address_en.location.zip_code =
-      props.registerFormDetail.account_information_form.branch_postal_code_en_id;
+      addressItemEn.zip_code;
     data_input_head_comp_branch.value.address_en.location.zip_code_value =
-      props.registerFormDetail.account_information_form.branch_postal_code_en_id;
-  } else {
-    data_input_head_comp_branch.value.address_en.location = props.addressItemEn;
+      addressItemEn.zip_code_value;
+  }
+};
+
+watchEffect(async () => {
+  if (props.registerFormDetail.account_information_form && initail.value) {
+    await setDataFromFormDetail(
+      props.registerFormDetail.account_information_form
+    );
+    initail.value = false;
+  } else if (props.addressItem && initail.value) {
+    await setDataFromAddressItem(props.addressItem);
+    if (
+      data_input.value.province &&
+      data_input.value.district &&
+      data_input.value.parish &&
+      data_input.value.zip_code
+    ) {
+      initail.value = false;
+    }
+  }
+
+  if (props.registerFormDetail.account_information_form?.branch_province_en) {
+    setEnglishDataFromFormDetail(
+      props.registerFormDetail.account_information_form
+    );
+  } else if (props.addressItemEn) {
+    setEnglishDataFromAddressItem(props.addressItemEn);
   }
 });
+
+watch(
+  () => props.addressItem,
+  async (newAddressItem) => {
+    console.error("props.addressItem updated");
+    if (!initail.value) {
+      await setDataFromAddressItem(newAddressItem);
+    }
+  },
+  { deep: true, immediate: false }
+);
+
+watch(
+  () => props.addressItemEn,
+  (newAddressItemEn) => {
+    setEnglishDataFromAddressItem(newAddressItemEn);
+  },
+  { deep: true }
+);
 
 onMounted(() => {
   emit("on-input", data_input_head_comp_branch.value);
 });
-
-// const handleAddressTH = (data_obj) => {
-//   data_input_head_comp_branch.value.address_th = data_obj;
-//   // data_input_head_comp_branch.value.address_en = data_obj;
-// };
 
 const handleAddressEN = (data_obj) => {
   data_input_head_comp_branch.value.address_en = data_obj;
 };
 
 const handleAddressTH = (data_obj) => {
-  data_input_head_comp_branch.value.address_th.location = data_obj;
+  data_input_head_comp_branch.value.address_th = data_obj;
 };
 
 const handleContact = (data_obj) => {
@@ -379,10 +458,7 @@ watch(
     }
     if (oledata) {
       data_input.value.parish = null;
-
-      //
     }
-    // data_input.value.parish = null;
   },
   { deep: true, immediate: true }
 );
@@ -397,8 +473,6 @@ watch(
       data_input.value.zip_code_value = itemsPostCode.value[0]?.code;
       console.log("SubDistrict Change");
       data_input_head_comp_branch.value.address_th.location = data_input.value;
-      // console.log(JSON.stringify(itemsPostCode.value[0]?.id));
-      // console.log(JSON.stringify(itemsPostCode.value));
     }
   },
   { deep: true, immediate: true }

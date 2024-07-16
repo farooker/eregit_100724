@@ -32,7 +32,7 @@
         v-model="data_input.parish"
         density="compact"
         :rules="textRequired"
-        variant="outlined"
+        variant="outlined"  
       ></v-text-field>
     </v-col>
 
@@ -52,12 +52,14 @@
 </template>
 
 <script setup>
+// import { useMyAddressStore } from "@/stores/addressDataStore";
 import OtherService from "@/apis/OtherService";
 import { ref, watch, watchEffect } from "vue";
 
 const textRequired = [(v) => !!v || "กรุณากรอกข้อมูลให้ครบถ้วน"];
 
 const emit = defineEmits(["on-input"]);
+// const store = useMyAddressStore();
 
 const props = defineProps({
   tagDesc: {
@@ -78,15 +80,30 @@ const props = defineProps({
   },
 });
 
-const data_input = ref({
-  province: props.addressItem?.province,
-  district: props.addressItem?.district,
-  parish: props.addressItem?.parish,
-  zip_code: props.addressItem?.zip_code,
-  zip_code_value: props.addressItem?.zip_code,
+// const data_input = ref({
+//   province: props.addressItem.province,
+//   district: props.addressItem.district,
+//   parish: props.addressItem.parish,
+//   zip_code: props.addressItem.zip_code,
+//   zip_code_value: props.addressItem.zip_code,
+// });
+
+const data_input = ref({...props.addressItem?.data_input, ...props.addressItem
 });
 
-const tempZipcode = ref(null);
+watch(
+  () => data_input.value.zip_code_value,
+  () => {
+    if (
+      data_input.value.zip_code_value &&
+      data_input.value.zip_code_value.length == 5
+    ) {
+      console.log("Zip code Change");
+    }
+  }
+);
+
+const tempZipcode = ref();
 const getPostCodeById = async (id) => {
   try {
     const response = await OtherService.getPostalCodeById(id);
@@ -95,7 +112,7 @@ const getPostCodeById = async (id) => {
     }
     return "";
   } catch (error) {
-    // console.error(error);
+    console.error(error);
   }
 };
 
@@ -104,7 +121,7 @@ watchEffect(async () => {
   if (
     props.addressItem?.zip_code &&
     props.addressItem?.zip_code != "" &&
-    tempZipcode.value === null
+    tempZipcode.value != props.addressItem?.zip_code
   ) {
     tempZipcode.value = props.addressItem?.zip_code;
     const code = await getPostCodeById(tempZipcode.value);
@@ -113,7 +130,7 @@ watchEffect(async () => {
 });
 
 watch(
-  () => data_input.value,
+  data_input.value,
   (newValue) => {
     emit("on-input", newValue);
   },

@@ -1,7 +1,10 @@
 <template>
   <v-row dense>
     <v-col cols="12">
-      <v-card color="secondary" style="background-color: #ED1C24 !important; border-radius: 10px;">
+      <v-card
+        color="secondary"
+        style="background-color: #ed1c24 !important; border-radius: 10px"
+      >
         <v-card-item>
           <v-row align="center" justify="start" dense>
             <v-col
@@ -27,7 +30,7 @@
           class="mt-3 mx-1"
           :style="{ borderLeft: borderLeft }"
           color="white"
-          style="border-radius: 10px !important;"
+          style="border-radius: 10px !important"
           elevation="1"
         >
           <v-row dense>
@@ -38,7 +41,7 @@
             </v-col>
             <v-col cols="2" align-self="center">
               <v-chip
-              style="border-radius: 8px; box-shadow: none;"
+                style="border-radius: 8px; box-shadow: none"
                 color="secondary"
                 v-if="item.account_task_action === 'New Register'"
                 variant="elevated"
@@ -86,26 +89,26 @@
               </v-chip>
             </v-col>
             <v-col cols="2" align-self="center">
-              <h4>
+              <h4  class="truncate">
                 {{ item.business_partner_role?.name }}
               </h4>
             </v-col>
             <v-col cols="3" align-self="center">
-              <h4>
+              <h4 class="truncate">
                 {{ item.business_partner_name }}
               </h4>
             </v-col>
             <v-col cols="3" align-self="center">
-              <v-chip color="secondary" label style="border-radius: 15px;">
+              <v-chip color="secondary" label style="border-radius: 15px">
                 {{ item.contact_owner?.email }}
               </v-chip>
               <br />
-              <div style="font-size: 14px;">
-                <strong>{{ item.contact_owner?.team?.name_en }}</strong>
-              /<span class="text-grey">While convenient, the color pack</span>/
-              <span class="text-grey">Commentail</span>
+              <div style="font-size: 14px">
+                <strong  class="truncate">{{ item.contact_owner?.team?.name_en }}</strong>
+                /<span class="text-grey">While convenient, the color pack</span
+                >/
+                <span class="text-grey">Commentail</span>
               </div>
-
             </v-col>
             <v-col cols="1" align-self="center">
               <v-menu transition="scale-transition">
@@ -311,6 +314,12 @@ const borderLeft = computed(() => {
   const rgb = convertColorNameToRGB(props.colorCardAlert);
   return `rgba(${rgb}, 1) 8px solid`;
 });
-
-
 </script>
+
+<style>
+.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+</style>

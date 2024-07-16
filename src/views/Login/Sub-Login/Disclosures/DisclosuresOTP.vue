@@ -71,7 +71,6 @@ const handleVertifySuccess = async () => {
   // });
     router.push({
     name: "TermCondition",
-    // query: { form_number: form_number },
   });
 };
 

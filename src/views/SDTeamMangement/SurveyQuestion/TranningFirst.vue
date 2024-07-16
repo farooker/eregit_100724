@@ -12,28 +12,40 @@
         <v-row dense class="mt-5">
           <v-col cols="6">
             <h2>Training</h2>
-            <h3>นโยบายการจัดซื้อจัดจ้างอย่างรับผิดชอบ</h3>
+            <h3>เรียนรู้นโยบายทางด้านความยั่งยืนและกฎระเบียบความปลอดภัย</h3>
             <br />
-            <h5>บริษัท เฟรเซฮร์ พร๊อพเพอร์ตี้ ขอสื่อสารนโยบายจัดซื้อจัดจ้าง</h5>
+            <h5>บริษัท เฟรเชอร์ส พร็อพเพอร์ตี้ มุ่งมั่นที่จะสร้างประสบการณ์</h5>
             <h5>
-              อย่างรับผิดชอบ
-              ซึ่งได้จัดทำขึ้นและยึดถือเป็นความยั่งยืนในการกิจกรรม
+              ผ่านการดำเนินธุรกิจอย่างก้าวหน้า เน้นเรื่องการผลิตและบริโภคอย่างมีความรับผิดชอบ
             </h5>
-            <h5>
-              ดำเนิน ต่อผู้มีส่วนเกี่ยวข้องต่างขององค์กร อันรวมถึงคู่ค้า ผู้ขาย
-            </h5>
-            <h5>
-              และผู้รับเหมาช่วงของเรา
-              ซึ่งได้ทางเรามีความคาดหวังที่จะขยายความยั่งยืน
-            </h5>
-            <h5>ในการดำเนินงานนี้ ไปยังคู่ของเราต่อไป</h5>
             <br />
             <h5>
-              ทางเราจึงขอให้ท่านรับทราบและศึกษานโยบายการจัดจ้างอย่างรับผิดชอบนี้
+              ในฐานะผู้พัฒนาอสังหาริมทรัพย์ บริษัทฯ เล็งเห็นโอกาสที่ดีในการผลักดัน
             </h5>
-            <h5 style="color: red">
-              สามารถส่งต่อ Email หรือ Link ให้ผู้ร่วมงานอื่นรับผิดชอบได้
+            <h5>
+              การดำเนินงานอย่างมีความรับผิดชอบ โดยการเพิ่มความรู้ความเข้าใจร่วมกับ
             </h5>
+            <h5>ผู้รับเหมาฯ คู่ค้าทางธุรกิจ และซัพพลายเออร์ซึ่งเป็นส่วนสำคัญในความสำเร็จ</h5>
+            <h5>ตามเป้าหมายความยั่งยืนของบริษัทฯ</h5>
+            <br />
+            <h5>
+              บริษัท ฯ จึงขอความร่วมมือจากท่านในการเข้าร่วมเรียนรู้นโยบายทางด้าน
+            </h5>
+            <h5>
+              ความยั่งยืนและกฎระเบียบความปลอดภัย อาชีวอนามัยและสภาพแวดล้อม
+            </h5>
+            <h5>
+              ในการทำงาน
+            </h5> <br />
+            <!-- <h5 style="color: red">
+              กรุณาติดตามการเรียนรู้ใหม่ๆได้ เร็วๆนี้
+            </h5> -->
+            <v-col>
+              <v-icon color="red">mdi-star</v-icon>
+              <span style="font-weight: bold; color: red"
+                >กรุณาติดตามการเรียนรู้ใหม่ๆได้ เร็วๆนี้</span
+              >
+            </v-col>
             <br />
             <br />
           </v-col>
@@ -47,7 +59,7 @@
             />
           </v-col>
         </v-row>
-        <v-row dense class="mt-5">
+        <!-- <v-row dense class="mt-5">
           <v-col cols="auto" class="d-flex justify-center">
             <v-btn
               color="secondary"
@@ -75,7 +87,7 @@
               ทำภายหลัง >>
             </v-btn>
           </v-col>
-        </v-row>
+        </v-row> -->
       </v-card-item>
     </v-card>
   </v-container>
@@ -85,9 +97,9 @@
 import { onBeforeMount, ref } from "vue";
 import ToolbarSurvey from "@/components/items/ToolbarSurvey.vue";
 import { useRoute, useRouter } from "vue-router";
-import { useShareActivityDialog } from "@/components/dialogs/ShareActivityDialogService";
+// import { useShareActivityDialog } from "@/components/dialogs/ShareActivityDialogService";
 
-const { showShareActivityDialog } = useShareActivityDialog();
+// const { showShareActivityDialog } = useShareActivityDialog();
 
 const state = ref(null);
 const bp_number = ref(null);
@@ -107,13 +119,13 @@ onBeforeMount(() => {
   // rsp_survey_id.value = route.query.rsp_survey_id;
 });
 
-const handleSend = async () => {
-  const result = await showShareActivityDialog(bp_number.value);
-  if (result && result.email) {
-    // call api share activity
-    console.log(result);
-  }
-};
+// const handleSend = async () => {
+//   const result = await showShareActivityDialog(bp_number.value);
+//   if (result && result.email) {
+//     // call api share activity
+//     console.log(result);
+//   }
+// };
 
 const stepperPrev = () => {
   router.push(

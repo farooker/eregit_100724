@@ -10,10 +10,10 @@
       />
     </v-card-text>
     <v-card-title class="text-center">
-      <b>{{ sectionsHeader.title.split('<br>')[0] }}</b>
+      <b>{{ sectionsHeader.title.split('<br />')[0] }}</b>
     </v-card-title>
     <v-card-title class="text-center mt-n3">
-      <b>{{ sectionsHeader.title.split('<br>')[1] }}</b>
+      <b>{{ sectionsHeader.title.split('<br />')[1] }}</b>
     </v-card-title>
     <div class="text-center mt-5">
       <v-row>
@@ -150,18 +150,15 @@ onBeforeMount(() => {
   p_rspSurveyResultId.value = urlParams.get("rsp_survey_result_id");
 });
 
-
-const delay = ms => new Promise(res => setTimeout(res, ms));
+const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 const handleSubmit = async () => {
-  const validateA  =  validateForm.value
+  const validateA = validateForm.value;
   await delay(100);
-  const validateB =  validateForm.value
-  if(validateA && validateB){
+  const validateB = validateForm.value;
+  if (validateA && validateB) {
     handleCreatedSurveyAnswer();
   }
-
 };
-
 
 const sectionLast = () => {
   const index = sectionsIndex.value + 1;
@@ -327,15 +324,16 @@ const handleAlertSuccessfully = async () => {
     "ขอขอบคุณสำหรับการตอบแบบสำรวจ\nการประเมินด้านความยั่งยืนของคู่ค้าในครั้งนี้"
   );
   if (confirmed) {
-    router.push(
-      `/CreditScorePage?prev_completed=completed&state=${p_state.value}&bp_number=${p_bpNumber.value}&&rsp_survey_id=${p_rspSurveyId.value}`
-    );
+    // router.push(
+    //   `/CreditScorePage?prev_completed=completed&state=${p_state.value}&bp_number=${p_bpNumber.value}&&rsp_survey_id=${p_rspSurveyId.value}`
+    // );
+    router.push("/VendorDashBoard");
   }
 };
 const stepperPrev = () => {
   const prevCompleted = stepper.value.completed ? "completed" : "incompleted";
   const url = `/SDTeamMangement/Survey/Document/1?prev_completed=${prevCompleted}&state=${p_state.value}&bp_number=${p_bpNumber.value}&rsp_survey_id=${p_rspSurveyId.value}&rsp_survey_result_id=${p_rspSurveyResultId.value}`;
-    router.push(url);
+  router.push(url);
 };
 const stepperNext = () => {
   console.log("next");

@@ -103,6 +103,9 @@ const handleVertifySuccess = async () => {
   //   name: "CompanyManagementNon",
   //   query: { form_number: form_number },
   // });
+  router.push({
+    name: "TermCondition",
+  });
 };
 
 const handleVertiFailed = (message) => {

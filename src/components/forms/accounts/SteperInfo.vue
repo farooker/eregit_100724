@@ -13,16 +13,16 @@
           <StepOne
             :register-form-detail="props.registerFormDetail"
             :isRegisteredVat="
-              tempRegisterInfo.tax_register.type == '1' ? true : false
+              tempRegisterInfo?.tax_register?.type == '1' ? true : false
             "
-            :bankInfoObj="tempRegisterInfo.bank_info"
+            :bankInfoObj="tempRegisterInfo?.bank_info"
             :isBusinessPartnerTypeId="
-              tempRegisterInfo.customer_type_data.data.toString()
+              tempRegisterInfo?.customer_type_data?.data.toString()
             "
             :isNaturePerson="is_natural_person"
             :taxCetagory="tax_cetagory"
             :companyIdSelect="
-              tempRegisterInfo.company_data.data.map((el) => el.id)
+              tempRegisterInfo?.company_data?.data.map((el) => el.id)
             "
             :register_type="tempRegisterInfo.type_register"
             v-show="step === 1"
@@ -35,24 +35,23 @@
         <v-form ref="formTwo">
           <StepTwo
             :register-form-detail="props.registerFormDetail"
-            :stepInfoDetail="props.stepInfoDetail"
             :register_type="1"
-            :address-item="tempRegisterInfo.customer_info.th.info"
-            :contactItems="tempRegisterInfo.items_contects"
-            :addressItemEn="tempRegisterInfo.customer_info.en.info"
-            :taxPayerIdNumber="tempRegisterInfo.thai_people_id"
+            :address-item="tempRegisterInfo.customer_info?.th?.info"
+            :contactItems="tempRegisterInfo?.items_contects"
+            :addressItemEn="tempRegisterInfo?.customer_info?.en?.info"
+            :taxPayerIdNumber="tempRegisterInfo?.thai_people_id"
             :nameEn="
               is_natural_person
-                ? tempRegisterInfo.customer_info.en.pserson.name
-                : tempRegisterInfo.customer_info.en.company_name
+                ? tempRegisterInfo?.customer_info?.en?.pserson.name
+                : tempRegisterInfo?.customer_info?.en?.company_name
             "
             :nameTh="
               is_natural_person
-                ? tempRegisterInfo.customer_info.th.pserson.name
-                : tempRegisterInfo.customer_info.th.company_name
+                ? tempRegisterInfo.customer_info?.th.pserson.name
+                : tempRegisterInfo.customer_info?.th.company_name
             "
-            :addressEn="tempRegisterInfo.customer_info.en.address"
-            :addressTh="tempRegisterInfo.customer_info.th.address"
+            :addressEn="tempRegisterInfo?.customer_info?.en?.address"
+            :addressTh="tempRegisterInfo?.customer_info?.th?.address"
             v-show="step === 2"
             @on-input="handleStepTwoChanged"
           />
@@ -64,14 +63,14 @@
             :register-form-detail="props.registerFormDetail"
             :steptwoFormDetail="input_data.step_two"
             :register_type="1"
-            :address-item="tempRegisterInfo.customer_info.th.info"
-            :addressItemEn="tempRegisterInfo.customer_info.en.info"
+            :address-item="input_data.step_two?.address_th?.location"
+            :address-item-en="input_data.step_two?.address_en?.location"
             :type-form="props.typeForm"
             :contactItems="tempRegisterInfo.items_contects"
             :branchCode="
-              tempRegisterInfo.tax_register.type == 0
+              tempRegisterInfo?.tax_register?.type == 0
                 ? 'NVAT'
-                : tempRegisterInfo.tax_register.branch_code
+                : tempRegisterInfo?.tax_register?.branch_code
             "
             v-show="step === 3"
             @on-input="handleStepThreeChanged"
@@ -84,7 +83,9 @@
             :register-form-detail="props.registerFormDetail"
             :type-form="props.typeForm"
             :compCode="
-              props.registerInfo.company_data.data.map((el) => el.company_code)
+              props.registerInfo?.company_data?.data.map(
+                (el) => el.company_code
+              )
             "
             :BusinessPartnerGroup="
               input_data.step_one?.main_data?.business_partner_gruop_selection
@@ -97,6 +98,7 @@
       </v-col>
       <v-col cols="6" class="d-flex justify-end">
         <ButtonControl
+          v-show="is_revers_form_hide"
           color="black"
           text="ย้อนกลับ"
           @button-clicked="handleReverse"
@@ -108,10 +110,10 @@
     </v-row>
   </div>
 </template>
- 
+
 <script setup>
 import { ref } from "vue";
- 
+
 import StepperControl from "../../controls/StepperControl";
 import ButtonControl from "../../controls/ButtonControl";
 import StepOne from "../../forms/accounts/vender-customer/StepOne.vue";
@@ -120,9 +122,9 @@ import StepThree from "../../forms/accounts/vender-customer/StepThree.vue";
 import StepFour from "../../forms/accounts/vender-customer/StepFour.vue";
 import AccountType from "@/utils/enum.util";
 import { computed } from "vue";
- 
-const emit = defineEmits(["on-data-commit", "on-input"]);
- 
+
+const emit = defineEmits(["on-data-commit", "on-input", "on-reverse-form"]);
+
 const props = defineProps({
   typeForm: {
     type: Number,
@@ -136,138 +138,103 @@ const props = defineProps({
     type: Object,
     default: () => {},
   },
-  inputSataStepper: {
-    type: Object,
-    default: () => {},
-  },
-  stepInfoDetail: {
-    type: Object,
-    default: () => {},
-  },
 });
- 
+
 const step = ref(1);
 const formOne = ref(null);
 const formTwo = ref(null);
 const formThree = ref(null);
 const formFour = ref(null);
 const button_name = ref("ต่อไป");
- 
+
 const tempRegisterInfo = ref({ ...props.registerInfo });
- 
+
 const is_natural_person = computed(() => {
-  return tempRegisterInfo.value.customer_type_data.data == 1;
+  return tempRegisterInfo.value.customer_type_data?.data == 1;
 });
 const tax_cetagory = computed(() => {
   console.log(tempRegisterInfo.value);
   return tempRegisterInfo.value.thai_people_id ? "TH3" : null;
 });
- 
+
 const input_data = ref({
   step_one: {},
   step_two: {},
   step_three: {},
   step_four: {},
 });
- 
+
+const is_revers_form_hide = computed(() => {
+  if (step.value === 1) return false;
+  return true;
+});
+
 const handleNext = async () => {
   if (step.value === 1) {
     const is_valid = await formOne.value.validate();
     console.log("step is_valid : ", is_valid["valid"]);
- 
-    // if (step.value === 4) {
-    //   emit("on-data-commit", input_data.value);
-    // } else {
-    //   window.alert("Register invalid data!, Please check!");
-    // }
-    // if (step.value < 4) {
     if (is_valid["valid"]) step.value++;
-    // }
- 
-    // if (step.value === 4) {
-    //   button_name.value = "เสร็จ";
-    // }
     return;
   }
- 
+
   if (step.value === 2) {
     const is_valid = await formTwo.value.validate();
     console.log("step is_valid : ", is_valid["valid"]);
- 
-    // if (step.value === 4) {
-    //   emit("on-data-commit", input_data.value);
-    // } else {
-    //   window.alert("Register invalid data!, Please check!");
-    // }
-    // if (step.value < 4) {
     if (is_valid["valid"]) step.value++;
-    // }
- 
-    // if (step.value === 4) {
-    //   button_name.value = "เสร็จ";
-    // }
     return;
   }
- 
+
   if (step.value === 3) {
     const is_valid = await formThree.value.validate();
     console.log("step is_valid : ", is_valid["valid"]);
- 
-    // if (step.value === 4) {
-    //   emit("on-data-commit", input_data.value);
-    // } else {
-    //   window.alert("Register invalid data!, Please check!");
-    // }
-    // if (step.value < 4) {
     if (is_valid["valid"]) step.value++;
-    // }
- 
-    // if (step.value === 4) {
-    //   button_name.value = "เสร็จ";
-    // }
     return;
   }
- 
+
   if (step.value === 4) {
     const is_valid = await formFour.value.validate();
     console.log("step is_valid : ", is_valid["valid"]);
- 
+
     if (is_valid && is_valid["valid"]) {
       emit("on-data-commit", input_data.value);
     }
     button_name.value = "เสร็จ";
   }
 };
- 
+
 const handleReverse = () => {
+  if (step.value == 1) {
+    emit("on-reverse-form");
+    return;
+  }
   if (step.value > 1) {
     step.value--;
   }
 };
- 
+
 const handleStepOneChanged = (data_obj) => {
   input_data.value.step_one = data_obj;
   emit("on-input", input_data.value);
 };
- 
+
 const handleStepTwoChanged = (data_obj) => {
   input_data.value.step_two = data_obj;
   emit("on-input", input_data.value);
-  console.log("input_data.value.step_two", input_data.value.step_two);
+  console.log("input_data.value.step_two", JSON.stringify(input_data.value.step_two));
 };
- 
+
 const handleStepThreeChanged = (data_obj) => {
   input_data.value.step_three = data_obj;
   emit("on-input", input_data.value);
-  console.log("input_data.value.step_three", input_data.value.step_three);
+  console.log("input_data.value.step_three", JSON.stringify(input_data.value.step_three));
 };
- 
+
 const handleStepFourChanged = (data_obj) => {
   input_data.value.step_four = data_obj;
   emit("on-input", input_data.value);
 };
 </script>
- 
+
 <style scoped>
 .custom-app-bar {
   top: 180px !important;

@@ -122,7 +122,7 @@
                 ></v-radio>
               </v-radio-group>
             </v-col>
-            <v-col cols="12" class="ml-6 d-flex flex-row">
+            <!-- <v-col cols="12" class="ml-6 d-flex flex-row">
               <v-radio-group
                 v-model="data_input.customer_type_data.data"
                 style="width: auto"
@@ -137,7 +137,7 @@
                 variant="outlined"
                 v-model="data_input.customer_type_data.other"
               ></v-text-field>
-            </v-col>
+            </v-col> -->
           </v-row>
         </v-card>
       </v-col>
@@ -397,7 +397,7 @@
               ></v-text-field>
             </v-col>
             <v-col cols="12">
-              <AddressInputControlTH
+              <AddressInputControlTHRegis
                 tag-desc="(ภาษาไทย)"
                 key-value="id"
                 key-title="name_th"
@@ -478,7 +478,7 @@
                 :address-item="data_input.customer_info.en.info"
               /> -->
               <!-- {{ data_input.customer_info.en.info }} -->
-              <ManaulAddressInputControl
+              <ManaulAddressInputControlEN
                 tag-desc="(ภาษาอังกฤษ)"
                 class="ml-5 mr-5"
                 :address-item="data_input.customer_info.en.info"
@@ -588,7 +588,7 @@ import { computed, ref } from "vue";
 
 import ButtonControl from "@/components/controls/ButtonControl.vue";
 import ThaiIdInputControl from "@/components/controls/ThaiIdInputControl";
-import AddressInputControlTH from "@/components/controls/AddressInputControl.vue";
+import AddressInputControlTHRegis from "@/components/controls/AddressInputControl.vue";
 // import AddressInputControlEN from "@/components/controls/AddressInputControl.vue";
 import AccountMoneyInputControl from "@/components/controls/AccountMoneyInputControl.vue";
 import PaymentTermService from "@/apis/PaymentTermService";
@@ -596,7 +596,7 @@ import CompnayService from "@/apis/CompnayService";
 import { onMounted, watchEffect, watch } from "vue";
 import PartnerServive from "@/apis/PartnerServive";
 import TypesService from "@/apis/TypesService";
-import ManaulAddressInputControl from "@/components/controls/ManaulAddressInputControl.vue";
+import ManaulAddressInputControlEN from "@/components/controls/ManaulAddressInputControl.vue";
 import EnumType from "@/utils/enum.util";
 
 import { useErrorHandlingDialog } from "@/components/dialogs/ExceptionHandleDialogService";
@@ -793,10 +793,6 @@ watchEffect(() => {
     data_input.value.customer_info.en.info = provicesInfoEn.value;
 
     if (initialThaiId.value) {
-      console.warn(
-        props.registerFormDetail.business_partner_register_form
-          .taxpayer_number_id
-      );
       initialThaiId.value = false;
       data_input.value.thai_people_id =
         props.registerFormDetail.business_partner_register_form?.taxpayer_number_id;
@@ -804,10 +800,6 @@ watchEffect(() => {
 
     if (initialTaxType.value) {
       initialTaxType.value = false;
-      console.warn(
-        props.registerFormDetail.business_partner_profile_form
-          ?.is_vat_registered
-      );
       data_input.value.tax_register.type = props.registerFormDetail
         .business_partner_profile_form?.is_vat_registered
         ? "1"
@@ -859,7 +851,6 @@ watchEffect(() => {
             data_input.value.customer_info.th.pserson.name =
               data_input.value.customer_info.th.pserson.name.replace("นาย", "");
             data_input.value.customer_info.th.pserson.gender = "นาย";
-            console.log("okp", data_input.value.customer_info.th.pserson.name)
             break;
           case "นางสาว":
             data_input.value.customer_info.th.pserson.name =
@@ -885,7 +876,6 @@ watchEffect(() => {
         data_input.value.customer_info.en.pserson.name
       );
       if (matchEn) {
-        console.log(matchEn);
         switch (matchEn[0]) {
           case "Mr.":
             data_input.value.customer_info.en.pserson.name =
@@ -1045,7 +1035,6 @@ const getBusinessPartnerRoles = async () => {
     const response = await PartnerServive.getBusinessPartnerRolesAll();
     if (response.data?.is_success) {
       items_type_register.value = response.data?.data;
-      console.log("items_type_register.value", items_type_register.value);
     }
   } catch (e) {
     if (e.response) {
@@ -1129,10 +1118,6 @@ const getPaymentTerm = async () => {
     );
     if (response.data?.is_success) {
       itemsPaymentTerms.value = response.data.data;
-      // console.log(
-      //   "data_input.value.type_register",
-      //   data_input.value.type_register
-      // );
     }
   } catch (e) {
     if (e.response) {
@@ -1171,7 +1156,6 @@ const handleAddNewContact = () => {
 
 const handleThaiId = (id) => {
   data_input.value.thai_people_id = id;
-  console.log("handleThaiId ", id);
 };
 
 watch(

@@ -12,14 +12,14 @@
       <v-card-item class="ml-15">
         <v-row dense class="mt-5">
           <v-col cols="6">
-            <h2>Vender sustainability assessment survey</h2>
+            <h2>Vendor sustainability assessment survey</h2>
             <h3>แบบสำรวจด้านความยั่งยืนของคู่ค้า</h3>
             <br />
             <h5>
-              บริษัท เฟรเซฮร์ พร๊อพเพอร์ตี้ มีความมุ่งมั่นที่จะสร้างประสบการณ์
+              บริษัท เฟรเซฮร์ส พร็อพเพอร์ตี้ มีความมุ่งมั่นที่จะสร้างประสบการณ์
             </h5>
             <h5>
-              ผ่านหลักการสร้างโอกาศอย่างต่อเนื่อง ผลิตสินค้า
+              ผ่านหลักการสร้างโอกาสอย่างต่อเนื่อง ผลิตสินค้า
               และใช้ทรัพยากรอย่างรับผิดชอบ
             </h5>
             <h5>
@@ -94,7 +94,7 @@
           </v-row>
           <v-row style="margin-top: -10%; margin-bottom: 15%" v-else>
             <v-col>
-              <v-icon color="green">mdi mdi-check-circle</v-icon>
+              <v-icon color="green">mdi-star</v-icon>
               <span style="font-weight: bold; color: green"
                 >บริษัทของท่านทำกิจกรรมนี้เรียบร้อยแล้ว</span
               >

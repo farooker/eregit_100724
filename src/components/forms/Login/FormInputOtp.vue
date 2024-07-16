@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid style="height: 100vh; display: flex; align-items: center;">
+  <v-container fluid style="height: 100vh; display: flex; align-items: center">
     <v-card
       class="pa-7"
       border="outlined"
@@ -31,7 +31,7 @@
           </v-card-title>
         </div>
         <v-otp-input length="6" v-model="data_input"></v-otp-input>
-        <div class="text-center py-3" style="color: gray;">
+        <div class="text-center py-3" style="color: gray">
           <span>ref.code: {{ props.refCode }}</span>
         </div>
 
@@ -46,7 +46,7 @@
               size="x-large"
               block
               class="text-capitalize rounded-pill"
-              style="background-color:#ED1C29 ; color: #fff;"
+              style="background-color: #ed1c29; color: #fff"
               :disabled="isDisabled"
               @click="handleVertifyOTP"
             >
@@ -59,7 +59,7 @@
           <span :class="{ 'text-red': isAlert }" class="underline-on-hover">
             {{ decscription }}
           </span>
-          <span class="custom-underline" style="cursor: pointer;">
+          <span class="custom-underline" style="cursor: pointer">
             <a @click="sendEmailAgain"> ส่งอีเมลใหม่อีกครั้ง</a>
           </span>
         </div>
@@ -102,7 +102,7 @@ const emit = defineEmits([
 ]);
 
 const handleVertifyOTP = async () => {
-  if (isDisabled.value) {
+  if (buttonTimeOut.value === "ส่งรหัสใหม่อีกครั้ง") {
     emit("on-try-agine");
   } else {
     await vertifyOtpCode();
@@ -114,6 +114,7 @@ const sendEmailAgain = () => {
 };
 
 const isDisabled = computed(() => {
+  if (buttonTimeOut.value == "ส่งรหัสใหม่อีกครั้ง") return false;
   return data_input.value.length !== 6;
 });
 
@@ -157,7 +158,6 @@ const updateTimers = () => {
     }, 1000);
   } else {
     formattedTime.value = "Time's up!";
-    isDisabled.value = false;
     buttonTimeOut.value = "ส่งรหัสใหม่อีกครั้ง";
   }
 };
@@ -184,7 +184,7 @@ const vertifyOtpCode = async () => {
         emit("on-vertfy-success");
       }
     } else {
-      throw new Error('Unknown error from server');
+      throw new Error("Unknown error from server");
     }
   } catch (e) {
     isAlert.value = true;
@@ -197,7 +197,8 @@ const vertifyOtpCode = async () => {
       }
       emit("on-vertify-failed", errorMessage);
     } else {
-      decscription.value = e.message || "เกิดข้อผิดพลาดในการติดต่อกับเซิร์ฟเวอร์";
+      decscription.value =
+        e.message || "เกิดข้อผิดพลาดในการติดต่อกับเซิร์ฟเวอร์";
       emit("on-vertify-failed", e.message);
     }
   }
@@ -226,7 +227,6 @@ const login = async () => {
 };
 </script>
 
-
 <style scoped>
 .custom-underline {
   text-decoration: underline;
@@ -243,7 +243,7 @@ const login = async () => {
 }
 
 .v-btn--disabled.v-btn--variant-elevated {
-  background-color: #D3D3D3 !important;
+  background-color: #d3d3d3 !important;
 }
 
 .v-field {
@@ -255,5 +255,4 @@ const login = async () => {
   -ms-border-radius: 10px !important;
   -o-border-radius: 10px !important;
 }
-
 </style>

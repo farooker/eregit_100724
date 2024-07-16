@@ -81,8 +81,8 @@ const emit = defineEmits([
   "remove-file",
 ]);
 
-const handleFileRemovalRequest = (index, file) => {
-  emit("remove-file", index, file);
+const handleFileRemovalRequest = (files) => {
+  emit("remove-file", files);
 };
 
 const handleInputFiles = (files) => {

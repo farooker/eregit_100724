@@ -7,11 +7,11 @@
     ></v-app-bar-title>
 
     <template v-slot:append>
-      <v-btn>
-        <v-badge :content="14" color="secondary">
+      <!-- <v-btn>
+        <v-badge :content="1" color="secondary">
           <v-icon size="x-large" color="grey">mdi mdi-bell</v-icon>
         </v-badge>
-      </v-btn>
+      </v-btn> -->
       <v-btn icon="mdi mdi-cog" color="grey"></v-btn>
       <!-- <v-btn icon="mdi mdi-account"></v-btn> -->
       <v-menu>

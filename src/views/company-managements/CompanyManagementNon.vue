@@ -60,7 +60,7 @@
           <v-row dense>
             <v-col cols="12" class="">
               <StepperControl
-              class="mb-5"
+                class="mb-5"
                 style="margin-top: 30px"
                 v-show="step !== 4"
                 :titles="['ประเภทคู่ค้า', 'ข้อมูลคู่ค้า', 'เอกสารแนบ']"
@@ -128,6 +128,7 @@
                 @on-button-cancel-click="handleReverse"
                 @on-button-ok-click="handleNext"
                 @on-input-files="handleInputDocuments"
+                @remove-file="handleFileRemoved"
               />
             </v-col>
             <v-col
@@ -311,18 +312,39 @@ const encodeFile = (file) => {
   });
 };
 
-const handleInputDocuments = async (documents) => {
+const handleFileRemoved = async (documents) => {
+  createDocumentBody.value = [];
   dataForm.value.partnerDocs = documents;
   for (let index = 0; index < dataForm.value.partnerDocs.length; index++) {
     const el = dataForm.value.partnerDocs[index];
-    const base64String = await encodeFile(el);
-    createDocumentBody.value.push({
-      document_name: el.name,
-      data: base64String.split(",")[1],
-    });
+    if (
+      !createDocumentBody.value.some((doc) => doc.document_name === el.name)
+    ) {
+      const base64String = await encodeFile(el);
+      createDocumentBody.value.push({
+        document_name: el.name,
+        data: base64String.split(",")[1],
+      });
+    }
   }
 };
 
+const handleInputDocuments = async (documents) => {
+  createDocumentBody.value = [];
+  dataForm.value.partnerDocs = documents;
+  for (let index = 0; index < dataForm.value.partnerDocs.length; index++) {
+    const el = dataForm.value.partnerDocs[index];
+    if (
+      !createDocumentBody.value.some((doc) => doc.document_name === el.name)
+    ) {
+      const base64String = await encodeFile(el);
+      createDocumentBody.value.push({
+        document_name: el.name,
+        data: base64String.split(",")[1],
+      });
+    }
+  }
+};
 const handleButtonClick = () => {
   step.value = 1;
   isHideButton.value = false;
@@ -584,6 +606,6 @@ const handleButtonSend = async () => {
 }
 
 .v-main {
-  background-color: #F7F7F6 !important;
+  background-color: #f7f7f6 !important;
 }
 </style>

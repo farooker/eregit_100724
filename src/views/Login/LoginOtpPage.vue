@@ -1,6 +1,6 @@
 <template>
   <ExceptionHandleDialog />
-  <div style="background-color: #EDEDEE">
+  <div style="background-color: #ededee">
     <div
       class="d-flex"
       style="
@@ -11,15 +11,16 @@
       "
     >
     <FormInputOtp
-          :refCode="itemOTP.reference_code"
-          :exp="itemOTP.expired_at"
-          :expired-seconds="itemOTP.expired_seconds"
-          :email="email"
-          class="d-flex justify-center"
-          @on-try-agine="handleTryAgine"
-          @on-vertfy-success="handleVertifySuccess"
-          @on-vertify-failed="handleVertiFailed"
-        />  </div>
+    :refCode="itemOTP.reference_code"
+    :exp="itemOTP.expired_at"
+    :expired-seconds="itemOTP.expired_seconds"
+    :email="email"
+    class="d-flex justify-center"
+    @on-try-agine="handleTryAgine"
+    @on-vertfy-success="handleVertifySuccess"
+    @on-vertify-failed="handleVertiFailed"
+  />
+      </div>
 
   </div>
 </template>

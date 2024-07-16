@@ -2,7 +2,7 @@
   <div id="app">
     <router-view />
     <!-- เนื้อหาของแอป -->
-    <div class="version">Version 1.0.3</div>
+    <div class="version">Version 1.0.5</div>
     </div>
   <!-- <Login /> -->
   <!-- <NewPassword /> -->
@@ -26,7 +26,7 @@ import EmployeeLogin from "@/views/Login/EmployeeLogin.vue";
   position: relative;
   min-height: 100vh;
 }
- 
+
 .version {
   position: absolute;
   bottom: 10px;

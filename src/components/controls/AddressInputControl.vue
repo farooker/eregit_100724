@@ -144,7 +144,6 @@ watch(
   () => data_input.value.province,
   async () => {
     if (data_input.value.province) {
-      console.log("Proveic Change");
       await store.getDistrict(data_input.value.province);
       itemsDistrict.value = store.districts;
       data_input.value.district = null;
@@ -161,8 +160,6 @@ watch(
     if (data_input.value.district) {
       await store.getSubDistrict(data_input.value.district);
       itemsSubDistrict.value = store.subDistricts;
-
-      console.log("District Change");
     }
     if (oledata) {
       data_input.value.parish = null;
@@ -179,9 +176,6 @@ watch(
       itemsPostCode.value = store.postCodes;
       data_input.value.zip_code = itemsPostCode.value[0]?.id;
       data_input.value.zip_code_value = itemsPostCode.value[0]?.code;
-      console.log("SubDistrict Change");
-      // console.log(JSON.stringify(itemsPostCode.value[0]?.id));
-      // console.log(JSON.stringify(itemsPostCode.value));
     }
   },
   { deep: true, immediate: true }

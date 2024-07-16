@@ -132,9 +132,9 @@ export default {
 
   methods: {
     removeFile(index) {
-    const removedFile = this.files.splice(index, 1)[0]; // Capture the removed file if needed
-    this.$emit('request-remove-file', index, removedFile); // Emit an event with the index and the file
-    console.log('Updated files', this.files);
+    this.files.splice(index, 1);
+    this.$emit('request-remove-file', this.files);
+    console.log('Deleted files', this.files);
   },
     handlePickFile() {
       this.$refs.uploader.click();
@@ -149,6 +149,7 @@ export default {
         return;
       }
       this.files = [...this.files, ...newFiles];
+      console.log('Updated files', this.files);
       this.$emit("input-files", this.files);
     },
     dragover(e) {
@@ -169,7 +170,9 @@ export default {
         return;
       }
       this.files = [...this.files, ...newFiles];
+      console.log('Updated files', this.files);
       this.$emit("input-files", this.files);
+
     },
     convertSize(size) {
       return convertSize(size);

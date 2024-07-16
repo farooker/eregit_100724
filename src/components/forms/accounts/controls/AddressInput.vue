@@ -105,7 +105,7 @@
         <v-text-field
           class="ml-6 mr-0"
           density="compact"
-           :rules="rules_valid.address2"
+          :rules="rules_valid.address2"
           dense
           v-model="data_input.address.two"
           variant="outlined"
@@ -179,11 +179,6 @@ const props = defineProps({
     type: Object,
     default: () => {},
   },
-  stepInfoDetail: {
-    type: Object,
-    default: () => {},
-  },
-
   addressItem: {
     type: Object,
     default: () => {
@@ -201,15 +196,8 @@ const props = defineProps({
   },
 });
 
-const company_en = ref(props.stepInfoDetail?.customer_info?.en?.company_name ?? null);
-watch(() => props.stepInfoDetail?.customer_info?.en?.company_name ?? null, (newValue) => {
-  company_en.value = newValue;
-});
- 
-const address_en = ref(props.stepInfoDetail?.customer_info?.en?.address ?? null);
-watch(() => props.stepInfoDetail?.customer_info?.en?.address ?? null, (newValue) => {
-  address_en.value = newValue;
-});
+const company_en = ref(props.name);
+const address_en = ref(props.address);
 
 const rules_valid = ref({
   companyData: [(v) => !!v || "กรุณากรอกข้อมูลให้ครบ"],
@@ -220,14 +208,16 @@ const rules_valid = ref({
   ],
   namerequire: [
     (v) => (v != null && v.length <= 35) || "*กรุณากรอกชื่อไม่เกิน 35 ตัวอักษร",
-    (v) => (v != null && /^\S+(\s\S+)*$/.test(v)) || "* กรุณากรอกข้อมูลให้ถูกต้อง",
+    (v) =>
+      (v != null && /^\S+(\s\S+)*$/.test(v)) || "* กรุณากรอกข้อมูลให้ถูกต้อง",
   ],
   name: [
     (v) => (v != null && v.length <= 35) || "*กรุณากรอกชื่อไม่เกิน 35 ตัวอักษร",
   ],
   addressrequire: [
     (v) => (v != null && v.length <= 60) || "*กรุณากรอกชื่อไม่เกิน 60 ตัวอักษร",
-    (v) => (v != null && /^\S+(\s\S+)*$/.test(v)) || "* กรุณากรอกข้อมูลให้ถูกต้อง",
+    (v) =>
+      (v != null && /^\S+(\s\S+)*$/.test(v)) || "* กรุณากรอกข้อมูลให้ถูกต้อง",
   ],
   address2: [
     (v) => (v != null && v.length <= 40) || "*กรุณากรอกชื่อไม่เกิน 40 ตัวอักษร",
@@ -259,7 +249,6 @@ const data_input = ref({
   },
 });
 
-
 function splitText(text) {
   // กำหนดความยาวแต่ละส่วน
   const partLength = 35;
@@ -272,9 +261,18 @@ function splitText(text) {
 
   if (text) {
     part1 = text.length > 0 ? text.substring(0, partLength) : "";
-    part2 = text.length > partLength ? text.substring(partLength, partLength * 2) : "";
-    part3 = text.length > partLength * 2 ? text.substring(partLength * 2, partLength * 3) : "";
-    part4 = text.length > partLength * 3 ? text.substring(partLength * 3, partLength * 4) : "";
+    part2 =
+      text.length > partLength
+        ? text.substring(partLength, partLength * 2)
+        : "";
+    part3 =
+      text.length > partLength * 2
+        ? text.substring(partLength * 2, partLength * 3)
+        : "";
+    part4 =
+      text.length > partLength * 3
+        ? text.substring(partLength * 3, partLength * 4)
+        : "";
   }
 
   console.log("111", part1);
@@ -328,28 +326,18 @@ watchEffect(() => {
     data_input.value.location = props.addressItem ?? null;
     // data_input.value.address.one = props.address;
 
-    const txtSprict = splitText(
-      company_en.value
-    );
-    const txtSprictAdress = splitTextAddress(
-      address_en.value
-    );
+    const txtSprict = splitText(company_en.value);
+    const txtSprictAdress = splitTextAddress(address_en.value);
 
     if (
       props.registerFormDetail?.account_information_form?.name1_en &&
       props.registerFormDetail?.account_information_form?.name1_en != ""
     ) {
-      data_input.value.name.one = 
+      data_input.value.name.one =
         props.registerFormDetail?.account_information_form?.name1_en ?? null;
     } else {
       data_input.value.name.one = txtSprict.part1 ?? null;
     }
-
-    // data_input.value.name.one =
-    //   props.registerFormDetail?.account_information_form?.name1_en ??
-    //   splitText(
-    //     props.registerFormDetail?.business_partner_register_form?.name_en
-    //   ).part1;
 
     if (
       props.registerFormDetail?.account_information_form?.name2_en &&
@@ -358,34 +346,18 @@ watchEffect(() => {
       data_input.value.name.two =
         props.registerFormDetail?.account_information_form?.name2_en ?? null;
     } else {
-      data_input.value.name.two = txtSprict.part2 ??null;
+      data_input.value.name.two = txtSprict.part2 ?? null;
     }
 
-    // data_input.value.name.two =
-    //   props.registerFormDetail?.account_information_form?.name2_en ??
-    //   splitText(
-    //     props.registerFormDetail?.business_partner_register_form?.name_en
-    //   ).part2;
-
-    // data_input.value.name.three =
-    //   props.registerFormDetail?.account_information_form?.name3_en ??
-    //   splitText(
-    //     props.registerFormDetail?.business_partner_register_form?.name_en
-    //   ).part3;
     if (
       props.registerFormDetail?.account_information_form?.name3_en &&
       props.registerFormDetail?.account_information_form?.name3_en != ""
     ) {
       data_input.value.name.three =
-        props.registerFormDetail?.account_information_form?.name3_en ??null;
+        props.registerFormDetail?.account_information_form?.name3_en ?? null;
     } else {
       data_input.value.name.three = txtSprict.part3 ?? null;
     }
-    // data_input.value.name.four =
-    //   props.registerFormDetail?.account_information_form?.name4_en ??
-    //   splitText(
-    //     props.registerFormDetail?.business_partner_register_form?.name_en
-    //   ).part4;
 
     if (
       props.registerFormDetail?.account_information_form?.name4_en &&
@@ -401,18 +373,6 @@ watchEffect(() => {
       props.registerFormDetail?.account_information_form?.search_term1_en ??
       null;
 
-    // data_input.value.address.one =
-    // props.registerFormDetail?.account_information_form?.address1_en ??
-    // splitTextAddress(
-
-    // )
-
-    // data_input.value.address.one =
-    //   props.registerFormDetail?.account_information_form?.address1_en ??
-    //   splitTextAddress(
-    //     props.registerFormDetail.business_partner_profile_form.address_en
-    //   ).part1;
-    // console.log("dlkjis", data_input.value.address.one)
     if (
       props.registerFormDetail?.account_information_form?.address1_en &&
       props.registerFormDetail?.account_information_form?.address1_en != ""
@@ -431,26 +391,6 @@ watchEffect(() => {
     } else {
       data_input.value.address.two = txtSprictAdress.part2 ?? null;
     }
-
-    // if (props.registerFormDetail?.account_information_form.address2_en) {
-    //   data_input.value.address.two =
-    //     props.registerFormDetail.account_information_form.address2_en;
-    // } else {
-
-    //   data_input.value.address.two = splitTextAddress(
-    //     props.registerFormDetail?.business_partner_profile_form?.address_en
-    //   ).part2;
-    // }
-
-    //address2
-    // data_input.value.address.two =
-    // props.registerFormDetail?.account_information_form?.address2_en ??
-    // splitTextAddress(
-    //   props.registerFormDetail.business_partner_profile_form.address_en
-    // ).part2;
-
-    // data_input.value.address.two =
-    //   props.registerFormDetail?.account_information_form?.address2_en ?? null;
   }
 
   //EN Branch step3
@@ -466,7 +406,6 @@ watchEffect(() => {
       data_input.value.name.one =
         props.steptwoFormDetail?.address_en?.name?.one ?? null;
     }
-
 
     //
     if (
@@ -536,19 +475,16 @@ watchEffect(() => {
     //   props.registerFormDetail?.account_information_form?.branch_name1_th ??
     //   null;
 
-    if (
-      props.registerFormDetail?.account_information_form?.branch_name1_th
-    ) {
+    if (props.registerFormDetail?.account_information_form?.branch_name1_th) {
       data_input.value.name.one =
-        props.registerFormDetail?.account_information_form?.branch_name1_th ?? null;
+        props.registerFormDetail?.account_information_form?.branch_name1_th ??
+        null;
     } else {
       data_input.value.name.one =
         props.steptwoFormDetail?.address_th?.name?.one ?? null;
     }
     //
-    if (
-      props.registerFormDetail?.account_information_form?.branch_name2_th 
-    ) {
+    if (props.registerFormDetail?.account_information_form?.branch_name2_th) {
       data_input.value.name.two =
         props.registerFormDetail?.account_information_form?.branch_name2_th ??
         null;
@@ -557,9 +493,7 @@ watchEffect(() => {
         props.steptwoFormDetail?.address_th?.name?.two ?? null;
     }
     //
-    if (
-      props.registerFormDetail?.account_information_form?.branch_name3_th
-    ) {
+    if (props.registerFormDetail?.account_information_form?.branch_name3_th) {
       data_input.value.name.three =
         props.registerFormDetail?.account_information_form?.branch_name3_th ??
         null;
@@ -568,9 +502,7 @@ watchEffect(() => {
         props.steptwoFormDetail?.address_th?.name?.three ?? null;
     }
     //
-    if (
-      props.registerFormDetail?.account_information_form?.branch_name4_th
-    ) {
+    if (props.registerFormDetail?.account_information_form?.branch_name4_th) {
       data_input.value.name.four =
         props.registerFormDetail?.account_information_form?.branch_name4_th ??
         null;
@@ -580,7 +512,7 @@ watchEffect(() => {
     }
     //
     if (
-      props.registerFormDetail?.account_information_form?.branch_address1_th 
+      props.registerFormDetail?.account_information_form?.branch_address1_th
     ) {
       data_input.value.address.one =
         props.registerFormDetail?.account_information_form
@@ -591,7 +523,8 @@ watchEffect(() => {
     }
     //
     if (
-      props.registerFormDetail?.account_information_form?.branch_address2_th    ) {
+      props.registerFormDetail?.account_information_form?.branch_address2_th
+    ) {
       data_input.value.address.two =
         props.registerFormDetail?.account_information_form
           ?.branch_address2_th ?? null;

@@ -126,6 +126,7 @@
         :loading="loading.items"
         :selected="selected_checked[`${filter.page - 1}`]"
         @selected="selected_checked[`${filter.page - 1}`] = $event"
+        @sort-change="handleSortChange"
       />
       <PaginationControl
         class="mt-3"
@@ -133,6 +134,7 @@
         :length="filter.pageSize"
         @value="handlePaginationEvent"
       />
+      <!-- {{ filter }} -->
     </div>
   </v-container>
 </template>
@@ -151,7 +153,7 @@ import PaginationControl from "@/components/controls/PaginationControl.vue";
 import RspService from "@/apis/RspService";
 import paginationUtils from "@/utils/paginationUtils";
 import { useRouter } from "vue-router";
- 
+
 import { useErrorHandlingDialog } from "@/components/dialogs/ExceptionHandleDialogService";
 const { handlingErrorsMessage } = useErrorHandlingDialog();
 const router = useRouter();
@@ -178,10 +180,6 @@ const selected_items = ref({
       id: "Team_owner",
       name: "Team Owner",
     },
-    {
-      id: "credit_score",
-      name: "Credit Score",
-    },
   ],
   companies: [],
   bu_owners: [],
@@ -198,7 +196,7 @@ const selected_items = ref({
   ],
   companies_cate: [],
 });
- 
+
 const filter = ref({
   search_key: "business_partner_name",
   search_value: null,
@@ -210,7 +208,7 @@ const filter = ref({
   date_from: null,
   date_to: null,
   offset: 0,
-  limit: 4,
+  limit: 8,
   page: 1,
   pageSize: 1,
 });
@@ -219,7 +217,7 @@ const loading = ref({
   report: false,
   items: false,
 });
- 
+
 const content = ref({
   registered_vendors: {
     value: 0,
@@ -240,7 +238,7 @@ const content = ref({
   },
   items: [],
 });
- 
+
 const SelectedDisabled = computed({
   get() {
     const checkedCount = selected_checked.value.flat();
@@ -253,7 +251,7 @@ const SelectedCount = computed({
     return checkedCount.length;
   },
 });
- 
+
 onMounted(() => {
   sessionStorage.setItem("bp_numbers", JSON.stringify([]));
   getRegisteredVendorAmount();
@@ -289,30 +287,30 @@ const getRegisteredVendorAmount = async () => {
     loading.value.registered = false;
   }
 };
- 
+
 const getRspReportData = async () => {
   try {
     loading.value.report = true;
     const response = await RspService.getRspReportData();
- 
+
     if (response) {
       // policy
       content.value.rsp_policy_vendors.value =
         response.data.data.policy.completed_amount;
       content.value.rsp_policy_vendors.percent =
         response.data.data.policy.completed_percentage;
- 
+
       // survey
       content.value.survey_align_vendors.align_value =
         response.data.data.survey.aligned_amount;
       content.value.survey_align_vendors.align_percent =
         response.data.data.survey.aligned_percentage;
- 
+
       content.value.survey_align_vendors.survey_value =
         response.data.data.survey.completed_amount;
       content.value.survey_align_vendors.survey_percent =
         response.data.data.survey.completed_percentage;
- 
+
       // training
       content.value.training_vendors.value =
         response.data.data.training.completed_amount;
@@ -330,7 +328,7 @@ const getRspReportData = async () => {
     loading.value.report = false;
   }
 };
- 
+
 const getVendorRspStatus = async () => {
   try {
     loading.value.items = true;
@@ -346,16 +344,22 @@ const getVendorRspStatus = async () => {
       filter.value.activities_id,
       filter.value.status,
       filter.value.date_from,
-      filter.value.date_to
+      filter.value.date_to,
+      "bp_number:desc"
     );
     const headers = response.headers;
     const itemsOffset = Number(headers["items-offset"]);
     const itemsLimit = Number(headers["items-limit"]);
     const itemsTotal = Number(headers["items-total"]);
- 
+
+    console.log("itemsOffset ", itemsOffset);
+    console.log("itemsLimit ", itemsLimit);
+    console.log("itemsTotal ", itemsTotal);
+
     filter.value.offset = itemsOffset ? itemsOffset : 0;
     filter.value.limit = itemsLimit ? itemsLimit : 10;
     filter.value.pageSize = paginationUtils.pageSize(itemsLimit, itemsTotal);
+
     if (response.data?.is_success && !response.data?.data?.error) {
       content.value.items = response.data?.data;
     }
@@ -370,6 +374,55 @@ const getVendorRspStatus = async () => {
     loading.value.items = false;
   }
 };
+
+const handleSortChange = async (sort) => {
+  try {
+    loading.value.items = true;
+    content.value.items = [];
+    filter.value.offset = 0;
+    filter.value.page = 1;
+    const response = await RspService.getVendorRspStatus(
+      filter.value.offset,
+      filter.value.limit,
+      filter.value.search_key,
+      filter.value.search_value,
+      filter.value.companies_id,
+      filter.value.bu_owners_id,
+      filter.value.comp_categories_id,
+      filter.value.activities_id,
+      filter.value.status,
+      filter.value.date_from,
+      filter.value.date_to,
+      sort
+    );
+    const headers = response.headers;
+    const itemsOffset = Number(headers["items-offset"]);
+    const itemsLimit = Number(headers["items-limit"]);
+    const itemsTotal = Number(headers["items-total"]);
+
+    console.log("itemsOffset ", itemsOffset);
+    console.log("itemsLimit ", itemsLimit);
+    console.log("itemsTotal ", itemsTotal);
+
+    filter.value.offset = itemsOffset ? itemsOffset : 0;
+    filter.value.limit = itemsLimit ? itemsLimit : 10;
+    filter.value.pageSize = paginationUtils.pageSize(itemsLimit, itemsTotal);
+
+    if (response.data?.is_success && !response.data?.data?.error) {
+      content.value.items = response.data?.data;
+    }
+  } catch (e) {
+    if (e.response) {
+      const val = e.response.data;
+      handlingErrorsMessage(val.message, val?.data.error);
+      return;
+    }
+    handlingErrorsMessage("unknown", e.message);
+  } finally {
+    loading.value.items = false;
+  }
+};
+
 const exportRspActivityReport = async (bp_numbers) => {
   try {
     const response = await RspService.exportRspActivityReport(bp_numbers);

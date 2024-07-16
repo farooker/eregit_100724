@@ -18,7 +18,7 @@
                   :value="item.id.toString()"
                   :key="index"
                 ></v-radio>
-                <div class="d-flex align-center">
+                <!-- <div class="d-flex align-center">
                   <v-radio value="0" label="อื่น"></v-radio>
                   <v-text-field
                     v-if="dataInput.register.business_partner_type === '0'"
@@ -33,7 +33,7 @@
                     density="compact"
                     style="margin-left: -12px; margin-right: 6; flex-grow: 9"
                   ></v-text-field>
-                </div>
+                </div> -->
               </v-radio-group>
             </v-col>
           </v-row>
