@@ -6,22 +6,23 @@
         @click="handlePreviewSelections"
         class="text-capitalize me-3"
         color="black"
-        style="min-width: 100px; border-radius: 10px;"
+        style="min-width: 100px; border-radius: 10px"
       >
-      <v-icon left size="large" class="me-1">mdi-text-box-search-outline</v-icon>
+        <v-icon left size="large" class="me-1"
+          >mdi-text-box-search-outline</v-icon
+        >
         Preview ({{ amountItemSelect }})
       </v-btn>
       <v-btn
         @click="handleToExportSelection"
         class="text-capitalize"
         color="black"
-        style="min-width: 100px; border-radius: 10px;"
+        style="min-width: 100px; border-radius: 10px"
       >
         <v-icon left size="large" class="me-1">mdi-microsoft-excel</v-icon>
         Export ({{ amountItemSelect }})
       </v-btn>
     </div>
-
 
     <v-row justify="end" class="mt-5 pt-5" dense>
       <v-col cols="12">
@@ -42,7 +43,8 @@
       <v-col cols="12">
         <PaginationControl
           class="mt-3"
-          :value="filter.offset"
+          :value="filter.page"
+          :length="filter.pageSize"
           @value="handlePaginationEvent"
         />
       </v-col>
@@ -74,7 +76,6 @@ const menu_items = [
     id: 0,
     title: "แก้ไข",
     icon: "mdi mdi-pencil",
-
   },
   {
     id: 1,
@@ -103,9 +104,17 @@ const leaveLoading = () => {
 };
 
 const filter = ref({
-  offset: 1,
-  limit: 10,
+  offset: 0,
+  page: 1,
+  limit: 8,
+  pageSize: 1,
 });
+
+const handlePaginationEvent = (page) => {
+  filter.value.page = page;
+  filter.value.offset = paginationUtils.pageOffset(page, filter.value.limit);
+  getAccountReadyToExportAll();
+};
 
 const onHandleMenuClicked = async (value) => {
   const { event_id, item_id, index, form_number } = value;
@@ -165,8 +174,8 @@ const handleToExportSelection = async () => {
           "xlsx",
           response.data.data?.file_url_change_info
         );
-        // setLoading();
-  clearOldItem();
+      // setLoading();
+      clearOldItem();
 
       // await showAlert("Export Successfully", "Export ข้อมูล account สำเร็จ");
     }
@@ -238,8 +247,8 @@ const exportAccountTaskById = async (form_number) => {
         );
       await showAlert("Export Successfully", "Export ข้อมูล account สำเร็จ");
       // setLoading();
-  // clearOldItem();
-      await getAccountReadyToExportAll()
+      // clearOldItem();
+      await getAccountReadyToExportAll();
     }
   } catch (e) {
     if (e.response) {
@@ -279,16 +288,20 @@ const getAccountReadyToExportAll = async () => {
   setLoading();
   clearOldItem();
   try {
-    const response = await AccountService.getAccountReadyToExporttAll();
+    const response = await AccountService.getAccountReadyToExporttAll(
+      "ReadyToExport",
+      filter.value.offset,
+      filter.value.limit
+    );
 
-    // const headers = response.headers;
-    // const itemsOffset = Number(headers["items-offset"]);
-    // const itemsLimit = Number(headers["items-limit"]);
-    // const itemsTotal = Number(headers["items-total"]);
+    const headers = response.headers;
+    const itemsOffset = Number(headers["items-offset"]);
+    const itemsLimit = Number(headers["items-limit"]);
+    const itemsTotal = Number(headers["items-total"]);
 
-    // filter.value.offset = itemsOffset;
-    // filter.value.limit = itemsLimit;
-    // filter.value.pageSize = paginationUtils.pageSize(itemsLimit, itemsTotal);
+    filter.value.offset = itemsOffset;
+    filter.value.limit = itemsLimit;
+    filter.value.pageSize = paginationUtils.pageSize(itemsLimit, itemsTotal);
 
     if (response.data?.is_success) {
       content.value.items = response.data?.data;
@@ -303,11 +316,6 @@ const getAccountReadyToExportAll = async () => {
   } finally {
     leaveLoading();
   }
-};
-
-const handlePaginationEvent = (page) => {
-  filter.value.page = page;
-  filter.value.offset = paginationUtils.pageOffset(page, filter.value.limit);
 };
 
 // const onHandleItemClick = (item) => {

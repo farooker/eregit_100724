@@ -6,16 +6,18 @@
         @click="handlePreviewSelections"
         class="text-capitalize me-3"
         color="black"
-        style="min-width: 100px; border-radius: 10px;"
+        style="min-width: 100px; border-radius: 10px"
       >
-        <v-icon left size="large" class="me-1">mdi-text-box-search-outline</v-icon>
+        <v-icon left size="large" class="me-1"
+          >mdi-text-box-search-outline</v-icon
+        >
         Preview ({{ amountItemSelect }})
       </v-btn>
       <v-btn
         @click="handleToExportSelection"
         class="text-capitalize"
         color="black"
-        style="min-width: 100px; border-radius: 10px;"
+        style="min-width: 100px; border-radius: 10px"
       >
         <v-icon left size="large" class="me-1">mdi-microsoft-excel</v-icon>
         Export ({{ amountItemSelect }})
@@ -39,7 +41,8 @@
       <v-col cols="12">
         <PaginationControl
           class="mt-3"
-          :value="filter.offset"
+          :value="filter.page"
+          :length="filter.pageSize"
           @value="handlePaginationEvent"
         />
       </v-col>
@@ -70,9 +73,12 @@ const content = ref({
 });
 
 const filter = ref({
-  offset: 1,
-  limit: 10,
+  offset: 0,
+  page: 1,
+  limit: 8,
+  pageSize: 1,
 });
+
 const amountItemSelect = ref(0);
 const menu_items = [
   {
@@ -109,6 +115,12 @@ const leaveLoading = () => {
 
 const preview = async (url) => {
   window.open(url, "_blank");
+};
+
+const handlePaginationEvent = (page) => {
+  filter.value.page = page;
+  filter.value.offset = paginationUtils.pageOffset(page, filter.value.limit);
+  getAccountArchiveAll();
 };
 
 const handlePreviewSelections = async () => {
@@ -262,11 +274,6 @@ const updateAccountTaskById = async (id, state) => {
   }
 };
 
-const handlePaginationEvent = (page) => {
-  filter.value.page = page;
-  filter.value.offset = paginationUtils.pageOffset(page, filter.value.limit);
-};
-
 onMounted(async () => {
   await getAccountArchiveAll();
 });
@@ -279,16 +286,20 @@ const getAccountArchiveAll = async () => {
   setLoading();
   clearOldItem();
   try {
-    const response = await AccountService.getAccountArchivetAll();
+    const response = await AccountService.getAccountArchivetAll(
+      "Archive",
+      filter.value.offset,
+      filter.value.limit
+    );
 
-    // const headers = response.headers;
-    // const itemsOffset = Number(headers["items-offset"]);
-    // const itemsLimit = Number(headers["items-limit"]);
-    // const itemsTotal = Number(headers["items-total"]);
+    const headers = response.headers;
+    const itemsOffset = Number(headers["items-offset"]);
+    const itemsLimit = Number(headers["items-limit"]);
+    const itemsTotal = Number(headers["items-total"]);
 
-    // filter.value.offset = itemsOffset;
-    // filter.value.limit = itemsLimit;
-    // filter.value.pageSize = paginationUtils.pageSize(itemsLimit, itemsTotal);
+    filter.value.offset = itemsOffset;
+    filter.value.limit = itemsLimit;
+    filter.value.pageSize = paginationUtils.pageSize(itemsLimit, itemsTotal);
 
     if (response.data?.is_success) {
       content.value.items = response.data?.data;

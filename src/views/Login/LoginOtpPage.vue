@@ -11,18 +11,6 @@
       "
     >
     <FormInputOtp
-<<<<<<< HEAD
-    :refCode="itemOTP.reference_code"
-    :exp="itemOTP.expired_at"
-    :expired-seconds="itemOTP.expired_seconds"
-    :email="email"
-    class="d-flex justify-center"
-    @on-try-agine="handleTryAgine"
-    @on-vertfy-success="handleVertifySuccess"
-    @on-vertify-failed="handleVertiFailed"
-  />
-      </div>
-=======
           :refCode="itemOTP.reference_code"
           :exp="itemOTP.expired_at"
           :expired-seconds="itemOTP.expired_seconds"
@@ -31,7 +19,6 @@
           @on-try-agine="handleTryAgine"
           @on-vertfy-success="handleVertifySuccess"
         />  </div>
->>>>>>> 562481a804d720c1ae15977e3f53fb0e945047d6
 
   </div>
 </template>

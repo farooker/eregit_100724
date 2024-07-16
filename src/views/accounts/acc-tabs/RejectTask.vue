@@ -21,10 +21,11 @@
         ></v-progress-linear>
         <!-- @handle-item-click="onHandleItemClick" -->
       </v-col>
-      <v-col cols="12" v-if="content.items.length >= 10">
+      <v-col cols="12">
         <PaginationControl
           class="mt-3"
-          :value="filter.offset"
+          :value="filter.page"
+          :length="filter.pageSize"
           @value="handlePaginationEvent"
         />
       </v-col>
@@ -58,8 +59,10 @@ const content = ref({
 });
 
 const filter = ref({
-  offset: 1,
-  limit: 10,
+  offset: 0,
+  page: 1,
+  limit: 8,
+  pageSize: 1,
 });
 
 const isLoading = ref(true);
@@ -108,16 +111,20 @@ const handlePaginationEvent = (page) => {
 const getAccountRejectAll = async () => {
   setLoading();
   try {
-    const response = await AccountService.getAccountRejectAll();
+    const response = await AccountService.getAccountRejectAll(
+      "Reject",
+      filter.value.offset,
+      filter.value.limit
+    );
 
-    // const headers = response.headers;
-    // const itemsOffset = Number(headers["items-offset"]);
-    // const itemsLimit = Number(headers["items-limit"]);
-    // const itemsTotal = Number(headers["items-total"]);
+    const headers = response.headers;
+    const itemsOffset = Number(headers["items-offset"]);
+    const itemsLimit = Number(headers["items-limit"]);
+    const itemsTotal = Number(headers["items-total"]);
 
-    // filter.value.offset = itemsOffset;
-    // filter.value.limit = itemsLimit;
-    // filter.value.pageSize = paginationUtils.pageSize(itemsLimit, itemsTotal);
+    filter.value.offset = itemsOffset;
+    filter.value.limit = itemsLimit;
+    filter.value.pageSize = paginationUtils.pageSize(itemsLimit, itemsTotal);
 
     if (response.data?.is_success) {
       content.value.items = response.data?.data;

@@ -47,7 +47,7 @@ const isLoading = ref(true);
 const filter = ref({
   offset: 0,
   page: 1,
-  limit:10,
+  limit:8,
   pageSize: 1,
 });
 
