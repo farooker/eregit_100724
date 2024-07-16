@@ -1,4 +1,6 @@
 import axiosBase from "./AxiosConfig";
+import { isStringEmpty } from "../utils/util.issue";
+
 const getVendorRspStatus = async (
   offset = 0,
   limit = 1000,
@@ -16,15 +18,17 @@ const getVendorRspStatus = async (
   let url = `/rsp/get-vendor-rsp-status?offset=${
     offset > 0 ? (offset -= 1) : offset
   }&limit=${limit}`;
-  if (search_field) url += `&search_field=${search_field}`;
-  if (search_value) url += `&search_value=${search_value}`;
-  if (company_id) url += `&company_id=${company_id}`;
-  if (company_category_id) url += `&company_category_id=${company_category_id}`;
-  if (activity_id) url += `&activity_id=${activity_id}`;
-  if (activity_status) url += `&activity_status=${activity_status}`;
-  if (completed_from) url += `&completed_from=${completed_from}`;
-  if (completed_to) url += `&completed_from=${completed_from}`;
-  if (sort_by) url += `&sort-by=${sort_by}`;
+  if (!isStringEmpty(search_field)) url += `&search_field=${search_field}`;
+  if (!isStringEmpty(search_value)) url += `&search_value=${search_value}`;
+  if (!isStringEmpty(company_id)) url += `&company_id=${company_id}`;
+  if (!isStringEmpty(company_category_id))
+    url += `&company_category_id=${company_category_id}`;
+  if (!isStringEmpty(activity_id)) url += `&activity_id=${activity_id}`;
+  if (!isStringEmpty(activity_status))
+    url += `&activity_status=${activity_status}`;
+  if (!isStringEmpty(completed_from)) url += `&completed_from=${completed_from}`;
+  if (!isStringEmpty(completed_to)) url += `&completed_from=${completed_from}`;
+  if (!isStringEmpty(sort_by)) url += `&sort-by=${sort_by}`;
 
   return await axiosBase({
     method: "get",
