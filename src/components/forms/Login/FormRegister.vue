@@ -177,11 +177,11 @@ const handleRegister = async () => {
   const is_valid = await registreForm.value.validate();
   if (!is_valid || !is_valid["valid"]) return;
   if (await onLoadCheckExistingUsername()) {
-    errMsg.value = "Email is ready, Please change username";
-    handlingErrorsMessage(
-      "Exiting username",
-      "Email is ready, Please change username"
-    );
+    errMsg.value = "บัญชีผู้ใช้งานซ้ำในระบบ";
+    // handlingErrorsMessage(
+    //   "Exiting username",
+    //   "Email is ready, Please change username"
+    // );
     return;
   }
   emit("on-register", Form.value);

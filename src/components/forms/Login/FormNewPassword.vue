@@ -107,8 +107,7 @@
   </v-container>
 </template>
 <script setup>
-// eslint-disable-next-line no-unused-vars
-import { ref, onBeforeMount, computed } from "vue";
+import { ref, onBeforeMount } from "vue";
 import { useRouter } from "vue-router";
 import verifyService from "@/apis/VerifyService";
 
