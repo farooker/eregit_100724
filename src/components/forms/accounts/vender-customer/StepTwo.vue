@@ -306,11 +306,14 @@ const rules_valid = ref({
       "* กรุณากรอกข้อมูลให้ถูกต้อง",
   ],
   name: [
-    (v) => (v != null && v.length <= 35) || "*กรุณากรอกชื่อไม่เกิน 35 ตัวอักษร",
+    (v) => v == null || v.length <= 35 || "*กรุณากรอกชื่อไม่เกิน 35 ตัวอักษร",
     (v) =>
-      (v != null && v.trim().length > 0 && /^[^\s](.*[^\s])?$/.test(v)) ||
+      v == null ||
+      v.trim().length === 0 ||
+      /^[^\s](.*[^\s])?$/.test(v) ||
       "* กรุณากรอกข้อมูลให้ถูกต้อง",
   ],
+
   addressrequire: [
     (v) => (v != null && v.length <= 60) || "*กรุณากรอกชื่อไม่เกิน 60 ตัวอักษร",
     (v) =>
@@ -509,6 +512,13 @@ watchEffect(async () => {
     } else {
       data_input_head_comp.value.address_th.address.two = txtSprictAdress.part2;
     }
+
+    if (
+      props.registerFormDetail?.account_information_form?.search_term1_th ??
+      null
+    )
+      data_input_head_comp.value.address_th.search.one =
+        props.registerFormDetail?.account_information_form?.search_term1_th;
 
     data_input_head_comp.value.address_th.search.two =
       props.taxPayerIdNumber ?? null;
