@@ -101,6 +101,7 @@ const handleAuthorization = async (email) => {
 
       console.log("authen", response.data.data[0]);
       const authInfo = response.data.data[0];
+      sessionStorage.setItem("bp_numbers", authInfo.bp_number);
       const modulesId = Array.from(authInfo.modules, (x) => x.id);
       const modulesJson = JSON.stringify(modulesId);
       sessionStorage.setItem("auth_modules", modulesJson);

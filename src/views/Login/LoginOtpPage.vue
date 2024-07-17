@@ -88,6 +88,7 @@ const handleAuthorization = async (email) => {
     if (response.data?.is_success) {
       console.log("authen", response.data.data[0]);
       const authInfo = response.data.data[0];
+      sessionStorage.setItem("bp_numbers", authInfo.bp_number);
       console.log("authenisactive", authInfo.is_active);
       if (!authInfo.is_active) {
         router.push("/Error?err=EXP_FORM");

@@ -78,6 +78,7 @@ const handleAuthorization = async (email) => {
     if (response.data?.is_success) {
       console.log("authen", response.data.data[0]);
       const authInfo = response.data.data[0];
+      sessionStorage.setItem("bp_numbers", authInfo.bp_number);
       const modulesId = Array.from(authInfo.modules, (x) => x.id);
       const modulesJson = JSON.stringify(modulesId);
       sessionStorage.setItem("auth_modules", modulesJson);
@@ -97,7 +98,7 @@ const handleVertifySuccess = async () => {
   localStorage.removeItem("temp_new_register");
   // sessionStorage.removeItem("auth_modules");
   await handleAuthorization(email);
-  store.setsessionlinkstore(3,form_number,"CompanyManagementNon")
+  store.setsessionlinkstore(3, form_number, "CompanyManagementNon");
   // router.push({
   //   name: "CompanyManagementNon",
   //   query: { form_number: form_number },
