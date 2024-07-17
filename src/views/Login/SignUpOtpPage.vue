@@ -1,6 +1,6 @@
 <template>
   <ExceptionHandleDialog />
-  <div style="background-color: #EDEDEE">
+  <div style="background-color: #ededee">
     <div
       class="d-flex"
       style="
@@ -10,20 +10,18 @@
         background-repeat: no-repeat;
       "
     >
-
-        <FormInputOtp
-          :refCode="itemOTP.reference_code"
-          :exp="itemOTP.expired_at"
-          :expired-seconds="itemOTP.expired_seconds"
-          :email="email"
-          :needLogin="false"
-          class="d-flex justify-center"
-          @on-try-agine="handleTryAgine"
-          @on-vertfy-success="handleVertifySuccess"
-          @on-vertify-failed="handleVertiFailed"
-        />
-
-      </div>
+      <FormInputOtp
+        :refCode="itemOTP.reference_code"
+        :exp="itemOTP.expired_at"
+        :expired-seconds="itemOTP.expired_seconds"
+        :email="email"
+        :needLogin="false"
+        class="d-flex justify-center"
+        @on-try-agine="handleTryAgine"
+        @on-vertfy-success="handleVertifySuccess"
+        @on-vertify-failed="handleVertiFailed"
+      />
+    </div>
   </div>
 </template>
 
@@ -73,7 +71,6 @@ const getOptByEmail = async () => {
 
 const handleVertifySuccess = async () => {
   await signup();
-
 };
 
 const handleVertiFailed = (message) => {
@@ -108,25 +105,26 @@ const signup = async () => {
       email,
       localStorage.getItem("temp_new_register"),
       form_number
-
     );
     if (response.data?.is_success) {
       localStorage.removeItem("temp_new_register");
       if (form_number && to) {
         // sessionStorage.removeItem("auth_modules");
         await handleAuthorization(email);
-        store.setsessionlinkstore(2,form_number,to)
+        store.setsessionlinkstore(2, form_number, to);
         // router.push({
         //   name: to,
         //   query: { form_number: form_number },
         // });\
         router.push({
-    name: "TermCondition",
-  });
-
+          name: "TermCondition",
+        });
       } else {
         // router.push("/Authorization");
-        store.setsessionlinkstore(1,null,"AuthorizationPage")
+        store.setsessionlinkstore(1, null, "AuthorizationPage");
+        router.push({
+          name: "TermCondition",
+        });
       }
     }
   } catch (e) {
