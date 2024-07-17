@@ -121,6 +121,7 @@ const signup = async () => {
         });
       } else {
         // router.push("/Authorization");
+        await handleAuthorization(email);
         store.setsessionlinkstore(1, null, "AuthorizationPage");
         router.push({
           name: "TermCondition",
