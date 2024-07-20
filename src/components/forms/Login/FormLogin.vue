@@ -203,6 +203,8 @@ const login = async () => {
       }
       const val = e.response.data;
       serverErrorMessagesPassword.value = [val?.data.error];
+      if(val?.data.error == "Invalid Incorrect username or password..")
+      serverErrorMessagesPassword.value = "รหัสผ่านไม่ถูกต้อง กรุณากรอกใหม่อีกครั้ง"
       emit("on-login-failed", val?.data.error);
       return;
     }

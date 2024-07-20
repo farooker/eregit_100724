@@ -1,30 +1,28 @@
 <template>
-  <v-container fluid style="height: 100vh; display: flex; align-items: center;">
+  <v-container fluid style="height: 100vh; display: flex; align-items: center">
     <v-card
-      class=" px-5 py-5"
+      class="px-5 py-5"
       border="outlined"
       style="width: 100%; max-width: 600px; border-radius: 20px"
     >
       <v-form v-model="validateForm">
         <v-card-item dense>
-
-            <div class="d-flex justify-center">
-              <!-- <v-img
+          <div class="d-flex justify-center">
+            <!-- <v-img
               aspect-ratio="16/9"
               cover
               prepend-icon="mdi mdi-information-outline"
                 width="100"
                 src="https://cdn.vuetifyjs.com/images/parallax/material.jpg"
               ></v-img> -->
-              <v-img
-                style="max-width: 200px"
-                class="mt-5"
-                src="/frasers.png"
-              ></v-img>
-            </div>
+            <v-img
+              style="max-width: 200px"
+              class="mt-5"
+              src="/frasers.png"
+            ></v-img>
+          </div>
 
-
-          <div class="text-center mt-5   ma-5">
+          <div class="text-center mt-5 ma-5">
             <h1>Supplier Qualification System</h1>
             <v-card-title>
               <h3 class="mb-5">ลืมรหัสผ่าน</h3>
@@ -33,22 +31,12 @@
           <div class="text-center mt-5 ma-5">
             <h3>ระบบจะทำการส่ง Email ไปยัง</h3>
           </div>
-
-
-              <v-text-field
-                v-model="email"
-                class="mx-2"
-                variant="outlined"
-                placeholder="Email"
-
-              ></v-text-field>
-
-
-          <div v-if="sendAgain" class="text-center mt-0 pa-5 ma-5">
-            <span class="underline-on-hover text-secondary">
-              ระบบทำการส่งอีเมลให้อีกครั้งแล้ว
-            </span>
-          </div>
+          <v-text-field
+            v-model="email"
+            class="mx-2"
+            variant="outlined"
+            placeholder="Email"
+          ></v-text-field>
           <v-row
             class="text-center pa-0 ma-0"
             dense
@@ -65,11 +53,16 @@
                 :loading="loading"
                 @click="sendEmail"
               >
-                {{ sendAgain ? "ส่งใหม่อีกครั้ง" : "ยืนยัน" }}
+                {{ sendAgain ? "ส่งใหม่อีกครั้ง" : "ส่ง" }}
               </v-btn>
             </v-col>
           </v-row>
-          <div class="text-center mt-0 pa-5 ma-5">
+          <div  class="text-center mt-8 ml-5 mr-5">
+            <span class="underline-on-hover text-secondary">
+              ระบบทำการส่งอีเมลให้อีกครั้งแล้ว
+            </span>
+          </div>
+          <div class="text-center mt-0 ml-5 mr-5">
             <span>กรุณาคลิก Link ในอีเมล เพื่อทำการตั้งรหัสใหม่</span>
           </div>
         </v-card-item>
@@ -117,5 +110,3 @@ const sendEmail = async () => {
   }
 };
 </script>
-
-
