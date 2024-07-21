@@ -1,7 +1,7 @@
 <template>
   <v-row dense>
     <!-- {{ data_name.nameth1 }} -->
-    <v-col cols="12"><h2>ที่อยู่สำนักงานใหญ่</h2></v-col>
+    <v-col cols="12"><h2>ที่อยู่</h2></v-col>
     <!-- {{ props.register_type }} -->
     <v-col cols="12">
       <!-- <AddressInputTH
@@ -75,7 +75,7 @@
 
           <v-col cols="12" class="mt-n7" v-if="!props.isNotTeam">
             <v-card-title>
-              <h6>Search Term 1 (ชื่อย่อ)sss</h6>
+              <h6>Search Term 1 (ชื่อย่อ)</h6>
             </v-card-title>
             <v-text-field
               class="ml-0 mr-0"
@@ -302,16 +302,14 @@ const rules_valid = ref({
   namerequire: [
     (v) => (v != null && v.length <= 35) || "*กรุณากรอกชื่อไม่เกิน 35 ตัวอักษร",
     (v) =>
-      (v != null && v.trim().length > 0 && /^[^\s](.*[^\s])?$/.test(v)) ||
+      (v != null &&
+        v.trim().length > 0 &&
+        /^[^\s](.*[^\s])?$/.test(v.trim())) ||
       "* กรุณากรอกข้อมูลให้ถูกต้อง",
   ],
   name: [
     (v) => v == null || v.length <= 35 || "*กรุณากรอกชื่อไม่เกิน 35 ตัวอักษร",
-    (v) =>
-      v == null ||
-      v.trim().length === 0 ||
-      /^[^\s](.*[^\s])?$/.test(v) ||
-      "* กรุณากรอกข้อมูลให้ถูกต้อง",
+    (v) => v == null || v.trim().length > 0 || "* กรุณากรอกข้อมูลให้ถูกต้อง",
   ],
 
   addressrequire: [
@@ -375,7 +373,14 @@ const data_input_head_comp = ref({
     },
   },
   country_info: {},
-  contact_info: props.contactItems,
+  contacts: props.contactItems.map((el) => {
+    return {
+      index: el.index,
+      name: el.name,
+      phone: el.phone,
+      email: el.email,
+    };
+  }),
 });
 
 const initail = ref(true);
@@ -564,7 +569,12 @@ const handleCountry = (data_obj) => {
 };
 
 const handleContact = (data_obj) => {
-  data_input_head_comp.value.contact_info[data_obj.index] = data_obj;
+  data_input_head_comp.value.contact_info[data_obj.index] = {
+    index: data_obj.index,
+    name: data_obj.name,
+    phone: data_obj.phone,
+    email: data_obj.email,
+  };
 };
 
 watch(

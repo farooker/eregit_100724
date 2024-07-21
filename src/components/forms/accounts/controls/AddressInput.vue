@@ -209,16 +209,14 @@ const rules_valid = ref({
   namerequire: [
     (v) => (v != null && v.length <= 35) || "*กรุณากรอกชื่อไม่เกิน 35 ตัวอักษร",
     (v) =>
-      (v != null && v.trim().length > 0 && /^[^\s](.*[^\s])?$/.test(v)) ||
+      (v != null &&
+        v.trim().length > 0 &&
+        /^[^\s](.*[^\s])?$/.test(v.trim())) ||
       "* กรุณากรอกข้อมูลให้ถูกต้อง",
   ],
   name: [
     (v) => v == null || v.length <= 35 || "*กรุณากรอกชื่อไม่เกิน 35 ตัวอักษร",
-    (v) =>
-      v == null ||
-      v.trim().length === 0 ||
-      /^[^\s](.*[^\s])?$/.test(v) ||
-      "* กรุณากรอกข้อมูลให้ถูกต้อง",
+    (v) => v == null || v.trim().length > 0 || "* กรุณากรอกข้อมูลให้ถูกต้อง",
   ],
 
   addressrequire: [

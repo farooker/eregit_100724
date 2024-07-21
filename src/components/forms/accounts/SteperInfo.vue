@@ -7,6 +7,7 @@
     </v-row>
   </v-app-bar>
   <div>
+    {{ props.registerFormDetail.account_information_form.account_business_partner_type_id }}
     <v-row dense>
       <v-col cols="12">
         <v-form ref="formOne">
@@ -220,13 +221,13 @@ const handleStepOneChanged = (data_obj) => {
 const handleStepTwoChanged = (data_obj) => {
   input_data.value.step_two = data_obj;
   emit("on-input", input_data.value);
-  console.log("input_data.value.step_two", JSON.stringify(input_data.value.step_two));
+  console.log("STEP_TWO", JSON.stringify(input_data.value.step_two));
 };
 
 const handleStepThreeChanged = (data_obj) => {
   input_data.value.step_three = data_obj;
   emit("on-input", input_data.value);
-  console.log("input_data.value.step_three", JSON.stringify(input_data.value.step_three));
+  console.log("STEP_THREE", JSON.stringify(input_data.value.step_three));
 };
 
 const handleStepFourChanged = (data_obj) => {

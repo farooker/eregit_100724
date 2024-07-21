@@ -318,8 +318,8 @@ const borderLeft = computed(() => {
 
 <style>
 .truncate {
-  white-space: nowrap;
+  white-space: normal;
   overflow: hidden;
-  text-overflow: ellipsis;
+  word-wrap: break-word; /* ให้ข้อความข้ามบรรทัดใหม่ตามคำ */
 }
 </style>

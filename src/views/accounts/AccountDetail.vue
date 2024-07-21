@@ -2,7 +2,6 @@
   <!-- {{ register_form_detail[0].business_partner_register_form.created_user_id }} -->
 
   <v-container fluid class="mt-8">
-
     <div class="box-froms">
       <div class="custom-app-bar" v-if="itemsFileDocument.length > 0">
         <AttachedMenat
@@ -16,6 +15,8 @@
           @on-attach-file="handleAttchFiles"
         />
       </div>
+      <!-- {{ input_data.stepper_info_form?.step_one?.main_data
+        ?.bp_type_selection }} -->
       <!-- {{input_data.register_info_form  }} -->
       <div v-if="is_id_form === FORM_ID.REQUEST_DOCS">
         <RequestDocument
@@ -493,7 +494,7 @@ const handleCustCommit = async (stepper_info_data) => {
       address2_en:
         input_data.value.stepper_info_form?.step_two?.address_en?.address
           ?.two ?? null, // data.stepper_info_form?.step_two?.address_th?.address.two
-      country: "TH", // unknow
+      country: input_data.value.stepper_info_form?.step_two?.country_info?.country ?? null, // unknow
 
       //   //STEP THREE
       branch_description:
@@ -985,7 +986,8 @@ const handleSaveDaft = async () => {
       address2_en:
         input_data.value.stepper_info_form?.step_two?.address_en?.address
           ?.two ?? null, // data.stepper_info_form?.step_two?.address_th?.address.two
-      country: "TH", // unknow
+      // country: "TH", // unknow
+      country: input_data.value.stepper_info_form?.step_two?.country_info?.country ?? null, // unknow
 
       //   //STEP THREE
       branch_description:

@@ -28,7 +28,7 @@
             <br />
             <h5>
               ซึ่งจุดประสงค์ของแบบสอบถามด้านความยั่งยืนของคู่ค้านี้
-              จะช่วยให้บริษัทเข้าใจ
+              จะช่วยให้ทางบริษัทเข้าใจ
             </h5>
             <h5>
               การปฏิบัติต่อบริษัทคู่ค้า
@@ -39,7 +39,7 @@
               "การเป็นหุ้นส่วนระหว่างกัน (Partnership-Based Approach)"
             </h5>
             <h5 style="color: red" v-if="is_progress &&is_can_do_next_step">
-              สามารถส่งต่อ Email หรือ Link ให้ผู้ร่วมงานอื่นรับผิดชอบได้
+              สามารถส่งต่อ Email หรือ Link ให้ผู้ร่วมงานอื่นที่รับผิดชอบได้
             </h5>
             <br />
             <br />
@@ -94,7 +94,7 @@
           </v-row>
           <v-row style="margin-top: -10%; margin-bottom: 15%" v-else>
             <v-col>
-              <v-icon color="green">mdi-star</v-icon>
+              <v-icon color="green">mdi mdi-check-circle</v-icon>
               <span style="font-weight: bold; color: green"
                 >บริษัทของท่านทำกิจกรรมนี้เรียบร้อยแล้ว</span
               >

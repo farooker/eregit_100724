@@ -32,7 +32,7 @@
       <v-col cols="12" class="pa-2">
         <v-card>
           <v-card-title>
-            <h5>Payment Term</h5>
+            <h5>Payment Terms</h5>
           </v-card-title>
           <v-card-text>
             <v-row dense class="mt-">
@@ -83,8 +83,8 @@
               <strong
                 >เนื่องจากนโยบายของบริษัท
                 คู่ค้าทุกเจ้าจะต้องทำแบบรายงานและเปิดเผยความขัดแย้งทางผลประโยชน์
-                (สำหรับบุคลหรือนิติบุคคลที่เข้ามาก่อนิติสัมพันธ์ Conflict of
-                Interest Disclosure Form for vendor) ด้วยตนเอง
+                (สำหรับบุคคลหรือนิติบุคคลที่เข้ามาก่อนิติสัมพันธ์ Conflict of
+                Interest Disclosure Form for vendor) <u>ด้วยตนเอง</u>
                 หากไม่ทำแบบรายงานนี้ <u>จะไม่สามารถลงทะเบียนคู่ค้าใหม่ได้</u></strong
               >
               <h4 style="color: red" class="mt-3">

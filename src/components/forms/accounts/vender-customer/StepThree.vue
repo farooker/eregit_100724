@@ -171,7 +171,10 @@
       />
     </v-col>
     <v-col cols="12"><CountryInput /></v-col>
-    <v-col cols="12" v-for="(item, index) in props.contactItems" :key="index"
+    <v-col
+      cols="12"
+      v-for="(item, index) in data_input_head_comp_branch.contacts"
+      :key="index"
       ><ContactInput
         :index="index"
         :name="item.name"
@@ -292,7 +295,7 @@ const data_input_head_comp_branch = ref({
           : props.barnchDesc,
     },
   },
-  contacts: props.contactItems,
+  contacts: [],
 });
 
 const initail = ref(true);
@@ -386,6 +389,80 @@ watchEffect(async () => {
     }
   }
 
+  if (
+    props.registerFormDetail.account_information_form
+  ) {
+    if (
+      props.registerFormDetail.account_information_form
+        ?.branch_contact_name_1 &&
+      props.registerFormDetail.account_information_form
+        ?.branch_contact_name_1 != ""
+    ) {
+      data_input_head_comp_branch.value.contacts[0] = ({
+        index: 0,
+        name: props.registerFormDetail.account_information_form
+          ?.branch_contact_name_1,
+        phone:
+          props.registerFormDetail.account_information_form
+            ?.branch_contact_mobile_number_1,
+        email:
+          props.registerFormDetail.account_information_form
+            ?.branch_contact_email_1,
+      });
+    }
+
+    if (
+      props.registerFormDetail.account_information_form
+        ?.branch_contact_name_2 &&
+      props.registerFormDetail.account_information_form
+        ?.branch_contact_name_2 != ""
+    ) {
+      data_input_head_comp_branch.value.contacts[1] =({
+        index: 1,
+        name: props.registerFormDetail.account_information_form
+          ?.branch_contact_name_2,
+        phone:
+          props.registerFormDetail.account_information_form
+            ?.branch_contact_mobile_number_2,
+        email:
+          props.registerFormDetail.account_information_form
+            ?.branch_contact_email_3,
+      });
+    }
+
+    if (
+      props.registerFormDetail.account_information_form
+        ?.branch_contact_name_3 &&
+      props.registerFormDetail.account_information_form
+        ?.branch_contact_name_3 != ""
+    ) {
+      data_input_head_comp_branch.value.contacts[2]=({
+        index: 2,
+        name: props.registerFormDetail.account_information_form
+          ?.branch_contact_name_3,
+        phone:
+          props.registerFormDetail.account_information_form
+            ?.branch_contact_mobile_number_3,
+        email:
+          props.registerFormDetail.account_information_form
+            ?.branch_contact_email_3,
+      });
+    }
+    // initailContect.value = false;
+  } else {
+    data_input_head_comp_branch.value.contacts = props.contactItems.map(
+      (el) => {
+        return {
+          index: el.index,
+          name: el.name,
+          phone: el.phone,
+          email: el.email,
+        };
+      }
+    );
+    // initailContect.value = false;
+  }
+
   if (props.registerFormDetail.account_information_form?.branch_province_en) {
     setEnglishDataFromFormDetail(
       props.registerFormDetail.account_information_form
@@ -427,7 +504,12 @@ const handleAddressTH = (data_obj) => {
 };
 
 const handleContact = (data_obj) => {
-  data_input_head_comp_branch.value.contacts[data_obj.index] = data_obj;
+  data_input_head_comp_branch.value.contacts[data_obj.index] = {
+    index: data_obj.index,
+    name: data_obj.name,
+    phone: data_obj.phone,
+    email: data_obj.email,
+  };
 };
 
 watch(

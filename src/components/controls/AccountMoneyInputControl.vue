@@ -49,7 +49,7 @@
     </v-col>
     <v-col cols="12" class="mt-n5">
       <v-card-title>
-        <h6>เลขบัญชี</h6>
+        <h6>เลขที่บัญชี</h6>
       </v-card-title>
       <v-text-field
         class="ml-4 mr-6"

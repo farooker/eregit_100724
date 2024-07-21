@@ -1,5 +1,6 @@
 <template>
   <v-row>
+    <!-- {{ bp_type_selection }} -->
     <v-col cols="12"><h2>ข้อมูลคู่ค้า</h2></v-col>
     <v-col cols="12">
       <v-card>
@@ -275,6 +276,8 @@
               dense
               v-model="data_input.other.bank_country"
               variant="outlined"
+              readonly
+              bg-color="#dfdfdf"
             ></v-text-field>
           </v-col>
 
@@ -391,8 +394,8 @@ const textRequired = [(v) => !!v || "กรุณากรอกข้อมู�
 const emit = defineEmits(["on-input"]);
 
 const taxType = [
-  { id: "01", title: "VAT" },
-  { id: "02", title: "NO VAT" },
+  { id: "01", title: "01 VAT" },
+  { id: "02", title: "02 Non-VAT" },
 ];
 
 const data_input = ref({
@@ -405,7 +408,7 @@ const data_input = ref({
       props.register_type != AccountType.AccountType.CUSTOMER
         ? "FLVN00X"
         : "FLCU00",
-    bp_type_selection: Number(props.isBusinessPartnerTypeId),
+    bp_type_selection: Number(props.registerFormDetail.account_information_form.account_business_partner_type_id),
     naturel_person: props.isNaturePerson ? "X" : null,
     tax_catega: props.taxCetagory,
     tax_number: "",

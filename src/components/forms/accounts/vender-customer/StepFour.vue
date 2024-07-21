@@ -1,10 +1,5 @@
 <template>
   <v-row>
-    <!-- {{ props.BusinessPartnerGroup }}
-      {{ props.bpType }} -->
-       <!-- {{ registerFormDetail }} -->
-       <!-- {{   props.registerFormDetail.business_partner_register_form.payment_term.id
-       }} -->
     <v-col cols="12"><h2>ข้อมูลเพิ่มเติม</h2></v-col>
     <v-col cols="12">
       <v-card>
@@ -16,6 +11,7 @@
             <v-select
               class="ml-6 mr-6"
               :items="itemReconcilation"
+              :rules="textRequired"
               item-title="name"
               item-value="id"
               v-model="data_input.more_data_one.reconcliation_acct_seletion"
@@ -961,7 +957,9 @@ onMounted(async () => {
     if (TAG_FPT.includes(el)) result.push("FTP");
     if (TAG_FPHT.includes(el)) result.push("FPHT");
   }
-  data_input.value.vander_info.pruch = result.join(",");
+  // data_input.value.vander_info.pruch = result.join(",");
+  const dataPruch = Array.from(new Set(result));
+  data_input.value.vander_info.pruch = dataPruch.join(",");
 });
 
 const getAccounrBusinessPartnerTypeAll = async () => {
@@ -1031,7 +1029,7 @@ watchEffect(async () => {
     let indexFind = itemsAccountBusinessPartnerType.value.findIndex(
       (el) => el.id == props.BusinessPartnerGroup
     );
-
+// data_input.value.vander_info.pa_yee_in_doc =null;
     data_input.value.more_data_two = {
       subject_wht: {
         1: null,
@@ -1078,7 +1076,7 @@ watchEffect(async () => {
           data_input.value.more_data_two.with_tax_type["1"] = "04";
           data_input.value.more_data_two.with_tax_type["2"] = "05";
           data_input.value.more_data_two.with_tax_type["3"] = "06";
-
+// data_input.value.vander_info.pa_yee_in_doc = null
           data_input.value.more_data_two.type_reciepient["1"] = "03";
           data_input.value.more_data_two.type_reciepient["2"] = "03";
           data_input.value.more_data_two.type_reciepient["3"] = "03";

@@ -18,23 +18,23 @@
 
       <div class="pt-5" v-if="input_data.radio_1 === 1">
         <v-card class="pa-5">
-          <div class="mb-1">คุณต้องการแก้ไขข้อมูลแบบใดบ้าง</div>
+          <div class="mb-1">ต้องการแก้ไขข้อมูลแบบใดบ้าง</div>
 
           <v-radio-group v-model="input_data.radio_2" color="red">
             <v-radio label="ส่ง Email ให้ Vendor กรอกเอง" :value="1"></v-radio>
             <v-radio label="กรอกข้อมูลให้ Vendor" :value="2"></v-radio>
-            <v-radio label="พนักงานเป็น Vendor" :value="3"></v-radio>
+            <v-radio label="Vendor พนักงาน" :value="3"></v-radio>
           </v-radio-group>
         </v-card>
       </div>
 
       <div class="pt-5" v-if="input_data.radio_1 === 3">
         <v-card class="pa-5">
-          <div class="mb-1">คุณต้องการแก้ไขข้อมูลแบบใดบ้าง</div>
+          <div class="mb-1">ต้องการแก้ไขข้อมูลแบบใดบ้าง</div>
           <v-radio-group v-model="input_data.radio_2" color="red">
             <v-radio label="ส่ง Email ให้ Vendor กรอกเอง" :value="6"></v-radio>
             <v-radio label="กรอกข้อมูลให้ Vendor" :value="7"></v-radio>
-            <v-radio label="พนักงานเป็น Vendor" :value="8"></v-radio>
+            <v-radio label="Vendor พนักงาน" :value="8"></v-radio>
           </v-radio-group>
         </v-card>
       </div>
@@ -91,7 +91,7 @@
 
       <!--vendor 3 พนักงานเป็น Vendor กรอกเอง-->
       <div v-if="input_data.radio_2 === 3 && input_data.radio_1 === 1">
-        <h2 class="py-5">พนักงานเป็น Vendor</h2>
+        <h2 class="py-5">Vendor พนักงาน</h2>
         <EmployeeVendor
           :businessPartnerRoleId="input_data.radio_1"
           @form-update="handleVenderFormInput"
@@ -121,7 +121,7 @@
 
       <!--vendor 3 พนักงานเป็น Vendor กรอกเอง-->
       <div v-if="input_data.radio_2 === 8 && input_data.radio_1 === 3">
-        <h2 class="py-5">พนักงานเป็น Vendor</h2>
+        <h2 class="py-5">Vendor พนักงาน</h2>
         <EmployeeVendor
           :businessPartnerRoleId="input_data.radio_1"
           @form-update="handleVenderFormInput"
@@ -301,7 +301,7 @@ const handleVenderFormInput = (value) => {
     input_data.value?.formVender.employee_data.data.join(",");
 
   dataBodyEmployee.value.registered_user_email = "aaa";
-  console.warn(JSON.stringify(dataBodyEmployee.value));
+  // console.warn(JSON.stringify(dataBodyEmployee.value));
 };
 
 //fillinVendor

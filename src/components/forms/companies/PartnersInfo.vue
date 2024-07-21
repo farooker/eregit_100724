@@ -165,7 +165,7 @@
                 ><h6>เบอร์โทรศัพท์</h6>
               </v-col>
               <v-col class="d-flex align-center" cols="4"
-                ><h6>Email เพื่อแจ้งชำระ</h6>
+                ><h6>Email เพื่อแจ้งการชำระ</h6>
               </v-col>
             </v-row>
             <v-row

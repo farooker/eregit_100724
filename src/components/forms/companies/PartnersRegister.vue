@@ -58,6 +58,8 @@
                 class="mt-5"
                 @on-input="handleTaxPayerThaiId"
               />
+
+              <h5>(หากมีเลขน้อยกว่า 13 หลัก ให้ใส่หลักแรกเป็น 0 )</h5>
               <!--              <ThaiIdInputControlTaxPayerIdNumber
                 v-if="!is_natural_person"
                 :initial-otp-value="
@@ -72,10 +74,13 @@
                 class="mt-5"
                 @on-input="handleTaxRegisThaiId"
               />
+
             </v-col>
           </v-row>
         </v-card>
       </v-col>
+
+
       <v-col cols="12">
         <v-card class="pa-6">
           <v-row dense>
@@ -140,16 +145,6 @@
                 placeholder="เลือกคำตอบ"
                 :rules="isVender ? textRequired : [() => true]"
               ></v-select>
-            </v-col>
-            <v-col cols="12">
-              <v-text-field
-                v-if="is_other_comp_catagory"
-                v-model="otherCompCatagory.name_th"
-                :rules="is_other_comp_catagory ? textRequired : [() => true]"
-                density="compact"
-                dense
-                variant="outlined"
-              ></v-text-field>
             </v-col>
           </v-row>
         </v-card>

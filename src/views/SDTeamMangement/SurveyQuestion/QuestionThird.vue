@@ -10,14 +10,14 @@
       />
     </v-card-text>
     <v-card-title class="text-center">
-      <b>{{ sectionsHeader.title.split('<br />')[0] }}</b>
+      <b>{{ sectionsHeader.title.split('<br>')[0] }}</b>
     </v-card-title>
     <v-card-title class="text-center mt-n3">
-      <b>{{ sectionsHeader.title.split('<br />')[1] }}</b>
+      <b>{{ sectionsHeader.title.split('<br>')[1] }}</b>
     </v-card-title>
-    <div class="text-center mt-5">
+    <div class="mt-5">
       <v-row>
-        <v-col cols="8" class="d-flex">
+        <v-col cols="12" class="d-flex">
           <h3>{{ sectionsTitle }}</h3>
         </v-col>
         <!-- <v-col cols="4" class="d-flex justify-end">

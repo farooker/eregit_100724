@@ -1,5 +1,8 @@
 <template>
   <ExceptionHandleDialog />
+
+  {{ email }}
+  {{ code }}
   <div style="background-color: lightgrey">
     <v-row align="center">
       <v-col cols="6">
