@@ -1,10 +1,18 @@
 <template>
-  <v-container fluid style="height: 100vh; display: flex; align-items: center; justify-content: flex-end !important;">
-    <v-form ref="registreForm" style="width: 100%; max-width: 600px;">
+  <v-container
+    fluid
+    style="
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end !important;
+    "
+  >
+    <v-form ref="registreForm" style="width: 100%; max-width: 600px">
       <v-card
         class="pa-7"
         border="outlined"
-        style="border-radius: 20px; text-align: center;"
+        style="border-radius: 20px; text-align: center"
       >
         <v-card-item dense>
           <v-row>
@@ -17,36 +25,43 @@
             </v-col>
           </v-row>
 
-          <div class="text-center mt-5  ma-5">
+          <div class="text-center mt-5 ma-5">
             <h1>Supplier Qualification System</h1>
             <h2>เข้าสู่ระบบ</h2>
           </div>
 
-              <v-text-field
-                variant="solo"
-                label="อีเมล"
-                v-model="Form.Email"
-                class="ml-2 mr-2"
-                :rules="textRequired"
-                :error-messages="serverErrorMessages"
-                @focus="handleFocus"
-              ></v-text-field>
+          <v-text-field
+            variant="solo"
+            label="อีเมล"
+            v-model="Form.Email"
+            class="ml-2 mr-2"
+            :rules="textRequired"
+            :error-messages="serverErrorMessages"
+            @focus="handleFocus"
+          ></v-text-field>
 
-
-              <v-text-field
-                variant="solo"
-                :rules="passwordRules"
-                label="รหัสผ่าน"
-                :disabled="isDisabled"
-                class="ml-2 mr-2 mt-3"
-                v-model="Form.Password"
-                :type="Form.CheckPass ? 'text' : 'password'"
-                :error-messages="serverErrorMessagesPassword"
-              ></v-text-field>
-              <p style="color: red" v-if="customMessageErr">
-                {{ customMessageErr }}
-              </p>
-
+          <v-text-field
+            variant="solo"
+            :rules="passwordRules"
+            label="รหัสผ่าน"
+            :disabled="isDisabled"
+            class="ml-2 mr-2 mt-3"
+            v-model="Form.Password"
+            :type="Form.CheckPass ? 'text' : 'password'"
+            :error-messages="serverErrorMessagesPassword"
+          ></v-text-field>
+          <p
+            style="
+              color: firebrick;
+              font-size: small;
+              text-align: start;
+              margin-left: 2%;
+              margin-top: -15px;
+            "
+            v-if="customMessageErr"
+          >
+            {{ customMessageErr }}
+          </p>
 
           <div class="d-flex">
             <v-checkbox
@@ -67,17 +82,16 @@
             justify="center"
             align="center"
           >
-              <v-btn
-                size="x-large"
-                @click="handleLoginClicked"
-                :disabled="isDisabled"
-                block
-                class="text-capitalize rounded-pill"
-                color="red"
-              >
+            <v-btn
+              size="x-large"
+              @click="handleLoginClicked"
+              :disabled="isDisabled"
+              block
+              class="text-capitalize rounded-pill"
+              color="red"
+            >
               เข้าสู่ระบบ
-              </v-btn>
-
+            </v-btn>
           </div>
         </v-card-item>
       </v-card>
@@ -99,9 +113,15 @@ const registreForm = ref(null);
 const textRequired = [(v) => !!v || "กรุณากรอกข้อมูลให้ครบถ้วน"];
 const passwordRules = [
   (v) => !!v || "กรุณากรอกรหัสผ่าน",
-  (v) => v.length >= 8 || "รหัสผ่านไม่ตรงตามเงื่อนไข กรุณาตรวจสอบความยาวตัวอักษร ตัวเลข หรือ สัญลักษณ์",
-  (v) => /[A-Z]/.test(v) || "รหัสผ่านไม่ตรงตามเงื่อนไข กรุณาตรวจสอบความยาวตัวอักษร ตัวเลข หรือ สัญลักษณ์",
-  (v) => /[a-z]/.test(v) || "รหัสผ่านไม่ตรงตามเงื่อนไข กรุณาตรวจสอบความยาวตัวอักษร ตัวเลข หรือ สัญลักษณ์",
+  (v) =>
+    v.length >= 8 ||
+    "รหัสผ่านไม่ตรงตามเงื่อนไข กรุณาตรวจสอบความยาวตัวอักษร ตัวเลข หรือ สัญลักษณ์",
+  (v) =>
+    /[A-Z]/.test(v) ||
+    "รหัสผ่านไม่ตรงตามเงื่อนไข กรุณาตรวจสอบความยาวตัวอักษร ตัวเลข หรือ สัญลักษณ์",
+  (v) =>
+    /[a-z]/.test(v) ||
+    "รหัสผ่านไม่ตรงตามเงื่อนไข กรุณาตรวจสอบความยาวตัวอักษร ตัวเลข หรือ สัญลักษณ์",
   (v) => /[0-9]/.test(v) || "รหัสผ่านต้องมีอย่างน้อยหนึ่งตัวเลข",
   (v) => /[\W_]/.test(v) || "รหัสผ่านต้องมีอย่างน้อยหนึ่งสัญลักษณ์",
 ];
@@ -138,17 +158,19 @@ const updateTimers = () => {
     setTimeout(() => {
       totalSeconds.value--;
       formattedTime.value = formatTime(totalSeconds.value);
-      customMessageErr.value = `กรอกรหัสผ่านไม่ถูกต้องเกินกำหนด สามารถกรอกได้ใหม่อีก (${formattedTime.value}) นาที`;
+      serverErrorMessagesPassword.value = "";
+      customMessageErr.value = `คุณกรอกรหัสผ่านไม่ถูกต้องเกินกำหนด สามารถกรอกรหัสได้ใหม่ในอีก (${formattedTime.value}) นาที`;
+      // serverErrorMessages.value = `กรอกรหัสผ่านไม่ถูกต้องเกินกำหนด สามารถกรอกได้ใหม่อีก (${formattedTime.value}) นาที`;
       updateTimers();
     }, 1000);
   } else {
     counter.value = 0;
     customMessageErr.value = "";
+    // serverErrorMessages.value = "";
     formattedTime.value = "Time's up!";
     isDisabled.value = false;
   }
 };
-
 
 const onLoadCheckExistingUsername = async () => {
   try {
@@ -203,8 +225,9 @@ const login = async () => {
       }
       const val = e.response.data;
       serverErrorMessagesPassword.value = [val?.data.error];
-      if(val?.data.error == "Invalid Incorrect username or password..")
-      serverErrorMessagesPassword.value = "รหัสผ่านไม่ถูกต้อง กรุณากรอกใหม่อีกครั้ง"
+      if (val?.data.error == "Invalid Incorrect username or password..")
+        serverErrorMessagesPassword.value =
+          "รหัสผ่านไม่ถูกต้อง กรุณากรอกใหม่อีกครั้ง";
       emit("on-login-failed", val?.data.error);
       return;
     }
@@ -217,7 +240,6 @@ onBeforeMount(() => {
   Form.value.Email = urlParams.get("accessible_email");
   console.log(urlParams.get("accessible_email"));
 });
-
 </script>
 
 <style scoped>
@@ -226,7 +248,7 @@ onBeforeMount(() => {
   color: black;
 }
 
-.v-field{
+.v-field {
   box-shadow: rgba(100, 100, 111, 0.2) 0px 0px 6px 0px !important;
 }
 </style>
