@@ -1,9 +1,12 @@
 <template>
   <v-row dense>
     <v-col cols="12">
-      <v-card color="secondary" style="background-color: #ED1C24 !important; border-radius: 10px;">
-        <v-card-item style="height: 60px;">
-          <v-row align="center" justify="start"  dense >
+      <v-card
+        color="secondary"
+        style="background-color: #ed1c24 !important; border-radius: 10px"
+      >
+        <v-card-item style="height: 60px">
+          <v-row align="center" justify="start" dense>
             <v-col cols="1">
               <v-checkbox
                 hide-details
@@ -15,20 +18,81 @@
               ></v-checkbox>
             </v-col>
             <v-col cols="1" class="d-flex justify-start">
-              <h5>Created date</h5>
+              <strong
+                @click="sortByField('created_date')"
+                style="cursor: pointer; font-size: small; margin-top: 2px"
+              >
+                <v-icon>
+                  {{
+                    sortDirection === "created_date:desc"
+                      ? "mdi-arrow-up"
+                      : "mdi-arrow-down"
+                  }}
+                </v-icon>
+                Created date
+              </strong>
             </v-col>
             <v-col cols="2">
-              <h5>Case type</h5>
+              <strong
+                @click="sortByField('case_type')"
+                style="cursor: pointer; font-size: small"
+              >
+                <v-icon>
+                  {{
+                    sortDirection === "case_type:desc"
+                      ? "mdi-arrow-up"
+                      : "mdi-arrow-down"
+                  }}
+                </v-icon>
+                Case type
+              </strong>
             </v-col>
             <v-col cols="1">
-              <h5>Role</h5>
+              <strong
+                @click="sortByField('role')"
+                style="cursor: pointer; font-size: small"
+              >
+                <v-icon>
+                  {{
+                    sortDirection === "role:desc"
+                      ? "mdi-arrow-up"
+                      : "mdi-arrow-down"
+                  }}
+                </v-icon>
+                Role
+              </strong>
             </v-col>
             <v-col cols="3">
-              <h5>Name</h5>
+              <strong
+                @click="sortByField('name_en')"
+                style="cursor: pointer; font-size: small"
+              >
+                <v-icon>
+                  {{
+                    sortDirection === "name_en:desc"
+                      ? "mdi-arrow-up"
+                      : "mdi-arrow-down"
+                  }}
+                </v-icon>
+                Name
+              </strong>
             </v-col>
             <v-col cols="3">
-              <h5>Contact Owner</h5>
+              <strong
+                @click="sortByField('contact_owner')"
+                style="cursor: pointer; font-size: small"
+              >
+                <v-icon>
+                  {{
+                    sortDirection === "contact_owner:desc"
+                      ? "mdi-arrow-up"
+                      : "mdi-arrow-down"
+                  }}
+                </v-icon>
+                Contact Owner
+              </strong>
             </v-col>
+
             <v-col cols="1"> </v-col>
           </v-row>
         </v-card-item>
@@ -41,15 +105,13 @@
         dense
         @click="handleItemClick(item)"
         class="mt-3"
-
       >
         <v-alert
           :style="{ borderLeft: borderLeft }"
           color="white"
           elevation="1"
           class="mt-2"
-          style="border-radius: 10px !important; "
-
+          style="border-radius: 10px !important"
         >
           <v-row dense>
             <v-col cols="1">
@@ -72,7 +134,7 @@
             </v-col>
             <v-col cols="2" align-self="center">
               <v-chip
-              style="border-radius: 8px; box-shadow: none;"
+                style="border-radius: 8px; box-shadow: none"
                 color="secondary"
                 v-if="item.account_task_action === 'New Register'"
                 variant="elevated"
@@ -130,14 +192,15 @@
               </h4>
             </v-col>
             <v-col cols="3" align-self="center">
-              <v-chip color="secondary" label style="border-radius: 15px;">
+              <v-chip color="secondary" label style="border-radius: 15px">
                 {{ item.contact_owner?.email }}
               </v-chip>
               <br />
-              <div style="font-size: 14px;">
+              <div style="font-size: 14px">
                 <strong>{{ item.contact_owner?.team?.name_en }}</strong>
-              /<span class="text-grey">While convenient, the color pack</span>/
-              <span class="text-grey">Commentail</span>
+                /<span class="text-grey">While convenient, the color pack</span
+                >/
+                <span class="text-grey">Commentail</span>
               </div>
             </v-col>
             <v-col cols="1" align-self="center" v-if="menuItems.length > 0">
@@ -163,7 +226,7 @@
                         v-bind="props"
                         variant="text"
                         :prepend-icon="menu.icon"
-                        style="background-color: transparent;"
+                        style="background-color: transparent"
                       >
                         {{ menu.title }}
                       </v-btn>
@@ -185,134 +248,7 @@ import convertColorNameToRGB from "@/utils/util.js";
 const props = defineProps({
   items: {
     type: Array,
-    default: () => [
-      {
-        id: 1,
-        account_task_action: "Extend Company",
-        form_number: "112312312",
-        account_task_state: "NewTasks",
-        contact_owner: {
-          id: 1,
-          email: "test@email.com",
-          firstname: "Test",
-          lastname: "System",
-          is_register: true,
-          is_active: true,
-          member_type: {
-            id: 1,
-            name: "Employee",
-          },
-          team: {
-            name_th: "การตลาด",
-            name_en: "Marketing",
-            is_active: true,
-            company: {
-              id: 2,
-              company_code: "3000",
-              name_th: "บริษัท เฟรเซอร์ส พร็อพเพอร์ตี้ โฮม (ประเทศไทย) จำกัด",
-              name_en: "Frasers Property (Thailand) Public Company Limited",
-              taxpayer_id_number: "1234567890123",
-              address_th:
-                "944 มิตรทาวน์ ออฟฟิศ ทาวเวอร์ ชั้นที่ 20 ถนนพระราม 4 แขวงวังใหม่ เขตปทุมวัน กรุงเทพมหานคร 10330",
-              address_en:
-                "944 Mitrtown Office Tower, 22nd- 23rd Floor, Rama 4 Road, Wangmai Subdistrict, Pathumwan District, Bangkok 10330",
-              business_unit: {
-                id: 2,
-                name_th: "Residential",
-                name_en: "Residential",
-                purchasing_organization: "GL00",
-                corporation: {
-                  id: 1,
-                  name_th:
-                    "บริษัท เฟรเซอร์ส พร็อพเพอร์ตี้ โฮม (ประเทศไทย) จำกัด",
-                  name_en: "Frasers Property (Thailand) Public Company Limited",
-                },
-              },
-              created_at: "2023-10-04T15:40:00",
-              created_user_id: 1,
-              updated_at: "2023-10-04T15:40:00",
-              updated_user_id: 1,
-            },
-          },
-          role: {
-            id: 1,
-            name: "admin",
-            description: "",
-          },
-          created_at: "2023-10-04T15:40:00",
-          created_user_id: 1,
-          updated_at: "2023-10-04T15:40:00",
-          updated_user_id: 1,
-        },
-        created_at: "2023-12-09T00:00:00Z",
-        created_user_id: 16,
-        updated_at: "2023-12-09T00:00:00Z",
-        updated_user_id: 16,
-      },
-      {
-        id: 2,
-        account_task_action: "Extend Company",
-        form_number: "112312312",
-        account_task_state: "NewTasks",
-        contact_owner: {
-          id: 1,
-          email: "test@email.com",
-          firstname: "Test",
-          lastname: "System",
-          is_register: true,
-          is_active: true,
-          member_type: {
-            id: 1,
-            name: "Employee",
-          },
-          team: {
-            name_th: "การตลาด",
-            name_en: "Marketing",
-            is_active: true,
-            company: {
-              id: 2,
-              company_code: "3000",
-              name_th: "บริษัท เฟรเซอร์ส พร็อพเพอร์ตี้ โฮม (ประเทศไทย) จำกัด",
-              name_en: "Frasers Property (Thailand) Public Company Limited",
-              taxpayer_id_number: "1234567890123",
-              address_th:
-                "944 มิตรทาวน์ ออฟฟิศ ทาวเวอร์ ชั้นที่ 20 ถนนพระราม 4 แขวงวังใหม่ เขตปทุมวัน กรุงเทพมหานคร 10330",
-              address_en:
-                "944 Mitrtown Office Tower, 22nd- 23rd Floor, Rama 4 Road, Wangmai Subdistrict, Pathumwan District, Bangkok 10330",
-              business_unit: {
-                id: 2,
-                name_th: "Residential",
-                name_en: "Residential",
-                purchasing_organization: "GL00",
-                corporation: {
-                  id: 1,
-                  name_th:
-                    "บริษัท เฟรเซอร์ส พร็อพเพอร์ตี้ โฮม (ประเทศไทย) จำกัด",
-                  name_en: "Frasers Property (Thailand) Public Company Limited",
-                },
-              },
-              created_at: "2023-10-04T15:40:00",
-              created_user_id: 1,
-              updated_at: "2023-10-04T15:40:00",
-              updated_user_id: 1,
-            },
-          },
-          role: {
-            id: 1,
-            name: "admin",
-            description: "",
-          },
-          created_at: "2023-10-04T15:40:00",
-          created_user_id: 1,
-          updated_at: "2023-10-04T15:40:00",
-          updated_user_id: 1,
-        },
-        created_at: "2023-12-09T00:00:00Z",
-        created_user_id: 16,
-        updated_at: "2023-12-09T00:00:00Z",
-        updated_user_id: 16,
-      },
-    ],
+    default: () => [],
   },
   colorCardAlert: {
     type: String, //success,warming,error
@@ -332,6 +268,16 @@ const props = defineProps({
 
 const is_check_all = ref(false);
 let is_item_check = ref([]);
+const sortDirection = ref("created_date:desc");
+
+const sortByField = (field) => {
+  if (sortDirection.value === `${field}:asc`) {
+    sortDirection.value = `${field}:asc`;
+  } else {
+    sortDirection.value = `${field}:desc`;
+  }
+  console.log(`Sorting by ${field}, direction: ${sortDirection.value}`);
+};
 
 watch(
   is_check_all,
@@ -387,7 +333,4 @@ const borderLeft = computed(() => {
 });
 </script>
 
-
-<style scoped>
-
-</style>
+<style scoped></style>

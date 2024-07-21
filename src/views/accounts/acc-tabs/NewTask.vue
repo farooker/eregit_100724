@@ -47,7 +47,7 @@ const isLoading = ref(true);
 const filter = ref({
   offset: 0,
   page: 1,
-  limit:8,
+  limit: 8,
   pageSize: 1,
 });
 
@@ -82,16 +82,16 @@ const getAccountTasksAll = async () => {
       filter.value.limit
     );
 
-    const headers = response.headers;
-    const itemsOffset = Number(headers["items-offset"]);
-    const itemsLimit = Number(headers["items-limit"]);
-    const itemsTotal = Number(headers["items-total"]);
-
-    filter.value.offset = itemsOffset;
-    filter.value.limit = itemsLimit;
-    filter.value.pageSize = paginationUtils.pageSize(itemsLimit, itemsTotal);
-
     if (response.data?.is_success) {
+      const headers = response.headers;
+      const itemsOffset = Number(headers["items-offset"]);
+      const itemsLimit = Number(headers["items-limit"]);
+      const itemsTotal = Number(headers["items-total"]);
+
+      filter.value.offset = itemsOffset;
+      filter.value.limit = itemsLimit;
+      filter.value.pageSize = paginationUtils.pageSize(itemsLimit, itemsTotal);
+
       itemsOfAccountTask.value = response.data?.data;
       // console.log("itemsOfAccountTask.value", itemsOfAccountTask.value)
     }

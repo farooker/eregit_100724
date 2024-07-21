@@ -6,7 +6,7 @@
         style="background-color: #ed1c24 !important; border-radius: 10px"
       >
         <v-card-item>
-          <v-row align="center" justify="start" dense>
+          <!-- <v-row align="center" justify="start" dense>
             <v-col
               class="ml-1 mt-1"
               v-for="header in props.headers"
@@ -14,6 +14,83 @@
               :cols="header.width"
             >
               <h4>{{ header.text }}</h4>
+            </v-col>
+          </v-row> -->
+          <v-row align="center" justify="start" dense>
+            <v-col cols="1" class="d-flex justify-start">
+              <strong
+                @click="sortByField('created_date')"
+                style="cursor: pointer; font-size: small; margin-top: 2px"
+              >
+                <v-icon>
+                  {{
+                    sortDirection === "created_date:desc"
+                      ? "mdi-arrow-up"
+                      : "mdi-arrow-down"
+                  }}
+                </v-icon>
+                Created date
+              </strong>
+            </v-col>
+            <v-col cols="2">
+              <strong
+                @click="sortByField('case_type')"
+                style="cursor: pointer; font-size: small"
+              >
+                <v-icon>
+                  {{
+                    sortDirection === "case_type:desc"
+                      ? "mdi-arrow-up"
+                      : "mdi-arrow-down"
+                  }}
+                </v-icon>
+                Case type
+              </strong>
+            </v-col>
+            <v-col cols="1">
+              <strong
+                @click="sortByField('role')"
+                style="cursor: pointer; font-size: small"
+              >
+                <v-icon>
+                  {{
+                    sortDirection === "role:desc"
+                      ? "mdi-arrow-up"
+                      : "mdi-arrow-down"
+                  }}
+                </v-icon>
+                Role
+              </strong>
+            </v-col>
+            <v-col cols="3">
+              <strong
+                @click="sortByField('name_en')"
+                style="cursor: pointer; font-size: small"
+              >
+                <v-icon>
+                  {{
+                    sortDirection === "name_en:desc"
+                      ? "mdi-arrow-up"
+                      : "mdi-arrow-down"
+                  }}
+                </v-icon>
+                Name
+              </strong>
+            </v-col>
+            <v-col cols="3">
+              <strong
+                @click="sortByField('contact_owner')"
+                style="cursor: pointer; font-size: small"
+              >
+                <v-icon>
+                  {{
+                    sortDirection === "contact_owner:desc"
+                      ? "mdi-arrow-up"
+                      : "mdi-arrow-down"
+                  }}
+                </v-icon>
+                Contact Owner
+              </strong>
             </v-col>
           </v-row>
         </v-card-item>
@@ -88,8 +165,8 @@
                 New Tasks
               </v-chip>
             </v-col>
-            <v-col cols="2" align-self="center">
-              <h4  class="truncate">
+            <v-col cols="1" align-self="center">
+              <h4 class="truncate">
                 {{ item.business_partner_role?.name }}
               </h4>
             </v-col>
@@ -104,7 +181,9 @@
               </v-chip>
               <br />
               <div style="font-size: 14px">
-                <strong  class="truncate">{{ item.contact_owner?.team?.name_en }}</strong>
+                <strong class="truncate">{{
+                  item.contact_owner?.team?.name_en
+                }}</strong>
                 /<span class="text-grey">While convenient, the color pack</span
                 >/
                 <span class="text-grey">Commentail</span>
@@ -141,7 +220,7 @@
 </template>
 
 <script setup>
-import { computed } from "vue";
+import { computed, ref } from "vue";
 import convertColorNameToRGB from "@/utils/util.js";
 const props = defineProps({
   headers: {
@@ -161,136 +240,11 @@ const props = defineProps({
   },
   items: {
     type: Array,
-    default: () => [
-      {
-        id: 1,
-        account_task_action: "Extend Company",
-        form_number: "112312312",
-        account_task_state: "NewTasks",
-        contact_owner: {
-          id: 1,
-          email: "test@email.com",
-          firstname: "Test",
-          lastname: "System",
-          is_register: true,
-          is_active: true,
-          member_type: {
-            id: 1,
-            name: "Employee",
-          },
-          team: {
-            name_th: "การตลาด",
-            name_en: "Marketing",
-            is_active: true,
-            company: {
-              id: 2,
-              company_code: "3000",
-              name_th: "บริษัท เฟรเซอร์ส พร็อพเพอร์ตี้ โฮม (ประเทศไทย) จำกัด",
-              name_en: "Frasers Property (Thailand) Public Company Limited",
-              taxpayer_id_number: "1234567890123",
-              address_th:
-                "944 มิตรทาวน์ ออฟฟิศ ทาวเวอร์ ชั้นที่ 20 ถนนพระราม 4 แขวงวังใหม่ เขตปทุมวัน กรุงเทพมหานคร 10330",
-              address_en:
-                "944 Mitrtown Office Tower, 22nd- 23rd Floor, Rama 4 Road, Wangmai Subdistrict, Pathumwan District, Bangkok 10330",
-              business_unit: {
-                id: 2,
-                name_th: "Residential",
-                name_en: "Residential",
-                purchasing_organization: "GL00",
-                corporation: {
-                  id: 1,
-                  name_th:
-                    "บริษัท เฟรเซอร์ส พร็อพเพอร์ตี้ โฮม (ประเทศไทย) จำกัด",
-                  name_en: "Frasers Property (Thailand) Public Company Limited",
-                },
-              },
-              created_at: "2023-10-04T15:40:00",
-              created_user_id: 1,
-              updated_at: "2023-10-04T15:40:00",
-              updated_user_id: 1,
-            },
-          },
-          role: {
-            id: 1,
-            name: "admin",
-            description: "",
-          },
-          created_at: "2023-10-04T15:40:00",
-          created_user_id: 1,
-          updated_at: "2023-10-04T15:40:00",
-          updated_user_id: 1,
-        },
-        created_at: "2023-12-09T00:00:00Z",
-        created_user_id: 16,
-        updated_at: "2023-12-09T00:00:00Z",
-        updated_user_id: 16,
-      },
-      {
-        id: 2,
-        account_task_action: "Extend Company",
-        form_number: "112312312",
-        account_task_state: "NewTasks",
-        contact_owner: {
-          id: 1,
-          email: "test@email.com",
-          firstname: "Test",
-          lastname: "System",
-          is_register: true,
-          is_active: true,
-          member_type: {
-            id: 1,
-            name: "Employee",
-          },
-          team: {
-            name_th: "การตลาด",
-            name_en: "Marketing",
-            is_active: true,
-            company: {
-              id: 2,
-              company_code: "3000",
-              name_th: "บริษัท เฟรเซอร์ส พร็อพเพอร์ตี้ โฮม (ประเทศไทย) จำกัด",
-              name_en: "Frasers Property (Thailand) Public Company Limited",
-              taxpayer_id_number: "1234567890123",
-              address_th:
-                "944 มิตรทาวน์ ออฟฟิศ ทาวเวอร์ ชั้นที่ 20 ถนนพระราม 4 แขวงวังใหม่ เขตปทุมวัน กรุงเทพมหานคร 10330",
-              address_en:
-                "944 Mitrtown Office Tower, 22nd- 23rd Floor, Rama 4 Road, Wangmai Subdistrict, Pathumwan District, Bangkok 10330",
-              business_unit: {
-                id: 2,
-                name_th: "Residential",
-                name_en: "Residential",
-                purchasing_organization: "GL00",
-                corporation: {
-                  id: 1,
-                  name_th:
-                    "บริษัท เฟรเซอร์ส พร็อพเพอร์ตี้ โฮม (ประเทศไทย) จำกัด",
-                  name_en: "Frasers Property (Thailand) Public Company Limited",
-                },
-              },
-              created_at: "2023-10-04T15:40:00",
-              created_user_id: 1,
-              updated_at: "2023-10-04T15:40:00",
-              updated_user_id: 1,
-            },
-          },
-          role: {
-            id: 1,
-            name: "admin",
-            description: "",
-          },
-          created_at: "2023-10-04T15:40:00",
-          created_user_id: 1,
-          updated_at: "2023-10-04T15:40:00",
-          updated_user_id: 1,
-        },
-        created_at: "2023-12-09T00:00:00Z",
-        created_user_id: 16,
-        updated_at: "2023-12-09T00:00:00Z",
-        updated_user_id: 16,
-      },
-    ],
+    default: () => [],
   },
 });
+
+const sortDirection = ref("created_date:desc");
 
 const emit = defineEmits(["handle-reject-clicked", "handle-item-click"]);
 
@@ -300,6 +254,15 @@ const handleReject = (id) => {
 
 const handleItemClick = (item) => {
   emit("handle-item-click", item);
+};
+
+const sortByField = (field) => {
+  if (sortDirection.value === `${field}:asc`) {
+    sortDirection.value = `${field}:asc`;
+  } else {
+    sortDirection.value = `${field}:desc`;
+  }
+  console.log(`Sorting by ${field}, direction: ${sortDirection.value}`);
 };
 
 const getDateString = (dateString) => {

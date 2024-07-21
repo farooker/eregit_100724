@@ -117,16 +117,16 @@ const getAccountRejectAll = async () => {
       filter.value.limit
     );
 
-    const headers = response.headers;
-    const itemsOffset = Number(headers["items-offset"]);
-    const itemsLimit = Number(headers["items-limit"]);
-    const itemsTotal = Number(headers["items-total"]);
-
-    filter.value.offset = itemsOffset;
-    filter.value.limit = itemsLimit;
-    filter.value.pageSize = paginationUtils.pageSize(itemsLimit, itemsTotal);
-
     if (response.data?.is_success) {
+      const headers = response.headers;
+      const itemsOffset = Number(headers["items-offset"]);
+      const itemsLimit = Number(headers["items-limit"]);
+      const itemsTotal = Number(headers["items-total"]);
+
+      filter.value.offset = itemsOffset;
+      filter.value.limit = itemsLimit;
+      filter.value.pageSize = paginationUtils.pageSize(itemsLimit, itemsTotal);
+
       content.value.items = response.data?.data;
     }
   } catch (e) {
