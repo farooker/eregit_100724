@@ -13,6 +13,7 @@
           :menu-items="[]"
           @handle-menu-clicked="onHandleMenuClicked"
           @handle-selection="onHandleSelection"
+          @handle-sort-by="onHAndleSortBy"
         />
         <v-progress-linear
           color="red"
@@ -108,13 +109,14 @@ const handlePaginationEvent = (page) => {
   filter.value.offset = paginationUtils.pageOffset(page, filter.value.limit);
 };
 
-const getAccountRejectAll = async () => {
+const getAccountRejectAll = async (sortBy = "created_at:desc") => {
   setLoading();
   try {
     const response = await AccountService.getAccountRejectAll(
       "Reject",
       filter.value.offset,
-      filter.value.limit
+      filter.value.limit,
+      sortBy
     );
 
     if (response.data?.is_success) {
@@ -139,6 +141,10 @@ const getAccountRejectAll = async () => {
   } finally {
     leaveLoading();
   }
+};
+
+const onHAndleSortBy = async (sortBy) => {
+  await getAccountRejectAll(sortBy);
 };
 
 // const onHandleItemClick = (item) => {
