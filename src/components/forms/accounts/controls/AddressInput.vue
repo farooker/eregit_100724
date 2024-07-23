@@ -217,9 +217,7 @@ const rules_valid = ref({
   ],
   name: [
     (v) => !v || v.length <= 35 || "*กรุณากรอกชื่อไม่เกิน 35 ตัวอักษร",
-
   ],
-
   addressrequire: [
     (v) => (v != null && v.length <= 60) || "*กรุณากรอกชื่อไม่เกิน 60 ตัวอักษร",
 
