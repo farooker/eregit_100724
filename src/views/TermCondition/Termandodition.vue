@@ -171,8 +171,7 @@ onMounted(async () => {
   if (
     term_condition_id.value == current_term_condition_id.value &&
     privacy_policy_id.value == current_privacy_id.value
-  )
-  {
+  ) {
     console.log("coditionTerm");
     switch (store.sessionInfo.actions) {
       case 1:
@@ -181,19 +180,19 @@ onMounted(async () => {
       case 2:
         router.push({
           name: store.sessionInfo.link_to,
-          query: store.sessionInfo.data,
+          query: { form_number: store.sessionInfo.data },
         });
         break;
       case 3:
         router.push({
           name: store.sessionInfo.link_to,
-          query: store.sessionInfo.data,
+          query: { form_number: store.sessionInfo.data },
         });
         break;
       case 4:
         router.push({
           name: store.sessionInfo.link_to,
-          query: store.sessionInfo.data,
+          query: { form_number: store.sessionInfo.data },
         });
         break;
     }
@@ -274,7 +273,7 @@ const getCurrentTermsAll = async () => {
       // pdf_url.value = response.data.data[0]?.file_url;
       current_term_condition_id.value = response?.data?.data?.id ?? null;
       // console.log("current_term_condition_id", current_term_condition_id.value);
-      current_term_condition_url.value = response?.data?.data?.data?? null;
+      current_term_condition_url.value = response?.data?.data?.data ?? null;
       //   }
     } else {
       const val = e.response.data;
@@ -369,7 +368,7 @@ const createPrivacyPolicyAcceptance = async () => {
     );
     if (response.data?.is_success) {
       // rsp_survey_result_id.value = response.data.data.id;
-      console.log("Save 222");
+      // console.log("Save 222");
       //   switch (store.sessionInfo.actions) {
       //   case 1:
       //     router.push({ name: store.sessionInfo.link_to });
@@ -392,7 +391,6 @@ const createPrivacyPolicyAcceptance = async () => {
       //       query: store.sessionInfo.data,
       //     });
       //     break;
-
       // }
     }
   } catch (e) {
@@ -454,9 +452,7 @@ const handleConfirm = async () => {
         // console.log("ooooooooooo", store.sessionInfo);
         // console.log("term_condition_id.value", term_condition_id.value)
         // console.log("current_term_condition_id.value", current_term_condition_id.value)
-        if (
-          privacy_policy_id.value == current_privacy_id.value
-        ) {
+        if (privacy_policy_id.value == current_privacy_id.value) {
           store.getsessionlinkstore();
           console.log("coditionTerm", store.sessionInfo);
           switch (store.sessionInfo.actions) {
@@ -472,13 +468,13 @@ const handleConfirm = async () => {
             case 3:
               router.push({
                 name: store.sessionInfo.link_to,
-                 query: { form_number: store.sessionInfo.data },
+                query: { form_number: store.sessionInfo.data },
               });
               break;
             case 4:
               router.push({
                 name: store.sessionInfo.link_to,
-                 query: { form_number: store.sessionInfo.data },
+                query: { form_number: store.sessionInfo.data },
               });
               break;
           }
@@ -486,7 +482,6 @@ const handleConfirm = async () => {
           location.reload();
           store.getsessionlinkstore();
         }
-
       }
     } catch (e) {
       if (e.response && e.response.data) {
@@ -510,7 +505,7 @@ const handleConfirmPolicy = async () => {
     "current_term_condition_id.value",
     current_term_condition_id.value
   );
-  if (privacy_policy_id?.value !== current_privacy_id.value ) {
+  if (privacy_policy_id?.value !== current_privacy_id.value) {
     // console.log("term_condition_id.value", term_condition_id.value);
     // console.log(
     //   "current_term_condition_id.value",
@@ -524,9 +519,7 @@ const handleConfirmPolicy = async () => {
         // console.log("privacy_policy_id", privacy_policy_id.value);
         // console.log("term_condition_id.value", term_condition_id.value)
         // console.log("current_term_condition_id.value", current_term_condition_id.value)
-        if (
-          term_condition_id.value == current_term_condition_id.value
-        ) {
+        if (term_condition_id.value == current_term_condition_id.value) {
           store.getsessionlinkstore();
           console.log("coditionTerm", store.sessionInfo);
           switch (store.sessionInfo.actions) {
@@ -542,13 +535,13 @@ const handleConfirmPolicy = async () => {
             case 3:
               router.push({
                 name: store.sessionInfo.link_to,
-                 query: { form_number: store.sessionInfo.data },
+                query: { form_number: store.sessionInfo.data },
               });
               break;
             case 4:
               router.push({
                 name: store.sessionInfo.link_to,
-                 query: { form_number: store.sessionInfo.data },
+                query: { form_number: store.sessionInfo.data },
               });
               break;
           }

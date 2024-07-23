@@ -208,6 +208,7 @@ const rules_valid = ref({
   ],
   namerequire: [
     (v) => (v != null && v.length <= 35) || "*กรุณากรอกชื่อไม่เกิน 35 ตัวอักษร",
+
     (v) =>
       (v != null &&
         v.trim().length > 0 &&
@@ -216,12 +217,14 @@ const rules_valid = ref({
   ],
   name: [
     (v) => !v || v.length <= 35 || "*กรุณากรอกชื่อไม่เกิน 35 ตัวอักษร",
-    (v) => !v || v.trim().length > 0 || "*กรุณากรอกข้อมูลให้ถูกต้อง",
   ],
   addressrequire: [
     (v) => (v != null && v.length <= 60) || "*กรุณากรอกชื่อไม่เกิน 60 ตัวอักษร",
+
     (v) =>
-      (v != null && v.trim().length > 0 && /^[^\s](.*[^\s])?$/.test(v)) ||
+      (v != null &&
+        v.trim().length > 0 &&
+        /^[^\s](.*[^\s])?$/.test(v.trim())) ||
       "* กรุณากรอกข้อมูลให้ถูกต้อง",
   ],
   address2: [

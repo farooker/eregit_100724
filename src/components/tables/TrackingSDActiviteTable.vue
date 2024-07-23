@@ -132,7 +132,7 @@
                 >
               </v-chip>
               <p
-                class="mt-2 text-grey"
+                class="mt-2 text-grey"  
                 v-if="
                   i.rsp?.training?.status.toString().toLowerCase() ==
                   'completed'

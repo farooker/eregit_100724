@@ -107,7 +107,7 @@ const leaveLoading = () => {
 const filter = ref({
   offset: 0,
   page: 1,
-  limit: 8,
+  limit: 20,
   pageSize: 1,
 });
 
