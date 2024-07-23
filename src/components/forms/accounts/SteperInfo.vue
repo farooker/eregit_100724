@@ -7,7 +7,7 @@
     </v-row>
   </v-app-bar>
   <div>
-    {{ props.registerFormDetail.account_information_form.account_business_partner_type_id }}
+    <!-- {{ props.registerFormDetail.account_information_form.account_business_partner_type_id }} -->
     <v-row dense>
       <v-col cols="12">
         <v-form ref="formOne">

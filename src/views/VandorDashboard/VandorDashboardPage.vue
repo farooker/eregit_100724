@@ -14,7 +14,7 @@
       >
         <v-row>
           <v-col cols="auto">
-            <h3 class="mt-3" style="color: #9e9e9e">My Tasks</h3>
+            <h3 class="mt-3" style="color: #9e9e9e">Profile</h3>Profile
           </v-col>
           <v-col cols="12">
             <v-divider class="mt-3 mb-2 mt-8 mr-5 mb-6"></v-divider>
@@ -25,7 +25,7 @@
       <div v-else>
         <v-row>
           <v-col cols="auto">
-            <h3 class="mt-3" style="color: #9e9e9e">Profile</h3>
+            <h3 class="mt-3" style="color: #9e9e9e">My Tasks</h3>
           </v-col>
           <v-col cols="12">
             <v-divider class="mt-3 mb-2 mt-8 mr-5 mb-6"></v-divider>

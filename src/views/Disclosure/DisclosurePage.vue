@@ -414,11 +414,11 @@ const formatDate = () => {
   const date = new Date(); // Current date and time
   const day = date.getDate().toString().padStart(2, "0"); // Day in dd format
   const month = (date.getMonth() + 1).toString().padStart(2, "0"); // Month in MM format
-  const year = date.getFullYear(); // Year in yyyy format
+  const year = (date.getFullYear() % 100).toString().padStart(2, "0"); // Last two digits of the year in yy format
   const hours = date.getHours().toString().padStart(2, "0"); // Hours in hh format
   const minutes = date.getMinutes().toString().padStart(2, "0"); // Minutes in mm format
 
-  return `${day}-${month}-${year} ${hours}:${minutes}`;
+  return `${day}/${month}/${year} ${hours}:${minutes}`;
 };
 const createDocumentBody = ref([]);
 

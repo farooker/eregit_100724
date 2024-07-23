@@ -354,11 +354,13 @@
                   </v-row>
                 </v-col>
                 <v-divider vertical></v-divider>
+
                 <v-col cols="12" md="4">
                   <v-row dense class="pa-10">
                     <v-col cols="12">
                       <v-btn
                         block
+                        :disabled="true"
                         class="text-capitalize rounded-pill"
                         color="blue-darken-2"
                         :to="{
@@ -372,6 +374,7 @@
                     <v-col cols="12">
                       <v-btn
                         block
+                        :disabled="true"
                         :to="{
                           name: 'ExtendCompany',
                           query: {
@@ -386,6 +389,7 @@
                     <v-col cols="12">
                       <v-btn
                         block
+                        :disabled="true"
                         to="/BusinessPartner/ExtendRole"
                         class="text-capitalize rounded-pill"
                         color="green-darken-4"
@@ -395,6 +399,7 @@
                     <v-col cols="12">
                       <v-btn
                         block
+                        :disabled="true"
                         :to="{
                           name: 'AttachedDocument',
                           params: {

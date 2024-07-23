@@ -829,6 +829,9 @@ const data_input = ref({
     pyment_term_selection: null,
     payment_terms_selection: null,
   },
+  vander_info: {
+    pa_yee_in_doc : null
+  },
   more_data_two: {
     subject_wht: {
       1: null,
@@ -1019,17 +1022,17 @@ watchEffect(async () => {
   // if (itemReconcilation.value.length == 0 && props.typeForm)
   //   await getAccountReconciliation(props.typeForm);
 
-  const Bpg = itemsAccountBusinessPartnerType.value.find(
-    (el) => el.id == props.BusinessPartnerGroup
-  );
+  // const Bpg = itemsAccountBusinessPartnerType.value.find(
+  //   (el) => el.id == props.BusinessPartnerGroup
+  // );
 
-  data_input.value.vander_info.pa_yee_in_doc = Bpg?.code;
+  // data_input.value.vander_info.pa_yee_in_doc = Bpg?.code;
 
   if (props.typeForm && props.typeForm != AccountType.AccountType.CUSTOMER) {
     let indexFind = itemsAccountBusinessPartnerType.value.findIndex(
       (el) => el.id == props.BusinessPartnerGroup
     );
-// data_input.value.vander_info.pa_yee_in_doc =null;
+data_input.value.vander_info.pa_yee_in_doc =null;
     data_input.value.more_data_two = {
       subject_wht: {
         1: null,
@@ -1072,7 +1075,18 @@ watchEffect(async () => {
       const itemFind = itemsAccountBusinessPartnerType.value[indexFind];
 
       switch (itemFind.code) {
+        case "BP01":
+          data_input.value.vander_info.pa_yee_in_doc = null;
+          break;
+          case "BP02":
+          data_input.value.vander_info.pa_yee_in_doc = null;
+          break;
+          case "BP03":
+          data_input.value.vander_info.pa_yee_in_doc = "x";
+
+          break;
         case "BP04":
+        data_input.value.vander_info.pa_yee_in_doc = "x";
           data_input.value.more_data_two.with_tax_type["1"] = "04";
           data_input.value.more_data_two.with_tax_type["2"] = "05";
           data_input.value.more_data_two.with_tax_type["3"] = "06";
@@ -1086,6 +1100,7 @@ watchEffect(async () => {
           data_input.value.more_data_two.subject_wht["3"] = "X";
           break;
         case "BP05":
+        data_input.value.vander_info.pa_yee_in_doc = "x";
           data_input.value.more_data_two.with_tax_type["2"] = null;
           data_input.value.more_data_two.with_tax_type["1"] = null;
           data_input.value.more_data_two.subject_wht["1"] = null;

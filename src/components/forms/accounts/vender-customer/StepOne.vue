@@ -408,7 +408,7 @@ const data_input = ref({
       props.register_type != AccountType.AccountType.CUSTOMER
         ? "FLVN00X"
         : "FLCU00",
-    bp_type_selection: Number(props.registerFormDetail.account_information_form.account_business_partner_type_id),
+    bp_type_selection: Number(props.registerFormDetail?.account_information_form?.account_business_partner_type_id?? null),
     naturel_person: props.isNaturePerson ? "X" : null,
     tax_catega: props.taxCetagory,
     tax_number: "",

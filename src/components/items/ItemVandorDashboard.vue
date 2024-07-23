@@ -100,7 +100,7 @@
                           {{
                                 '-'
                           }}</strong
-                        >  
+                        >
                         </div>
                       </div>
                     </v-col>
@@ -260,7 +260,7 @@
                               successfulTime.rsp_survey ?? null
                             )
                           }}</strong
-                        >  
+                        >
                         </div>
                         <div v-else>
                           <strong class="font-weight-medium text-grey-lighten-1"
@@ -269,7 +269,7 @@
                           {{
                                 '-'
                           }}</strong
-                        >  
+                        >
                         </div>
                       </div>
                     </v-col>
@@ -796,7 +796,7 @@ const getRspVendorSatus = async (tax) => {
           console.log("completedEmail-->emailSurvey:",completed_email.value.email_survey)
         } else {
           return null;
-        } 
+        }
       }
       if(successfulTime.value.user_sign) {
 
@@ -813,7 +813,7 @@ const getRspVendorSatus = async (tax) => {
 
       }
 
-      
+
       // console.log("success_rsp_sueiokfkoaslfk", successfulTime?.value?.rsp_sign);
     }
 
