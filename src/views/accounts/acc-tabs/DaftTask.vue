@@ -7,6 +7,7 @@
           color-card-alert="warming"
           @handle-item-click="onHandleItemClick"
           @handle-reject-clicked="onHandleRejectClicked"
+          @handle-sort-by="onHAndleSortBy"
         />
         <v-progress-linear
           color="red"
@@ -73,14 +74,15 @@ const handlePaginationEvent = (page) => {
   getAccountDraftAll();
 };
 
-const getAccountDraftAll = async () => {
+const getAccountDraftAll = async (sortBy = "created_at:desc") => {
   setLoading();
   clearOldItem();
   try {
     const response = await AccountService.getAccountDraftAll(
       "Draft",
       filter.value.offset,
-      filter.value.limit
+      filter.value.limit,
+      sortBy
     );
 
     if (response.data?.is_success) {
@@ -106,6 +108,11 @@ const getAccountDraftAll = async () => {
     leaveLoading();
   }
 };
+
+const onHAndleSortBy = async (sortBy) => {
+  await getAccountDraftAll(sortBy);
+};
+
 const onHandleRejectClicked = async (id) => {
   if (
     !(await showDialog(

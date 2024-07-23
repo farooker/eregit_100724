@@ -19,12 +19,12 @@
           <v-row align="center" justify="start" dense>
             <v-col cols="1" class="d-flex justify-start">
               <strong
-                @click="sortByField('created_date')"
+                @click="sortByField('created_at')"
                 style="cursor: pointer; font-size: small; margin-top: 2px"
               >
                 <v-icon>
                   {{
-                    sortDirection === "created_date:desc"
+                    sortDirection === "created_at:desc"
                       ? "mdi-arrow-up"
                       : "mdi-arrow-down"
                   }}
@@ -244,9 +244,13 @@ const props = defineProps({
   },
 });
 
-const sortDirection = ref("created_date:desc");
+const sortDirection = ref("created_at:desc");
 
-const emit = defineEmits(["handle-reject-clicked", "handle-item-click"]);
+const emit = defineEmits([
+  "handle-reject-clicked",
+  "handle-item-click",
+  "handle-sort-by",
+]);
 
 const handleReject = (id) => {
   emit("handle-reject-clicked", id);
@@ -257,12 +261,16 @@ const handleItemClick = (item) => {
 };
 
 const sortByField = (field) => {
-  if (sortDirection.value === `${field}:asc`) {
-    sortDirection.value = `${field}:asc`;
+  if (sortDirection.value.startsWith(field)) {
+    sortDirection.value = sortDirection.value.endsWith(":asc")
+      ? `${field}:desc`
+      : `${field}:asc`;
   } else {
-    sortDirection.value = `${field}:desc`;
+    sortDirection.value = `${field}:asc`;
   }
+
   console.log(`Sorting by ${field}, direction: ${sortDirection.value}`);
+  emit("handle-sort-by", sortDirection.value);
 };
 
 const getDateString = (dateString) => {

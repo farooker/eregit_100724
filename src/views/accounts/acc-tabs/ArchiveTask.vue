@@ -31,6 +31,7 @@
           :menu-items="menu_items"
           @handle-menu-clicked="onHandleMenuClicked"
           @handle-selection="onHandleSelection"
+          @handle-sort-by="onHAndleSortBy"
         />
         <v-progress-linear
           color="red"
@@ -282,14 +283,15 @@ const clearOldItem = () => {
   content.value.items = [];
 };
 
-const getAccountArchiveAll = async () => {
+const getAccountArchiveAll = async (sortBy = "created_at:desc") => {
   setLoading();
   clearOldItem();
   try {
     const response = await AccountService.getAccountArchivetAll(
       "Archive",
       filter.value.offset,
-      filter.value.limit
+      filter.value.limit,
+      sortBy
     );
 
     if (response.data?.is_success) {
@@ -314,6 +316,10 @@ const getAccountArchiveAll = async () => {
   } finally {
     leaveLoading();
   }
+};
+
+const onHAndleSortBy = async (sortBy) => {
+  await getAccountArchiveAll(sortBy);
 };
 
 const onHandleSelection = (value) => {

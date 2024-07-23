@@ -7,6 +7,7 @@
           color-card-alert="error"
           @handle-reject-clicked="onHandleRejectClicked"
           @handle-item-click="onHandleItemClick"
+          @handle-sort-by="onHAndleSortBy"
         />
         <v-progress-linear
           color="red"
@@ -72,14 +73,15 @@ const clearOldItem = () => {
   itemsOfAccountTask.value = [];
 };
 
-const getAccountTasksAll = async () => {
+const getAccountTasksAll = async (sortBy = "created_date:desc") => {
   setLoading();
   clearOldItem();
   try {
     const response = await AccountService.getAccountTasksAll(
       "NewTasks",
       filter.value.offset,
-      filter.value.limit
+      filter.value.limit,
+      sortBy
     );
 
     if (response.data?.is_success) {
@@ -105,6 +107,10 @@ const getAccountTasksAll = async () => {
   } finally {
     leaveLoading();
   }
+};
+
+const onHAndleSortBy = async (sortBy) => {
+  await getAccountTasksAll(sortBy);
 };
 
 const onHandleRejectClicked = async (id) => {

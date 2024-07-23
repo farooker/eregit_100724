@@ -32,6 +32,7 @@
           color-card-alert="success"
           @handle-menu-clicked="onHandleMenuClicked"
           @handle-selection="onHandleSelection"
+          @handle-sort-by="onHAndleSortBy"
         />
         <v-progress-linear
           color="red"
@@ -284,14 +285,15 @@ const clearOldItem = () => {
   content.value.items = [];
 };
 
-const getAccountReadyToExportAll = async () => {
+const getAccountReadyToExportAll = async (sortBy = "created_at:desc") => {
   setLoading();
   clearOldItem();
   try {
     const response = await AccountService.getAccountReadyToExporttAll(
       "ReadyToExport",
       filter.value.offset,
-      filter.value.limit
+      filter.value.limit,
+      sortBy
     );
 
     if (response.data?.is_success) {
@@ -315,6 +317,10 @@ const getAccountReadyToExportAll = async () => {
   } finally {
     leaveLoading();
   }
+};
+
+const onHAndleSortBy = async (sortBy) => {
+  await getAccountReadyToExportAll(sortBy);
 };
 
 // const onHandleItemClick = (item) => {
