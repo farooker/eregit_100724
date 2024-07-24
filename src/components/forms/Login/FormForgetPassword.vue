@@ -28,7 +28,7 @@
               <h3 class="mb-5">ลืมรหัสผ่าน</h3>
             </v-card-title>
           </div>
-          <div class="text-center mt-5 ma-5">
+          <div class="text-center mt-5 ma-5 ">
             <h3>ระบบจะทำการส่ง Email ไปยัง</h3>
           </div>
           <v-text-field
@@ -57,11 +57,11 @@
               </v-btn>
             </v-col>
           </v-row>
-          <div  class="text-center mt-8 ml-5 mr-5">
+          <!-- <div  class="text-center mt-8 ml-5 mr-5">
             <span class="underline-on-hover text-secondary">
               ระบบทำการส่งอีเมลให้อีกครั้งแล้ว
             </span>
-          </div>
+          </div> -->
           <div class="text-center mt-0 ml-5 mr-5">
             <span>กรุณาคลิก Link ในอีเมล เพื่อทำการตั้งรหัสใหม่</span>
           </div>

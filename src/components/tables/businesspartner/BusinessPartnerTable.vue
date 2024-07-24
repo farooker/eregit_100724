@@ -357,7 +357,7 @@
 
                 <v-col cols="12" md="4">
                   <v-row dense class="pa-10">
-                    <v-col cols="12">
+                    <!-- <v-col cols="12">
                       <v-btn
                         block
                         :disabled="true"
@@ -370,8 +370,8 @@
                           },
                         }"
                       >Chang Info.</v-btn>
-                    </v-col>
-                    <v-col cols="12">
+                    </v-col> -->
+                    <!-- <v-col cols="12">
                       <v-btn
                         block
                         :disabled="true"
@@ -384,9 +384,9 @@
                         class="text-capitalize rounded-pill"
                         color="light-blue-accent-2"
                       >Extend Company</v-btn>
-                    </v-col>
+                    </v-col> -->
 
-                    <v-col cols="12">
+                    <!-- <v-col cols="12">
                       <v-btn
                         block
                         :disabled="true"
@@ -394,9 +394,9 @@
                         class="text-capitalize rounded-pill"
                         color="green-darken-4"
                       >Extend Role</v-btn>
-                    </v-col>
+                    </v-col> -->
                     <!-- {{ businessPartnerDetail }} -->
-                    <v-col cols="12">
+                    <!-- <v-col cols="12">
                       <v-btn
                         block
                         :disabled="true"
@@ -409,9 +409,11 @@
                         class="text-capitalize rounded-pill"
                         color="deep-purple-darken-3"
                       >Attached Documents</v-btn>
-                    </v-col>
+                    </v-col> -->
                   </v-row>
                 </v-col>
+
+
               </v-row>
             </v-card-item>
           </v-card>

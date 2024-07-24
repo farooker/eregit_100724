@@ -603,7 +603,9 @@ const getBanks = async () => {
     handlingErrorsMessage("unknown", e.message);
   }
 };
-
+// data_input.value.main_data.business_partner_gruop_selection == 0
+//   ? null
+//   : data_input.value.main_data.business_partner_gruop_selection;
 watch(
   data_input.value,
   (newValue) => {
@@ -637,3 +639,7 @@ margin-top: 3px;
     color: red;
 }
 </style>
+
+// data_input.value.main_data.business_partner_gruop_selection == 0
+//   ? null
+//   : data_input.value.main_data.business_partner_gruop_selection;

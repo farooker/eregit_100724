@@ -81,7 +81,6 @@
           </v-btn>
         </v-col>
       </v-row>
-      <!-- {{ content.items }} -->
       <BusinessPartnerTable
         class="mt-5"
         :items="content.items"

@@ -829,9 +829,6 @@ const data_input = ref({
     pyment_term_selection: null,
     payment_terms_selection: null,
   },
-  vander_info: {
-    pa_yee_in_doc : null
-  },
   more_data_two: {
     subject_wht: {
       1: null,

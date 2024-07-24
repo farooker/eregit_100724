@@ -28,10 +28,10 @@
 
           <div class="text-center mt-5 pa-5 ma-5">
             <h1>Supplier Qualification System</h1>
-            <h1>สร้างบัญชีผู้ใช้</h1>
+            <h1>สร้างรหัสผ่านใหม่</h1>
           </div>
           <v-row no-gutters>
-            <v-col><h2>อีเมลล์</h2></v-col>
+            <v-col><h2>อีเมล</h2></v-col>
 
             <v-col cols="12">
               <v-text-field

@@ -1,8 +1,8 @@
 <template>
   <ExceptionHandleDialog />
 
-  {{ email }}
-  {{ code }}
+  <!-- {{ email }}
+  {{ code }} -->
   <div style="background-color: lightgrey">
     <v-row align="center">
       <v-col cols="6">
@@ -101,6 +101,8 @@ const checkedUserExits = async () => {
     if (val === 404) {
       router.push({
         name: "SignUpPage",
+        // query: { email: email, bp_number: code, to :'VandorDashboardPage' },
+        query: { email: dataInput.value.Email },
       });
     }
   }

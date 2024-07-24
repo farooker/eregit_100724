@@ -426,7 +426,7 @@ watchEffect(async () => {
             ?.branch_contact_mobile_number_2,
         email:
           props.registerFormDetail.account_information_form
-            ?.branch_contact_email_3,
+            ?.branch_contact_email_2,
       });
     }
 
