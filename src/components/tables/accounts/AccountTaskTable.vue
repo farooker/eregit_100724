@@ -34,12 +34,12 @@
             </v-col>
             <v-col cols="2">
               <strong
-                @click="sortByField('case_type')"
+                @click="sortByField('account_task_action')"
                 style="cursor: pointer; font-size: small"
               >
                 <v-icon>
                   {{
-                    sortDirection === "case_type:desc"
+                    sortDirection === "account_task_action:desc"
                       ? "mdi-arrow-up"
                       : "mdi-arrow-down"
                   }}
@@ -54,7 +54,7 @@
               >
                 <v-icon>
                   {{
-                    sortDirection === "role:desc"
+                    sortDirection === "role:asc"
                       ? "mdi-arrow-up"
                       : "mdi-arrow-down"
                   }}
@@ -64,12 +64,12 @@
             </v-col>
             <v-col cols="3">
               <strong
-                @click="sortByField('name_en')"
+                @click="sortByField('business_partner_name')"
                 style="cursor: pointer; font-size: small"
               >
                 <v-icon>
                   {{
-                    sortDirection === "name_en:desc"
+                    sortDirection === "business_partner_name:desc"
                       ? "mdi-arrow-up"
                       : "mdi-arrow-down"
                   }}
@@ -287,7 +287,7 @@ const borderLeft = computed(() => {
 });
 </script>
 
-<style>
+<style scoped>
 .truncate {
   white-space: normal;
   overflow: hidden;

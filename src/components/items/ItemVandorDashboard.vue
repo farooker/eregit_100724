@@ -1,7 +1,4 @@
 <template>
-  <!-- {{ props.businessPartnerFormBpNumber?.business_partner_type?.do_rsp_activity ?? null }} -->
-  <!-- {{ props.businessPartnerProfile?.business_partner_type?.do_rsp_activity ?? null }}
-  {{ isRSPActivity }} -->
   <div
     v-if="
     props.checkItemDashboard.do_rsp_activity
@@ -47,16 +44,19 @@
                       <div>
                         <strong>Progress</strong>
                         <br />
-                        <!-- <v-chip
-                        label
-                         size="small"
-                        :color="onColor(satus[0]?.rsp?.policy?.status ?? null)"> -->
-                        <div v-if="satus[0]?.rsp?.policy?.status ?? null">
+                        <!-- <div v-if="satus[0]?.rsp?.policy?.status ?? null">
                           <strong
                           :class="onColor(satus[0]?.rsp?.policy?.status ?? null)"
                           >{{
                             satus[0]?.rsp?.policy?.status ?? null
                           }}</strong>
+                        </div> -->
+                        <div v-if="rspPolicyResule && rspPolicyResule.length !== 0">
+                          <strong
+                          class="text-green"
+                          >
+                          Completed
+                          </strong>
                         </div>
                         <div v-else>
                           <strong
@@ -66,22 +66,12 @@
                           </strong>
                         </div>
 
-
-
                       </div>
                     </v-col>
                     <v-col cols="12" md="6" class="pa-1">
                       <div>
                         <strong class="text-secondary">{{ completed_email.email_sign ?? '-' }}</strong>
                         <br />
-                        <!-- <strong class="font-weight-medium text-grey-lighten-1"
-                          >Recently done :
-                          {{
-                            dateUtils.parseDdMmYyWithTimeAndSeconds(
-                              successfulTime.rsp_sign ?? null
-                            ) ?? '-'
-                          }}</strong
-                        > -->
 
                         <div v-if="successfulTime.rsp_sign">
                           <strong class="font-weight-medium text-grey-lighten-1"
@@ -223,10 +213,17 @@
                         <strong>Progress</strong>
                         <br />
                         <!-- {{ satus[0]?.rsp?.survey?.status }} -->
-                          <div v-if="satus[0]?.rsp?.survey?.status ?? null">
+                          <!-- <div v-if="satus[0]?.rsp?.survey?.status ?? null">
                         <strong
                          :class="onColor(satus[0]?.rsp?.survey?.status ?? null)"
                           >{{ satus[0]?.rsp?.survey?.status ?? null }}
+                        </strong>
+                      </div> -->
+                      <div v-if="rspActivityStatusId == 3">
+                        <strong
+                         class="text-green"
+                          >
+                          Completed
                         </strong>
                       </div>
 
@@ -394,16 +391,6 @@
                         <strong class="font-weight-medium text-green"
                           >Completed</strong
                         >
-
-                        <!-- {{ satus[0]?.rsp?.survey?.status }} -->
-                        <!-- <strong :class="statusClass"
-                        >{{ satus[0]?.rsp?.survey?.status }}
-                        <span
-                          >{{
-                            satus[0]?.rsp?.survey?.progress_percentage
-                          }}%</span
-                        >
-                      </strong> -->
                       </div>
                     </v-col>
                     <v-col cols="12" md="6" class="pa-1">
@@ -965,13 +952,12 @@ watchEffect(async () => {
     if(rspActivityStatusId.value == 3){
       await downloadRspSurvey();
     }
-    // await getRspPolicyResults();
   }
 });
 </script>
 
 <style scoped>
-/* Add your styles here if needed */
+
 .text-green {
   color: green;
 }
@@ -985,7 +971,7 @@ watchEffect(async () => {
 }
 
 .text-default {
-  color: black; /* หรือสีอื่นที่คุณต้องการสำหรับสถานะที่ไม่มีในเงื่อนไข */
+  color: black;
 }
 
 </style>

@@ -1,11 +1,15 @@
 <template>
-  <v-container fluid style="height: 100vh; display: flex; align-items: center; justify-content: flex-end !important;">
-    <v-form ref="registreForm" style="width: 100%; max-width: 600px;">
-      <v-card
-        class="pa-7"
-        border="outlined"
-        style="border-radius: 20px"
-      >
+  <v-container
+    fluid
+    style="
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end !important;
+    "
+  >
+    <v-form ref="registreForm" style="width: 90%; max-width: 600px">
+      <v-card class="pa-7" border="outlined" style="border-radius: 20px">
         <v-card-item dense>
           <v-row>
             <v-col class="d-flex justify-center">
@@ -17,7 +21,7 @@
             </v-col>
           </v-row>
 
-          <div class="text-center mt-5  ma-5">
+          <div class="text-center mt-5 ma-5">
             <h1>Supplier Qualification System</h1>
             <h1>การสร้างบัญชี</h1>
           </div>
@@ -36,40 +40,41 @@
               ></v-text-field>
             </v-col>
 
-        <h2 class="my-3">สร้างรหัสผ่านใหม่</h2>
+            <h2 class="my-3">สร้างรหัสผ่านใหม่</h2>
             <v-col cols="12">
               <div class="d-flex position-relative">
                 <v-text-field
-                variant="solo"
-                placeholder="สร้างรหัสผ่านใหม่"
-                v-model="Form.NewPassword"
-                class="ml-2 mr-2"
-                :type="visible ? 'text' : 'password'"
-                bg-color="gray"
-                :rules="rulesValid.newPassword"
-              >
-              </v-text-field>
-              <div class="tooltip" style="cursor: pointer;">
-                <v-tooltip v-model="show" location="top">
-                <template v-slot:activator="{ props }">
-                  <div icon v-bind="props">
-                    <v-icon color="grey-lighten-1">
-                      mdi-information-slab-circle
-                    </v-icon>
-                  </div>
-                </template>
-                <span class="text-detile">
-                  <ul>
-                    <li>ต้องมีความยาวอย่างน้อย 8 ตัวอักษร</li>
-                    <li>ต้องประกอบไปด้วย ตัวอักษรพิมพ์ใหญ่ ตัวอักษรพิมพ์เล็ก ตัวเลขและสัญลักษณ์ผสมกัน</li>
-                  </ul>
-                </span>
-              </v-tooltip>
-              </div>
-
+                  variant="solo"
+                  placeholder="สร้างรหัสผ่านใหม่"
+                  v-model="Form.NewPassword"
+                  class="ml-2 mr-2"
+                  :type="visible ? 'text' : 'password'"
+                  bg-color="gray"
+                  :rules="rulesValid.newPassword"
+                >
+                </v-text-field>
+                <div class="tooltip" style="cursor: pointer">
+                  <v-tooltip v-model="show" location="top">
+                    <template v-slot:activator="{ props }">
+                      <div icon v-bind="props">
+                        <v-icon color="grey-lighten-1">
+                          mdi-information-slab-circle
+                        </v-icon>
+                      </div>
+                    </template>
+                    <span class="text-detile">
+                      <ul>
+                        <li>ต้องมีความยาวอย่างน้อย 8 ตัวอักษร</li>
+                        <li>
+                          ต้องประกอบไปด้วย ตัวอักษรพิมพ์ใหญ่ ตัวอักษรพิมพ์เล็ก
+                          ตัวเลขและสัญลักษณ์ผสมกัน
+                        </li>
+                      </ul>
+                    </span>
+                  </v-tooltip>
+                </div>
               </div>
             </v-col>
-
             <v-col cols="12">
               <v-text-field
                 variant="solo"
@@ -119,8 +124,6 @@ import { useErrorHandlingDialog } from "@/components/dialogs/ExceptionHandleDial
 import VerifyService from "@/apis/VerifyService";
 const { handlingErrorsMessage } = useErrorHandlingDialog();
 
-
-
 const props = defineProps({
   email: String,
 });
@@ -139,7 +142,8 @@ const rulesValid = ref({
   ],
   conPassword: [
     (v) => !!v || "กรุณากรอกข้อมูลให้ครบ",
-    (v) => v === Form.value.NewPassword || "รหัสผ่านไม่ตรงกัน กรุณากรอกใหม่อีกครั้ง",
+    (v) =>
+      v === Form.value.NewPassword || "รหัสผ่านไม่ตรงกัน กรุณากรอกใหม่อีกครั้ง",
     (v) => !!v || "กรุณากรอกรหัสผ่าน",
     (v) => v.length >= 8 || "รหัสผ่านต้องมีความยาวอย่างน้อย 8 ตัวอักษร",
     (v) =>
@@ -215,13 +219,13 @@ watchEffect(() => {
 
 .tooltip {
   position: absolute;
-    right: 20px;
-    top: 15px;
+  right: 20px;
+  top: 15px;
 }
 
 .text-detile {
   padding: 5px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .text-detile ul {
@@ -229,5 +233,4 @@ watchEffect(() => {
   padding: 0;
   list-style-position: inside;
 }
-
 </style>

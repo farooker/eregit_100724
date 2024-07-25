@@ -1,11 +1,9 @@
 <template>
   <v-container>
     <v-card
-      class="pa-7"
-      border="outlined"
-      style="border-radius: 20px"
-      width="700"
-      height="900"
+    class="px-5 py-5"
+    border="outlined"
+    style="width: 100%; max-width: 600px; border-radius: 20px"
     >
       <v-form v-model="validateForm">
         <v-card-item dense>

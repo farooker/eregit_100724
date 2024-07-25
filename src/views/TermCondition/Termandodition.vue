@@ -17,24 +17,17 @@
     </v-app-bar>
     <v-main class="d-flex align-center justify-center">
       <v-container fluid>
-        <!-- {{ privacy_is_accepted  }} -->
-        <!-- {{ current_view }} -->
-        <!-- {{ current_term_condition_url }} -->
-        <!-- {{ privacy_policy_id }} -->
-
-        <!-- {{ current_term_condition_url }} -->
         <div v-if="term_condition_id !== current_term_condition_id">
           <v-card-text>
-            <!-- <h6>Term and Condition</h6> -->
             <div class="d-flex align-center pdf-container">
               <PDF :src="fileBase64" class="pdf-viewer"></PDF>
             </div>
           </v-card-text>
           <v-row align="center" dense class="mt-5" justify="center">
             <v-col cols="auto" class="d-flex align-center mt-n5">
-              <input type="checkbox" id="agree" v-model="agreed" />
-              <label for="agree"
-                >ข้าพเจ้าได้อ่านและยอมรับข้อกำหนดและเงื่อนไข</label
+              <input type="checkbox" id="agree" v-model="agreed" class="custom-checkbox mr-2" />
+              <h3  for="agree"
+                >ข้าพเจ้าได้อ่านและยอมรับข้อกำหนดและเงื่อนไข</h3
               >
             </v-col>
           </v-row>
@@ -63,9 +56,9 @@
           </v-card-text>
           <v-row align="center" dense class="mt-5" justify="center">
             <v-col cols="auto" class="d-flex align-center mt-n5">
-              <input type="checkbox" id="agree" v-model="agreed2" />
-              <label for="agree"
-                >ข้าพเจ้าได้อ่านและยอมรับข้อกำหนดและเงื่อนไข</label
+              <input type="checkbox" id="agree" v-model="agreed2" class="custom-checkbox mr-2"/>
+              <h3 for="agree"
+                >ข้าพเจ้าได้อ่านและยอมรับข้อกำหนดและเงื่อนไข</h3
               >
             </v-col>
           </v-row>
@@ -85,28 +78,6 @@
             </v-col>
           </v-row>
         </div>
-
-        <!-- <v-row align="center" dense class="mt-5" justify="center">
-          <v-col cols="auto" class="d-flex align-center mt-n5">
-            <input type="checkbox" id="agree" v-model="agreed" />
-            <label for="agree">ข้าพเจ้าได้อ่านและยอมรับข้อกำหนดและเงื่อนไข</label>
-          </v-col>
-        </v-row>
-        <v-row align="center" dense class="mt-5" justify="center">
-          <v-col cols="auto" class="d-flex align-center mt-n5">
-            <v-btn
-              class="text-capitalize"
-              :disabled="!agreed"
-              @click="handleConfirm"
-              rounded
-              density="compact"
-              style="background-color: #ed1c24"
-              height="30"
-            >
-              <span class="text-white text-subtitle-1">รับทราบ</span>
-            </v-btn>
-          </v-col>
-        </v-row> -->
       </v-container>
     </v-main>
   </v-app>
@@ -497,28 +468,17 @@ const handleConfirm = async () => {
 };
 
 const handleConfirmPolicy = async () => {
-  // alert("Proceeding to the next step");
-  // console.log("term_condition_id.value",term_condition_id.value)
-  // console.log("current_term_condition_id.value", current_term_condition_id.value)
   console.log("term_condition_id.value", term_condition_id.value);
   console.log(
     "current_term_condition_id.value",
     current_term_condition_id.value
   );
   if (privacy_policy_id?.value !== current_privacy_id.value) {
-    // console.log("term_condition_id.value", term_condition_id.value);
-    // console.log(
-    //   "current_term_condition_id.value",
-    //   current_term_condition_id.value
-    // );
     try {
       const response = await TermService.createPrivacyPolicyAcceptance(
         current_privacy_id.value
       );
       if (response.data?.is_success) {
-        // console.log("privacy_policy_id", privacy_policy_id.value);
-        // console.log("term_condition_id.value", term_condition_id.value)
-        // console.log("current_term_condition_id.value", current_term_condition_id.value)
         if (term_condition_id.value == current_term_condition_id.value) {
           store.getsessionlinkstore();
           console.log("coditionTerm", store.sessionInfo);
@@ -627,10 +587,16 @@ const handleConfirmPolicy = async () => {
 }
 
 .pdf-card-text {
-  margin-top: 0; /* Remove margin to move it up */
+  margin-top: 0;
 }
 .pdf-viewer {
   width: 70%;
   height: 100%;
+}
+
+.custom-checkbox {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
 }
 </style>

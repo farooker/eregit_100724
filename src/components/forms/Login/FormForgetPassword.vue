@@ -57,11 +57,11 @@
               </v-btn>
             </v-col>
           </v-row>
-          <!-- <div  class="text-center mt-8 ml-5 mr-5">
+          <div v-if="sendAgain"  class="text-center mt-8 ml-5 mr-5">
             <span class="underline-on-hover text-secondary">
               ระบบทำการส่งอีเมลให้อีกครั้งแล้ว
             </span>
-          </div> -->
+          </div>
           <div class="text-center mt-0 ml-5 mr-5">
             <span>กรุณาคลิก Link ในอีเมล เพื่อทำการตั้งรหัสใหม่</span>
           </div>

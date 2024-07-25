@@ -18,7 +18,7 @@
               ></v-checkbox>
             </v-col>
             <v-col cols="1" class="d-flex justify-start">
-              <strong
+            <strong
                 @click="sortByField('created_at')"
                 style="cursor: pointer; font-size: small; margin-top: 2px"
               >
@@ -34,12 +34,12 @@
             </v-col>
             <v-col cols="2">
               <strong
-                @click="sortByField('case_type')"
+                @click="sortByField('account_task_action')"
                 style="cursor: pointer; font-size: small"
               >
                 <v-icon>
                   {{
-                    sortDirection === "case_type:desc"
+                    sortDirection === "account_task_action:desc"
                       ? "mdi-arrow-up"
                       : "mdi-arrow-down"
                   }}
@@ -64,12 +64,12 @@
             </v-col>
             <v-col cols="3">
               <strong
-                @click="sortByField('name_en')"
+                @click="sortByField('business_partner_name')"
                 style="cursor: pointer; font-size: small"
               >
                 <v-icon>
                   {{
-                    sortDirection === "name_en:desc"
+                    sortDirection === "business_partner_name:desc"
                       ? "mdi-arrow-up"
                       : "mdi-arrow-down"
                   }}
@@ -182,12 +182,12 @@
               </v-chip>
             </v-col>
             <v-col cols="1" align-self="center">
-              <h4>
+              <h4 class="truncate">
                 {{ item.business_partner_role?.name }}
               </h4>
             </v-col>
             <v-col cols="3" align-self="center">
-              <h4>
+              <h4 class="truncate">
                 {{ item.business_partner_name }}
               </h4>
             </v-col>
@@ -196,8 +196,10 @@
                 {{ item.contact_owner?.email }}
               </v-chip>
               <br />
+
               <div style="font-size: 14px">
-                <strong>{{ item.contact_owner?.team?.name_en }}</strong>
+                <strong class="truncate">{{
+                   item.contact_owner?.team?.name_en }}</strong>
                 /<span class="text-grey">While convenient, the color pack</span
                 >/
                 <span class="text-grey">Commentail</span>
@@ -337,4 +339,10 @@ const borderLeft = computed(() => {
 });
 </script>
 
-<style scoped></style>
+<style>
+.truncate {
+  white-space: normal;
+  overflow: hidden;
+  word-wrap: break-word; /* ให้ข้อความข้ามบรรทัดใหม่ตามคำ */
+}
+</style>
