@@ -113,7 +113,7 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 
 import StepperControl from "../../controls/StepperControl";
 import ButtonControl from "../../controls/ButtonControl";
@@ -139,6 +139,10 @@ const props = defineProps({
     type: Object,
     default: () => {},
   },
+});
+
+onMounted(() => {
+  scrollToTop();
 });
 
 const step = ref(1);
@@ -170,11 +174,19 @@ const is_revers_form_hide = computed(() => {
   return true;
 });
 
+const scrollToTop = () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
+};
+
 const handleNext = async () => {
   if (step.value === 1) {
     const is_valid = await formOne.value.validate();
     console.log("step is_valid : ", is_valid["valid"]);
     if (is_valid["valid"]) step.value++;
+    scrollToTop();
     return;
   }
 
@@ -182,6 +194,7 @@ const handleNext = async () => {
     const is_valid = await formTwo.value.validate();
     console.log("step is_valid : ", is_valid["valid"]);
     if (is_valid["valid"]) step.value++;
+    scrollToTop();
     return;
   }
 
@@ -189,6 +202,7 @@ const handleNext = async () => {
     const is_valid = await formThree.value.validate();
     console.log("step is_valid : ", is_valid["valid"]);
     if (is_valid["valid"]) step.value++;
+    scrollToTop();
     return;
   }
 
@@ -210,6 +224,7 @@ const handleReverse = () => {
   }
   if (step.value > 1) {
     step.value--;
+    scrollToTop();
   }
 };
 

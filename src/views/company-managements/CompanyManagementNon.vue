@@ -350,6 +350,13 @@ const handleButtonClick = () => {
   isHideButton.value = false;
 };
 
+const scrollToTop = () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
+};
+
 const handleNext = async () => {
   if (step.value < 4) {
     step.value++;
@@ -362,6 +369,7 @@ const handleNext = async () => {
       )
     ) {
       isHideButton.value = true;
+      scrollToTop();
     }
   }
 };

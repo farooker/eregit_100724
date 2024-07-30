@@ -324,7 +324,13 @@ watchEffect(() => {
   if (props.register_type == 1) {
     // data_input.value.name.one = props.name;
     data_input.value.search.two = props.taxPayerIdNumber ?? null;
-    data_input.value.location = props.addressItem ?? null;
+    // data_input.value.location = props.addressItem ?? null;
+    if(props.addressItem) {
+      data_input.value.location.province = props.addressItem?.province;
+      data_input.value.location.district = props.addressItem?.district;
+      data_input.value.location.parish = props.addressItem?.parish;
+      data_input.value.location.zip_code = props.addressItem?.zip_code;
+    }
     // data_input.value.address.one = props.address;
 
     const txtSprict = splitText(company_en.value);

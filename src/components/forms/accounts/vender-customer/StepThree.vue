@@ -154,13 +154,14 @@
       </v-card>
     </v-col>
     <v-col cols="12">
+      <!-- {{ data_input_head_comp_branch.address_en.location }} -->
       <AddressInputEN
         :register_type="2"
         class="pr-6"
         tag-desc="(EN Branch)"
         :is-not-team="true"
         :isDisableAddress="false"
-        :address-item="props.addressItemEn"
+        :address-item="data_input_head_comp_branch.address_en.location"
         :steptwoFormDetail="props.steptwoFormDetail"
         :register-form-detail="props.registerFormDetail"
         :is-address-manual="true"
@@ -299,6 +300,10 @@ const data_input_head_comp_branch = ref({
 });
 
 const initail = ref(true);
+const initailContect = ref(true);
+const initailContact_1 = ref(true);
+const initailContact_2 = ref(true);
+const initailContact_3 = ref(true);
 
 const setDataFromFormDetail = async (formDetail) => {
   data_input.value.province = formDetail.branch_province_th_id;
@@ -389,16 +394,15 @@ watchEffect(async () => {
     }
   }
 
-  if (
-    props.registerFormDetail.account_information_form
-  ) {
+  if (props.registerFormDetail.account_information_form) {
     if (
       props.registerFormDetail.account_information_form
         ?.branch_contact_name_1 &&
       props.registerFormDetail.account_information_form
-        ?.branch_contact_name_1 != ""
+        ?.branch_contact_name_1 != "" &&
+      initailContact_1.value
     ) {
-      data_input_head_comp_branch.value.contacts[0] = ({
+      data_input_head_comp_branch.value.contacts[0] = {
         index: 0,
         name: props.registerFormDetail.account_information_form
           ?.branch_contact_name_1,
@@ -408,16 +412,19 @@ watchEffect(async () => {
         email:
           props.registerFormDetail.account_information_form
             ?.branch_contact_email_1,
-      });
+      };
+      console.error("initailContact_1.value");
+      initailContact_1.value = false;
     }
 
     if (
       props.registerFormDetail.account_information_form
         ?.branch_contact_name_2 &&
       props.registerFormDetail.account_information_form
-        ?.branch_contact_name_2 != ""
+        ?.branch_contact_name_2 != "" &&
+      initailContact_2.value
     ) {
-      data_input_head_comp_branch.value.contacts[1] =({
+      data_input_head_comp_branch.value.contacts[1] = {
         index: 1,
         name: props.registerFormDetail.account_information_form
           ?.branch_contact_name_2,
@@ -427,16 +434,18 @@ watchEffect(async () => {
         email:
           props.registerFormDetail.account_information_form
             ?.branch_contact_email_2,
-      });
+      };
+      initailContact_2.value = false;
     }
 
     if (
       props.registerFormDetail.account_information_form
         ?.branch_contact_name_3 &&
       props.registerFormDetail.account_information_form
-        ?.branch_contact_name_3 != ""
+        ?.branch_contact_name_3 != "" &&
+      initailContact_3.value
     ) {
-      data_input_head_comp_branch.value.contacts[2]=({
+      data_input_head_comp_branch.value.contacts[2] = {
         index: 2,
         name: props.registerFormDetail.account_information_form
           ?.branch_contact_name_3,
@@ -446,10 +455,11 @@ watchEffect(async () => {
         email:
           props.registerFormDetail.account_information_form
             ?.branch_contact_email_3,
-      });
+      };
+      initailContact_3.value = false;
     }
     // initailContect.value = false;
-  } else {
+  } else if (initailContect.value) {
     data_input_head_comp_branch.value.contacts = props.contactItems.map(
       (el) => {
         return {
@@ -460,36 +470,39 @@ watchEffect(async () => {
         };
       }
     );
-    // initailContect.value = false;
+    initailContect.value = false;
   }
 
   if (props.registerFormDetail.account_information_form?.branch_province_en) {
     setEnglishDataFromFormDetail(
       props.registerFormDetail.account_information_form
     );
-  } else if (props.addressItemEn) {
+  } else if (
+    props.addressItemEn &&
+    !data_input_head_comp_branch.value.address_en.location.province
+  ) {
     setEnglishDataFromAddressItem(props.addressItemEn);
   }
 });
 
-watch(
-  () => props.addressItem,
-  async (newAddressItem) => {
-    console.error("props.addressItem updated");
-    if (!initail.value) {
-      await setDataFromAddressItem(newAddressItem);
-    }
-  },
-  { deep: true, immediate: false }
-);
+// watch(
+//   () => props.addressItem,
+//   async (newAddressItem) => {
+//     console.error("props.addressItem updated");
+//     if (!initail.value) {
+//       await setDataFromAddressItem(newAddressItem);
+//     }
+//   },
+//   { deep: true, immediate: false }
+// );
 
-watch(
-  () => props.addressItemEn,
-  (newAddressItemEn) => {
-    setEnglishDataFromAddressItem(newAddressItemEn);
-  },
-  { deep: true }
-);
+// watch(
+//   () => props.addressItemEn,
+//   (newAddressItemEn) => {
+//     setEnglishDataFromAddressItem(newAddressItemEn);
+//   },
+//   { deep: true }
+// );
 
 onMounted(() => {
   emit("on-input", data_input_head_comp_branch.value);
@@ -516,7 +529,6 @@ watch(
   () => data_input.value.province,
   async () => {
     if (data_input.value.province) {
-      console.log("Proveic Change");
       data_input.value.district = null;
       data_input.value.parish = null;
       await store.getDistrict(data_input.value.province);
@@ -535,7 +547,6 @@ watch(
     if (data_input.value.district) {
       await store.getSubDistrict(data_input.value.district);
       itemsSubDistrict.value = store.subDistricts;
-      console.log("District Change");
       data_input_head_comp_branch.value.address_th.location = data_input.value;
     }
     if (oledata) {
@@ -553,7 +564,6 @@ watch(
       itemsPostCode.value = store.postCodes;
       data_input.value.zip_code = itemsPostCode.value[0]?.id;
       data_input.value.zip_code_value = itemsPostCode.value[0]?.code;
-      console.log("SubDistrict Change");
       data_input_head_comp_branch.value.address_th.location = data_input.value;
     }
   },

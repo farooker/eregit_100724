@@ -48,10 +48,10 @@
         />
       </div>
       <RegisterInfo
-      v-if="is_id_form === FORM_ID.REGISTER_INFO"
-      :register-form-detail="register_form_detail"
-      @on-commit-data="handleRegisterCommit"
-      @on-input="handleRegisterInput"
+        v-if="is_id_form === FORM_ID.REGISTER_INFO"
+        :register-form-detail="register_form_detail"
+        @on-commit-data="handleRegisterCommit"
+        @on-input="handleRegisterInput"
       />
 
       <SteperInfo
@@ -127,7 +127,7 @@ const handleReverseForm = () => {
 const handleRegisterInput = (register_info_data) => {
   input_data.value.register_info_form = register_info_data;
   customer_or_vender.value = register_info_data.type_register;
-  // console.log(JSON.stringify(customer_or_vender.value.input_data.value.register_info_form));
+  console.log(JSON.stringify(input_data.value.register_info_form));
 };
 
 const handleRegisterCommit = (register_info_data) => {
@@ -237,7 +237,6 @@ const getRegisterFormDetailByFormNumber = async (form_number) => {
 
 const handleSetpInput = (stepper_data) => {
   input_data.value.stepper_info_form = stepper_data;
-  console.log("step22", input_data.value.stepper_info_form)
 };
 
 const handleCustCommit = async (stepper_info_data) => {
@@ -249,28 +248,28 @@ const handleCustCommit = async (stepper_info_data) => {
     ))
   )
     return;
-    let name_th =
+  let name_th =
     input_data.value.register_info_form?.customer_info?.th?.company_name;
   let name_en =
     input_data.value.register_info_form?.customer_info?.en?.company_name;
 
   if (input_data.value.register_info_form.customer_type_data.data == 1) {
-    name_th =
-      `${input_data.value.register_info_form?.customer_info?.th?.pserson.gender}${input_data.value.register_info_form?.customer_info?.th?.pserson.name}`;
-    name_en =
-      `${input_data.value.register_info_form?.customer_info?.en?.pserson.gender}${input_data.value.register_info_form?.customer_info?.en?.pserson.name}`;
+    name_th = `${input_data.value.register_info_form?.customer_info?.th?.pserson.gender}${input_data.value.register_info_form?.customer_info?.th?.pserson.name}`;
+    name_en = `${input_data.value.register_info_form?.customer_info?.en?.pserson.gender}${input_data.value.register_info_form?.customer_info?.en?.pserson.name}`;
   }
   const requestSaveDaftBusinessPartnerRegis = {
     form_number:
       register_form_detail.value.business_partner_register_form?.form_number ??
-      null,
-      // updated_user_id:
-      // Number(register_form_detail.value.business_partner_register_form?.created_user_id ?? null),
+      acc_id.value,
+    // updated_user_id:
+    // Number(register_form_detail.value.business_partner_register_form?.created_user_id ?? null),
     business_partner_register_form: {
       taxpayer_id_number:
         input_data.value.register_info_form?.thai_people_id ?? null, // data.stepper_info_form.step_one?.main_data.tax_number
-        created_user_id:
-        Number(register_form_detail.value.business_partner_register_form?.created_user_id ?? null),
+      created_user_id: Number(
+        register_form_detail.value.business_partner_register_form
+          ?.created_user_id ?? null
+      ),
       // name_th:
       //   input_data.value.register_info_form?.customer_info?.th?.company_name, // data.register_info_form.customer_info.th.company_name
       // name_en:
@@ -286,11 +285,15 @@ const handleCustCommit = async (stepper_info_data) => {
       company_id: input_data.value.register_info_form.company_data.data
         .map((comp) => comp.id)
         .join(","), // unknow
-      employee_type_id:
-        register_form_detail.value.business_partner_register_form.employee_type
-          .map((el) => el.id)
-          .join(","), // unknow
-      payment_term_id: Number(input_data.value.register_info_form?.term_data?.data), // data.register_info_form.term_data.data
+      employee_type_id: register_form_detail.value
+        .business_partner_register_form?.employee_type
+        ? register_form_detail.value.business_partner_register_form.employee_type
+            .map((el) => el.id)
+            .join(",")
+        : "", // unknow
+      payment_term_id: Number(
+        input_data.value.register_info_form?.term_data?.data
+      ), // data.register_info_form.term_data.data
       registered_user_email: "user@example.com", // unknow
       // created_at: "2023-11-10T14:20:12", // auto fill
       // created_user_id: 1, // auto fill
@@ -320,9 +323,10 @@ const handleCustCommit = async (stepper_info_data) => {
       customer_category:
         input_data.value.register_info_form?.customer_type ?? null, // unknow
       address_th:
-        input_data.value.register_info_form?.customer_info?.th?.info?.address ?? null, // data.customer_info.th.address
+        input_data.value.register_info_form?.customer_info?.th?.info?.address ??
+        null, // data.customer_info.th.address
 
-        ///step_info_th
+      ///step_info_th
       // province_th_id:
       //   input_data.value.register_info_form?.customer_info?.th?.info?.province, // data.customer_info.th.province //number
       // district_th_id:
@@ -332,20 +336,23 @@ const handleCustCommit = async (stepper_info_data) => {
       // postal_code_th_id:
       //   input_data.value.register_info_form?.customer_info?.th?.info?.zip_code, // data.customer_info.th.zip_code //number
 
-       ///step_2_th
-        province_th_id:
-        input_data.value.stepper_info_form.step_two.address_th.location.province ??null ,
+      ///step_2_th
+      province_th_id:
+        input_data.value.stepper_info_form.step_two.address_th.location
+          .province ?? null,
       district_th_id:
-      input_data.value.stepper_info_form.step_two.address_th.location.district,
+        input_data.value.stepper_info_form.step_two.address_th.location
+          .district,
       subdistrict_th_id:
-      input_data.value.stepper_info_form.step_two.address_th.location.parish,
+        input_data.value.stepper_info_form.step_two.address_th.location.parish,
       postal_code_th_id:
-      input_data.value.stepper_info_form.step_two.address_th.location.zip_code,
+        input_data.value.stepper_info_form.step_two.address_th.location
+          .zip_code,
 
       address_en:
         input_data.value.register_info_form?.customer_info?.en?.address, // data.customer_info.en.address
 
-        //step_info
+      //step_info
       // province_en:
       //   input_data.value.register_info_form?.customer_info?.en?.info?.province, // data.customer_info.en.province
       // district_en:
@@ -355,15 +362,18 @@ const handleCustCommit = async (stepper_info_data) => {
       // postal_code_en_id:
       //   input_data.value.register_info_form?.customer_info?.en?.info?.zip_code, // data.customer_info.en.zip_code
 
-        //steptwo
+      //steptwo
       province_en:
-      input_data.value.stepper_info_form.step_two.address_en.location.province,
+        input_data.value.stepper_info_form.step_two.address_en.location
+          .province,
       district_en:
-      input_data.value.stepper_info_form.step_two.address_en.location.district,
+        input_data.value.stepper_info_form.step_two.address_en.location
+          .district,
       subdistrict_en:
-      input_data.value.stepper_info_form.step_two.address_en.location.parish,
+        input_data.value.stepper_info_form.step_two.address_en.location.parish,
       postal_code_en_id:
-      input_data.value.stepper_info_form.step_two.address_th.location.zip_code,
+        input_data.value.stepper_info_form.step_two.address_th.location
+          .zip_code,
 
       contact_name_1:
         input_data.value.register_info_form?.items_contects[0]?.name ?? null, // data.items_contects[0]?.name
@@ -494,7 +504,9 @@ const handleCustCommit = async (stepper_info_data) => {
       address2_en:
         input_data.value.stepper_info_form?.step_two?.address_en?.address
           ?.two ?? null, // data.stepper_info_form?.step_two?.address_th?.address.two
-      country: input_data.value.stepper_info_form?.step_two?.country_info?.country ?? null, // unknow
+      country:
+        input_data.value.stepper_info_form?.step_two?.country_info?.country ??
+        null, // unknow
 
       //   //STEP THREE
       branch_description:
@@ -577,8 +589,8 @@ const handleCustCommit = async (stepper_info_data) => {
         input_data.value.stepper_info_form.step_three?.address_en?.location
           ?.parish ?? null, // data.stepper_info_form.step_three?.address_en.location.parish //number
       branch_postal_code_en_id:
-      input_data.value.stepper_info_form.step_three?.address_th?.location
-      ?.zip_code ?? null, // data.stepper_info_form.step_three?.address_th.location.zip_code //number, // data.stepper_info_form.step_three?.address_en.location.zip_code //number
+        input_data.value.stepper_info_form.step_three?.address_th?.location
+          ?.zip_code ?? null, // data.stepper_info_form.step_three?.address_th.location.zip_code //number, // data.stepper_info_form.step_three?.address_en.location.zip_code //number
       branch_contact_name_1:
         input_data.value.stepper_info_form.step_three?.contacts?.[0]?.name ??
         null, // data.stepper_info_form.step_three?.contacts?.[0]?.name
@@ -754,26 +766,26 @@ const handleSaveDaft = async () => {
     ))
   )
     return;
-    let name_th =
+  let name_th =
     input_data.value.register_info_form?.customer_info?.th?.company_name;
   let name_en =
     input_data.value.register_info_form?.customer_info?.en?.company_name;
 
   if (input_data.value.register_info_form.customer_type_data.data == 1) {
-    name_th =
-      `${input_data.value.register_info_form?.customer_info?.th?.pserson.gender}${input_data.value.register_info_form?.customer_info?.th?.pserson.name}`;
-    name_en =
-      `${input_data.value.register_info_form?.customer_info?.en?.pserson.gender}${input_data.value.register_info_form?.customer_info?.en?.pserson.name}`;
+    name_th = `${input_data.value.register_info_form?.customer_info?.th?.pserson.gender}${input_data.value.register_info_form?.customer_info?.th?.pserson.name}`;
+    name_en = `${input_data.value.register_info_form?.customer_info?.en?.pserson.gender}${input_data.value.register_info_form?.customer_info?.en?.pserson.name}`;
   }
 
   const requestSaveDaftBusinessPartnerRegis = {
     form_number:
       register_form_detail.value.business_partner_register_form?.form_number ??
-      null,
+      acc_id.value,
     business_partner_register_form: {
       taxpayer_id_number: input_data.value.register_info_form?.thai_people_id, // data.stepper_info_form.step_one?.main_data.tax_number
-      created_user_id:
-      Number(register_form_detail.value.business_partner_register_form?.created_user_id ?? null),
+      created_user_id: Number(
+        register_form_detail.value.business_partner_register_form
+          ?.created_user_id ?? null
+      ),
       // name_th:
       //   input_data.value.register_info_form?.customer_info?.th?.company_name, // data.register_info_form.customer_info.th.company_name
       // name_en:
@@ -789,11 +801,15 @@ const handleSaveDaft = async () => {
       company_id: input_data.value.register_info_form.company_data.data
         .map((comp) => comp.id)
         .join(","), // unknow
-      employee_type_id:
-        register_form_detail.value.business_partner_register_form.employee_type
-          .map((el) => el.id)
-          .join(","), // unknow
-      payment_term_id: Number(input_data.value.register_info_form?.term_data?.data), // data.register_info_form.term_data.data
+      employee_type_id: register_form_detail.value
+        .business_partner_register_form?.employee_type
+        ? register_form_detail.value.business_partner_register_form.employee_type
+            .map((el) => el.id)
+            .join(",")
+        : "", // unknow
+      payment_term_id: Number(
+        input_data.value.register_info_form?.term_data?.data
+      ), // data.register_info_form.term_data.data
       registered_user_email: "user@example.com", // unknow
       // created_at: "2023-11-10T14:20:12", // auto fill
       // created_user_id: 1, // auto fill
@@ -824,7 +840,7 @@ const handleSaveDaft = async () => {
         input_data.value.register_info_form?.customer_type ?? null, // unknow
       address_th:
         input_data.value.register_info_form?.customer_info?.th?.info?.address, // data.customer_info.th.address
-        //stepin_fo
+      //stepin_fo
       // province_th_id:
       //   input_data.value.register_info_form?.customer_info?.th?.info?.province, // data.customer_info.th.province //number
       // district_th_id:
@@ -833,20 +849,24 @@ const handleSaveDaft = async () => {
       //   input_data.value.register_info_form?.customer_info?.th?.info?.parish, // data.customer_info.th.parish //number
       // postal_code_th_id:
       //   input_data.value.register_info_form?.customer_info?.th?.info?.zip_code, // data.customer_info.th.zip_code //number
-       ///step_2_th
-       province_th_id:
-        input_data.value.stepper_info_form?.step_two?.address_th?.location.province ??null,
+      ///step_2_th
+      province_th_id:
+        input_data.value.stepper_info_form?.step_two?.address_th?.location
+          .province ?? null,
       district_th_id:
-      input_data.value.stepper_info_form?.step_two?.address_th?.location?.district ?? null,
+        input_data.value.stepper_info_form?.step_two?.address_th?.location
+          ?.district ?? null,
       subdistrict_th_id:
-      input_data.value.stepper_info_form?.step_two?.address_th?.location?.parish ?? null,
+        input_data.value.stepper_info_form?.step_two?.address_th?.location
+          ?.parish ?? null,
       postal_code_th_id:
-      input_data.value.stepper_info_form?.step_two?.address_th?.location?.zip_code ?? null,
+        input_data.value.stepper_info_form?.step_two?.address_th?.location
+          ?.zip_code ?? null,
 
       address_en:
         input_data.value.register_info_form?.customer_info?.en?.address, // data.customer_info.en.address
 
-        //stepin_fo
+      //stepin_fo
       // province_en:
       //   input_data.value.register_info_form?.customer_info?.en?.info?.province, // data.customer_info.en.province
       // district_en:
@@ -855,15 +875,19 @@ const handleSaveDaft = async () => {
       //   input_data.value.register_info_form?.customer_info?.en?.info?.parish, // data.customer_info.en.parish
       // postal_code_en_id:
       //   input_data.value.register_info_form?.customer_info?.en?.info?.zip_code, // data.customer_info.en.zip_code
-        //steptwo
-        province_en:
-      input_data.value.stepper_info_form?.step_two?.address_en?.location?.province ?? null,
+      //steptwo
+      province_en:
+        input_data.value.stepper_info_form?.step_two?.address_en?.location
+          ?.province ?? null,
       district_en:
-      input_data.value.stepper_info_form?.step_two?.address_en?.location?.district ?? null,
+        input_data.value.stepper_info_form?.step_two?.address_en?.location
+          ?.district ?? null,
       subdistrict_en:
-      input_data.value.stepper_info_form?.step_two?.address_en?.location?.parish ?? null,
+        input_data.value.stepper_info_form?.step_two?.address_en?.location
+          ?.parish ?? null,
       postal_code_en_id:
-      input_data.value.stepper_info_form?.step_two?.address_th?.location?.zip_code ?? null,
+        input_data.value.stepper_info_form?.step_two?.address_th?.location
+          ?.zip_code ?? null,
 
       contact_name_1:
         input_data.value.register_info_form?.items_contects[0]?.name ?? null, // data.items_contects[0]?.name
@@ -987,7 +1011,9 @@ const handleSaveDaft = async () => {
         input_data.value.stepper_info_form?.step_two?.address_en?.address
           ?.two ?? null, // data.stepper_info_form?.step_two?.address_th?.address.two
       // country: "TH", // unknow
-      country: input_data.value.stepper_info_form?.step_two?.country_info?.country ?? null, // unknow
+      country:
+        input_data.value.stepper_info_form?.step_two?.country_info?.country ??
+        null, // unknow
 
       //   //STEP THREE
       branch_description:
@@ -1070,8 +1096,8 @@ const handleSaveDaft = async () => {
         input_data.value.stepper_info_form.step_three?.address_en?.location
           ?.parish ?? null, // data.stepper_info_form.step_three?.address_en.location.parish //number
       branch_postal_code_en_id:
-      input_data.value.stepper_info_form.step_three?.address_th?.location
-      ?.zip_code ?? null, // data.stepper_info_form.step_three?.address_th.location.zip_code //number
+        input_data.value.stepper_info_form.step_three?.address_th?.location
+          ?.zip_code ?? null, // data.stepper_info_form.step_three?.address_th.location.zip_code //number
       branch_contact_name_1:
         input_data.value.stepper_info_form.step_three?.contacts?.[0]?.name ??
         null, // data.stepper_info_form.step_three?.contacts?.[0]?.name

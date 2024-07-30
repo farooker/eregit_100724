@@ -52,7 +52,7 @@
           <v-row dense>
             <v-col cols="12">
               <v-autocomplete
-              class="mx-5"
+                class="mx-5"
                 chips
                 v-model="data_input.company_data.data"
                 :items="displayItemsCompany"
@@ -61,6 +61,7 @@
                 item-value="custom_id"
                 item-title="displayName"
                 density="compact"
+                :rules="[(v) => (v && v.length) || 'กรอกข้อมูลให้ครบถ้วน']"
                 variant="outlined"
               ></v-autocomplete>
             </v-col>
@@ -91,7 +92,7 @@
                 <v-radio value="other" label="อื่นๆ"></v-radio>
               </v-radio-group>
               <v-text-field
-                style="min-width: 200px;"
+                style="min-width: 200px"
                 class="mr-12 ms-3"
                 density="compact"
                 dense
@@ -343,7 +344,7 @@
         <v-card>
           <v-row dense>
             <v-col cols="12" v-if="isNaturalPerson">
-              <v-card-title style="padding: 0px;">
+              <v-card-title style="padding: 0px">
                 <h6>คำนำหน้าชื่อ (ภาษาไทย)</h6>
               </v-card-title>
               <v-col cols="12">
@@ -577,7 +578,11 @@
         </v-card>
       </v-col>
       <div class="d-flex justify-center w-100 mt-5">
-        <ButtonControl  style="min-width: 100px; height: 35px; " text="ต่อไป" @button-clicked="handleNext" />
+        <ButtonControl
+          style="min-width: 100px; height: 35px"
+          text="ต่อไป"
+          @button-clicked="handleNext"
+        />
       </div>
     </v-row>
   </v-form>
@@ -728,12 +733,13 @@ watchEffect(() => {
     //   (el) => { return el.id }
     // );
 
-    data_input.value.company_data.data =
-      props.registerFormDetail.business_partner_register_form.company.map(
-        (el) => {
-          return { id: el.id, company_code: el.company_code };
-        }
-      );
+    if (props.registerFormDetail.business_partner_register_form.company)
+      data_input.value.company_data.data =
+        props.registerFormDetail.business_partner_register_form.company.map(
+          (el) => {
+            return { id: el.id, company_code: el.company_code };
+          }
+        );
 
     if (
       props.registerFormDetail.business_partner_register_form?.payment_term
@@ -799,11 +805,11 @@ watchEffect(() => {
     }
 
     if (initialTaxType.value) {
-      initialTaxType.value = false;
       data_input.value.tax_register.type = props.registerFormDetail
         .business_partner_profile_form?.is_vat_registered
         ? "1"
         : "0";
+      initialTaxType.value = false;
     }
 
     if (
@@ -902,7 +908,6 @@ watchEffect(() => {
       }
     }
 
-
     data_input.value.items_contects = [];
 
     for (let index = 1; index < 4; index++) {
@@ -931,6 +936,10 @@ watchEffect(() => {
         phone: contact_mobile_number,
       });
     }
+  } else {
+    data_input.value.tax_register.type = "0";
+    data_input.value.tax_register.branch = null;
+    data_input.value.tax_register.branch_code = null;
   }
 });
 watch(
@@ -953,7 +962,6 @@ const isDisableBranch = computed(() => {
 
 const filteredItemsTypeData = computed(() => {
   return items_type_data.value.filter(
-
     (item) => item.business_partner_role_id === data_input.value.type_register
   );
 });
@@ -1210,16 +1218,13 @@ const handleMoneyTranferInput = (data) => {
 };
 </script>
 
-
 <style scoped>
 :deep(.v-text-field .v-field) {
   border-radius: 10px !important;
-
 }
 
 :deep(.v-chip--variant-tonal .v-chip__underlay) {
   background-color: #ed1c24 !important;
-
 }
 
 :deep(.v-chip.v-chip--density-default) {
@@ -1227,25 +1232,24 @@ const handleMoneyTranferInput = (data) => {
 }
 
 .box {
-position: relative;
+  position: relative;
 }
 
 .box :deep(.v-text-field .v-field) {
-width: 300px;
-    position: absolute;
-    left: 120px;
-    top: -2px;
-    flex-grow: 9;
-    max-width: 300px;
+  width: 300px;
+  position: absolute;
+  left: 120px;
+  top: -2px;
+  flex-grow: 9;
+  max-width: 300px;
 }
 
 :deep(.v-chip__content) {
-margin-top: 3px;
+  margin-top: 3px;
 }
 
 :deep(.mdi-close-circle::before) {
   content: "\F0156";
-    color: red;
+  color: red;
 }
-
 </style>

@@ -308,13 +308,11 @@ const rules_valid = ref({
         /^[^\s](.*[^\s])?$/.test(v.trim())) ||
       "* กรุณากรอกข้อมูลให้ถูกต้อง",
   ],
-//   namerequire: [
-//   (v) => (v != null && v.trim().length <= 35) || "*กรุณากรอกชื่อไม่เกิน 35 ตัวอักษร",
-//   (v) => (v != null && v.trim().length > 0) || "* กรุณากรอกข้อมูลให้ถูกต้อง",
-// ],
-name: [
-    (v) => !v || v.length <= 35 || "*กรุณากรอกชื่อไม่เกิน 35 ตัวอักษร",
-  ],
+  //   namerequire: [
+  //   (v) => (v != null && v.trim().length <= 35) || "*กรุณากรอกชื่อไม่เกิน 35 ตัวอักษร",
+  //   (v) => (v != null && v.trim().length > 0) || "* กรุณากรอกข้อมูลให้ถูกต้อง",
+  // ],
+  name: [(v) => !v || v.length <= 35 || "*กรุณากรอกชื่อไม่เกิน 35 ตัวอักษร"],
   addressrequire: [
     (v) => (v != null && v.length <= 60) || "*กรุณากรอกชื่อไม่เกิน 60 ตัวอักษร",
 
@@ -334,10 +332,10 @@ name: [
 const emit = defineEmits(["on-input"]);
 
 const data_input = ref({
-  province: props.addressItem?.province,
-  district: props.addressItem?.district,
-  parish: props.addressItem?.parish,
-  zip_code: props.addressItem?.zip_code,
+  province: null,
+  district: null,
+  parish: null,
+  zip_code: null,
   zip_code_value: "",
 });
 
@@ -379,14 +377,15 @@ const data_input_head_comp = ref({
     },
   },
   country_info: {},
-  contacts: props.contactItems.map((el) => {
-    return {
-      index: el.index,
-      name: el.name,
-      phone: el.phone,
-      email: el.email,
-    };
-  }),
+  contacts: [],
+  //  props.contactItems.map((el) => {
+  //   return {
+  //     index: el.index,
+  //     name: el.name,
+  //     phone: el.phone,
+  //     email: el.email,
+  //   };
+  // }),
 });
 
 const initail = ref(true);
@@ -587,7 +586,6 @@ watch(
   () => data_input.value.province,
   async () => {
     if (data_input.value.province) {
-      console.log("Proveic Change");
       data_input.value.district = null;
       data_input.value.parish = null;
       await store.getDistrict(data_input.value.province);
@@ -606,7 +604,6 @@ watch(
     if (data_input.value.district) {
       await store.getSubDistrict(data_input.value.district);
       itemsSubDistrict.value = store.subDistricts;
-      console.log("District Change");
       data_input_head_comp.value.location = data_input.value;
     }
     if (oledata) {
@@ -624,7 +621,6 @@ watch(
       itemsPostCode.value = store.postCodes;
       data_input.value.zip_code = itemsPostCode.value[0]?.id;
       data_input.value.zip_code_value = itemsPostCode.value[0]?.code;
-      console.log("SubDistrict Change");
       data_input_head_comp.value.location = data_input.value;
     }
   },

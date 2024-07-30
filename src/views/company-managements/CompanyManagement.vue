@@ -242,6 +242,13 @@ const handlePartnerRegisterInput = (data) => {
   dataForm.value.partnerRegister = data;
 };
 
+const scrollToTop = () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
+};
+
 const encodeFile = (file) => {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -306,6 +313,7 @@ const handleNext = async () => {
       )
     ) {
       isHideButton.value = true;
+      scrollToTop();
     }
   }
 };
