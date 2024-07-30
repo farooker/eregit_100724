@@ -368,8 +368,8 @@ const handleNext = async () => {
         "ตรวจสอบข้อมูลของท่าน\nเป็นครั้งสุดท้ายก่อนกดส่งข้อมูล"
       )
     ) {
-      isHideButton.value = true;
       scrollToTop();
+      isHideButton.value = true;
     }
   }
 };
