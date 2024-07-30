@@ -218,6 +218,16 @@ const createBusinessPartnerProfileForm = async (body = {}) => {
   });
 };
 
+const createBusinessPartnerCompleteProfile = async (body = {}) => {
+  // console.log({ ...body, created_user_id: 1 });
+  return await axiosBase({
+    method: "post",
+    url: "/partner/change-sd-information",
+    data: { ...body, updated_user_id  : 497, },
+  });
+};
+
+
 const getRegisterFormDetail = async (form_number) => {
   return await axiosBase({
     method: "post",
@@ -510,5 +520,6 @@ export default {
   ShareRegisterForm,
   DeletedFileUpload,
   getDownloadDisclosureByFormNumber,
-  getProfileForm
+  getProfileForm,
+  createBusinessPartnerCompleteProfile
 };

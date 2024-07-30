@@ -2,9 +2,6 @@
 <template>
   <v-container>
     <h2>DashBoard</h2>
-    <!-- {{ detailFormBpNumber  .business_partner_profile_form.business_partner_type.do_rsp_activity}} -->
-    <!-- {{ checkItemDashboard }}
-    {{ checkItemDashboard.do_rsp_activity }}-->
     <div class="mt-5">
       <div
         v-if="
@@ -43,13 +40,6 @@
           :bpnumber="bp_num"
           color-card-alert="error"
         />
-        <!-- <PaginationControl
-          v-if="infoActive.pageSize > 1"
-          class="mt-3"
-          :value="infoActive.page"
-          :length="infoActive.pageSize"
-          @value="handlePaginationActiveEvent"
-        />-->
       </div>
       <!-- <v-divider class="mt-3 mb-3"></v-divider> -->
     </div>
