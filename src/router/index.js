@@ -24,6 +24,17 @@ const routes = [
   },
 
   // {
+  //   path: "/CompleteProfilePage",
+  //   name: "CompleteProfilePage",
+  //   meta: {
+  //     requiresAuth: false,
+  //     module_id: null,
+  //   },
+  //   component: () =>
+  //     import("@/views/company-managements/CompleteProfilePage.vue"),
+  // },
+
+  // {
   //   path: "/SDTeamMangement/Survey/NonDocument/1",
   //   name: "SurveyDocumentFirstPage",
   //   meta: {
@@ -618,6 +629,18 @@ const routes = [
         component: () =>
           import("@/views/company-managements/CompanyManagement.vue"),
       },
+//
+      {
+        path: "/CompleteProfilePage",
+        name: "CompleteProfilePage",
+        meta: {
+          requiresAuth: false,
+          module_id: 1,
+        },
+        component: () =>
+          import("@/views/company-managements/CompleteProfilePage.vue"),
+      },
+
       {
         path: "/DisclosureManagement",
         name: "DisclosureManagement",
