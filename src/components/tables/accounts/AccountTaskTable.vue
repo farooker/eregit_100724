@@ -104,7 +104,7 @@
         @click="handleItemClick(item)"
       >
         <v-alert
-          class="mt-3 mx-1"
+          class="mt-3 mx-1 pointer-card"
           :style="{ borderLeft: borderLeft }"
           color="white"
           style="border-radius: 10px !important"
@@ -288,6 +288,20 @@ const borderLeft = computed(() => {
 </script>
 
 <style scoped>
+.pointer-card {
+  cursor: pointer;
+}
+
+.pointer-card {
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.pointer-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
 .truncate {
   white-space: normal;
   overflow: hidden;
