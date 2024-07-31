@@ -22,9 +22,7 @@
             "
             :isNaturePerson="is_natural_person"
             :taxCetagory="tax_cetagory"
-            :companyIdSelect="
-              tempRegisterInfo?.company_data?.data.map((el) => el.id)
-            "
+            :companyIdSelect="tempRegisterInfo?.company_data?.data"
             :register_type="tempRegisterInfo.type_register"
             v-show="step === 1"
             :taxNumber="tempRegisterInfo.thai_people_id"
@@ -84,9 +82,11 @@
             :register-form-detail="props.registerFormDetail"
             :type-form="props.typeForm"
             :compCode="
-              props.registerInfo?.company_data?.data.map(
-                (el) => el.company_code
-              )
+              input_data.step_one?.other?.company_code
+                ? input_data.step_one.other.company_code.map(
+                    (el) => el.company_code
+                  )
+                : []
             "
             :BusinessPartnerGroup="
               input_data.step_one?.main_data?.business_partner_gruop_selection
@@ -231,6 +231,7 @@ const handleReverse = () => {
 const handleStepOneChanged = (data_obj) => {
   input_data.value.step_one = data_obj;
   emit("on-input", input_data.value);
+  console.log("STEP_ONE", JSON.stringify(input_data.value.step_one));
 };
 
 const handleStepTwoChanged = (data_obj) => {

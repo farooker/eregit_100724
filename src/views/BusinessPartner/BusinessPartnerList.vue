@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container fluid>
     <h2>Business Partner List</h2>
     <div class="mt-5">
       <v-row dense class="mt-5 mb-5">
