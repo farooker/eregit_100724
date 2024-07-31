@@ -358,11 +358,15 @@ watch(
     createBusinessPartnerProfileBody.value.is_head_office =
       newValue?.partnerRegister?.register.is_head_office == "1" ? true : false;
 
-    if(createBusinessPartnerProfileBody.value.is_head_office){
-      createBusinessPartnerProfileBody.value.branch_code = "00000";
-    }else{
-      createBusinessPartnerProfileBody.value.branch_code =
-      newValue?.partnerRegister?.register?.branch_code;
+    if (createBusinessPartnerProfileBody.value.is_vat_registered) {
+      if (createBusinessPartnerProfileBody.value.is_head_office) {
+        createBusinessPartnerProfileBody.value.branch_code = "00000";
+      } else {
+        createBusinessPartnerProfileBody.value.branch_code =
+          newValue?.partnerRegister?.register?.branch_code;
+      }
+    } else {
+      createBusinessPartnerProfileBody.value.branch_code = "";
     }
 
     createBusinessPartnerProfileBody.value.company_category_id =
