@@ -358,14 +358,15 @@ watch(
     createBusinessPartnerProfileBody.value.is_head_office =
       newValue?.partnerRegister?.register.is_head_office == "1" ? true : false;
 
-    createBusinessPartnerProfileBody.value.branch_code =
-      newValue?.partnerRegister?.register?.branch_code ?? null;
+    if(createBusinessPartnerProfileBody.value.is_head_office){
+      createBusinessPartnerProfileBody.value.branch_code = "00000";
+    }else{
+      createBusinessPartnerProfileBody.value.branch_code =
+      newValue?.partnerRegister?.register?.branch_code;
+    }
 
     createBusinessPartnerProfileBody.value.company_category_id =
       newValue?.partnerRegister?.register?.company_category ?? null;
-
-    // if (createBusinessPartnerProfileBody.value.company_category_id == "")
-    //   createBusinessPartnerProfileBody.value.company_category_id = 0;
 
     createBusinessPartnerProfileBody.value.customer_category =
       newValue?.partnerRegister?.register?.customer_category ?? null;
@@ -421,6 +422,7 @@ watch(
 
     createBusinessPartnerProfileBody.value.name_th = `${newValue.partnerInfo.partner_info.th.gender}${newValue.partnerInfo.partner_info.th.name_th}`;
     createBusinessPartnerProfileBody.value.name_en = `${newValue.partnerInfo.partner_info.en.gender}${newValue.partnerInfo.partner_info.en.name_en}`;
+
   },
   { deep: true }
 );
