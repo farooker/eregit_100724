@@ -74,11 +74,11 @@ const getOptByEmail = async () => {
     }
   } catch (e) {
     if (e.response) {
-      const val = e.response.data;
-      handlingErrorsMessage(val.message, val?.data.error);
+      // const val = e.response.data;
+      // handlingErrorsMessage(val.message, val?.data.error);
       return;
     }
-    handlingErrorsMessage("unknown", e.message);
+    // handlingErrorsMessage("unknown", e.message);
   }
 };
 

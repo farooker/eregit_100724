@@ -49,7 +49,6 @@
             </v-col>
             <v-col cols="1">
               <strong
-                @click="sortByField('role')"
                 style="cursor: pointer; font-size: small"
               >
                 <v-icon>

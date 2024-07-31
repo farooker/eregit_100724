@@ -49,7 +49,7 @@
             </v-col>
             <v-col cols="1">
               <strong
-                @click="sortByField('role')"
+
                 style="cursor: pointer; font-size: small"
               >
                 <v-icon>
@@ -294,3 +294,4 @@ const borderLeft = computed(() => {
   word-wrap: break-word; /* ให้ข้อความข้ามบรรทัดใหม่ตามคำ */
 }
 </style>
+<!-- @click="sortByField('role')" -->
