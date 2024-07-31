@@ -258,7 +258,7 @@
               :items="itemsCompany"
               closable-chips
               item-title="displayName"
-              item-value="id"
+              item-value="custom_id"
               density="compact"
               multiple
               chips
@@ -569,6 +569,7 @@ const getCompanies = async () => {
       itemsCompany.value = response.data.data.map((item) => ({
         ...item,
         displayName: `${item.company_code} - ${item.name_th}`,
+        custom_id: { id: item.id, company_code: item.company_code },
       }));
     }
   } catch (e) {

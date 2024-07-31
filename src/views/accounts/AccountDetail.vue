@@ -127,7 +127,7 @@ const handleReverseForm = () => {
 const handleRegisterInput = (register_info_data) => {
   input_data.value.register_info_form = register_info_data;
   customer_or_vender.value = register_info_data.type_register;
-  console.log(JSON.stringify(input_data.value.register_info_form));
+  // console.log(JSON.stringify(customer_or_vender.value.input_data.value.register_info_form));
 };
 
 const handleRegisterCommit = (register_info_data) => {
@@ -237,6 +237,7 @@ const getRegisterFormDetailByFormNumber = async (form_number) => {
 
 const handleSetpInput = (stepper_data) => {
   input_data.value.stepper_info_form = stepper_data;
+  console.log("step22", input_data.value.stepper_info_form);
 };
 
 const handleCustCommit = async (stepper_info_data) => {
@@ -260,7 +261,7 @@ const handleCustCommit = async (stepper_info_data) => {
   const requestSaveDaftBusinessPartnerRegis = {
     form_number:
       register_form_detail.value.business_partner_register_form?.form_number ??
-      acc_id.value,
+      null,
     // updated_user_id:
     // Number(register_form_detail.value.business_partner_register_form?.created_user_id ?? null),
     business_partner_register_form: {
@@ -282,15 +283,16 @@ const handleCustCommit = async (stepper_info_data) => {
       business_partner_role_id:
         input_data.value.register_info_form?.type_register, // data.register_info_form.type_register //number
       fill_type_id: input_data.value.register_info_form?.type_data, // data.register_info_form.type_data.data //number
-      company_id: input_data.value.register_info_form.company_data.data
-        .map((comp) => comp.id)
-        .join(","), // unknow
-      employee_type_id: register_form_detail.value
-        .business_partner_register_form?.employee_type
-        ? register_form_detail.value.business_partner_register_form.employee_type
-            .map((el) => el.id)
+      company_id: input_data.value.stepper_info_form?.step_one?.other
+        .company_code
+        ? input_data.value.stepper_info_form?.step_one?.other.company_code
+            .map((comp) => comp.id)
             .join(",")
-        : "", // unknow
+        : [],
+      employee_type_id:
+        register_form_detail.value.business_partner_register_form.employee_type
+          .map((el) => el.id)
+          .join(","), // unknow
       payment_term_id: Number(
         input_data.value.register_info_form?.term_data?.data
       ), // data.register_info_form.term_data.data
@@ -779,7 +781,7 @@ const handleSaveDaft = async () => {
   const requestSaveDaftBusinessPartnerRegis = {
     form_number:
       register_form_detail.value.business_partner_register_form?.form_number ??
-      acc_id.value,
+      null,
     business_partner_register_form: {
       taxpayer_id_number: input_data.value.register_info_form?.thai_people_id, // data.stepper_info_form.step_one?.main_data.tax_number
       created_user_id: Number(
@@ -798,15 +800,16 @@ const handleSaveDaft = async () => {
       business_partner_role_id:
         input_data.value.register_info_form?.type_register, // data.register_info_form.type_register //number
       fill_type_id: input_data.value.register_info_form?.type_data, // data.register_info_form.type_data.data //number
-      company_id: input_data.value.register_info_form.company_data.data
-        .map((comp) => comp.id)
-        .join(","), // unknow
-      employee_type_id: register_form_detail.value
-        .business_partner_register_form?.employee_type
-        ? register_form_detail.value.business_partner_register_form.employee_type
-            .map((el) => el.id)
+      company_id: input_data.value.stepper_info_form?.step_one?.other
+        .company_code
+        ? input_data.value.stepper_info_form?.step_one?.other.company_code
+            .map((comp) => comp.id)
             .join(",")
-        : "", // unknow
+        : [],
+      employee_type_id:
+        register_form_detail.value.business_partner_register_form.employee_type
+          .map((el) => el.id)
+          .join(","), // unknow
       payment_term_id: Number(
         input_data.value.register_info_form?.term_data?.data
       ), // data.register_info_form.term_data.data

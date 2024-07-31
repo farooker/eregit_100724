@@ -787,12 +787,12 @@ import { computed, watch, watchEffect } from "vue";
 import { ref } from "vue";
 
 import AccountType from "@/utils/enum.util";
-import PaymentTermService from "@/apis/PaymentTermService";
 import { onMounted } from "vue";
 
 import { useErrorHandlingDialog } from "@/components/dialogs/ExceptionHandleDialogService";
 import AccountReconciliationService from "@/apis/AccountReconciliationService";
 import PartnerServive from "@/apis/PartnerServive";
+import AccountPaymentTarmService from "@/apis/AccountPaymentTarmService";
 const { handlingErrorsMessage } = useErrorHandlingDialog();
 
 const props = defineProps({
@@ -873,12 +873,12 @@ const data_input = ref({
   },
 });
 
-const arrayCompCode = ref(props.compCode ?? []);
+const arrayCompCode = ref([]);
 
 watchEffect(async () => {
-
   data_input.value.more_data_one.pyment_term_selection =
-  props.registerFormDetail?.business_partner_register_form?.payment_term.id ?? null;
+    props.registerFormDetail?.business_partner_register_form?.payment_term.id ??
+    null;
 
   data_input.value.more_data_one.reconcliation_acct_seletion =
     props.registerFormDetail?.account_information_form
@@ -886,7 +886,8 @@ watchEffect(async () => {
   // data_input.value.more_data_one.pyment_term_selection =
   //   props.registerFormDetail?.account_information_form?.payment_term_id ?? null;
   data_input.value.more_data_one.payment_terms_selection =
-  props.registerFormDetail?.business_partner_register_form?.payment_term.id ?? null;
+    props.registerFormDetail?.business_partner_register_form?.payment_term.id ??
+    null;
   data_input.value.vander_info.head_office =
     props.registerFormDetail?.account_information_form?.head_office ?? null;
 });
@@ -944,22 +945,10 @@ const TAG_FPT = [
 const TAG_FPHT = ["5000", "5001", "5002", "5003"];
 
 onMounted(async () => {
-  await getPaymentTerm();
+  await getAccountsPaymentTerm(props.typeForm);
   await getBusinessPartnerGroupAll();
   await getAccounrBusinessPartnerTypeAll();
   await getAccountReconciliation(props.typeForm);
-  console.log("props.compCode", props.compCode)
-
-  const result = [];
-  for (let index = 0; index < arrayCompCode.value.length; index++) {
-    const el = arrayCompCode.value[index];
-    if (TAG_GL00.includes(el)) result.push("GL00");
-    if (TAG_FPT.includes(el)) result.push("FTP");
-    if (TAG_FPHT.includes(el)) result.push("FPHT");
-  }
-  // data_input.value.vander_info.pruch = result.join(",");
-  const dataPruch = Array.from(new Set(result));
-  data_input.value.vander_info.pruch = dataPruch.join(",");
 });
 
 const getAccounrBusinessPartnerTypeAll = async () => {
@@ -1008,6 +997,19 @@ const getAccountReconciliation = async (id) => {
   }
 };
 
+watchEffect(() => {
+  arrayCompCode.value = props.compCode;
+  const result = [];
+  for (let index = 0; index < arrayCompCode.value.length; index++) {
+    const el = arrayCompCode.value[index];
+    if (TAG_GL00.includes(el)) result.push("GL00");
+    if (TAG_FPT.includes(el)) result.push("FTP");
+    if (TAG_FPHT.includes(el)) result.push("FPHT");
+  }
+  const dataPruch = Array.from(new Set(result));
+  data_input.value.vander_info.pruch = dataPruch.join(",");
+});
+
 watchEffect(async () => {
   // if (itemsAccountBusinessPartnerType.value.length == 0) {
   //   await getBusinessPartnerGroupAll();
@@ -1029,7 +1031,7 @@ watchEffect(async () => {
     let indexFind = itemsAccountBusinessPartnerType.value.findIndex(
       (el) => el.id == props.BusinessPartnerGroup
     );
-data_input.value.vander_info.pa_yee_in_doc =null;
+    data_input.value.vander_info.pa_yee_in_doc = null;
     data_input.value.more_data_two = {
       subject_wht: {
         1: null,
@@ -1075,19 +1077,19 @@ data_input.value.vander_info.pa_yee_in_doc =null;
         case "BP01":
           data_input.value.vander_info.pa_yee_in_doc = null;
           break;
-          case "BP02":
+        case "BP02":
           data_input.value.vander_info.pa_yee_in_doc = null;
           break;
-          case "BP03":
+        case "BP03":
           data_input.value.vander_info.pa_yee_in_doc = "x";
 
           break;
         case "BP04":
-        data_input.value.vander_info.pa_yee_in_doc = "x";
+          data_input.value.vander_info.pa_yee_in_doc = "x";
           data_input.value.more_data_two.with_tax_type["1"] = "04";
           data_input.value.more_data_two.with_tax_type["2"] = "05";
           data_input.value.more_data_two.with_tax_type["3"] = "06";
-// data_input.value.vander_info.pa_yee_in_doc = null
+          // data_input.value.vander_info.pa_yee_in_doc = null
           data_input.value.more_data_two.type_reciepient["1"] = "03";
           data_input.value.more_data_two.type_reciepient["2"] = "03";
           data_input.value.more_data_two.type_reciepient["3"] = "03";
@@ -1097,7 +1099,7 @@ data_input.value.vander_info.pa_yee_in_doc =null;
           data_input.value.more_data_two.subject_wht["3"] = "X";
           break;
         case "BP05":
-        data_input.value.vander_info.pa_yee_in_doc = "x";
+          data_input.value.vander_info.pa_yee_in_doc = "x";
           data_input.value.more_data_two.with_tax_type["2"] = null;
           data_input.value.more_data_two.with_tax_type["1"] = null;
           data_input.value.more_data_two.subject_wht["1"] = null;
@@ -1328,9 +1330,10 @@ const displayItemsPaymentTerms = computed(() => {
   }));
 });
 
-const getPaymentTerm = async () => {
+const getAccountsPaymentTerm = async (id) => {
   try {
-    const response = await PaymentTermService.getPaymentTermAll();
+    const response =
+      await AccountPaymentTarmService.getAccounrAccountPaymentTarmsAll(id);
     if (response.data?.is_success) {
       itemsPaymentTerms.value = response.data.data;
     }

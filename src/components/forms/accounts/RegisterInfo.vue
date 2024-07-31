@@ -733,7 +733,7 @@ watchEffect(() => {
     //   (el) => { return el.id }
     // );
 
-    if (props.registerFormDetail.business_partner_register_form.company)
+    if (props.registerFormDetail?.business_partner_register_form?.company)
       data_input.value.company_data.data =
         props.registerFormDetail.business_partner_register_form.company.map(
           (el) => {
@@ -832,7 +832,7 @@ watchEffect(() => {
     }
 
     data_input.value.bank_info.acc_name_en =
-      props.registerFormDetail.business_partner_register_form.name_en;
+      props.registerFormDetail?.business_partner_profile_form?.bank_account_name;
 
     data_input.value.bank_info.bank_name =
       props.registerFormDetail.business_partner_profile_form?.bank.id.toString();

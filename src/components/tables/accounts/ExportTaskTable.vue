@@ -109,7 +109,7 @@
           :style="{ borderLeft: borderLeft }"
           color="white"
           elevation="1"
-          class="mt-2"
+          class="mt-2 pointer-card"
           style="border-radius: 10px !important"
         >
           <v-row dense>
@@ -344,4 +344,14 @@ const borderLeft = computed(() => {
   overflow: hidden;
   word-wrap: break-word; /* ให้ข้อความข้ามบรรทัดใหม่ตามคำ */
 }
+
+.pointer-card {
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.pointer-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
 </style>
