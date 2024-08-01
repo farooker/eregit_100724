@@ -530,8 +530,16 @@ watchEffect(async () => {
       data_input_head_comp.value.address_th.search.one =
         props.registerFormDetail?.account_information_form?.search_term1_th;
 
-    data_input_head_comp.value.address_th.search.two =
-      props.taxPayerIdNumber ?? null;
+    if (
+      props.registerFormDetail?.account_information_form?.search_term2_th &&
+      props.registerFormDetail?.account_information_form?.search_term2_th != ""
+    ) {
+      data_input_head_comp.value.address_th.search.two =
+        props.registerFormDetail?.account_information_form?.search_term2_th;
+    } else {
+      data_input_head_comp.value.address_th.search.two =
+        props.taxPayerIdNumber ?? null;
+    }
 
     data_input_head_comp.value.contact_info = props.contactItems;
 

@@ -323,7 +323,12 @@ watchEffect(() => {
   //steptwo
   if (props.register_type == 1 && initValue.value) {
     // data_input.value.name.one = props.name;
-    data_input.value.search.two = props.taxPayerIdNumber ?? null;
+    if (props.registerFormDetail?.account_information_form?.search_term2_en) {
+      data_input.value.search.two =
+        props.registerFormDetail?.account_information_form?.search_term2_en;
+    } else {
+      data_input.value.search.two = props.taxPayerIdNumber ?? null;
+    }
     // data_input.value.location = props.addressItem ?? null;
     if (props.addressItem) {
       data_input.value.location.province = props.addressItem?.province;
