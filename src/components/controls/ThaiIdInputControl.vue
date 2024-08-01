@@ -12,19 +12,29 @@
         variant="outlined"
         dense
         density="compact"
+                :readonly="props.isDisableAddress"
+        :bg-color="bgColor"
       ></v-text-field>
     </div>
   </v-container>
 </template>
 
 <script setup>
-import { ref, watch } from "vue";
+import { ref, watch, computed } from "vue";
 
 const props = defineProps({
   initialOtpValue: {
     type: String,
     default: "",
   },
+  isDisableAddress: {
+    type: Boolean,
+    default: false,
+  },
+});
+
+const bgColor = computed(() => {
+  return props.isDisableAddress ? "#dfdfdf" : "white";
 });
 
 const emit = defineEmits(["on-input"]);

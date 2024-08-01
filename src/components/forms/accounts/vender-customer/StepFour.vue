@@ -877,7 +877,7 @@ const arrayCompCode = ref([]);
 
 watchEffect(async () => {
   data_input.value.more_data_one.pyment_term_selection =
-    props.registerFormDetail?.business_partner_register_form?.payment_term.id ??
+    props.registerFormDetail?.account_information_form?.payment_term_id ??
     null;
 
   data_input.value.more_data_one.reconcliation_acct_seletion =
@@ -886,8 +886,9 @@ watchEffect(async () => {
   // data_input.value.more_data_one.pyment_term_selection =
   //   props.registerFormDetail?.account_information_form?.payment_term_id ?? null;
   data_input.value.more_data_one.payment_terms_selection =
-    props.registerFormDetail?.business_partner_register_form?.payment_term.id ??
+    props.registerFormDetail?.account_information_form?.payment_terms_id ??
     null;
+
   data_input.value.vander_info.head_office =
     props.registerFormDetail?.account_information_form?.head_office ?? null;
 });

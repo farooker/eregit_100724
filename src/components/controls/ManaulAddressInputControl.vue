@@ -9,6 +9,8 @@
         density="compact"
         :rules="textRequired"
         variant="outlined"
+        :readonly="props.isDisableAddress"
+        :bg-color="bgColor"
       ></v-text-field>
     </v-col>
 
@@ -21,6 +23,8 @@
         density="compact"
         :rules="textRequired"
         variant="outlined"
+        :readonly="props.isDisableAddress"
+        :bg-color="bgColor"
       ></v-text-field>
     </v-col>
 
@@ -33,6 +37,8 @@
         density="compact"
         :rules="textRequired"
         variant="outlined"
+        :readonly="props.isDisableAddress"
+        :bg-color="bgColor"
       ></v-text-field>
     </v-col>
 
@@ -46,6 +52,8 @@
         density="compact"
         dense
         variant="outlined"
+        :readonly="props.isDisableAddress"
+        :bg-color="bgColor"
       ></v-text-field>
     </v-col>
   </v-row>
@@ -53,7 +61,7 @@
 
 <script setup>
 import OtherService from "@/apis/OtherService";
-import { ref, watch, watchEffect } from "vue";
+import { ref, watch, watchEffect, computed } from "vue";
 
 const textRequired = [(v) => !!v || "กรุณากรอกข้อมูลให้ครบถ้วน"];
 
@@ -63,6 +71,10 @@ const props = defineProps({
   tagDesc: {
     type: String,
     default: "(EN)",
+  },
+  isDisableAddress: {
+    type: Boolean,
+    default: false,
   },
   addressItem: {
     type: Object,
@@ -78,6 +90,9 @@ const props = defineProps({
   },
 });
 
+const bgColor = computed(() => {
+  return props.isDisableAddress ? "#dfdfdf" : "white";
+});
 const data_input = ref({
   province: props.addressItem?.province,
   district: props.addressItem?.district,

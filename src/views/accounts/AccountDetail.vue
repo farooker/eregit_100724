@@ -36,6 +36,7 @@
           @button-clicked="handleMoreDocs"
         /> -->
         <ButtonControl
+         v-if="is_id_form === FORM_ID.STEPPER_INFO"
           style="
             box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
             height: 35px;
@@ -55,6 +56,7 @@
       />
 
       <SteperInfo
+      :isItemDoc="itemsFileDocument.length > 0"
         v-if="is_id_form === FORM_ID.STEPPER_INFO"
         :register-form-detail="register_form_detail"
         :type-form="customer_or_vender"
@@ -288,7 +290,7 @@ const handleCustCommit = async (stepper_info_data) => {
         ? input_data.value.stepper_info_form?.step_one?.other.company_code
             .map((comp) => comp.id)
             .join(",")
-        : [],
+        : "",
       employee_type_id:
         register_form_detail.value.business_partner_register_form.employee_type
           .map((el) => el.id)
@@ -397,13 +399,21 @@ const handleCustCommit = async (stepper_info_data) => {
         input_data.value.register_info_form?.items_contects[2]?.email ?? null, // data.items_contects[3]?.email
       bank_account_name:
         input_data.value.register_info_form?.bank_info?.acc_name_en ?? null, // data.bank_info.acc_name_en
+      // bank_id: Number(
+      //   input_data.value.register_info_form?.bank_info?.bank_name
+      // ), // data.bank_info.bank_name //number
       bank_id: Number(
-        input_data.value.register_info_form?.bank_info?.bank_name
-      ), // data.bank_info.bank_name //number
+        input_data.value.stepper_info_form?.step_one?.other
+        ?.bank_key
+      )?? null,
+      // bank_branch:
+      // input_data.value.register_info_form?.bank_info?.bank_branch ?? null, // data.bank_info.bank_branch
       bank_branch:
-        input_data.value.register_info_form?.bank_info?.bank_branch ?? null, // data.bank_info.bank_branch
+        input_data.value.stepper_info_form?.step_one?.other
+          ?.bank_branch ?? null,
       bank_account_number:
-        input_data.value.register_info_form?.bank_info?.acc_number ?? null, // data.bank_info.acc_number
+      input_data.value.stepper_info_form?.step_one?.other
+      ?.bank_account ?? null,
       // created_at: "2023-11-10T14:20:12", // auto fill
       // created_user_id: 1, // auto fill
       // updated_at: "2023-11-12T10:30:45", // auto fill
@@ -805,7 +815,7 @@ const handleSaveDaft = async () => {
         ? input_data.value.stepper_info_form?.step_one?.other.company_code
             .map((comp) => comp.id)
             .join(",")
-        : [],
+        : "",
       employee_type_id:
         register_form_detail.value.business_partner_register_form.employee_type
           .map((el) => el.id)
@@ -913,12 +923,16 @@ const handleSaveDaft = async () => {
       bank_account_name:
         input_data.value.register_info_form?.bank_info?.acc_name_en ?? null, // data.bank_info.acc_name_en
       bank_id: Number(
-        input_data.value.register_info_form?.bank_info?.bank_name
-      ), // data.bank_info.bank_name //number
+        input_data.value.stepper_info_form?.step_one?.other
+        ?.bank_key
+      ) ?? null, // data.bank_info.bank_name //number
       bank_branch:
-        input_data.value.register_info_form?.bank_info?.bank_branch ?? null, // data.bank_info.bank_branch
+        input_data.value.stepper_info_form?.step_one?.other
+          ?.bank_branch ?? null,
+      // data.bank_info.bank_branch
       bank_account_number:
-        input_data.value.register_info_form?.bank_info?.acc_number ?? null, // data.bank_info.acc_number
+      input_data.value.stepper_info_form?.step_one?.other
+      ?.bank_account ?? null,
       // created_at: "2023-11-10T14:20:12", // auto fill
       // created_user_id: 1, // auto fill
       // updated_at: "2023-11-12T10:30:45", // auto fill

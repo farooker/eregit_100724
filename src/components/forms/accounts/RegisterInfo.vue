@@ -9,7 +9,12 @@
           </v-card-title>
           <v-row dense>
             <v-col cols="12">
-              <v-radio-group class="ml-6" v-model="data_input.type_register">
+              <v-radio-group
+                class="ml-6"
+                readonly
+                bg-color="#dfdfdf"
+                v-model="data_input.type_register"
+              >
                 <v-radio
                   v-for="(item, index) in items_type_register"
                   :label="item.name"
@@ -29,7 +34,12 @@
           </v-card-title>
           <v-row dense>
             <v-col cols="12">
-              <v-radio-group class="ml-6" v-model="data_input.type_data">
+              <v-radio-group
+                class="ml-6"
+                v-model="data_input.type_data"
+                readonly
+                bg-color="#dfdfdf"
+              >
                 <v-radio
                   v-for="(item, index) in filteredItemsTypeData"
                   :label="item.name_th"
@@ -57,12 +67,13 @@
                 v-model="data_input.company_data.data"
                 :items="displayItemsCompany"
                 multiple
-                closable-chips
+
                 item-value="custom_id"
                 item-title="displayName"
                 density="compact"
-                :rules="[(v) => (v && v.length) || 'กรอกข้อมูลให้ครบถ้วน']"
                 variant="outlined"
+                readonly
+                bg-color="#dfdfdf"
               ></v-autocomplete>
             </v-col>
           </v-row>
@@ -75,7 +86,12 @@
           </v-card-title>
           <v-row dense>
             <v-col cols="12">
-              <v-radio-group class="ml-6" v-model="data_input.term_data.data">
+              <v-radio-group
+                class="ml-6"
+                v-model="data_input.term_data.data"
+                readonly
+                bg-color="#dfdfdf"
+              >
                 <v-radio
                   v-for="(item, index) in itemsPaymentTerms"
                   :label="item.description"
@@ -88,6 +104,8 @@
               <v-radio-group
                 v-model="data_input.term_data.data"
                 style="width: auto"
+                readonly
+                bg-color="#dfdfdf"
               >
                 <v-radio value="other" label="อื่นๆ"></v-radio>
               </v-radio-group>
@@ -97,6 +115,8 @@
                 density="compact"
                 dense
                 variant="outlined"
+                  readonly
+                  bg-color="#dfdfdf"
                 v-model="data_input.term_data.other"
               ></v-text-field>
             </div>
@@ -114,6 +134,8 @@
                 class="ml-6 d-flex"
                 :rules="textRequired"
                 v-model="data_input.customer_type_data.data"
+                readonly
+                bg-color="#dfdfdf"
               >
                 <v-radio
                   v-for="(item, index) in items_cutomer_type"
@@ -163,6 +185,8 @@
                 @on-input="handleThaiId"
               /> -->
               <ThaiIdInputControl
+                readonly
+                bg-color="#dfdfdf"
                 :initialOtpValue="
                   props.registerFormDetail?.business_partner_register_form?.taxpayer_number_id
                     .toString()
@@ -170,6 +194,7 @@
                 "
                 class="mt-5"
                 @on-input="handleThaiId"
+                :is-disable-address="true"
               />
             </v-col>
           </v-row>
@@ -203,6 +228,7 @@
                 "
                 class="mt-5"
                 @on-input="handleThaiId"
+                :is-disable-address="true"
               />
             </v-col>
           </v-row>
@@ -213,6 +239,8 @@
           <v-radio-group
             class="ml-6 mt-5"
             v-model="data_input.tax_register.type"
+            readonly
+            bg-color="#dfdfdf"
           >
             <v-radio label="จดทะเบียนภาษีมูลค่าเพิ่ม" value="1"></v-radio>
           </v-radio-group>
@@ -220,6 +248,8 @@
             class="ml-6 mt-n4"
             :disabled="isDisableBranch"
             v-model="data_input.tax_register.branch"
+            readonly
+            bg-color="#dfdfdf"
           >
             <v-radio class="ml-5" label="สำนักงานใหญ่" value="1"></v-radio>
             <div class="d-flex align-center box">
@@ -228,6 +258,8 @@
                 v-model="data_input.tax_register.branch_code"
                 variant="outlined"
                 dense
+                readonly
+                bg-color="#dfdfdf"
                 :rules="
                   data_input.tax_register.branch != '1' &&
                   data_input.tax_register.type != '0'
@@ -268,6 +300,8 @@
                 v-model="data_input.type_business.data"
                 :items="itemCompanyCatagory"
                 item-value="id"
+                readonly
+                bg-color="#dfdfdf"
                 placeholder="เลือกคำตอบ"
                 item-title="name_th"
                 density="compact"
@@ -275,7 +309,11 @@
               ></v-select>
             </v-col>
             <v-col cols="1" v-if="data_input.type_business.data == 29">
-              <v-radio-group v-model="data_input.type_business.is_other">
+              <v-radio-group
+                v-model="data_input.type_business.is_other"
+                readonly
+                bg-color="#dfdfdf"
+              >
                 <v-radio label="อื่นๆ" :value="true"></v-radio>
               </v-radio-group>
             </v-col>
@@ -284,7 +322,6 @@
                 class="mr-6"
                 v-if="data_input.type_business.is_other"
                 density="compact"
-                :rules="textRequired"
                 dense
                 variant="outlined"
                 v-model="data_input.type_business.other"
@@ -306,8 +343,9 @@
               <v-text-field
                 class="mr-6 ml-6"
                 density="compact"
-                :rules="textRequired"
                 dense
+                readonly
+                bg-color="#dfdfdf"
                 variant="outlined"
                 v-model="data_input.type_product_service"
               ></v-text-field>
@@ -328,7 +366,6 @@
               <v-text-field
                 class="mr-6 ml-6"
                 density="compact"
-                :rules="textRequired"
                 dense
                 variant="outlined"
                 v-model="data_input.customer_type"
@@ -344,7 +381,7 @@
         <v-card>
           <v-row dense>
             <v-col cols="12" v-if="isNaturalPerson">
-              <v-card-title style="padding: 0px">
+              <v-card-title>
                 <h6>คำนำหน้าชื่อ (ภาษาไทย)</h6>
               </v-card-title>
               <v-col cols="12">
@@ -352,7 +389,8 @@
                   class="mt-n3"
                   v-model="data_input.customer_info.th.pserson.gender"
                   inline
-                  :rules="textRequired"
+                  readonly
+                  bg-color="#dfdfdf"
                 >
                   <v-radio label="นาย" value="นาย"></v-radio>
                   <v-radio label="นาง" value="นาง"></v-radio>
@@ -365,8 +403,9 @@
                 <h6>ชื่อ-นามสกุล บุคคลธรรมดา (ภาษาไทย)</h6>
               </v-card-title>
               <v-text-field
-                :rules="textRequired"
                 v-model="data_input.customer_info.th.pserson.name"
+                readonly
+                bg-color="#dfdfdf"
                 class="ml-6 mr-6 mb-3"
                 density="compact"
                 variant="outlined"
@@ -379,7 +418,8 @@
               <v-text-field
                 class="ml-6 mr-6"
                 density="compact"
-                :rules="textRequired"
+                readonly
+                bg-color="#dfdfdf"
                 dense
                 v-model="data_input.customer_info.th.company_name"
                 variant="outlined"
@@ -393,6 +433,8 @@
                 class="ml-6 mr-6"
                 density="compact"
                 v-model="data_input.customer_info.th.address"
+                readonly
+                bg-color="#dfdfdf"
                 dense
                 variant="outlined"
               ></v-text-field>
@@ -404,7 +446,7 @@
                 key-title="name_th"
                 class="ml-5 mr-5"
                 :address-item="data_input.customer_info.th.info"
-                :is-disable-address="false"
+                :is-disable-address="true"
                 @on-input="handleAddressInputTh"
               />
             </v-col>
@@ -420,10 +462,11 @@
               </v-card-title>
               <v-col cols="12">
                 <v-radio-group
+                  readonly
+                  bg-color="#dfdfdf"
                   v-model="data_input.customer_info.en.pserson.gender"
                   inline
                   class="mt-n3"
-                  :rules="textRequired"
                 >
                   <v-radio label="Mr." value="Mr."></v-radio>
                   <v-radio label="Mrs." value="Mrs."></v-radio>
@@ -436,7 +479,8 @@
                 <h6>ชื่อ-นามสกุล บุคคลธรรมดา (ภาษาอังกฤษ)</h6>
               </v-card-title>
               <v-text-field
-                :rules="textRequired"
+                readonly
+                bg-color="#dfdfdf"
                 v-model="data_input.customer_info.en.pserson.name"
                 class="ml-6 mr-6 mb-3"
                 density="compact"
@@ -451,8 +495,9 @@
                 class="ml-6 mr-6"
                 v-model="data_input.customer_info.en.company_name"
                 density="compact"
-                :rules="textRequired"
                 dense
+                readonly
+                bg-color="#dfdfdf"
                 variant="outlined"
               ></v-text-field>
             </v-col>
@@ -465,7 +510,8 @@
                 v-model="data_input.customer_info.en.address"
                 density="compact"
                 dense
-                :rules="textRequired"
+                readonly
+                bg-color="#dfdfdf"
                 variant="outlined"
               ></v-text-field>
             </v-col>
@@ -484,6 +530,7 @@
                 class="ml-5 mr-5"
                 :address-item="data_input.customer_info.en.info"
                 @on-input="handleAddressEN"
+                 :is-disable-address="true"
               />
             </v-col>
           </v-row>
@@ -512,51 +559,56 @@
             >
               <v-col class="d-flex align-center" cols="4"
                 ><v-text-field
+                  readonly
+                  bg-color="#dfdfdf"
                   density="compact"
                   dense
                   v-model="item.name"
                   variant="outlined"
-                  :rules="textRequired"
                 ></v-text-field>
               </v-col>
               <v-col class="d-flex align-center" cols="4"
                 ><v-text-field
                   density="compact"
+                  readonly
+                  bg-color="#dfdfdf"
                   dense
                   v-model="item.phone"
                   variant="outlined"
-                  :rules="textRequired"
                 ></v-text-field>
               </v-col>
               <v-col class="d-flex align-center" cols="4">
                 <v-text-field
                   v-if="index !== 0"
+                  readonly
+                  bg-color="#dfdfdf"
                   density="compact"
                   dense
-                  :rules="textRequired"
                   v-model="item.email"
                   variant="outlined"
                   color="red"
-                  append-icon="mdi mdi-close-circle"
+
                   @click:append="handleRemoveContact(index)"
                 ></v-text-field>
                 <v-text-field
                   v-else
                   density="compact"
                   dense
-                  :rules="textRequired"
+                  readonly
+                  bg-color="#dfdfdf"
                   v-model="item.email"
                   variant="outlined"
                   color="red"
                 ></v-text-field>
               </v-col>
             </v-row>
-            <ButtonControl
+            <!-- <ButtonControl
+             append-icon="mdi mdi-close-circle"//icon-delete-contact-stepinfo
               v-if="data_input.items_contects.length < 2"
               icon="mdi mdi-plus"
               text="เพิ่ม"
               @button-clicked="handleAddNewContact"
-            />
+            /> -->
           </v-card-title>
         </v-card>
       </v-col>
@@ -573,6 +625,7 @@
               props.registerFormDetail?.business_partner_profile_form
                 ?.bank_account_number ?? ''
             "
+             :is-disable-address="true"
             @on-input="handleMoneyTranferInput"
           />
         </v-card>
@@ -1089,7 +1142,7 @@ const getBusinessPartnerType = async () => {
 const displayItemsCompany = computed(() => {
   return itemsCompanyData.value.map((item) => ({
     ...item,
-    displayName: `${item.company_code} - ${item.name_th}`,
+    displayName: `${item.company_code} - ${item.name_th }`,
     custom_id: { id: item.id, company_code: item.company_code },
   }));
 });
@@ -1157,10 +1210,10 @@ const handleRemoveContact = (index) => {
     data_input.value.items_contects.splice(index, 1);
 };
 
-const handleAddNewContact = () => {
-  if (data_input.value.items_contects.length < 2)
-    data_input.value.items_contects.push({ name: "", phone: "", email: "" });
-};
+// const handleAddNewContact = () => {
+//   if (data_input.value.items_contects.length < 2)
+//     data_input.value.items_contects.push({ name: "", phone: "", email: "" });
+// };
 
 const handleThaiId = (id) => {
   data_input.value.thai_people_id = id;

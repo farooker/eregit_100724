@@ -16,6 +16,8 @@
         v-model="data_input.acc_name_en"
         variant="outlined"
         :rules="textRequired"
+        :readonly="props.isDisableAddress"
+        :bg-color="bgColor"
       ></v-text-field>
     </v-col>
     <v-col cols="12" class="mt-n5">
@@ -32,6 +34,8 @@
         variant="outlined"
         @update:model-value="handleBankSelection"
         v-model="data_input.bank_name"
+        :readonly="props.isDisableAddress"
+        :bg-color="bgColor"
       ></v-select>
     </v-col>
     <v-col cols="12" class="mt-n5">
@@ -44,6 +48,8 @@
         dense
         variant="outlined"
         v-model="data_input.bank_branch"
+        :readonly="props.isDisableAddress"
+        :bg-color="bgColor"
         :rules="textRequired"
       ></v-text-field>
     </v-col>
@@ -58,6 +64,8 @@
         variant="outlined"
         v-model="data_input.acc_number"
         :rules="textRequired"
+        :readonly="props.isDisableAddress"
+        :bg-color="bgColor"
       ></v-text-field>
     </v-col>
   </v-row>
@@ -65,7 +73,7 @@
 
 <script setup>
 import OtherService from "@/apis/OtherService";
-import { ref, watch } from "vue";
+import { ref, watch, computed } from "vue";
 import { useErrorHandlingDialog } from "@/components/dialogs/ExceptionHandleDialogService";
 import { onMounted } from "vue";
 const { handlingErrorsMessage } = useErrorHandlingDialog();
@@ -89,6 +97,10 @@ const props = defineProps({
     type: String,
     default: null,
   },
+  isDisableAddress: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 const itemBanks = ref([]);
@@ -99,6 +111,9 @@ onMounted(async () => {
 
 const textRequired = [(v) => !!v || "กรุณากรอกข้อมูลให้ครบถ้วน"];
 
+const bgColor = computed(() => {
+  return props.isDisableAddress ? "#dfdfdf" : "white";
+});
 const data_input = ref({
   acc_name_en: props.accNameEn,
   bank_name: props.bankName,

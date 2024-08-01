@@ -1,7 +1,7 @@
 <template>
-  <v-app-bar class="custom-app-bar">
+  <v-app-bar :class="{'custom-app-bar': props.isItemDoc, 'custom-app-bar-none': !props.isItemDoc}">
     <v-row dense>
-      <v-col color="12" style="margin-left: 150px; margin-top: 45px">
+      <v-col :style="{ marginLeft: '150px', marginTop: '45px' }" color="12">
         <StepperControl :currentStepNumber="step" />
       </v-col>
     </v-row>
@@ -10,7 +10,7 @@
     <!-- {{ props.registerFormDetail.account_information_form.account_business_partner_type_id }} -->
     <v-row dense>
       <v-col cols="12">
-        <v-form ref="formOne">
+        <v-form ref="formOne">  
           <StepOne
             :register-form-detail="props.registerFormDetail"
             :isRegisteredVat="
@@ -139,6 +139,10 @@ const props = defineProps({
     type: Object,
     default: () => {},
   },
+  isItemDoc: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 onMounted(() => {
@@ -264,4 +268,16 @@ const handleStepFourChanged = (data_obj) => {
   height: 100px;
   position: fixed;
 }
+
+.custom-app-bar-none {
+  z-index: 1004 !important;
+  transform: translateY(0%) !important;
+  left: 56px !important;
+  width: calc(100% - 56px) !important;
+  box-shadow: none !important;
+  background-color: #f7f7f6;
+  height: 100px;
+  position: fixed;
+}
+
 </style>
