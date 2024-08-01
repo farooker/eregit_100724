@@ -215,9 +215,7 @@ const rules_valid = ref({
         /^[^\s](.*[^\s])?$/.test(v.trim())) ||
       "* กรุณากรอกข้อมูลให้ถูกต้อง",
   ],
-  name: [
-    (v) => !v || v.length <= 35 || "*กรุณากรอกชื่อไม่เกิน 35 ตัวอักษร",
-  ],
+  name: [(v) => !v || v.length <= 35 || "*กรุณากรอกชื่อไม่เกิน 35 ตัวอักษร"],
   addressrequire: [
     (v) => (v != null && v.length <= 60) || "*กรุณากรอกชื่อไม่เกิน 60 ตัวอักษร",
 
@@ -313,6 +311,8 @@ function splitTextAddress(text) {
   };
 }
 
+const initValue = ref(true);
+
 watchEffect(() => {
   // console.log("propStep2", props.registerFormDetail.value.account_information_form)
   // data_input.value.name.one = props.name;
@@ -321,11 +321,11 @@ watchEffect(() => {
   // data_input.value.address.one = props.address;
 
   //steptwo
-  if (props.register_type == 1) {
+  if (props.register_type == 1 && initValue.value) {
     // data_input.value.name.one = props.name;
     data_input.value.search.two = props.taxPayerIdNumber ?? null;
     // data_input.value.location = props.addressItem ?? null;
-    if(props.addressItem) {
+    if (props.addressItem) {
       data_input.value.location.province = props.addressItem?.province;
       data_input.value.location.district = props.addressItem?.district;
       data_input.value.location.parish = props.addressItem?.parish;
@@ -398,6 +398,7 @@ watchEffect(() => {
     } else {
       data_input.value.address.two = txtSprictAdress.part2 ?? null;
     }
+    initValue.value = false;
   }
 
   //EN Branch step3
@@ -477,7 +478,7 @@ watchEffect(() => {
   }
 
   //TH Branch step3 /true//
-  if (props.register_type === 3) {
+  if (props.register_type === 3 && initValue.value) {
     // data_input.value.name.one =
     //   props.registerFormDetail?.account_information_form?.branch_name1_th ??
     //   null;
@@ -539,6 +540,8 @@ watchEffect(() => {
       data_input.value.address.two =
         props.steptwoFormDetail?.address_th?.address?.two ?? null;
     }
+
+    initValue.value = false;
   }
 });
 
