@@ -55,6 +55,8 @@
               v-model="data_input_head_comp_branch.info.serach_team.th"
               dense
               variant="outlined"
+                            readonly
+              bg-color="rgb(223 223 223 / 30%)"
             ></v-text-field>
           </v-col>
 
@@ -68,6 +70,8 @@
               v-model="data_input_head_comp_branch.info.serach_team.en"
               dense
               variant="outlined"
+                            readonly
+              bg-color="rgb(223 223 223 / 30%)"
             ></v-text-field>
           </v-col>
         </v-row>

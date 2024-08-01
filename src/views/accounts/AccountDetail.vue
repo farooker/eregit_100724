@@ -267,13 +267,17 @@ const handleCustCommit = async (stepper_info_data) => {
     // updated_user_id:
     // Number(register_form_detail.value.business_partner_register_form?.created_user_id ?? null),
     business_partner_register_form: {
-      taxpayer_id_number:
-        input_data.value.register_info_form?.thai_people_id ?? null, // data.stepper_info_form.step_one?.main_data.tax_number
+      taxpayer_id_number: input_data.value.stepper_info_form?.step_one?.main_data
+      ?.tax_number ?? null,
+
+      // taxpayer_id_number:
+      //   input_data.value.register_info_form?.thai_people_id ?? null, // data.stepper_info_form.step_one?.main_data.tax_number
       created_user_id: Number(
         register_form_detail.value.business_partner_register_form
           ?.created_user_id ?? null
       ),
-      // name_th:
+//  input_data.value.stepper_info_form?.step_one?.other
+          // ?.bank_branch ?? null,
       //   input_data.value.register_info_form?.customer_info?.th?.company_name, // data.register_info_form.customer_info.th.company_name
       // name_en:
       //   input_data.value.register_info_form?.customer_info?.en?.company_name, // data.register_info_form.customer_info.en.company_name
@@ -793,7 +797,8 @@ const handleSaveDaft = async () => {
       register_form_detail.value.business_partner_register_form?.form_number ??
       null,
     business_partner_register_form: {
-      taxpayer_id_number: input_data.value.register_info_form?.thai_people_id, // data.stepper_info_form.step_one?.main_data.tax_number
+      taxpayer_id_number: input_data.value.stepper_info_form?.step_one?.main_data
+      ?.tax_number ?? null,
       created_user_id: Number(
         register_form_detail.value.business_partner_register_form
           ?.created_user_id ?? null
@@ -1265,7 +1270,12 @@ const handleSaveDaft = async () => {
   } catch (e) {
     if (e.response) {
       const val = e.response.data;
-      handlingErrorsMessage(val.message, val?.data.error);
+      if(val?.data?.error ?? null){
+        handlingErrorsMessage(val.message, val?.data?.error);
+      }else{
+        handlingErrorsMessage(val.message, val);
+      }
+
       return;
     }
     handlingErrorsMessage("unknown", e.message);
