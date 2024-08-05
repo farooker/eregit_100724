@@ -36,6 +36,9 @@
             class="mx-2"
             variant="outlined"
             placeholder="Email"
+          :rules="emailRules"
+            :error-messages="serverErrorMessages"
+            @focus="handleFocus"
           ></v-text-field>
           <v-row
             class="text-center pa-0 ma-0"
@@ -49,7 +52,7 @@
                 block
                 class="text-capitalize rounded-pill mt-3"
                 color="secondary"
-                :disabled="loading"
+                :disabled="isDisabled"
                 :loading="loading"
                 @click="sendEmail"
               >
@@ -71,12 +74,13 @@
   </v-container>
 </template>
 <script setup>
-import { ref } from "vue";
+import { ref,watch } from "vue";
 //import { useRouter } from 'vue-router';
 import verifyService from "@/apis/VerifyService";
 
 import { useErrorHandlingDialog } from "@/components/dialogs/ExceptionHandleDialogService";
 const { handlingErrorsMessage } = useErrorHandlingDialog();
+import VerifyService from "@/apis/VerifyService";
 
 const email = ref(null);
 const loading = ref(false);
@@ -88,9 +92,38 @@ const validateForm = ref(null);
 //     (v) => /^[a-z.-]+@[a-z.-]+\.[a-z]+$/i.test(v) || "email ไม่ถูกต้อง",
 //   ],
 // });
+const isDisabled = ref(true);
+const serverErrorMessages = ref([]);
+// const textRequired = [(v) => !!v || "กรุณากรอกข้อมูลให้ครบถ้วน"];
+const emailRules = [
+  (v) => !!v || "กรุณากรอกข้อมูลให้ครบ",
+  (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) || "Email format ไม่ถูกต้อง",
+];
+// const serverErrorMessagesPassword = ref([]);
+const handleFocus = () => {
+  serverErrorMessages.value = [];
+};
+const emit = defineEmits([
+  "on-forget-password",
+  "on-clicked-login",
+  "on-login-success",
+  "on-login-failed",
+]);
 
+const validateFormState = () => {
+  isDisabled.value = !validateForm.value;
+};
+
+watch(email, validateFormState);
 const sendEmail = async () => {
-  if (validateForm.value) {
+  if (validateForm.value ) {
+    if (!(await onLoadCheckExistingUsername())) {
+    emit("on-login-failed", "ไม่มีบัญชีผู้ใช้ในระบบ กรุณาตรวจสอบอีกครั้ง");
+    serverErrorMessages.value.push(
+      "ไม่มีบัญชีผู้ใช้ในระบบ กรุณาตรวจสอบอีกครั้ง"
+    );
+    return;
+  }
     try {
       loading.value = true;
       const response = await verifyService.forgetPassword(email.value);
@@ -107,6 +140,34 @@ const sendEmail = async () => {
     } finally {
       loading.value = false;
     }
+  }
+};
+
+// const handleLoginClicked = async () => {
+//   if (!(await onLoadCheckExistingUsername())) {
+//     emit("on-login-failed", "ไม่มีบัญชีผู้ใช้ในระบบ กรุณาตรวจสอบอีกครั้ง");
+//     serverErrorMessages.value.push(
+//       "ไม่มีบัญชีผู้ใช้ในระบบ กรุณาตรวจสอบอีกครั้ง"
+//     );
+//     return;
+//   }
+// };
+
+const onLoadCheckExistingUsername = async () => {
+  try {
+    const response = await VerifyService.checkExistingUsernam(email.value);
+    if (response.data?.is_success) {
+      return true;
+    }
+    return false;
+  } catch (e) {
+    if (e.response) {
+      const val = e.response.data;
+      emit("on-login-failed", val?.data.error);
+      return false;
+    }
+    emit("on-login-failed", e.message);
+    return false;
   }
 };
 </script>

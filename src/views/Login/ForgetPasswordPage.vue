@@ -1,5 +1,6 @@
 <template>
   <!-- <v-container fluid> -->
+    <ExceptionHandleDialog />
   <div style="background-color: #EDEDEE">
     <div
       class="d-flex"
@@ -10,15 +11,25 @@
         background-repeat: no-repeat;
       "
     >
-    <FormForgetPassword class="d-flex justify-center" />
+    <FormForgetPassword class="d-flex justify-center"
+ />
   </div>
     <!-- <FormLogin /> -->
     <!-- </v-container> -->
   </div>
 </template>
 <script setup>
+// import { useRouter, useRoute } from "vue-router";
+// const router = useRouter();
+// const route = useRoute();
+// const handleForgetPassword = () => {
+//   router.push({
+//     name: "ForgetPasswordPage",
+//   });
+// };
 // import { ref, onBeforeMount,computed } from 'vue';
 import FormForgetPassword from "@/components/forms/Login/FormForgetPassword.vue";
+import ExceptionHandleDialog from "@/components/dialogs/ExceptionHandleDialog.vue";
 </script>
 
 <style scoped>
