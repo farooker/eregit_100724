@@ -49,7 +49,6 @@
             </v-col>
             <v-col cols="1">
               <strong
-
                 style="cursor: pointer; font-size: small"
               >
                 <v-icon>

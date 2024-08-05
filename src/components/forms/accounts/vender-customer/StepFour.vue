@@ -1004,7 +1004,7 @@ watchEffect(() => {
   for (let index = 0; index < arrayCompCode.value.length; index++) {
     const el = arrayCompCode.value[index];
     if (TAG_GL00.includes(el)) result.push("GL00");
-    if (TAG_FPT.includes(el)) result.push("FTP");
+    if (TAG_FPT.includes(el)) result.push("FPT");
     if (TAG_FPHT.includes(el)) result.push("FPHT");
   }
   const dataPruch = Array.from(new Set(result));
@@ -1068,13 +1068,18 @@ watchEffect(async () => {
       },
     };
 
-    if (props.BusinessPartnerGroup !== 4 && props.BusinessPartnerGroup !== 5)
+    if (props.BusinessPartnerGroup !== 4 && props.BusinessPartnerGroup !== 5 && props.BusinessPartnerGroup !== 3
+    && props.BusinessPartnerGroup !== 2 && props.BusinessPartnerGroup !== 1
+    )
       indexFind = -1;
+    console.log("props.BusinessPartnerGroup",props.BusinessPartnerGroup)
 
     if (indexFind > -1) {
       const itemFind = itemsAccountBusinessPartnerType.value[indexFind];
-
+      // console.log("itemFind",itemFind)
+      // console.log("itemFind.code",itemFind.code)
       switch (itemFind.code) {
+
         case "BP01":
           data_input.value.vander_info.pa_yee_in_doc = null;
           break;
@@ -1083,7 +1088,6 @@ watchEffect(async () => {
           break;
         case "BP03":
           data_input.value.vander_info.pa_yee_in_doc = "x";
-
           break;
         case "BP04":
           data_input.value.vander_info.pa_yee_in_doc = "x";

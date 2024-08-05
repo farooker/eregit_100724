@@ -79,7 +79,7 @@
             </v-card-title>
             <v-text-field
               class="ml-0 mr-0"
-              :rules="textRequired"
+              :rules="rules_valid.searchtermone"
               density="compact"
               dense
               v-model="data_input_head_comp.address_th.search.one"
@@ -301,6 +301,16 @@ const rules_valid = ref({
   ],
   namerequire: [
     (v) => (v != null && v.length <= 35) || "*กรุณากรอกชื่อไม่เกิน 35 ตัวอักษร",
+
+    (v) =>
+      (v != null &&
+        v.trim().length > 0 &&
+        /^[^\s](.*[^\s])?$/.test(v.trim())) ||
+      "* กรุณากรอกข้อมูลให้ถูกต้อง",
+  ],
+
+  searchtermone: [
+    (v) => (v != null && v.length <= 20) || "*กรุณากรอกชื่อไม่เกิน 20 ตัวอักษร",
 
     (v) =>
       (v != null &&
@@ -600,7 +610,7 @@ watch(
       itemsDistrict.value = store.districts;
       itemsSubDistrict.value = [];
 
-      data_input_head_comp.value.location = data_input.value;
+      data_input_head_comp.value.address_th.location = data_input.value;
     }
   },
   { deep: true, immediate: false }
@@ -612,7 +622,7 @@ watch(
     if (data_input.value.district) {
       await store.getSubDistrict(data_input.value.district);
       itemsSubDistrict.value = store.subDistricts;
-      data_input_head_comp.value.location = data_input.value;
+      data_input_head_comp.value.address_th.location = data_input.value;
     }
     if (oledata) {
       data_input.value.parish = null;
@@ -629,7 +639,10 @@ watch(
       itemsPostCode.value = store.postCodes;
       data_input.value.zip_code = itemsPostCode.value[0]?.id;
       data_input.value.zip_code_value = itemsPostCode.value[0]?.code;
-      data_input_head_comp.value.location = data_input.value;
+      data_input_head_comp.value.address_th.location = data_input.value;
+
+      data_input_head_comp.value.address_en.location.zip_code_value =
+        itemsPostCode.value[0]?.code;
     }
   },
   { deep: true, immediate: true }

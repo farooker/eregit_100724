@@ -1,6 +1,6 @@
 <template>
   <v-container fluid>
-    <h2>Tracking SD Activite</h2>
+    <h2>Tracking SD Activities</h2>
     <div class="mt-5">
       <v-row dense>
         <v-col cols="3">
@@ -165,7 +165,7 @@ const selected_items = ref({
       name: "Business Partner Name",
     },
     {
-      id: "vendor Number",
+      id: "Vendor Number",
       name: "vendor Number",
     },
     {

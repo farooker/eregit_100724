@@ -83,7 +83,7 @@ watchEffect(() => {
 });
 
 const item_menu = ref([
-  { title: "Dawnload", icon: "mdi mdi-download" },
+  { title: "Download", icon: "mdi mdi-download" },
 ]);
 
 const handleDownloadAll = () => {

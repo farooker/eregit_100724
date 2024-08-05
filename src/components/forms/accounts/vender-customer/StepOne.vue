@@ -350,7 +350,7 @@ import { computed, watch, ref } from "vue";
 const { handlingErrorsMessage } = useErrorHandlingDialog();
 
 const props = defineProps({
-  register_type: {
+register_type: {
     type: Number,
   },
   isNaturePerson: {

@@ -68,6 +68,7 @@
           dense
           v-model="data_input.search.one"
           variant="outlined"
+          :rules="rules_valid.searchtermone"
         ></v-text-field>
       </v-col>
 
@@ -200,6 +201,16 @@ const company_en = ref(props.name);
 const address_en = ref(props.address);
 
 const rules_valid = ref({
+
+  searchtermone: [
+    (v) => (v != null && v.length <= 20) || "*กรุณากรอกชื่อไม่เกิน 20 ตัวอักษร",
+
+    (v) =>
+      (v != null &&
+        v.trim().length > 0 &&
+        /^[^\s](.*[^\s])?$/.test(v.trim())) ||
+      "* กรุณากรอกข้อมูลให้ถูกต้อง",
+  ],
   companyData: [(v) => !!v || "กรุณากรอกข้อมูลให้ครบ"],
   role: [
     () =>

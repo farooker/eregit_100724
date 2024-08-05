@@ -55,7 +55,7 @@
               v-model="data_input_head_comp_branch.info.serach_team.th"
               dense
               variant="outlined"
-                            readonly
+              readonly
               bg-color="rgb(223 223 223 / 30%)"
             ></v-text-field>
           </v-col>
@@ -569,6 +569,8 @@ watch(
       data_input.value.zip_code = itemsPostCode.value[0]?.id;
       data_input.value.zip_code_value = itemsPostCode.value[0]?.code;
       data_input_head_comp_branch.value.address_th.location = data_input.value;
+
+      data_input_head_comp_branch.value.address_en.location.zip_code_value = itemsPostCode.value[0]?.code;
     }
   },
   { deep: true, immediate: true }

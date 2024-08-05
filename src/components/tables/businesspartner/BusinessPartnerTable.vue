@@ -116,7 +116,7 @@
                       </span>
                     </v-col>
                     <v-col cols="3">
-                      <label class="font-weight-medium text-grey-lighten-1">FPT Affillate</label>
+                      <label class="font-weight-medium text-grey-lighten-1">FPT Affiliate</label>
                       <br />
                       <span class="font-weight-black">
                         {{
