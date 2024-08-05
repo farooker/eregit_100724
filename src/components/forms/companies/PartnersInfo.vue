@@ -1,15 +1,15 @@
 <template>
   <v-form ref="partnerInfo">
     <v-row>
-     <h2 class="ms-3 mt-8">2.ข้อมูลคู่ค้า</h2>
+      <h2 class="ms-3 mt-8">2.ข้อมูลคู่ค้า</h2>
       <v-col cols="12">
         <v-card class="pa-6">
           <v-row dense no-gutters>
             <v-col cols="12" v-if="isNaturalPerson">
-              <v-card-title style="padding: 0px;">
+              <v-card-title style="padding: 0px">
                 <h6>คำนำหน้าชื่อ (ภาษาไทย)</h6>
               </v-card-title>
-              <v-col cols="12" style="padding: 0px;">
+              <v-col cols="12" style="padding: 0px">
                 <v-radio-group
                   v-model="data_input.partner_info.th.gender"
                   inline
@@ -23,7 +23,7 @@
             </v-col>
 
             <v-col cols="12" class="mt-n5" v-if="isNaturalPerson">
-              <v-card-title style="padding: 0px;">
+              <v-card-title style="padding: 0px">
                 <h6>ชื่อ-นามสกุล บุคคลธรรมดา (ภาษาไทย)</h6>
               </v-card-title>
               <v-text-field
@@ -32,11 +32,11 @@
                 class="ml-2"
                 density="compact"
                 variant="outlined"
-                style="margin: 0px !important;"
+                style="margin: 0px !important"
               />
             </v-col>
             <v-col cols="12" class="mt-n5" v-if="!isNaturalPerson">
-              <v-card-title style="padding: 0;" class="mt-3">
+              <v-card-title style="padding: 0" class="mt-3">
                 <h6>ชื่อบริษัท (ภาษาไทย)</h6>
               </v-card-title>
               <v-text-field
@@ -45,12 +45,12 @@
                 class="ml-2"
                 density="compact"
                 variant="outlined"
-                style="margin-left: 0px !important;"
+                style="margin-left: 0px !important"
               />
             </v-col>
 
             <v-col cols="12" class="mt-n5">
-              <v-card-title style="padding: 0;" class="mt-3">
+              <v-card-title style="padding: 0" class="mt-3">
                 <h6>ที่อยู่ (ภาษาไทย)</h6>
               </v-card-title>
               <v-text-field
@@ -59,7 +59,7 @@
                 class="ml-2"
                 density="compact"
                 variant="outlined"
-                style="margin-left: 0px !important;"
+                style="margin-left: 0px !important"
               />
             </v-col>
             <v-col cols="12">
@@ -80,10 +80,10 @@
         <v-card class="pa-6">
           <v-row dense no-gutters>
             <v-col cols="12" v-if="isNaturalPerson">
-              <v-card-title style="padding: 0;" class="mt-3">
+              <v-card-title style="padding: 0" class="mt-3">
                 <h6>คำนำหน้าชื่อ (ภาษาอังกฤษ)</h6>
               </v-card-title>
-              <v-col cols="12" style="padding: 0px;">
+              <v-col cols="12" style="padding: 0px">
                 <v-radio-group
                   v-model="data_input.partner_info.en.gender"
                   inline
@@ -97,7 +97,7 @@
             </v-col>
 
             <v-col cols="12" v-if="isNaturalPerson">
-              <v-card-title style="padding: 0;" class="mt-3">
+              <v-card-title style="padding: 0" class="mt-3">
                 <h6>ชื่อ-นามสกุล บุคคลธรรมดา (ภาษาอังกฤษ)</h6>
               </v-card-title>
               <v-text-field
@@ -106,12 +106,12 @@
                 class="ml-2"
                 density="compact"
                 variant="outlined"
-                style="margin-left: 0px !important;"
+                style="margin-left: 0px !important"
               />
             </v-col>
 
             <v-col cols="12" class="mt-n5" v-if="!isNaturalPerson">
-              <v-card-title style="padding: 0;" class="mt-3">
+              <v-card-title style="padding: 0" class="mt-3">
                 <h6>ชื่อบริษัท (ภาษาอังกฤษ)</h6>
               </v-card-title>
               <v-text-field
@@ -120,11 +120,11 @@
                 class="ml-2"
                 density="compact"
                 variant="outlined"
-                style="margin-left: 0px !important;"
+                style="margin-left: 0px !important"
               />
             </v-col>
             <v-col cols="12" class="mt-n5">
-              <v-card-title style="padding: 0;" class="mt-3">
+              <v-card-title style="padding: 0" class="mt-3">
                 <h6>ที่อยู่ (ภาษาอังกฤษ)</h6>
               </v-card-title>
               <v-text-field
@@ -133,7 +133,7 @@
                 class="ml-2"
                 density="compact"
                 variant="outlined"
-                style="margin-left: 0px !important;"
+                style="margin-left: 0px !important"
               />
             </v-col>
             <v-col cols="12" class="mt-n5">
@@ -146,6 +146,7 @@
                 @on-input="handleAddressInputTh"
               /> -->
               <ManaulAddressInputControl
+                :address-item="data_input.partner_info.en.info"
                 tag-desc="(ภาษาอังกฤษ)"
                 @on-input="handleAddressInputEn"
               />
@@ -231,17 +232,23 @@
       <v-col cols="6" class="d-flex justify-end mt-5" v-if="!isHideButton">
         <ButtonControl
           color="black"
-          style=" height: 35px;
+          style="
+            height: 35px;
             min-width: 100px;
             background-color: white !important;
             color: #ed1c24 !important;
-            border: 1px solid #ed1c24;"
+            border: 1px solid #ed1c24;
+          "
           text="ย้อนกลับ"
           @button-clicked="handleReverse"
         />
       </v-col>
       <v-col cols="6" class="d-flex justify-start mt-5" v-if="!isHideButton">
-        <ButtonControl style="min-width: 100px; height: 35px;" text="ถัดไป" @button-clicked="handleNext" />
+        <ButtonControl
+          style="min-width: 100px; height: 35px"
+          text="ถัดไป"
+          @button-clicked="handleNext"
+        />
       </v-col>
     </v-row>
   </v-form>
@@ -359,6 +366,8 @@ watch(data_input.value.items_contects, (newValue) => {
 const handleAddressInputTh = (addressLocation) => {
   // console.log(addressLocation)
   data_input.value.partner_info.th.info = addressLocation;
+  data_input.value.partner_info.en.info.zip_code =
+    data_input.value.partner_info.th.info.zip_code;
   // data_input.value.partner_info.en.info = addressLocation;
 };
 
@@ -398,15 +407,13 @@ const handleNext = async () => {
 };
 </script>
 
-
-
 <style scoped>
 :deep(.v-text-field .v-field) {
   border-radius: 10px !important;
 }
 
 .mdi-close-circle::before {
-    content: "\F0159";
-    color: red;
+  content: "\F0159";
+  color: red;
 }
 </style>

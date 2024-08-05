@@ -52,8 +52,8 @@
         density="compact"
         dense
         variant="outlined"
-              readonly
-              bg-color="rgb(223 223 223 / 30%)"
+        readonly
+        bg-color="rgb(223 223 223 / 30%)"
       ></v-text-field>
     </v-col>
   </v-row>
