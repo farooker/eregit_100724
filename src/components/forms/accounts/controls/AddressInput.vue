@@ -338,7 +338,7 @@ watchEffect(() => {
           props.registerFormDetail?.account_information_form?.branch_name1_en ??
           null;
     } else {
-      if (isStringEmpty(data_input.value.name.one))
+      // if (isStringEmpty(data_input.value.name.one))
         data_input.value.name.one =
           props.steptwoFormDetail?.address_en?.name?.one ?? null;
     }
@@ -353,7 +353,7 @@ watchEffect(() => {
           props.registerFormDetail?.account_information_form?.branch_name2_en ??
           null;
     } else {
-      if (isStringEmpty(data_input.value.name.two))
+      // if (isStringEmpty(data_input.value.name.two))
         data_input.value.name.two =
           props.steptwoFormDetail?.address_en?.name?.two ?? null;
     }
@@ -367,7 +367,7 @@ watchEffect(() => {
           props.registerFormDetail?.account_information_form?.branch_name3_en ??
           null;
     } else {
-      if (isStringEmpty(data_input.value.name.three))
+      // if (isStringEmpty(data_input.value.name.three))
         data_input.value.name.three =
           props.steptwoFormDetail?.address_en?.name?.three ?? null;
     }
@@ -381,7 +381,7 @@ watchEffect(() => {
           props.registerFormDetail?.account_information_form?.branch_name4_en ??
           null;
     } else {
-      if (isStringEmpty(data_input.value.name.four))
+      // if (isStringEmpty(data_input.value.name.four))
         data_input.value.name.four =
           props.steptwoFormDetail?.address_en?.name?.four ?? null;
     }
@@ -395,7 +395,7 @@ watchEffect(() => {
           props.registerFormDetail?.account_information_form
             ?.branch_address1_en ?? null;
     } else {
-      if (isStringEmpty(data_input.value.address.one))
+      // if (isStringEmpty(data_input.value.address.one))
         data_input.value.address.one =
           props.steptwoFormDetail?.address_en?.address?.one ?? null;
     }
@@ -409,7 +409,7 @@ watchEffect(() => {
           props.registerFormDetail?.account_information_form
             ?.branch_address2_en ?? null;
     } else {
-      if (isStringEmpty(data_input.value.address.two))
+      // if (isStringEmpty(data_input.value.address.two))
         data_input.value.address.two =
           props.steptwoFormDetail?.address_en?.address?.two ?? null;
     }
@@ -442,7 +442,7 @@ watchEffect(() => {
           props.registerFormDetail?.account_information_form?.branch_name2_th ??
           null;
     } else {
-      if (isStringEmpty(data_input.value.name.two))
+      // if (isStringEmpty(data_input.value.name.two))
         data_input.value.name.two =
           props.steptwoFormDetail?.address_th?.name?.two ?? null;
     }
@@ -453,18 +453,18 @@ watchEffect(() => {
           props.registerFormDetail?.account_information_form?.branch_name3_th ??
           null;
     } else {
-      if (isStringEmpty(data_input.value.name.three))
+      // if (isStringEmpty(data_input.value.name.three))
         data_input.value.name.three =
           props.steptwoFormDetail?.address_th?.name?.three ?? null;
     }
     //
     if (props.registerFormDetail?.account_information_form?.branch_name4_th) {
-      if (isStringEmpty(data_input.value.name.four))
+      // if (isStringEmpty(data_input.value.name.four))
         data_input.value.name.four =
           props.registerFormDetail?.account_information_form?.branch_name4_th ??
           null;
     } else {
-      if (isStringEmpty(data_input.value.name.four))
+      // if (isStringEmpty(data_input.value.name.four))
         data_input.value.name.four =
           props.steptwoFormDetail?.address_th?.name?.four ?? null;
     }
@@ -477,7 +477,7 @@ watchEffect(() => {
           props.registerFormDetail?.account_information_form
             ?.branch_address1_th ?? null;
     } else {
-      if (isStringEmpty(data_input.value.address.one))
+      // if (isStringEmpty(data_input.value.address.one))
         data_input.value.address.one =
           props.steptwoFormDetail?.address_th?.address?.one ?? null;
     }
@@ -490,7 +490,7 @@ watchEffect(() => {
           props.registerFormDetail?.account_information_form
             ?.branch_address2_th ?? null;
     } else {
-      if (isStringEmpty(data_input.value.address.two))
+      // if (isStringEmpty(data_input.value.address.two))
         data_input.value.address.two =
           props.steptwoFormDetail?.address_th?.address?.two ?? null;
     }
