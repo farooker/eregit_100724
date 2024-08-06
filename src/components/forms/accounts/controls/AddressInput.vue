@@ -202,7 +202,6 @@ const company_en = ref(props.name);
 const address_en = ref(props.address);
 
 const rules_valid = ref({
-
   searchtermone: [
     (v) => (v != null && v.length <= 20) || "*กรุณากรอกชื่อไม่เกิน 20 ตัวอักษร",
 
@@ -323,7 +322,166 @@ function splitTextAddress(text) {
   };
 }
 
-const initValue = ref(true);
+const initValueOne = ref(true);
+const initValueTwo = ref(true);
+const initValueThree = ref(true);
+
+watchEffect(() => {
+  //EN Branch step3
+  if (
+    props.register_type === 2 &&
+    initValueTwo.value &&
+    props.steptwoFormDetail?.address_en?.name?.one
+  ) {
+    if (
+      props.registerFormDetail?.account_information_form?.branch_name1_en ??
+      null
+    ) {
+      data_input.value.name.one =
+        props.registerFormDetail?.account_information_form?.branch_name1_en ??
+        null;
+    } else {
+      data_input.value.name.one =
+        props.steptwoFormDetail?.address_en?.name?.one ?? null;
+    }
+
+    //
+    if (
+      props.registerFormDetail?.account_information_form?.branch_name2_en ??
+      null
+    ) {
+      data_input.value.name.two =
+        props.registerFormDetail?.account_information_form?.branch_name2_en ??
+        null;
+    } else {
+      data_input.value.name.two =
+        props.steptwoFormDetail?.address_en?.name?.two ?? null;
+    }
+    //
+    if (
+      props.registerFormDetail?.account_information_form?.branch_name3_en ??
+      null
+    ) {
+      data_input.value.name.three =
+        props.registerFormDetail?.account_information_form?.branch_name3_en ??
+        null;
+    } else {
+      data_input.value.name.three =
+        props.steptwoFormDetail?.address_en?.name?.three ?? null;
+    }
+    //
+    if (
+      props.registerFormDetail?.account_information_form?.branch_name4_en ??
+      null
+    ) {
+      data_input.value.name.four =
+        props.registerFormDetail?.account_information_form?.branch_name4_en ??
+        null;
+    } else {
+      data_input.value.name.four =
+        props.steptwoFormDetail?.address_en?.name?.four ?? null;
+    }
+    //
+    if (
+      props.registerFormDetail?.account_information_form?.branch_address1_en ??
+      null
+    ) {
+      data_input.value.address.one =
+        props.registerFormDetail?.account_information_form
+          ?.branch_address1_en ?? null;
+    } else {
+      data_input.value.address.one =
+        props.steptwoFormDetail?.address_en?.address?.one ?? null;
+    }
+    //
+    if (
+      props.registerFormDetail?.account_information_form?.branch_address2_en ??
+      null
+    ) {
+      data_input.value.address.two =
+        props.registerFormDetail?.account_information_form
+          ?.branch_address2_en ?? null;
+    } else {
+      data_input.value.address.two =
+        props.steptwoFormDetail?.address_en?.address?.two ?? null;
+    }
+
+    initValueTwo.value = false;
+  }
+});
+
+watchEffect(() => {
+  //TH Branch step3 /true//
+  if (
+    props.register_type === 3 &&
+    initValueThree.value &&
+    props.steptwoFormDetail?.address_th?.name?.one
+  ) {
+    // data_input.value.name.one =
+    //   props.registerFormDetail?.account_information_form?.branch_name1_th ??
+    //   null;
+
+    if (props.registerFormDetail?.account_information_form?.branch_name1_th) {
+      data_input.value.name.one =
+        props.registerFormDetail?.account_information_form?.branch_name1_th ??
+        null;
+    } else {
+      data_input.value.name.one =
+        props.steptwoFormDetail?.address_th?.name?.one ?? null;
+    }
+    //
+    if (props.registerFormDetail?.account_information_form?.branch_name2_th) {
+      data_input.value.name.two =
+        props.registerFormDetail?.account_information_form?.branch_name2_th ??
+        null;
+    } else {
+      data_input.value.name.two =
+        props.steptwoFormDetail?.address_th?.name?.two ?? null;
+    }
+    //
+    if (props.registerFormDetail?.account_information_form?.branch_name3_th) {
+      data_input.value.name.three =
+        props.registerFormDetail?.account_information_form?.branch_name3_th ??
+        null;
+    } else {
+      data_input.value.name.three =
+        props.steptwoFormDetail?.address_th?.name?.three ?? null;
+    }
+    //
+    if (props.registerFormDetail?.account_information_form?.branch_name4_th) {
+      data_input.value.name.four =
+        props.registerFormDetail?.account_information_form?.branch_name4_th ??
+        null;
+    } else {
+      data_input.value.name.four =
+        props.steptwoFormDetail?.address_th?.name?.four ?? null;
+    }
+    //
+    if (
+      props.registerFormDetail?.account_information_form?.branch_address1_th
+    ) {
+      data_input.value.address.one =
+        props.registerFormDetail?.account_information_form
+          ?.branch_address1_th ?? null;
+    } else {
+      data_input.value.address.one =
+        props.steptwoFormDetail?.address_th?.address?.one ?? null;
+    }
+    //
+    if (
+      props.registerFormDetail?.account_information_form?.branch_address2_th
+    ) {
+      data_input.value.address.two =
+        props.registerFormDetail?.account_information_form
+          ?.branch_address2_th ?? null;
+    } else {
+      data_input.value.address.two =
+        props.steptwoFormDetail?.address_th?.address?.two ?? null;
+    }
+
+    initValueThree.value = false;
+  }
+});
 
 watchEffect(() => {
   // console.log("propStep2", props.registerFormDetail.value.account_information_form)
@@ -333,7 +491,7 @@ watchEffect(() => {
   // data_input.value.address.one = props.address;
 
   //steptwo
-  if (props.register_type == 1 && initValue.value) {
+  if (props.register_type == 1 && initValueOne.value) {
     // data_input.value.name.one = props.name;
     if (props.registerFormDetail?.account_information_form?.search_term2_en) {
       data_input.value.search.two =
@@ -415,150 +573,7 @@ watchEffect(() => {
     } else {
       data_input.value.address.two = txtSprictAdress.part2 ?? null;
     }
-    initValue.value = false;
-  }
-
-  //EN Branch step3
-  if (props.register_type === 2) {
-    if (
-      props.registerFormDetail?.account_information_form?.branch_name1_en ??
-      null
-    ) {
-      data_input.value.name.one =
-        props.registerFormDetail?.account_information_form?.branch_name1_en ??
-        null;
-    } else {
-      data_input.value.name.one =
-        props.steptwoFormDetail?.address_en?.name?.one ?? null;
-    }
-
-    //
-    if (
-      props.registerFormDetail?.account_information_form?.branch_name2_en ??
-      null
-    ) {
-      data_input.value.name.two =
-        props.registerFormDetail?.account_information_form?.branch_name2_en ??
-        null;
-    } else {
-      data_input.value.name.two =
-        props.steptwoFormDetail?.address_en?.name?.two ?? null;
-    }
-    //
-    if (
-      props.registerFormDetail?.account_information_form?.branch_name3_en ??
-      null
-    ) {
-      data_input.value.name.three =
-        props.registerFormDetail?.account_information_form?.branch_name3_en ??
-        null;
-    } else {
-      data_input.value.name.three =
-        props.steptwoFormDetail?.address_en?.name?.three ?? null;
-    }
-    //
-    if (
-      props.registerFormDetail?.account_information_form?.branch_name4_en ??
-      null
-    ) {
-      data_input.value.name.four =
-        props.registerFormDetail?.account_information_form?.branch_name4_en ??
-        null;
-    } else {
-      data_input.value.name.four =
-        props.steptwoFormDetail?.address_en?.name?.four ?? null;
-    }
-    //
-    if (
-      props.registerFormDetail?.account_information_form?.branch_address1_en ??
-      null
-    ) {
-      data_input.value.address.one =
-        props.registerFormDetail?.account_information_form
-          ?.branch_address1_en ?? null;
-    } else {
-      data_input.value.address.one =
-        props.steptwoFormDetail?.address_en?.address?.one ?? null;
-    }
-    //
-    if (
-      props.registerFormDetail?.account_information_form?.branch_address2_en ??
-      null
-    ) {
-      data_input.value.address.two =
-        props.registerFormDetail?.account_information_form
-          ?.branch_address2_en ?? null;
-    } else {
-      data_input.value.address.two =
-        props.steptwoFormDetail?.address_en?.address?.two ?? null;
-    }
-  }
-
-  //TH Branch step3 /true//
-  if (props.register_type === 3) {
-    // data_input.value.name.one =
-    //   props.registerFormDetail?.account_information_form?.branch_name1_th ??
-    //   null;
-
-    if (props.registerFormDetail?.account_information_form?.branch_name1_th) {
-      data_input.value.name.one =
-        props.registerFormDetail?.account_information_form?.branch_name1_th ??
-        null;
-    } else {
-      data_input.value.name.one =
-        props.steptwoFormDetail?.address_th?.name?.one ?? null;
-    }
-    //
-    if (props.registerFormDetail?.account_information_form?.branch_name2_th) {
-      data_input.value.name.two =
-        props.registerFormDetail?.account_information_form?.branch_name2_th ??
-        null;
-    } else {
-      data_input.value.name.two =
-        props.steptwoFormDetail?.address_th?.name?.two ?? null;
-    }
-    //
-    if (props.registerFormDetail?.account_information_form?.branch_name3_th) {
-      data_input.value.name.three =
-        props.registerFormDetail?.account_information_form?.branch_name3_th ??
-        null;
-    } else {
-      data_input.value.name.three =
-        props.steptwoFormDetail?.address_th?.name?.three ?? null;
-    }
-    //
-    if (props.registerFormDetail?.account_information_form?.branch_name4_th) {
-      data_input.value.name.four =
-        props.registerFormDetail?.account_information_form?.branch_name4_th ??
-        null;
-    } else {
-      data_input.value.name.four =
-        props.steptwoFormDetail?.address_th?.name?.four ?? null;
-    }
-    //
-    if (
-      props.registerFormDetail?.account_information_form?.branch_address1_th
-    ) {
-      data_input.value.address.one =
-        props.registerFormDetail?.account_information_form
-          ?.branch_address1_th ?? null;
-    } else {
-      data_input.value.address.one =
-        props.steptwoFormDetail?.address_th?.address?.one ?? null;
-    }
-    //
-    if (
-      props.registerFormDetail?.account_information_form?.branch_address2_th
-    ) {
-      data_input.value.address.two =
-        props.registerFormDetail?.account_information_form
-          ?.branch_address2_th ?? null;
-    } else {
-      data_input.value.address.two =
-        props.steptwoFormDetail?.address_th?.address?.two ?? null;
-    }
-
-    initValue.value = false;
+    initValueOne.value = false;
   }
 });
 
