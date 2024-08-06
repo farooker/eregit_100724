@@ -10,7 +10,7 @@
     <!-- {{ props.registerFormDetail.account_information_form.account_business_partner_type_id }} -->
     <v-row dense>
       <v-col cols="12">
-        <v-form ref="formOne">  
+        <v-form ref="formOne">
           <StepOne
             :register-form-detail="props.registerFormDetail"
             :isRegisteredVat="
@@ -235,7 +235,7 @@ const handleReverse = () => {
 const handleStepOneChanged = (data_obj) => {
   input_data.value.step_one = data_obj;
   emit("on-input", input_data.value);
-  console.log("STEP_ONE", JSON.stringify(input_data.value.step_one));
+
 };
 
 const handleStepTwoChanged = (data_obj) => {
@@ -247,7 +247,7 @@ const handleStepTwoChanged = (data_obj) => {
 const handleStepThreeChanged = (data_obj) => {
   input_data.value.step_three = data_obj;
   emit("on-input", input_data.value);
-  console.log("STEP_THREE", JSON.stringify(input_data.value.step_three));
+  // console.log("STEP_THREE", JSON.stringify(input_data.value.step_three));
 };
 
 const handleStepFourChanged = (data_obj) => {

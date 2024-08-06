@@ -2,7 +2,7 @@
   <div id="app">
     <router-view />
     <!-- เนื้อหาของแอป -->
-    <div class="version">Version 1.0.9</div>
+    <div class="version">Version 1.1.0</div>
     </div>
   <!-- <Login /> -->
   <!-- <NewPassword /> -->

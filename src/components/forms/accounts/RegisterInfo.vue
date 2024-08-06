@@ -67,7 +67,6 @@
                 v-model="data_input.company_data.data"
                 :items="displayItemsCompany"
                 multiple
-
                 item-value="custom_id"
                 item-title="displayName"
                 density="compact"
