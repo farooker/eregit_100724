@@ -36,7 +36,7 @@
           @button-clicked="handleMoreDocs"
         /> -->
         <ButtonControl
-         v-if="is_id_form === FORM_ID.STEPPER_INFO"
+          v-if="is_id_form === FORM_ID.STEPPER_INFO"
           style="
             box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
             height: 35px;
@@ -56,7 +56,7 @@
       />
 
       <SteperInfo
-      :isItemDoc="itemsFileDocument.length > 0"
+        :isItemDoc="itemsFileDocument.length > 0"
         v-if="is_id_form === FORM_ID.STEPPER_INFO"
         :register-form-detail="register_form_detail"
         :type-form="customer_or_vender"
@@ -252,13 +252,13 @@ const handleCustCommit = async (stepper_info_data) => {
   )
     return;
   let name_th =
-    input_data.value.register_info_form?.customer_info?.th?.company_name;
+    `${input_data.value.stepper_info_form.step_two.address_th.name.one}${input_data.value.stepper_info_form.step_two.address_th.name.two}${input_data.value.stepper_info_form.step_two.address_th.name.three}${input_data.value.stepper_info_form.step_two.address_th.name.four}`;
   let name_en =
-    input_data.value.register_info_form?.customer_info?.en?.company_name;
+    `${input_data.value.stepper_info_form.step_two.address_en.name.one}${input_data.value.stepper_info_form.step_two.address_en.name.two}${input_data.value.stepper_info_form.step_two.address_en.name.three}${input_data.value.stepper_info_form.step_two.address_en.name.four}`;
 
   if (input_data.value.register_info_form.customer_type_data.data == 1) {
-    name_th = `${input_data.value.register_info_form?.customer_info?.th?.pserson.gender}${input_data.value.register_info_form?.customer_info?.th?.pserson.name}`;
-    name_en = `${input_data.value.register_info_form?.customer_info?.en?.pserson.gender}${input_data.value.register_info_form?.customer_info?.en?.pserson.name}`;
+    name_th = `${input_data.value.register_info_form.customer_info.th.pserson.gender?? ""}${input_data.value.stepper_info_form.step_two.address_th.name.one}${input_data.value.stepper_info_form.step_two.address_th.name.two}${input_data.value.stepper_info_form.step_two.address_th.name.three}${input_data.value.stepper_info_form.step_two.address_th.name.four}`;
+    name_en = `${input_data.value.register_info_form?.customer_info?.en?.pserson.gender?? ""}${input_data.value.stepper_info_form.step_two.address_en.name.one}${input_data.value.stepper_info_form.step_two.address_en.name.two}${input_data.value.stepper_info_form.step_two.address_en.name.three}${input_data.value.stepper_info_form.step_two.address_en.name.four}`;
   }
   const requestSaveDaftBusinessPartnerRegis = {
     form_number:
@@ -267,8 +267,9 @@ const handleCustCommit = async (stepper_info_data) => {
     // updated_user_id:
     // Number(register_form_detail.value.business_partner_register_form?.created_user_id ?? null),
     business_partner_register_form: {
-      taxpayer_id_number: input_data.value.stepper_info_form?.step_one?.main_data
-      ?.tax_number ?? null,
+      taxpayer_id_number:
+        input_data.value.stepper_info_form?.step_one?.main_data?.tax_number ??
+        null,
 
       // taxpayer_id_number:
       //   input_data.value.register_info_form?.thai_people_id ?? null, // data.stepper_info_form.step_one?.main_data.tax_number
@@ -276,8 +277,8 @@ const handleCustCommit = async (stepper_info_data) => {
         register_form_detail.value.business_partner_register_form
           ?.created_user_id ?? null
       ),
-//  input_data.value.stepper_info_form?.step_one?.other
-          // ?.bank_branch ?? null,
+      //  input_data.value.stepper_info_form?.step_one?.other
+      // ?.bank_branch ?? null,
       //   input_data.value.register_info_form?.customer_info?.th?.company_name, // data.register_info_form.customer_info.th.company_name
       // name_en:
       //   input_data.value.register_info_form?.customer_info?.en?.company_name, // data.register_info_form.customer_info.en.company_name
@@ -329,10 +330,9 @@ const handleCustCommit = async (stepper_info_data) => {
       product_category:
         input_data.value.register_info_form?.type_product_service ?? null, // data.type_product_service
       customer_category:
-        input_data.value.register_info_form?.customer_type ?? null, // unknow
-      address_th:
-        input_data.value.register_info_form?.customer_info?.th?.info?.address ??
-        null, // data.customer_info.th.address
+        input_data.value.register_info_form?.customer_type ?? null, // unknowฃ
+
+      address_th: `${input_data.value.stepper_info_form.step_two.address_th.address.one}${input_data.value.stepper_info_form.step_two.address_th.address.two}`,
 
       ///step_info_th
       // province_th_id:
@@ -357,8 +357,8 @@ const handleCustCommit = async (stepper_info_data) => {
         input_data.value.stepper_info_form.step_two.address_th.location
           .zip_code,
 
-      address_en:
-        input_data.value.register_info_form?.customer_info?.en?.address, // data.customer_info.en.address
+      address_en: `${input_data.value.stepper_info_form.step_two.address_en.address.one}${input_data.value.stepper_info_form.step_two.address_en.address.two}`,
+      // input_data.value.register_info_form?.customer_info?.en?.address, // data.customer_info.en.address
 
       //step_info
       // province_en:
@@ -406,18 +406,17 @@ const handleCustCommit = async (stepper_info_data) => {
       // bank_id: Number(
       //   input_data.value.register_info_form?.bank_info?.bank_name
       // ), // data.bank_info.bank_name //number
-      bank_id: Number(
-        input_data.value.stepper_info_form?.step_one?.other
-        ?.bank_key
-      )?? null,
+      bank_id:
+        Number(input_data.value.stepper_info_form?.step_one?.other?.bank_key) ??
+        null,
       // bank_branch:
       // input_data.value.register_info_form?.bank_info?.bank_branch ?? null, // data.bank_info.bank_branch
       bank_branch:
-        input_data.value.stepper_info_form?.step_one?.other
-          ?.bank_branch ?? null,
+        input_data.value.stepper_info_form?.step_one?.other?.bank_branch ??
+        null,
       bank_account_number:
-      input_data.value.stepper_info_form?.step_one?.other
-      ?.bank_account ?? null,
+        input_data.value.stepper_info_form?.step_one?.other?.bank_account ??
+        null,
       // created_at: "2023-11-10T14:20:12", // auto fill
       // created_user_id: 1, // auto fill
       // updated_at: "2023-11-12T10:30:45", // auto fill
@@ -783,13 +782,13 @@ const handleSaveDaft = async () => {
   )
     return;
   let name_th =
-    input_data.value.register_info_form?.customer_info?.th?.company_name;
+   `${input_data.value.stepper_info_form.step_two.address_th.name.one}${input_data.value.stepper_info_form.step_two.address_th.name.two}${input_data.value.stepper_info_form.step_two.address_th.name.three}${input_data.value.stepper_info_form.step_two.address_th.name.four}`;
   let name_en =
-    input_data.value.register_info_form?.customer_info?.en?.company_name;
+    `${input_data.value.stepper_info_form.step_two.address_en.name.one}${input_data.value.stepper_info_form.step_two.address_en.name.two}${input_data.value.stepper_info_form.step_two.address_en.name.three}${input_data.value.stepper_info_form.step_two.address_en.name.four}`;
 
   if (input_data.value.register_info_form.customer_type_data.data == 1) {
-    name_th = `${input_data.value.register_info_form?.customer_info?.th?.pserson.gender}${input_data.value.register_info_form?.customer_info?.th?.pserson.name}`;
-    name_en = `${input_data.value.register_info_form?.customer_info?.en?.pserson.gender}${input_data.value.register_info_form?.customer_info?.en?.pserson.name}`;
+    name_th = `${input_data.value.register_info_form.customer_info.th.pserson.gender?? ""}${input_data.value.stepper_info_form.step_two.address_th.name.one}${input_data.value.stepper_info_form.step_two.address_th.name.two}${input_data.value.stepper_info_form.step_two.address_th.name.three}${input_data.value.stepper_info_form.step_two.address_th.name.four}`;
+    name_en = `${input_data.value.register_info_form?.customer_info?.en?.pserson.gender?? ""}${input_data.value.stepper_info_form.step_two.address_en.name.one}${input_data.value.stepper_info_form.step_two.address_en.name.two}${input_data.value.stepper_info_form.step_two.address_en.name.three}${input_data.value.stepper_info_form.step_two.address_en.name.four}`;
   }
 
   const requestSaveDaftBusinessPartnerRegis = {
@@ -797,8 +796,9 @@ const handleSaveDaft = async () => {
       register_form_detail.value.business_partner_register_form?.form_number ??
       null,
     business_partner_register_form: {
-      taxpayer_id_number: input_data.value.stepper_info_form?.step_one?.main_data
-      ?.tax_number ?? null,
+      taxpayer_id_number:
+        input_data.value.stepper_info_form?.step_one?.main_data?.tax_number ??
+        null,
       created_user_id: Number(
         register_form_detail.value.business_partner_register_form
           ?.created_user_id ?? null
@@ -856,8 +856,8 @@ const handleSaveDaft = async () => {
         input_data.value.register_info_form?.type_product_service ?? null, // data.type_product_service
       customer_category:
         input_data.value.register_info_form?.customer_type ?? null, // unknow
-      address_th:
-        input_data.value.register_info_form?.customer_info?.th?.info?.address, // data.customer_info.th.address
+
+      address_th: `${input_data.value.stepper_info_form.step_two.address_th.address.one}${input_data.value.stepper_info_form.step_two.address_th.address.two}`,
       //stepin_fo
       // province_th_id:
       //   input_data.value.register_info_form?.customer_info?.th?.info?.province, // data.customer_info.th.province //number
@@ -881,8 +881,8 @@ const handleSaveDaft = async () => {
         input_data.value.stepper_info_form?.step_two?.address_th?.location
           ?.zip_code ?? null,
 
-      address_en:
-        input_data.value.register_info_form?.customer_info?.en?.address, // data.customer_info.en.address
+      address_en: `${input_data.value.stepper_info_form.step_two.address_en.address.one}${input_data.value.stepper_info_form.step_two.address_en.address.two}`,
+      // input_data.value.register_info_form?.customer_info?.en?.address, // data.customer_info.en.address
 
       //stepin_fo
       // province_en:
@@ -927,17 +927,16 @@ const handleSaveDaft = async () => {
         input_data.value.register_info_form?.items_contects[2]?.email ?? null, // data.items_contects[3]?.email
       bank_account_name:
         input_data.value.register_info_form?.bank_info?.acc_name_en ?? null, // data.bank_info.acc_name_en
-      bank_id: Number(
-        input_data.value.stepper_info_form?.step_one?.other
-        ?.bank_key
-      ) ?? null, // data.bank_info.bank_name //number
+      bank_id:
+        Number(input_data.value.stepper_info_form?.step_one?.other?.bank_key) ??
+        null, // data.bank_info.bank_name //number
       bank_branch:
-        input_data.value.stepper_info_form?.step_one?.other
-          ?.bank_branch ?? null,
+        input_data.value.stepper_info_form?.step_one?.other?.bank_branch ??
+        null,
       // data.bank_info.bank_branch
       bank_account_number:
-      input_data.value.stepper_info_form?.step_one?.other
-      ?.bank_account ?? null,
+        input_data.value.stepper_info_form?.step_one?.other?.bank_account ??
+        null,
       // created_at: "2023-11-10T14:20:12", // auto fill
       // created_user_id: 1, // auto fill
       // updated_at: "2023-11-12T10:30:45", // auto fill
@@ -1270,9 +1269,10 @@ const handleSaveDaft = async () => {
   } catch (e) {
     if (e.response) {
       const val = e.response.data;
-      if(val?.data?.error ?? null){
+      
+      if (val?.data?.error ?? null) {
         handlingErrorsMessage(val.message, val?.data?.error);
-      }else{
+      } else {
         handlingErrorsMessage(val.message, val);
       }
 

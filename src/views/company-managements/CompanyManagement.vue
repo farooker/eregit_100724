@@ -593,7 +593,11 @@ const onCreateBusinessPartnerProfileForm = async () => {
   } catch (e) {
     if (e.response) {
       const val = e.response.data;
-      handlingErrorsMessage(val.message, val?.data.error);
+      if (val?.data?.error ?? null) {
+        handlingErrorsMessage(val.message, val?.data?.error);
+      } else {
+        handlingErrorsMessage(val.message, val);
+      }
       return;
     }
     handlingErrorsMessage("unknown", e.message);
