@@ -140,7 +140,7 @@
 import { ref, defineProps, watch, onMounted, watchEffect } from "vue";
 // import AddressInputControl from "@/components/controls/AddressInputControl.vue";
 import ManaulAddressInputControl from "@/components/controls/ManaulAddressInputControl.vue";
-
+import { isStringEmpty } from "@/utils/util.issue";
 const emit = defineEmits(["on-input"]);
 
 const props = defineProps({
@@ -328,21 +328,19 @@ const initValueThree = ref(true);
 
 watchEffect(() => {
   //EN Branch step3
-  if (
-    props.register_type === 2 &&
-    initValueTwo.value &&
-    props.steptwoFormDetail?.address_en?.name?.one
-  ) {
+  if (props.register_type === 2) {
     if (
       props.registerFormDetail?.account_information_form?.branch_name1_en ??
       null
     ) {
-      data_input.value.name.one =
-        props.registerFormDetail?.account_information_form?.branch_name1_en ??
-        null;
+      if (isStringEmpty(data_input.value.name.one))
+        data_input.value.name.one =
+          props.registerFormDetail?.account_information_form?.branch_name1_en ??
+          null;
     } else {
-      data_input.value.name.one =
-        props.steptwoFormDetail?.address_en?.name?.one ?? null;
+      if (isStringEmpty(data_input.value.name.one))
+        data_input.value.name.one =
+          props.steptwoFormDetail?.address_en?.name?.one ?? null;
     }
 
     //
@@ -350,60 +348,70 @@ watchEffect(() => {
       props.registerFormDetail?.account_information_form?.branch_name2_en ??
       null
     ) {
-      data_input.value.name.two =
-        props.registerFormDetail?.account_information_form?.branch_name2_en ??
-        null;
+      if (isStringEmpty(data_input.value.name.two))
+        data_input.value.name.two =
+          props.registerFormDetail?.account_information_form?.branch_name2_en ??
+          null;
     } else {
-      data_input.value.name.two =
-        props.steptwoFormDetail?.address_en?.name?.two ?? null;
+      if (isStringEmpty(data_input.value.name.two))
+        data_input.value.name.two =
+          props.steptwoFormDetail?.address_en?.name?.two ?? null;
     }
     //
     if (
       props.registerFormDetail?.account_information_form?.branch_name3_en ??
       null
     ) {
-      data_input.value.name.three =
-        props.registerFormDetail?.account_information_form?.branch_name3_en ??
-        null;
+      if (isStringEmpty(data_input.value.name.three))
+        data_input.value.name.three =
+          props.registerFormDetail?.account_information_form?.branch_name3_en ??
+          null;
     } else {
-      data_input.value.name.three =
-        props.steptwoFormDetail?.address_en?.name?.three ?? null;
+      if (isStringEmpty(data_input.value.name.three))
+        data_input.value.name.three =
+          props.steptwoFormDetail?.address_en?.name?.three ?? null;
     }
     //
     if (
       props.registerFormDetail?.account_information_form?.branch_name4_en ??
       null
     ) {
-      data_input.value.name.four =
-        props.registerFormDetail?.account_information_form?.branch_name4_en ??
-        null;
+      if (isStringEmpty(data_input.value.name.four))
+        data_input.value.name.four =
+          props.registerFormDetail?.account_information_form?.branch_name4_en ??
+          null;
     } else {
-      data_input.value.name.four =
-        props.steptwoFormDetail?.address_en?.name?.four ?? null;
+      if (isStringEmpty(data_input.value.name.four))
+        data_input.value.name.four =
+          props.steptwoFormDetail?.address_en?.name?.four ?? null;
     }
     //
     if (
       props.registerFormDetail?.account_information_form?.branch_address1_en ??
       null
     ) {
-      data_input.value.address.one =
-        props.registerFormDetail?.account_information_form
-          ?.branch_address1_en ?? null;
+      if (isStringEmpty(data_input.value.address.one))
+        data_input.value.address.one =
+          props.registerFormDetail?.account_information_form
+            ?.branch_address1_en ?? null;
     } else {
-      data_input.value.address.one =
-        props.steptwoFormDetail?.address_en?.address?.one ?? null;
+      if (isStringEmpty(data_input.value.address.one))
+        data_input.value.address.one =
+          props.steptwoFormDetail?.address_en?.address?.one ?? null;
     }
     //
     if (
       props.registerFormDetail?.account_information_form?.branch_address2_en ??
       null
     ) {
-      data_input.value.address.two =
-        props.registerFormDetail?.account_information_form
-          ?.branch_address2_en ?? null;
+      if (isStringEmpty(data_input.value.address.two))
+        data_input.value.address.two =
+          props.registerFormDetail?.account_information_form
+            ?.branch_address2_en ?? null;
     } else {
-      data_input.value.address.two =
-        props.steptwoFormDetail?.address_en?.address?.two ?? null;
+      if (isStringEmpty(data_input.value.address.two))
+        data_input.value.address.two =
+          props.steptwoFormDetail?.address_en?.address?.two ?? null;
     }
 
     initValueTwo.value = false;
@@ -412,71 +420,79 @@ watchEffect(() => {
 
 watchEffect(() => {
   //TH Branch step3 /true//
-  if (
-    props.register_type === 3 &&
-    initValueThree.value &&
-    props.steptwoFormDetail?.address_th?.name?.one
-  ) {
+  if (props.register_type === 3) {
     // data_input.value.name.one =
     //   props.registerFormDetail?.account_information_form?.branch_name1_th ??
     //   null;
 
     if (props.registerFormDetail?.account_information_form?.branch_name1_th) {
-      data_input.value.name.one =
-        props.registerFormDetail?.account_information_form?.branch_name1_th ??
-        null;
+      if (isStringEmpty(data_input.value.name.one))
+        data_input.value.name.one =
+          props.registerFormDetail?.account_information_form?.branch_name1_th ??
+          null;
     } else {
-      data_input.value.name.one =
-        props.steptwoFormDetail?.address_th?.name?.one ?? null;
+      if (isStringEmpty(data_input.value.name.one))
+        data_input.value.name.one =
+          props.steptwoFormDetail?.address_th?.name?.one ?? null;
     }
     //
     if (props.registerFormDetail?.account_information_form?.branch_name2_th) {
-      data_input.value.name.two =
-        props.registerFormDetail?.account_information_form?.branch_name2_th ??
-        null;
+      if (isStringEmpty(data_input.value.name.two))
+        data_input.value.name.two =
+          props.registerFormDetail?.account_information_form?.branch_name2_th ??
+          null;
     } else {
-      data_input.value.name.two =
-        props.steptwoFormDetail?.address_th?.name?.two ?? null;
+      if (isStringEmpty(data_input.value.name.two))
+        data_input.value.name.two =
+          props.steptwoFormDetail?.address_th?.name?.two ?? null;
     }
     //
     if (props.registerFormDetail?.account_information_form?.branch_name3_th) {
-      data_input.value.name.three =
-        props.registerFormDetail?.account_information_form?.branch_name3_th ??
-        null;
+      if (isStringEmpty(data_input.value.name.three))
+        data_input.value.name.three =
+          props.registerFormDetail?.account_information_form?.branch_name3_th ??
+          null;
     } else {
-      data_input.value.name.three =
-        props.steptwoFormDetail?.address_th?.name?.three ?? null;
+      if (isStringEmpty(data_input.value.name.three))
+        data_input.value.name.three =
+          props.steptwoFormDetail?.address_th?.name?.three ?? null;
     }
     //
     if (props.registerFormDetail?.account_information_form?.branch_name4_th) {
-      data_input.value.name.four =
-        props.registerFormDetail?.account_information_form?.branch_name4_th ??
-        null;
+      if (isStringEmpty(data_input.value.name.four))
+        data_input.value.name.four =
+          props.registerFormDetail?.account_information_form?.branch_name4_th ??
+          null;
     } else {
-      data_input.value.name.four =
-        props.steptwoFormDetail?.address_th?.name?.four ?? null;
+      if (isStringEmpty(data_input.value.name.four))
+        data_input.value.name.four =
+          props.steptwoFormDetail?.address_th?.name?.four ?? null;
     }
     //
     if (
       props.registerFormDetail?.account_information_form?.branch_address1_th
     ) {
-      data_input.value.address.one =
-        props.registerFormDetail?.account_information_form
-          ?.branch_address1_th ?? null;
+      if (isStringEmpty(data_input.value.address.one))
+        data_input.value.address.one =
+          props.registerFormDetail?.account_information_form
+            ?.branch_address1_th ?? null;
     } else {
-      data_input.value.address.one =
-        props.steptwoFormDetail?.address_th?.address?.one ?? null;
+      if (isStringEmpty(data_input.value.address.one))
+        data_input.value.address.one =
+          props.steptwoFormDetail?.address_th?.address?.one ?? null;
     }
     //
     if (
       props.registerFormDetail?.account_information_form?.branch_address2_th
     ) {
-      data_input.value.address.two =
-        props.registerFormDetail?.account_information_form
-          ?.branch_address2_th ?? null;
+      if (isStringEmpty(data_input.value.address.two))
+        data_input.value.address.two =
+          props.registerFormDetail?.account_information_form
+            ?.branch_address2_th ?? null;
     } else {
-      data_input.value.address.two =
-        props.steptwoFormDetail?.address_th?.address?.two ?? null;
+      if (isStringEmpty(data_input.value.address.two))
+        data_input.value.address.two =
+          props.steptwoFormDetail?.address_th?.address?.two ?? null;
     }
 
     initValueThree.value = false;
