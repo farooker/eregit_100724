@@ -112,6 +112,7 @@
           variant="outlined"
         ></v-text-field>
       </v-col>
+      <!-- {{ props.steptwoFormDetail?.address_th.name.one }} -->
       <v-col cols="12" v-if="!props.isAddressManual">
         <!-- <AddressInputControl
           :tag-desc="props.tagDesc"
@@ -494,7 +495,7 @@ watchEffect(() => {
   }
 
   //TH Branch step3 /true//
-  if (props.register_type === 3 && initValue.value) {
+  if (props.register_type === 3) {
     // data_input.value.name.one =
     //   props.registerFormDetail?.account_information_form?.branch_name1_th ??
     //   null;

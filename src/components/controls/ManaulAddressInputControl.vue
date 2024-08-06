@@ -98,7 +98,7 @@ const data_input = ref({
   district: props.addressItem?.district,
   parish: props.addressItem?.parish,
   zip_code: props.addressItem?.zip_code,
-  zip_code_value: props.addressItem?.zip_code,
+  zip_code_value: props.addressItem?.zip_code_value,
 });
 
 const tempZipcode = ref(null);

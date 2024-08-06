@@ -364,11 +364,9 @@ watch(data_input.value.items_contects, (newValue) => {
 });
 
 const handleAddressInputTh = (addressLocation) => {
-  // console.log(addressLocation)
   data_input.value.partner_info.th.info = addressLocation;
-  data_input.value.partner_info.en.info.zip_code =
-    data_input.value.partner_info.th.info.zip_code;
-  // data_input.value.partner_info.en.info = addressLocation;
+  data_input.value.partner_info.en.info.zip_code_value =
+  addressLocation.zip_code_value;
 };
 
 const handleAddressInputEn = (addressLocation) => {
