@@ -256,7 +256,7 @@
 
 <script setup>
 import ButtonControl from "@/components/controls/ButtonControl.vue";
-import AddressInputControlTH from "@/components/controls/AddressInputControl.vue";
+import AddressInputControlTH from "@/components/controls/AddressInputControlComp.vue";
 // import AddressInputControlEn from "@/components/controls/AddressInputControl.vue";
 import ManaulAddressInputControl from "@/components/controls/ManaulAddressInputControl.vue";
 import AccountMoneyInputControl from "@/components/controls/AccountMoneyInputControl.vue";
