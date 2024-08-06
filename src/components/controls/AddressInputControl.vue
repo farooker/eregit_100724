@@ -50,7 +50,7 @@
         :bg-color="bgColor"
       ></v-autocomplete>
     </v-col>
-
+    <!-- {{ data_input }} -->
     <v-col cols="12" class="mt-n7">
       <v-card-title class="ml-n5">
         <h6>รหัสไปรษณีย์</h6>
@@ -146,9 +146,9 @@ watch(
     if (data_input.value.province) {
       await store.getDistrict(data_input.value.province);
       itemsDistrict.value = store.districts;
-      data_input.value.district = null;
-      data_input.value.parish = null;
-      itemsSubDistrict.value = [];
+      // data_input.value.district = null;
+      // data_input.value.parish = null;
+      // itemsSubDistrict.value = [];
     }
   },
   { deep: true, immediate: false }
@@ -162,7 +162,7 @@ watch(
       itemsSubDistrict.value = store.subDistricts;
     }
     if (oledata) {
-      data_input.value.parish = null;
+      // data_input.value.parish = null;
     }
   },
   { deep: true, immediate: true }
