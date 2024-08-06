@@ -606,7 +606,8 @@ watch(
     if (data_input.value.province) {
       data_input.value.district = null;
       data_input.value.parish = null;
-      await store.getDistrict(data_input.value.province);
+      if (data_input.value.province)
+        await store.getDistrict(data_input.value.province);
       itemsDistrict.value = store.districts;
       itemsSubDistrict.value = [];
 

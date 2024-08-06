@@ -33,7 +33,6 @@
         :bg-color="bgColor"
       ></v-autocomplete>
     </v-col>
-
     <v-col cols="12" class="mt-n7">
       <v-card-title class="ml-n5">
         <h6>แขวง/ตำบล {{ props.tagDesc }}</h6>
@@ -151,7 +150,7 @@ watch(
       // itemsSubDistrict.value = [];
     }
   },
-  { deep: true, immediate: false }
+  { deep: true, immediate: true }
 );
 
 watch(
@@ -187,8 +186,9 @@ const bgColor = computed(() => {
 
 watchEffect(async () => {
   data_input.value = props.addressItem;
-  await store.getDistrict(data_input.value.province);
-    itemsDistrict.value = store.districts;
+  if (data_input.value.province)
+    await store.getDistrict(data_input.value.province);
+  itemsDistrict.value = store.districts;
   data_input.value.zip_code = props.addressItem.zip_code;
   if (data_input.value.parish) await store.getPostCode(data_input.value.parish);
   itemsPostCode.value = store.postCodes;
