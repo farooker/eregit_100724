@@ -1,8 +1,6 @@
 <template>
   <v-row>
     <v-col cols="12"><h2>ข้อมูลเพิ่มเติม</h2></v-col>
-    {{ props.BusinessPartnerGroup }}
-    {{ itemBbType }}
     <v-col cols="12">
       <v-card>
         <v-row dense>
@@ -777,10 +775,6 @@
         </v-row>
       </v-card>
     </v-col>
-    <!-- {{ props.BusinessPartnerGroup }}
-      {{ itemsAccountBusinessPartnerType }}
-      {{ props.bpType }}
-      {{ itemBbType }} -->
   </v-row>
 </template>
 
@@ -879,8 +873,7 @@ const arrayCompCode = ref([]);
 
 watchEffect(async () => {
   data_input.value.more_data_one.pyment_term_selection =
-    props.registerFormDetail?.account_information_form?.payment_term_id ??
-    null;
+    props.registerFormDetail?.account_information_form?.payment_term_id ?? null;
 
   data_input.value.more_data_one.reconcliation_acct_seletion =
     props.registerFormDetail?.account_information_form
@@ -1072,10 +1065,27 @@ watchEffect(async () => {
       },
     };
 
-    if (props.BusinessPartnerGroup !== 4 && props.BusinessPartnerGroup !== 5
-    )
+    if (
+      props.BusinessPartnerGroup == 3 ||
+      props.BusinessPartnerGroup == 4 ||
+      props.BusinessPartnerGroup == 5
+    ) {
+      if (indexFind > -1) {
+        const itemFind = itemsAccountBusinessPartnerType.value[indexFind];
+        switch (itemFind.code) {
+          case "BP03":
+          case "BP04":
+          case "BP05":
+            data_input.value.vander_info.pa_yee_in_doc = "X";
+            break;
+          default:
+            data_input.value.vander_info.pa_yee_in_doc = null;
+        }
+      }
+    }
+
+    if (props.BusinessPartnerGroup !== 4 && props.BusinessPartnerGroup !== 5)
       indexFind = -1;
-    console.log("props.BusinessPartnerGroup",props.BusinessPartnerGroup)
 
     if (indexFind > -1) {
       const itemFind = itemsAccountBusinessPartnerType.value[indexFind];
