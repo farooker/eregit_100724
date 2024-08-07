@@ -289,8 +289,8 @@
               class="ml-6 mr-6"
               v-model="data_input.other.bank_key"
               :items="displayItemsBankKey"
+              item-value="id"
               item-title="displayName"
-              item-value="bank_key"
               density="compact"
               variant="outlined"
             ></v-select>
@@ -350,7 +350,7 @@ import { computed, watch, ref } from "vue";
 const { handlingErrorsMessage } = useErrorHandlingDialog();
 
 const props = defineProps({
-register_type: {
+  register_type: {
     type: Number,
   },
   isNaturePerson: {
@@ -408,7 +408,10 @@ const data_input = ref({
       props.register_type != AccountType.AccountType.CUSTOMER
         ? "FLVN00X"
         : "FLCU00",
-    bp_type_selection: Number(props.registerFormDetail?.account_information_form?.account_business_partner_type_id?? null),
+    bp_type_selection: Number(
+      props.registerFormDetail?.account_information_form
+        ?.account_business_partner_type_id ?? null
+    ),
     naturel_person: props.isNaturePerson ? "X" : null,
     tax_catega: props.taxCetagory,
     tax_number: "",
@@ -421,7 +424,7 @@ const data_input = ref({
   other: {
     company_code: props.companyIdSelect,
     bank_country: "TH",
-    bank_key: props.bankInfoObj?.bank_key,
+    bank_key: Number(props.bankInfoObj?.bank_name),
     bank_branch: props.bankInfoObj?.bank_branch,
     bank_account: props.bankInfoObj?.acc_number,
     bank_hoder: null,
@@ -498,9 +501,9 @@ onMounted(async () => {
   await getCompanies();
   await getBanks();
   emit("on-input", data_input.value);
-  if (props.bankInfoObj?.bank_key) {
+  if (props.bankInfoObj?.bank_name) {
     const result = itemsBank.value.find(
-      (el) => el.bank_key == props.bankInfoObj?.bank_key
+      (el) => el.id == props.bankInfoObj?.bank_name
     );
     if (result) data_input.value.other.bank_hoder = result.abbreviation;
     console.log("propone", props.bankInfoObj.bank_key);
@@ -525,7 +528,7 @@ const itemsAccountBusinessPartnerType = ref([]);
 watch(
   () => data_input.value.other.bank_key,
   (newValue) => {
-    const result = itemsBank.value.find((el) => el.bank_key == newValue);
+    const result = itemsBank.value.find((el) => el.id == newValue);
     if (result) data_input.value.other.bank_hoder = result.abbreviation;
   },
   { deep: true }
@@ -619,12 +622,10 @@ watch(
 <style scoped>
 :deep(.v-text-field .v-field) {
   border-radius: 10px !important;
-
 }
 
 :deep(.v-chip--variant-tonal .v-chip__underlay) {
   background-color: #ed1c24 !important;
-
 }
 
 :deep(.v-chip.v-chip--density-default) {
@@ -632,15 +633,14 @@ watch(
 }
 
 :deep(.v-chip__content) {
-margin-top: 3px;
+  margin-top: 3px;
 }
 
 :deep(.mdi-close-circle::before) {
   content: "\F0156";
-    color: red;
+  color: red;
 }
 </style>
 
-// data_input.value.main_data.business_partner_gruop_selection == 0
-//   ? null
-//   : data_input.value.main_data.business_partner_gruop_selection;
+// data_input.value.main_data.business_partner_gruop_selection == 0 // ? null //
+: data_input.value.main_data.business_partner_gruop_selection;

@@ -70,7 +70,7 @@
               v-model="data_input_head_comp_branch.info.serach_team.en"
               dense
               variant="outlined"
-                            readonly
+              readonly
               bg-color="rgb(223 223 223 / 30%)"
             ></v-text-field>
           </v-col>
@@ -308,6 +308,7 @@ const initailContect = ref(true);
 const initailContact_1 = ref(true);
 const initailContact_2 = ref(true);
 const initailContact_3 = ref(true);
+const initailEnAddress = ref(true);
 
 const setDataFromFormDetail = async (formDetail) => {
   data_input.value.province = formDetail.branch_province_th_id;
@@ -477,15 +478,21 @@ watchEffect(async () => {
     initailContect.value = false;
   }
 
-  if (props.registerFormDetail.account_information_form?.branch_province_en) {
+  if (
+    props.registerFormDetail.account_information_form?.branch_province_en &&
+    initailEnAddress.value
+  ) {
     setEnglishDataFromFormDetail(
       props.registerFormDetail.account_information_form
     );
+    initailEnAddress.value = false;
   } else if (
     props.addressItemEn &&
-    !data_input_head_comp_branch.value.address_en.location.province
+    !data_input_head_comp_branch.value.address_en.location.province &&
+    initailEnAddress.value
   ) {
     setEnglishDataFromAddressItem(props.addressItemEn);
+    initailEnAddress.value = false;
   }
 });
 
@@ -570,7 +577,8 @@ watch(
       data_input.value.zip_code_value = itemsPostCode.value[0]?.code;
       data_input_head_comp_branch.value.address_th.location = data_input.value;
 
-      data_input_head_comp_branch.value.address_en.location.zip_code_value = itemsPostCode.value[0]?.code;
+      data_input_head_comp_branch.value.address_en.location.zip_code_value =
+        itemsPostCode.value[0]?.code;
     }
   },
   { deep: true, immediate: true }

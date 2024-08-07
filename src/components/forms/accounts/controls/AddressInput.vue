@@ -140,7 +140,7 @@
 import { ref, defineProps, watch, onMounted, watchEffect } from "vue";
 // import AddressInputControl from "@/components/controls/AddressInputControl.vue";
 import ManaulAddressInputControl from "@/components/controls/ManaulAddressInputControl.vue";
-import { isStringEmpty } from "@/utils/util.issue";
+// import { isStringEmpty } from "@/utils/util.issue";
 const emit = defineEmits(["on-input"]);
 
 const props = defineProps({
@@ -322,182 +322,279 @@ function splitTextAddress(text) {
   };
 }
 
-const initValueOne = ref(true);
-const initValueTwo = ref(true);
-const initValueThree = ref(true);
+// const initValueOne = ref(true);
+// const initValueTwo = ref(true);
+// const initValueThree = ref(true);
 
-watchEffect(() => {
-  //EN Branch step3
-  if (props.register_type === 2) {
-    if (
-      props.registerFormDetail?.account_information_form?.branch_name1_en ??
-      null
-    ) {
-      if (isStringEmpty(data_input.value.name.one))
-        data_input.value.name.one =
-          props.registerFormDetail?.account_information_form?.branch_name1_en ??
-          null;
-    } else {
-      // if (isStringEmpty(data_input.value.name.one))
-        data_input.value.name.one =
-          props.steptwoFormDetail?.address_en?.name?.one ?? null;
-    }
+// watchEffect(() => {
+//   //EN Branch step3
+//   if (props.register_type === 2 && initValueTwo.value) {
+//     if (
+//       props.registerFormDetail?.account_information_form?.branch_name1_en ??
+//       null
+//     ) {
+//       if (isStringEmpty(data_input.value.name.one))
+//         data_input.value.name.one =
+//           props.registerFormDetail?.account_information_form?.branch_name1_en ??
+//           null;
+//     } else {
+//       if (isStringEmpty(data_input.value.name.one))
+//         data_input.value.name.one =
+//           props.steptwoFormDetail?.address_en?.name?.one ?? null;
+//     }
 
-    //
-    if (
-      props.registerFormDetail?.account_information_form?.branch_name2_en ??
-      null
-    ) {
-      if (isStringEmpty(data_input.value.name.two))
-        data_input.value.name.two =
-          props.registerFormDetail?.account_information_form?.branch_name2_en ??
-          null;
-    } else {
-      // if (isStringEmpty(data_input.value.name.two))
-        data_input.value.name.two =
-          props.steptwoFormDetail?.address_en?.name?.two ?? null;
-    }
-    //
-    if (
-      props.registerFormDetail?.account_information_form?.branch_name3_en ??
-      null
-    ) {
-      if (isStringEmpty(data_input.value.name.three))
-        data_input.value.name.three =
-          props.registerFormDetail?.account_information_form?.branch_name3_en ??
-          null;
-    } else {
-      // if (isStringEmpty(data_input.value.name.three))
-        data_input.value.name.three =
-          props.steptwoFormDetail?.address_en?.name?.three ?? null;
-    }
-    //
-    if (
-      props.registerFormDetail?.account_information_form?.branch_name4_en ??
-      null
-    ) {
-      if (isStringEmpty(data_input.value.name.four))
-        data_input.value.name.four =
-          props.registerFormDetail?.account_information_form?.branch_name4_en ??
-          null;
-    } else {
-      // if (isStringEmpty(data_input.value.name.four))
-        data_input.value.name.four =
-          props.steptwoFormDetail?.address_en?.name?.four ?? null;
-    }
-    //
-    if (
-      props.registerFormDetail?.account_information_form?.branch_address1_en ??
-      null
-    ) {
-      if (isStringEmpty(data_input.value.address.one))
-        data_input.value.address.one =
-          props.registerFormDetail?.account_information_form
-            ?.branch_address1_en ?? null;
-    } else {
-      // if (isStringEmpty(data_input.value.address.one))
-        data_input.value.address.one =
-          props.steptwoFormDetail?.address_en?.address?.one ?? null;
-    }
-    //
-    if (
-      props.registerFormDetail?.account_information_form?.branch_address2_en ??
-      null
-    ) {
-      if (isStringEmpty(data_input.value.address.two))
-        data_input.value.address.two =
-          props.registerFormDetail?.account_information_form
-            ?.branch_address2_en ?? null;
-    } else {
-      // if (isStringEmpty(data_input.value.address.two))
-        data_input.value.address.two =
-          props.steptwoFormDetail?.address_en?.address?.two ?? null;
-    }
+//     //
+//     if (
+//       props.registerFormDetail?.account_information_form?.branch_name2_en ??
+//       null
+//     ) {
+//       if (isStringEmpty(data_input.value.name.two))
+//         data_input.value.name.two =
+//           props.registerFormDetail?.account_information_form?.branch_name2_en ??
+//           null;
+//     } else {
+//       if (isStringEmpty(data_input.value.name.two))
+//         data_input.value.name.two =
+//           props.steptwoFormDetail?.address_en?.name?.two ?? null;
+//     }
+//     //
+//     if (
+//       props.registerFormDetail?.account_information_form?.branch_name3_en ??
+//       null
+//     ) {
+//       if (isStringEmpty(data_input.value.name.three))
+//         data_input.value.name.three =
+//           props.registerFormDetail?.account_information_form?.branch_name3_en ??
+//           null;
+//     } else {
+//       if (isStringEmpty(data_input.value.name.three))
+//         data_input.value.name.three =
+//           props.steptwoFormDetail?.address_en?.name?.three ?? null;
+//     }
+//     //
+//     if (
+//       props.registerFormDetail?.account_information_form?.branch_name4_en ??
+//       null
+//     ) {
+//       if (isStringEmpty(data_input.value.name.four))
+//         data_input.value.name.four =
+//           props.registerFormDetail?.account_information_form?.branch_name4_en ??
+//           null;
+//     } else {
+//       if (isStringEmpty(data_input.value.name.four))
+//         data_input.value.name.four =
+//           props.steptwoFormDetail?.address_en?.name?.four ?? null;
+//     }
+//     //
+//     if (
+//       props.registerFormDetail?.account_information_form?.branch_address1_en ??
+//       null
+//     ) {
+//       if (isStringEmpty(data_input.value.address.one))
+//         data_input.value.address.one =
+//           props.registerFormDetail?.account_information_form
+//             ?.branch_address1_en ?? null;
+//     } else {
+//       if (isStringEmpty(data_input.value.address.one))
+//         data_input.value.address.one =
+//           props.steptwoFormDetail?.address_en?.address?.one ?? null;
+//     }
+//     //
+//     if (
+//       props.registerFormDetail?.account_information_form?.branch_address2_en ??
+//       null
+//     ) {
+//       if (isStringEmpty(data_input.value.address.two))
+//         data_input.value.address.two =
+//           props.registerFormDetail?.account_information_form
+//             ?.branch_address2_en ?? null;
+//     } else {
+//       if (isStringEmpty(data_input.value.address.two))
+//         data_input.value.address.two =
+//           props.steptwoFormDetail?.address_en?.address?.two ?? null;
+//     }
 
-    initValueTwo.value = false;
-  }
-});
+//     initValueTwo.value = false;
+//   }
+// });
 
-watchEffect(() => {
-  //TH Branch step3 /true//
-  if (props.register_type === 3) {
-    // data_input.value.name.one =
-    //   props.registerFormDetail?.account_information_form?.branch_name1_th ??
-    //   null;
+// watchEffect(() => {
+//   //TH Branch step3 /true//
+//   if (props.register_type === 3 && initValueTwo.value) {
+//     // data_input.value.name.one =
+//     //   props.registerFormDetail?.account_information_form?.branch_name1_th ??
+//     //   null;
 
-    if (props.registerFormDetail?.account_information_form?.branch_name1_th) {
-      if (isStringEmpty(data_input.value.name.one))
-        data_input.value.name.one =
-          props.registerFormDetail?.account_information_form?.branch_name1_th ??
-          null;
-    } else {
-      if (isStringEmpty(data_input.value.name.one))
-        data_input.value.name.one =
-          props.steptwoFormDetail?.address_th?.name?.one ?? null;
-    }
-    //
-    if (props.registerFormDetail?.account_information_form?.branch_name2_th) {
-      if (isStringEmpty(data_input.value.name.two))
-        data_input.value.name.two =
-          props.registerFormDetail?.account_information_form?.branch_name2_th ??
-          null;
-    } else {
-      // if (isStringEmpty(data_input.value.name.two))
-        data_input.value.name.two =
-          props.steptwoFormDetail?.address_th?.name?.two ?? null;
-    }
-    //
-    if (props.registerFormDetail?.account_information_form?.branch_name3_th) {
-      if (isStringEmpty(data_input.value.name.three))
-        data_input.value.name.three =
-          props.registerFormDetail?.account_information_form?.branch_name3_th ??
-          null;
-    } else {
-      // if (isStringEmpty(data_input.value.name.three))
-        data_input.value.name.three =
-          props.steptwoFormDetail?.address_th?.name?.three ?? null;
-    }
-    //
-    if (props.registerFormDetail?.account_information_form?.branch_name4_th) {
-      // if (isStringEmpty(data_input.value.name.four))
-        data_input.value.name.four =
-          props.registerFormDetail?.account_information_form?.branch_name4_th ??
-          null;
-    } else {
-      // if (isStringEmpty(data_input.value.name.four))
-        data_input.value.name.four =
-          props.steptwoFormDetail?.address_th?.name?.four ?? null;
-    }
-    //
-    if (
-      props.registerFormDetail?.account_information_form?.branch_address1_th
-    ) {
-      if (isStringEmpty(data_input.value.address.one))
-        data_input.value.address.one =
-          props.registerFormDetail?.account_information_form
-            ?.branch_address1_th ?? null;
-    } else {
-      // if (isStringEmpty(data_input.value.address.one))
-        data_input.value.address.one =
-          props.steptwoFormDetail?.address_th?.address?.one ?? null;
-    }
-    //
-    if (
-      props.registerFormDetail?.account_information_form?.branch_address2_th
-    ) {
-      if (isStringEmpty(data_input.value.address.two))
-        data_input.value.address.two =
-          props.registerFormDetail?.account_information_form
-            ?.branch_address2_th ?? null;
-    } else {
-      // if (isStringEmpty(data_input.value.address.two))
-        data_input.value.address.two =
-          props.steptwoFormDetail?.address_th?.address?.two ?? null;
-    }
+//     if (props.registerFormDetail?.account_information_form?.branch_name1_th) {
+//       if (isStringEmpty(data_input.value.name.one))
+//         data_input.value.name.one =
+//           props.registerFormDetail?.account_information_form?.branch_name1_th ??
+//           null;
+//     } else {
+//       if (isStringEmpty(data_input.value.name.one))
+//         data_input.value.name.one =
+//           props.steptwoFormDetail?.address_th?.name?.one ?? null;
+//     }
+//     //
+//     if (props.registerFormDetail?.account_information_form?.branch_name2_th) {
+//       if (isStringEmpty(data_input.value.name.two))
+//         data_input.value.name.two =
+//           props.registerFormDetail?.account_information_form?.branch_name2_th ??
+//           null;
+//     } else {
+//       if (isStringEmpty(data_input.value.name.two))
+//         data_input.value.name.two =
+//           props.steptwoFormDetail?.address_th?.name?.two ?? null;
+//     }
+//     //
+//     if (props.registerFormDetail?.account_information_form?.branch_name3_th) {
+//       if (isStringEmpty(data_input.value.name.three))
+//         data_input.value.name.three =
+//           props.registerFormDetail?.account_information_form?.branch_name3_th ??
+//           null;
+//     } else {
+//       if (isStringEmpty(data_input.value.name.three))
+//         data_input.value.name.three =
+//           props.steptwoFormDetail?.address_th?.name?.three ?? null;
+//     }
+//     //
+//     if (props.registerFormDetail?.account_information_form?.branch_name4_th) {
+//       if (isStringEmpty(data_input.value.name.four))
+//         data_input.value.name.four =
+//           props.registerFormDetail?.account_information_form?.branch_name4_th ??
+//           null;
+//     } else {
+//       if (isStringEmpty(data_input.value.name.four))
+//         data_input.value.name.four =
+//           props.steptwoFormDetail?.address_th?.name?.four ?? null;
+//     }
+//     //
+//     if (
+//       props.registerFormDetail?.account_information_form?.branch_address1_th
+//     ) {
+//       if (isStringEmpty(data_input.value.address.one))
+//         data_input.value.address.one =
+//           props.registerFormDetail?.account_information_form
+//             ?.branch_address1_th ?? null;
+//     } else {
+//       if (isStringEmpty(data_input.value.address.one))
+//         data_input.value.address.one =
+//           props.steptwoFormDetail?.address_th?.address?.one ?? null;
+//     }
+//     //
+//     if (
+//       props.registerFormDetail?.account_information_form?.branch_address2_th
+//     ) {
+//       if (isStringEmpty(data_input.value.address.two))
+//         data_input.value.address.two =
+//           props.registerFormDetail?.account_information_form
+//             ?.branch_address2_th ?? null;
+//     } else {
+//       if (isStringEmpty(data_input.value.address.two))
+//         data_input.value.address.two =
+//           props.steptwoFormDetail?.address_th?.address?.two ?? null;
+//     }
 
-    initValueThree.value = false;
-  }
-});
+//     initValueThree.value = false;
+//   }
+// });
+
+// watchEffect(() => {
+//   // console.log("propStep2", props.registerFormDetail.value.account_information_form)
+//   // data_input.value.name.one = props.name;
+//   // data_input.value.search.two = props.taxPayerIdNumber;
+//   // data_input.value.location = props.addressItem;
+//   // data_input.value.address.one = props.address;
+
+//   //steptwo
+//   if (props.register_type == 1 && initValueOne.value) {
+//     // data_input.value.name.one = props.name;
+//     if (props.registerFormDetail?.account_information_form?.search_term2_en) {
+//       data_input.value.search.two =
+//         props.registerFormDetail?.account_information_form?.search_term2_en;
+//     } else {
+//       data_input.value.search.two = props.taxPayerIdNumber ?? null;
+//     }
+//     // data_input.value.location = props.addressItem ?? null;
+//     if (props.addressItem) {
+//       data_input.value.location.province = props.addressItem?.province;
+//       data_input.value.location.district = props.addressItem?.district;
+//       data_input.value.location.parish = props.addressItem?.parish;
+//       data_input.value.location.zip_code = props.addressItem?.zip_code;
+//     }
+//     // data_input.value.address.one = props.address;
+
+//     const txtSprict = splitText(company_en.value);
+//     const txtSprictAdress = splitTextAddress(address_en.value);
+
+//     if (
+//       props.registerFormDetail?.account_information_form?.name1_en &&
+//       props.registerFormDetail?.account_information_form?.name1_en != ""
+//     ) {
+//       data_input.value.name.one =
+//         props.registerFormDetail?.account_information_form?.name1_en ?? null;
+//     } else {
+//       data_input.value.name.one = txtSprict.part1 ?? null;
+//     }
+
+//     if (
+//       props.registerFormDetail?.account_information_form?.name2_en &&
+//       props.registerFormDetail?.account_information_form?.name2_en != ""
+//     ) {
+//       data_input.value.name.two =
+//         props.registerFormDetail?.account_information_form?.name2_en ?? null;
+//     } else {
+//       data_input.value.name.two = txtSprict.part2 ?? null;
+//     }
+
+//     if (
+//       props.registerFormDetail?.account_information_form?.name3_en &&
+//       props.registerFormDetail?.account_information_form?.name3_en != ""
+//     ) {
+//       data_input.value.name.three =
+//         props.registerFormDetail?.account_information_form?.name3_en ?? null;
+//     } else {
+//       data_input.value.name.three = txtSprict.part3 ?? null;
+//     }
+
+//     if (
+//       props.registerFormDetail?.account_information_form?.name4_en &&
+//       props.registerFormDetail?.account_information_form?.name4_en != ""
+//     ) {
+//       data_input.value.name.four =
+//         props.registerFormDetail?.account_information_form?.name4_en ?? null;
+//     } else {
+//       data_input.value.name.four = txtSprict.part4 ?? null;
+//     }
+
+//     data_input.value.search.one =
+//       props.registerFormDetail?.account_information_form?.search_term1_en ??
+//       null;
+
+//     if (
+//       props.registerFormDetail?.account_information_form?.address1_en &&
+//       props.registerFormDetail?.account_information_form?.address1_en != ""
+//     ) {
+//       data_input.value.address.one =
+//         props.registerFormDetail?.account_information_form?.address1_en ?? null;
+//     } else {
+//       data_input.value.address.one = txtSprictAdress.part1 ?? null;
+//     }
+//     if (
+//       props.registerFormDetail?.account_information_form?.address2_en &&
+//       props.registerFormDetail?.account_information_form?.address2_en != ""
+//     ) {
+//       data_input.value.address.two =
+//         props.registerFormDetail?.account_information_form?.address2_en ?? null;
+//     } else {
+//       data_input.value.address.two = txtSprictAdress.part2 ?? null;
+//     }
+//     initValueOne.value = false;
+//   }
+// });
+
+
+const initValue = ref(true);
 
 watchEffect(() => {
   // console.log("propStep2", props.registerFormDetail.value.account_information_form)
@@ -507,7 +604,7 @@ watchEffect(() => {
   // data_input.value.address.one = props.address;
 
   //steptwo
-  if (props.register_type == 1 && initValueOne.value) {
+  if (props.register_type == 1 && initValue.value) {
     // data_input.value.name.one = props.name;
     if (props.registerFormDetail?.account_information_form?.search_term2_en) {
       data_input.value.search.two =
@@ -589,7 +686,150 @@ watchEffect(() => {
     } else {
       data_input.value.address.two = txtSprictAdress.part2 ?? null;
     }
-    initValueOne.value = false;
+    initValue.value = false;
+  }
+
+    //TH Branch step3 /true//
+    if (props.register_type === 3) {
+    // data_input.value.name.one =
+    //   props.registerFormDetail?.account_information_form?.branch_name1_th ??
+    //   null;
+
+    if (props.registerFormDetail?.account_information_form?.branch_name1_th) {
+      data_input.value.name.one =
+        props.registerFormDetail?.account_information_form?.branch_name1_th ??
+        null;
+    } else {
+      data_input.value.name.one =
+        props.steptwoFormDetail?.address_th?.name?.one ?? null;
+    }
+    //
+    if (props.registerFormDetail?.account_information_form?.branch_name2_th) {
+      data_input.value.name.two =
+        props.registerFormDetail?.account_information_form?.branch_name2_th ??
+        null;
+    } else {
+      data_input.value.name.two =
+        props.steptwoFormDetail?.address_th?.name?.two ?? null;
+    }
+    //
+    if (props.registerFormDetail?.account_information_form?.branch_name3_th) {
+      data_input.value.name.three =
+        props.registerFormDetail?.account_information_form?.branch_name3_th ??
+        null;
+    } else {
+      data_input.value.name.three =
+        props.steptwoFormDetail?.address_th?.name?.three ?? null;
+    }
+    //
+    if (props.registerFormDetail?.account_information_form?.branch_name4_th) {
+      data_input.value.name.four =
+        props.registerFormDetail?.account_information_form?.branch_name4_th ??
+        null;
+    } else {
+      data_input.value.name.four =
+        props.steptwoFormDetail?.address_th?.name?.four ?? null;
+    }
+    //
+    if (
+      props.registerFormDetail?.account_information_form?.branch_address1_th
+    ) {
+      data_input.value.address.one =
+        props.registerFormDetail?.account_information_form
+          ?.branch_address1_th ?? null;
+    } else {
+      data_input.value.address.one =
+        props.steptwoFormDetail?.address_th?.address?.one ?? null;
+    }
+    //
+    if (
+      props.registerFormDetail?.account_information_form?.branch_address2_th
+    ) {
+      data_input.value.address.two =
+        props.registerFormDetail?.account_information_form
+          ?.branch_address2_th ?? null;
+    } else {
+      data_input.value.address.two =
+        props.steptwoFormDetail?.address_th?.address?.two ?? null;
+    }
+
+    initValue.value = false;
+  }
+
+  //EN Branch step3
+  if (props.register_type === 2) {
+    if (
+      props.registerFormDetail?.account_information_form?.branch_name1_en ??
+      null
+    ) {
+      data_input.value.name.one =
+        props.registerFormDetail?.account_information_form?.branch_name1_en ??
+        null;
+    } else {
+      data_input.value.name.one =
+        props.steptwoFormDetail?.address_en?.name?.one ?? null;
+    }
+
+    //
+    if (
+      props.registerFormDetail?.account_information_form?.branch_name2_en ??
+      null
+    ) {
+      data_input.value.name.two =
+        props.registerFormDetail?.account_information_form?.branch_name2_en ??
+        null;
+    } else {
+      data_input.value.name.two =
+        props.steptwoFormDetail?.address_en?.name?.two ?? null;
+    }
+    //
+    if (
+      props.registerFormDetail?.account_information_form?.branch_name3_en ??
+      null
+    ) {
+      data_input.value.name.three =
+        props.registerFormDetail?.account_information_form?.branch_name3_en ??
+        null;
+    } else {
+      data_input.value.name.three =
+        props.steptwoFormDetail?.address_en?.name?.three ?? null;
+    }
+    //
+    if (
+      props.registerFormDetail?.account_information_form?.branch_name4_en ??
+      null
+    ) {
+      data_input.value.name.four =
+        props.registerFormDetail?.account_information_form?.branch_name4_en ??
+        null;
+    } else {
+      data_input.value.name.four =
+        props.steptwoFormDetail?.address_en?.name?.four ?? null;
+    }
+    //
+    if (
+      props.registerFormDetail?.account_information_form?.branch_address1_en ??
+      null
+    ) {
+      data_input.value.address.one =
+        props.registerFormDetail?.account_information_form
+          ?.branch_address1_en ?? null;
+    } else {
+      data_input.value.address.one =
+        props.steptwoFormDetail?.address_en?.address?.one ?? null;
+    }
+    //
+    if (
+      props.registerFormDetail?.account_information_form?.branch_address2_en ??
+      null
+    ) {
+      data_input.value.address.two =
+        props.registerFormDetail?.account_information_form
+          ?.branch_address2_en ?? null;
+    } else {
+      data_input.value.address.two =
+        props.steptwoFormDetail?.address_en?.address?.two ?? null;
+    }
   }
 });
 
