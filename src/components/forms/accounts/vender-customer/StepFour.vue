@@ -1,6 +1,8 @@
 <template>
   <v-row>
     <v-col cols="12"><h2>ข้อมูลเพิ่มเติม</h2></v-col>
+    {{ props.BusinessPartnerGroup }}
+    {{ itemBbType }}
     <v-col cols="12">
       <v-card>
         <v-row dense>
@@ -908,6 +910,7 @@ const TAG_GL00 = [
   "2200",
   "2400",
   "2500",
+  "2600",
   "2300",
   "3000",
   "3100",
@@ -941,6 +944,7 @@ const TAG_FPT = [
   "6021",
   "6022",
   "6023",
+  "6024",
   "3200",
 ];
 const TAG_FPHT = ["5000", "5001", "5002", "5003"];
@@ -1068,8 +1072,7 @@ watchEffect(async () => {
       },
     };
 
-    if (props.BusinessPartnerGroup !== 4 && props.BusinessPartnerGroup !== 5 && props.BusinessPartnerGroup !== 3
-    && props.BusinessPartnerGroup !== 2 && props.BusinessPartnerGroup !== 1
+    if (props.BusinessPartnerGroup !== 4 && props.BusinessPartnerGroup !== 5
     )
       indexFind = -1;
     console.log("props.BusinessPartnerGroup",props.BusinessPartnerGroup)
@@ -1079,18 +1082,7 @@ watchEffect(async () => {
       // console.log("itemFind",itemFind)
       // console.log("itemFind.code",itemFind.code)
       switch (itemFind.code) {
-
-        case "BP01":
-          data_input.value.vander_info.pa_yee_in_doc = null;
-          break;
-        case "BP02":
-          data_input.value.vander_info.pa_yee_in_doc = null;
-          break;
-        case "BP03":
-          data_input.value.vander_info.pa_yee_in_doc = "x";
-          break;
         case "BP04":
-          data_input.value.vander_info.pa_yee_in_doc = "x";
           data_input.value.more_data_two.with_tax_type["1"] = "04";
           data_input.value.more_data_two.with_tax_type["2"] = "05";
           data_input.value.more_data_two.with_tax_type["3"] = "06";
@@ -1104,7 +1096,6 @@ watchEffect(async () => {
           data_input.value.more_data_two.subject_wht["3"] = "X";
           break;
         case "BP05":
-          data_input.value.vander_info.pa_yee_in_doc = "x";
           data_input.value.more_data_two.with_tax_type["2"] = null;
           data_input.value.more_data_two.with_tax_type["1"] = null;
           data_input.value.more_data_two.subject_wht["1"] = null;
