@@ -13,6 +13,7 @@ export const useMyAddressStore = defineStore("ADDRESS_STORE", {
   actions: {
     async getProvince() {
       try {
+        this.provinces = [];
         const response = await OtherService.getProviceAll();
         if (response.data?.is_success) {
           this.provinces = response.data.data;
@@ -33,6 +34,7 @@ export const useMyAddressStore = defineStore("ADDRESS_STORE", {
 
     async getDistrict(provice_id) {
       try {
+        this.districts = [];
         const response = await OtherService.getDistrictAll(provice_id);
         if (response.data?.is_success) {
           this.districts = response.data.data;
@@ -53,6 +55,7 @@ export const useMyAddressStore = defineStore("ADDRESS_STORE", {
 
     async getSubDistrict(district_id) {
       try {
+        this.subDistricts = [];
         const response = await OtherService.getSubDistrictAll(district_id);
         if (response.data?.is_success) {
           this.subDistricts = response.data.data;
@@ -73,6 +76,7 @@ export const useMyAddressStore = defineStore("ADDRESS_STORE", {
 
     async getPostCode(subdistrict_id) {
       try {
+        this.postCodes = [];
         const response = await OtherService.getPostalCodeAll(subdistrict_id);
         if (response.data?.is_success) {
           this.postCodes = response.data.data;
