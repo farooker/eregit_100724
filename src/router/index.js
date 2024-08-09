@@ -629,7 +629,7 @@ const routes = [
         component: () =>
           import("@/views/company-managements/CompanyManagement.vue"),
       },
-//
+
       {
         path: "/CompleteProfilePage",
         name: "CompleteProfilePage",

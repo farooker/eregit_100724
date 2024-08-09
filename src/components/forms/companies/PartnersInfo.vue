@@ -1,6 +1,7 @@
 <template>
   <v-form ref="partnerInfo">
     <v-row>
+      <!-- {{ isNaturalPerson }} -->
       <h2 class="ms-3 mt-8">2.ข้อมูลคู่ค้า</h2>
       <v-col cols="12">
         <v-card class="pa-6">
@@ -21,6 +22,7 @@
                 </v-radio-group>
               </v-col>
             </v-col>
+
 
             <v-col cols="12" class="mt-n5" v-if="isNaturalPerson">
               <v-card-title style="padding: 0px">
@@ -362,6 +364,18 @@ watch(data_input.value, (newValue) => {
 watch(data_input.value.items_contects, (newValue) => {
   emit("on-input-item-contact", newValue);
 });
+
+watch (
+  () => propsVar.isNaturalPerson,
+  () => {
+    if (!propsVar.isNaturalPerson){
+      data_input.value.partner_info.th.gender = "";
+      data_input.value.partner_info.en.gender = "";
+
+    }
+  }
+)
+
 
 const handleAddressInputTh = (addressLocation) => {
   data_input.value.partner_info.th.info = addressLocation;

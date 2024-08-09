@@ -223,7 +223,7 @@ const createBusinessPartnerCompleteProfile = async (body = {}) => {
   return await axiosBase({
     method: "post",
     url: "/partner/change-sd-information",
-    data: { ...body, updated_user_id  : 497, },
+    data: { ...body, updated_user_id  : Number(sessionStorage.getItem("userId")), },
   });
 };
 

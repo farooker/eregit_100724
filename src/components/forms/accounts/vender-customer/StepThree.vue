@@ -16,6 +16,8 @@
               v-model="data_input_head_comp_branch.info.branch_code"
               dense
               variant="outlined"
+              readonly
+              bg-color="#dfdfdf"
             ></v-text-field>
           </v-col>
 
@@ -29,6 +31,8 @@
               v-model="data_input_head_comp_branch.info.branch_desc"
               dense
               variant="outlined"
+              readonly
+              bg-color="rgb(223 223 223 / 30%)"
             ></v-text-field>
           </v-col>
 

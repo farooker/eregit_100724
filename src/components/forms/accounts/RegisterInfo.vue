@@ -114,8 +114,8 @@
                 density="compact"
                 dense
                 variant="outlined"
-                  readonly
-                  bg-color="#dfdfdf"
+                readonly
+                bg-color="#dfdfdf"
                 v-model="data_input.term_data.other"
               ></v-text-field>
             </div>
@@ -279,6 +279,8 @@
           <v-radio-group
             class="ml-6 mt-n4"
             v-model="data_input.tax_register.type"
+            readonly
+            bg-color="#dfdfdf"
           >
             <v-radio label="ไม่จดทะเบียนภาษีมูลค่าเพิ่ม" value="0"></v-radio>
           </v-radio-group>
@@ -529,7 +531,7 @@
                 class="ml-5 mr-5"
                 :address-item="data_input.customer_info.en.info"
                 @on-input="handleAddressEN"
-                 :is-disable-address="true"
+                :is-disable-address="true"
               />
             </v-col>
           </v-row>
@@ -586,7 +588,6 @@
                   v-model="item.email"
                   variant="outlined"
                   color="red"
-
                   @click:append="handleRemoveContact(index)"
                 ></v-text-field>
                 <v-text-field
@@ -624,7 +625,7 @@
               props.registerFormDetail?.business_partner_profile_form
                 ?.bank_account_number ?? ''
             "
-             :is-disable-address="true"
+            :is-disable-address="true"
             @on-input="handleMoneyTranferInput"
           />
         </v-card>
@@ -1141,7 +1142,7 @@ const getBusinessPartnerType = async () => {
 const displayItemsCompany = computed(() => {
   return itemsCompanyData.value.map((item) => ({
     ...item,
-    displayName: `${item.company_code} - ${item.name_th }`,
+    displayName: `${item.company_code} - ${item.name_th}`,
     custom_id: { id: item.id, company_code: item.company_code },
   }));
 });
