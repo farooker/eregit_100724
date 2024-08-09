@@ -55,8 +55,10 @@ export const useMyAddressStore = defineStore("ADDRESS_STORE", {
       try {
         const response = await OtherService.getSubDistrictAll(district_id);
         if (response.data?.is_success) {
+          console.log("ture")
           this.subDistricts = response.data.data;
         } else {
+          console.log("fasle")
           this.subDistricts = [];
         }
       } catch (e) {
