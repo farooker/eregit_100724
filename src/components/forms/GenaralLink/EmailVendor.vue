@@ -35,42 +35,48 @@
             <h5>Payment Terms</h5>
           </v-card-title>
           <v-card-text>
-          <v-row dense class="">
-            <v-col cols="12">
-              <v-radio-group
-                color="red"
-                class="ml-6 d-flex"
-                :rules="rules_valid.team"
-                v-model="data_input.term_data.data"
-              >
-                <v-radio
-                  v-for="(item, index) in selected_items.items_payment_terms"
-                  :label="item.description"
-                  :key="index"
-                  :value="item.id"
-                ></v-radio>
-              </v-radio-group>
-            </v-col>
+            <v-row dense>
+              <v-col cols="6">
+                <v-radio-group
+                  color="red"
+                  class="ml-6 d-flex"
+                  :rules="rules_valid.team"
+                  v-model="data_input.term_data.data"
+                >
+                  <v-radio
+                    v-for="(item, index) in selected_items.items_payment_terms"
+                    :label="item.description"
+                    :key="index"
+                    :value="item.id"
+                  ></v-radio>
+                </v-radio-group>
+              </v-col>
 
-            <v-col cols="12" class="ml-6 ">
-              <v-radio-group style="width: auto" color="red"
-              v-model="data_input.term_data.data">
-                <v-radio label="อื่นๆ" value="other"></v-radio>
-              </v-radio-group>
-              <v-text-field
-              v-if="data_input.term_data.data === 'other'"
-                density="compact"
-                dense
-                variant="outlined"
-                v-model="data_input.term_data.other"
-              ></v-text-field>
-            </v-col>
-            <!-- </v-radio-group>
-          </v-col> -->
-          </v-row>
+              <v-col cols="6" class="ml-6">
+                <v-radio-group style="width: auto" color="red" v-model="data_input.term_data.data">
+                  <v-row align="center">
+                    <v-col cols="auto">
+                      <v-radio label="อื่นๆ" value="other"></v-radio>
+                    </v-col>
+                    <v-col cols="auto">
+                      <v-text-field
+                      style="min-width: 500px"
+                        v-if="data_input.term_data.data === 'other'"
+                        density="compact"
+                        dense
+                        variant="outlined"
+                        v-model="data_input.term_data.other"
+                         :rules="[otherFieldRequired]"
+                      ></v-text-field>
+                    </v-col>
+                  </v-row>
+                </v-radio-group>
+              </v-col>
+            </v-row>
           </v-card-text>
         </v-card>
       </v-col>
+
 
       <v-col cols="12" class="pa-2">
         <v-card class="mb-4">
@@ -168,6 +174,20 @@ watch(
   },
   { deep: true }
 );
+
+watch(data_input.value.company_data, (newValue) => {
+  if (!newValue.data || newValue.data.length === 0) {
+    data_input.value.company_data.data = null;
+  }
+});
+
+const otherFieldRequired = value => {
+  if (data_input.value.term_data.data === 'other' && !value) {
+    return 'กรุณากรอกข้อมูลให้ครบ';
+  }
+  return true;
+};
+
 onMounted(async () => {
   const promise1 = await getCompanies();
   const promise2 = await getPaymentTerm();

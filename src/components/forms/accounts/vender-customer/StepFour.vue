@@ -770,6 +770,8 @@
               v-model="data_input.vander_info.pa_yee_in_doc"
               dense
               variant="outlined"
+              readonly
+              bg-color="#dfdfdf"
             ></v-text-field>
           </v-col>
         </v-row>
