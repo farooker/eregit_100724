@@ -32,7 +32,7 @@ const getPrivacyPolicybyId = async (userId) => {
   });
 };
 
-const createTermandConditionAcceptance = async (terms_and_conditions_id,user_id) => {
+const createTermandConditionAcceptance = async (terms_and_conditions_id) => {
   return await axiosBase({
     method: "post",
     url: `/pdpa/create-terms-and-conditions-acceptance`,
@@ -44,7 +44,7 @@ const createTermandConditionAcceptance = async (terms_and_conditions_id,user_id)
   });
 };
 
-const createPrivacyPolicyAcceptance = async (privacy_policy_id,user_id) => {
+const createPrivacyPolicyAcceptance = async (privacy_policy_id) => {
   return await axiosBase({
     method: "post",
     url: `/pdpa/create-privacy-policy-acceptance`,

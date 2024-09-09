@@ -133,6 +133,7 @@ const item_selection = [
         :items="data_mock_all_module_api"
         item-title="name_th"
         item-value="id"
+        :rules="[v => !!v || 'Item selection is required']"
         variant="solo"
       />
       <v-checkbox

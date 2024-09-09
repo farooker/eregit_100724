@@ -44,6 +44,15 @@ const routes = [
   //   component: () =>
   //     import("@/views/SDTeamMangement/SurveyQuestion/DocumentFirst.vue"),
   // },
+  // {
+  //   path: "/ShareMultiVandor",
+  //   name: "ShareMultiVandor",
+  //   meta: {
+  //     requiresAuth: false,
+  //     module_id: null,
+  //   },
+  //   component: () => import("@/views/BusinessPartner/shareLinkMultipleVendor.vue"),
+  // },
 
   {
     path: "/term-condition",
@@ -125,6 +134,19 @@ const routes = [
     component: () =>
       import("@/views/Login/Sub-Login/Disclosures/DisclosuresOTP.vue"),
   },
+
+  {
+    path: "/bp-number-form-otp",
+    name: "BpnumberOTP",
+    meta: {
+      requiresAuth: false,
+      module_id: null,
+    },
+    component: () =>
+      import("@/views/Login/Sub-Login/BpDashBoard/BpnumberOTP.vue"),
+  },
+
+
   {
     path: "/SignIn",
     name: "SignInPage",
@@ -206,7 +228,7 @@ const routes = [
         name: "ListRolesPage",
         meta: {
           requiresAuth: true,
-          module_id: null,
+          module_id: 16,
         },
         component: () => import("@/views/rules/ListRolesPage.vue"),
       },
@@ -215,10 +237,21 @@ const routes = [
         name: "UserManagement",
         meta: {
           requiresAuth: true,
-          module_id: null,
+          module_id: 10,
         },
         component: () => import("@/views/UserMangement/UserMangementPage.vue"),
       },
+
+      {
+        path: "/ShareMultiVandor",
+        name: "ShareMultiVandor",
+        meta: {
+          requiresAuth: false,
+          module_id: null,
+        },
+        component: () => import("@/views/BusinessPartner/ShareLinkMultipleVendor.vue"),
+      },
+
       // {
       //   path: "/HistoryUserPage",
       //   name: "HistoryUserPage",
@@ -242,7 +275,7 @@ const routes = [
         name: "HistoryTable",
         meta: {
           requiresAuth: true,
-          module_id: null,
+          module_id: 16,
         },
         component: () => import("@/components/tables/HistoryTable.vue"),
       },
@@ -251,7 +284,7 @@ const routes = [
         name: "MasterTable",
         meta: {
           requiresAuth: true,
-          module_id: null,
+          module_id: 11,
         },
         component: () => import("@/components/tables/MasterTable.vue"),
       },
@@ -260,9 +293,9 @@ const routes = [
         name: "HistoryRolePage",
         meta: {
           requiresAuth: true,
-          module_id: null,
+          module_id: 16,
         },
-        component: () => import("@/views/historyLog/HistoryRolePage.vue"),
+        component: () => import("@/views/HistoryLog/HistoryRolePage.vue"),
       },
       {
         path: "/MasterDataManagement",
@@ -278,7 +311,7 @@ const routes = [
         name: "CorparationDetail",
         meta: {
           requiresAuth: true,
-          module_id: 12,
+          module_id: 11,
         },
         component: () =>
           import("@/views/master-data/details/CorparationDetail.vue"),
@@ -288,7 +321,7 @@ const routes = [
         name: "BusinessUnitDetail",
         meta: {
           requiresAuth: true,
-          module_id: 13,
+          module_id: 11,
         },
         component: () =>
           import("@/views/master-data/details/BusinessUnitDetail.vue"),
@@ -298,7 +331,7 @@ const routes = [
         name: "CompanyDetail",
         meta: {
           requiresAuth: true,
-          module_id: 14,
+          module_id: 11,
         },
         component: () =>
           import("@/views/master-data/details/CompanyDetail.vue"),
@@ -308,7 +341,7 @@ const routes = [
         name: "TeamManagement",
         meta: {
           requiresAuth: true,
-          module_id: null,
+          module_id: 11,
         },
         component: () => import("@/views/master-data/TeamManagement.vue"),
       },
@@ -317,30 +350,69 @@ const routes = [
         name: "HistoryTeamPage",
         meta: {
           requiresAuth: true,
-          module_id: null,
+          module_id: 11,
         },
-        component: () => import("@/views/historyLog/HistoryTeamPage.vue"),
+        component: () => import("@/views/HistoryLog/HistoryTeamPage.vue"),
+      },
+      {
+        path: "/HistoryCompanyPage",
+        name: "HistoryCompanyPage",
+        meta: {
+          requiresAuth: true,
+          module_id: 11,
+        },
+        component: () => import("@/views/HistoryLog/HistoryCompanyPage.vue"),
+      },
+      {
+        path: "/HistoryBusinessPage",
+        name: "HistoryBusinessPage",
+        meta: {
+          requiresAuth: true,
+          module_id: 11,
+        },
+        component: () => import("@/views/HistoryLog/HistoryBusinessPage.vue"),
       },
 
-      // {
-      //   path: "/SDTeamMangement/SDActiveMangement",
-      //   name: "SDActiveMangementPage",
-      //   meta: {
-      //     requiresAuth: true,
-      //     module_id: null,
-      //   },
-      //   component: () =>
-      //     import("@/views/SDTeamMangement/SDActiveMangement.vue"),
-      // },
-      // {
-      //   path: "/SDTeamMangement/RspPolicy",
-      //   name: "RspPolicyPage",
-      //   meta: {
-      //     requiresAuth: true,
-      //     module_id: null,
-      //   },
-      //   component: () => import("@/views/SDTeamMangement/RspPolicy.vue"),
-      // },
+      {
+        path: "/HistoryCoparationPage",
+        name: "HistoryCoparationPage",
+        meta: {
+          requiresAuth: true,
+          module_id: 11,
+        },
+        component: () => import("@/views/HistoryLog/HistoryCoparationPage.vue"),
+      },
+
+      {
+        path: "/SDTeamMangement/SDActiveMangement",
+        name: "SDActiveMangementPage",
+        meta: {
+          requiresAuth: true,
+          module_id: 19,
+        },
+        component: () =>
+          import("@/views/SDTeamMangement/SDActiveMangement.vue"),
+      },
+      {
+        path: "/SDTeamMangement/RspPolicies",
+        name: "RspPolicyPage",
+        meta: {
+          requiresAuth: true,
+          module_id: 19,
+        },
+        component: () => import("@/views/SDTeamMangement/RspPolicies.vue"),
+      },
+
+      {
+        path: "/SDTeamMangement/RspPolicyUpsert",
+        name: "RspPolicyUpsertPage",
+        meta: {
+          requiresAuth: true,
+          module_id: 19,
+        },
+        component: () => import("@/views/SDTeamMangement/RspPolicyUpsert.vue"),
+      },
+
       // {
       //   path: "/SDTeamMangement/RspPolicyUploaded",
       //   name: "RspPolicyUploadedPage",
@@ -351,15 +423,15 @@ const routes = [
       //   component: () =>
       //     import("@/views/SDTeamMangement/RspPolicyUploaded.vue"),
       // },
-      // {
-      //   path: "/SDTeamMangement/Survey",
-      //   name: "SurveyPage",
-      //   meta: {
-      //     requiresAuth: true,
-      //     module_id: null,
-      //   },
-      //   component: () => import("@/views/SDTeamMangement/Survey.vue"),
-      // },
+      {
+        path: "/SDTeamMangement/Survey",
+        name: "SurveyPage",
+        meta: {
+          requiresAuth: true,
+          module_id: 16,
+        },
+        component: () => import("@/views/SDTeamMangement/Survey.vue"),
+      },
       // {
       //   path: "/SDTeamMangement/Survey/Created",
       //   name: "SurveyCreatePage",
@@ -369,15 +441,26 @@ const routes = [
       //   },
       //   component: () => import("@/views/SDTeamMangement/SurveyCreate.vue"),
       // },
-      // {
-      //   path: "/SDTeamMangement/Traning",
-      //   name: "TraningPage",
-      //   meta: {
-      //     requiresAuth: true,
-      //     module_id: null,
-      //   },
-      //   component: () => import("@/views/SDTeamMangement/Traning.vue"),
-      // },
+      {
+        path: "/SDTeamMangement/Traning",
+        name: "TraningPage",
+        meta: {
+          requiresAuth: true,
+          module_id: 18,
+        },
+        component: () => import("@/views/SDTeamMangement/Traning.vue"),
+      },
+
+      {
+        path: "/SDTeamMangement/TraningUpsert",
+        name: "TraningUpsertPage",
+        meta: {
+          requiresAuth: true,
+          module_id: 18,
+        },
+        component: () => import("@/views/SDTeamMangement/TraningUpsert.vue"),
+      },
+
       // {
       //   path: "/SDTeamMangement/TraningCreated",
       //   name: "TraningCreatedPage",
@@ -387,6 +470,8 @@ const routes = [
       //   },
       //   component: () => import("@/views/SDTeamMangement/TraningCreated.vue"),
       // },
+
+
       //SD_DashBoardPage
       {
         path: "/SDTeamDashboard/TrackingSDActivite",

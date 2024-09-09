@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container fluid>
     <h3>Role & Permission</h3>
     <v-row dense>
       <v-col cols="12">
@@ -24,6 +24,12 @@
     </v-row>
     <v-row dense>
       <v-expansion-panels v-model="is_item_expan">
+        <v-progress-linear
+          class="rounded-pill"
+          :indeterminate="isLoading"
+          bg-color="transparent"
+          color="secondary"
+        ></v-progress-linear>
         <role-item
           v-for="(role, index) in roles_mock"
           :style="
@@ -55,12 +61,16 @@ import permissionService from "@/apis/PermissionService";
 import actionService from "@/apis/ActionService";
 import RoleItem from "../../components/items/RoleItem.vue";
 
+import { useErrorHandlingDialog } from "@/components/dialogs/ExceptionHandleDialogService";
+const { handlingErrorsMessage } = useErrorHandlingDialog();
+
 const router = useRouter();
 
-let roles_mock = ref([]);
-let action_all_mock = ref([]);
-let permission_module_mock = ref([]);
-let headers = ref([]);
+const roles_mock = ref([]);
+const action_all_mock = ref([]);
+const permission_module_mock = ref([]);
+const headers = ref([]);
+const isLoading = ref(true);
 
 const handleFetchListRoles = async () => {
   const result_roles = await roleService.getRoleAll();
@@ -72,67 +82,46 @@ const handleFetchListRoles = async () => {
 };
 
 const handleFetchActions = async () => {
-  const result_actions = await actionService.getActionAll();
-  if (result_actions.data.is_success) {
-    action_all_mock.value = result_actions.data.data;
-    headers.value = action_all_mock.value.map((action) => ({
-      title: action.name,
-      key: action.name,
-    }));
-    headers.value.unshift({ title: "Permission Module", key: "permission" });
-  } else {
-    // Failed
+  try {
+    const result_actions = await actionService.getActionAll();
+    if (result_actions.data.is_success) {
+      action_all_mock.value = result_actions.data.data;
+      headers.value = action_all_mock.value.map((action) => ({
+        title: action.name,
+        key: action.name,
+      }));
+      headers.value.unshift({ title: "Permission Module", key: "permission" });
+    } else {
+      // Failed
+    }
+  } catch (error) {
+    if (error.response) {
+      const val = error.response.data;
+      handlingErrorsMessage(val.message, val?.data.error);
+      return;
+    }
+    handlingErrorsMessage("Other Error", error.message);
   }
 };
 
-const handleFetchListPermission = async () => {
+const handleFetchListPermissionByRoleId = async (role_id) => {
   try {
-    // const result_permissions = await permissionService.getPermissionAll();
-    const result_permissions = { data: { is_success: true } };
+    const result_permissions = await permissionService.getPermissionByRoleId(
+      role_id
+    );
     if (result_permissions.data.is_success) {
-      permission_module_mock.value = [
-        {
-          role_id: 1,
-          module: [
-            {
-              id: 6,
-              name_th: "รายการพาร์ทเนอร์",
-              name_en: "Business partner list",
-              description: null,
-              action: [
-                {
-                  id: 2,
-                  name: "add",
-                  description: null,
-                },
-                {
-                  id: 1,
-                  name: "get",
-                  description: null,
-                },
-              ],
-            },
-            {
-              id: 2,
-              name_th: "สร้างใบสมัครใหม่",
-              name_en: "Create new register form",
-              description: null,
-              action: [
-                {
-                  id: 3,
-                  name: "add",
-                  description: null,
-                },
-              ],
-            },
-          ],
-        },
-      ];
+      permission_module_mock.value.push(result_permissions.data.data);
     } else {
       //Failed
     }
   } catch (error) {
-    //Failed
+    // if (error.response) {
+    //   const val = error.response.data;
+    //   handlingErrorsMessage(val.message, val?.data.error);
+    //   return;
+    // }
+    // handlingErrorsMessage("Other Error", error.message);
+    return;
   }
 };
 
@@ -141,7 +130,11 @@ const is_item_expan = ref(null);
 onMounted(async () => {
   await handleFetchActions();
   await handleFetchListRoles();
-  await handleFetchListPermission();
+  for (let index = 0; index < roles_mock.value.length; index++) {
+    const role_id = roles_mock.value[index]?.id;
+    if (role_id) await handleFetchListPermissionByRoleId(role_id);
+  }
+  isLoading.value = false;
 });
 
 watch(is_item_expan, (newValue, oldValue) => {
@@ -174,6 +167,7 @@ const on_clicked_edit = (role_id) => {
 
 const on_clicked_history = (role_id) => {
   console.log(role_id);
-  router.push("/HistoryRolePage");
+  router.push({ name: "HistoryRolePage", query: { role_id: role_id } });
+  // router.push("/HistoryRolePage");
 };
 </script>

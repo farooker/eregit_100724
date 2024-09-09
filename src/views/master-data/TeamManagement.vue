@@ -1,51 +1,65 @@
 <template>
   <v-container>
-    <create-team-form v-if="!hasId" />
-    <edit-team-form v-if="hasId" :item="itemTeam" />
+    <v-form ref="form">
+      <create-team-form v-if="!hasId" @on-change="handleInputCreate" />
+      <edit-team-form
+        v-if="hasId"
+        :item="itemTeam"
+        @on-change="handleInputUpdate"
+      />
+    </v-form>
+    <v-footer color="transparent" style="margin-top: 120px">
+      <v-row justify="center">
+        <v-col cols="auto">
+          <button-control
+            color="black"
+            text="ย้อนกลับ"
+            width="100"
+            @button-clicked="on_go_to_back"
+          />
+        </v-col>
+        <v-col cols="auto">
+          <button-control
+            type="submit"
+            @button-clicked="submit_from_update_team"
+            color="secondary"
+            text="ตกลง"
+            width="100"
+          />
+        </v-col>
+      </v-row>
+    </v-footer>
   </v-container>
 </template>
 
 <script setup>
 import CreateTeamForm from "@/components/forms/CreateTeamForm.vue";
 import EditTeamForm from "@/components/forms/EditTeamForm.vue";
-import { reactive } from "vue";
+import ButtonControl from "@/components/controls/ButtonControl.vue";
+
+import { useErrorHandlingDialog } from "@/components/dialogs/ExceptionHandleDialogService";
+const { handlingErrorsMessage } = useErrorHandlingDialog();
+
+import { ref } from "vue";
 import { onMounted } from "vue";
 import { computed } from "vue";
+import { useRoute, useRouter } from "vue-router";
 
-import { useRoute } from "vue-router";
+import TeamService from "@/apis/TeamService";
 
 const route = useRoute();
+const router = useRouter();
 
 const id = route.params.id;
 const hasId = computed(() => !!id);
-let itemTeam = reactive({});
+const itemTeam = ref({});
+const form = ref(null);
 
-const data_api_get_all_team_mock = {
-  id: 1,
-  company_code: "1000",
-  name_th: "บริษัท แผ่นดินทอง พร็อพเพอร์ตี้ ดีเวลลอปเม้นท์ จำกัด (มหาชน)",
-  name_en: "Golden Land Property Development PLC.",
-  taxpayer_id_number: "0107537002273",
-  address_th:
-    "944 มิตรทาวน์ ออฟฟิศ ทาวเวอร์ ชั้นที่ 20 ถนนพระราม 4 แขวงวังใหม่ เขตปทุมวัน กรุงเทพมหานคร 10330",
-  address_en:
-    "20th Floor, Mitrtown Office Tower 944 Rama 4 Road, Wangmai, Pathumwan, Bangkok 10330",
-  business_unit: {
-    id: 1,
-    name_th: "Commercial",
-    name_en: "Commercial",
-    purchasing_organization: "GL00",
-    corporation: {
-      id: 1,
-      name_th: "เฟรเซอร์ส พร็อพเพอร์ตี้ (ประเทศไทย)",
-      name_en: "Frasers Property Thailand",
-    },
-  },
-};
+const dataInput = ref({});
 
 const process_array = (item) => {
   return {
-    id: 1,
+    id: item?.id,
     business_unit: item?.company?.business_unit?.name_th,
     business_unit_id: item?.company?.business_unit?.id,
     company: item?.company?.name_en,
@@ -62,10 +76,92 @@ const process_array = (item) => {
   };
 };
 
-itemTeam = process_array(data_api_get_all_team_mock);
-onMounted(() => {
+onMounted(async () => {
   if (hasId.value) {
-    console.log("Call team by id");
+    await onLoadedTeamVyId(id);
   }
 });
+
+const onLoadedTeamVyId = async (teamId) => {
+  try {
+    const response = await TeamService.getTeamById(teamId);
+    if (response.data?.is_success) {
+      itemTeam.value = process_array(response.data.data);
+    }
+  } catch (error) {
+    if (error.response) {
+      const val = error.response.data;
+      handlingErrorsMessage(val.message, val?.data.error);
+      return;
+    }
+    handlingErrorsMessage("Other Error", error.message);
+  }
+};
+
+const onCreateTeam = async () => {
+  try {
+    const response = await TeamService.createdTeam(
+      dataInput.value.company,
+      dataInput.value.name_en,
+      dataInput.value.name_th,
+      dataInput.value.is_status
+    );
+    if (response.data?.is_success) {
+      router.push({ path: "/MasterDataManagement" });
+    }
+  } catch (error) {
+    if (error.response) {
+      const val = error.response.data;
+      handlingErrorsMessage(val.message, val?.data.error);
+      return;
+    }
+    handlingErrorsMessage("Other Error", error.message);
+  }
+};
+
+const onUpdateTeam = async () => {
+  try {
+    const response = await TeamService.updatedTeamById(
+      id,
+      dataInput.value.company,
+      dataInput.value.name_en,
+      dataInput.value.name_th,
+      dataInput.value.is_status
+    );
+    if (response.data?.is_success) {
+      router.push({ path: "/MasterDataManagement" });
+    }
+  } catch (error) {
+    if (error.response) {
+      const val = error.response.data;
+      handlingErrorsMessage(val.message, val?.data.error);
+      return;
+    }
+    handlingErrorsMessage("Other Error", error.message);
+  }
+};
+
+const handleInputCreate = (inputData) => {
+  // console.log(JSON.stringify(inputData));
+  dataInput.value = inputData;
+};
+
+const handleInputUpdate = (inputData) => {
+  // console.log(JSON.stringify(inputData));
+  dataInput.value = inputData;
+};
+
+const on_go_to_back = () => {
+  router.go(-1);
+};
+
+const submit_from_update_team = async () => {
+  const validObj = await form.value.validate();
+  if (!validObj.valid) return;
+  if (hasId.value) {
+    await onUpdateTeam();
+  } else {
+    await onCreateTeam();
+  }
+};
 </script>

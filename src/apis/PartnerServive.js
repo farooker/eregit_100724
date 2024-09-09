@@ -478,6 +478,48 @@ const getProfileForm = async (form_number) => {
   });
 };
 
+const  downloadCreateMultipleVendoeTemplate
+= async ()=>{
+  return await axiosBase({
+     method: 'get',
+     url: '/partner/download-import-vendor-template',
+     data: {}
+   });
+}
+
+// const createvalidateImportVendors = async (body = {}) => {
+//   // console.log({ ...body, created_user_id: 1 });
+//   return await axiosBase({
+//     method: "post",
+//     url: "/partner/validate-import-vendors",
+//     data: { ...body, created_user_id  : Number(sessionStorage.getItem("userId")), },
+//   });
+// };
+
+const createValidateImportVendors = async (formData) => {
+  return await axiosBase({
+    method: "post",
+    url: "/partner/validate-import-vendors",
+    data: formData,
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
+};
+
+const createImportVendors = async (import_bp_file_id) => {
+  return await axiosBase({
+    method: "post",
+    url: "/partner/import-vendors",
+    data: {
+      import_bp_file_id, 
+      created_user_id: Number(sessionStorage.getItem("userId")),
+    },
+  });
+};
+
+
+
 export default {
   getBusinessPartnerDetail,
   getBusinessPartnerDetailBranchCode,
@@ -521,5 +563,8 @@ export default {
   DeletedFileUpload,
   getDownloadDisclosureByFormNumber,
   getProfileForm,
-  createBusinessPartnerCompleteProfile
+  createBusinessPartnerCompleteProfile,
+  downloadCreateMultipleVendoeTemplate,
+  createValidateImportVendors,
+  createImportVendors
 };

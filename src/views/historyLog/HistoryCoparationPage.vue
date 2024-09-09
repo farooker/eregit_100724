@@ -1,14 +1,9 @@
 <template>
   <v-container fluid>
-    <h3>History Log {{ bussinessId }}</h3>
+    <h3>History Log {{ corparationId }}</h3>
     <history-table-view
-      :headers="[
-        'Date And Time',
-        'Business Unit',
-        'Change Action',
-        'Change By',
-      ]"
-      :desserts="items_bussiness_history"
+      :headers="['Date And Time', 'Corparation', 'Change Action', 'Change By']"
+      :desserts="items_corparation_history"
       @on-sort="handleSort"
     />
     <v-footer color="transparent" style="margin-top: 120px">
@@ -36,28 +31,28 @@ import ButtonControl from "../../components/controls/ButtonControl.vue";
 import HistoryLogService from "@/apis/HistoryLogService";
 import HistoryTableView from "@/components/tables/HistoryTableView.vue";
 import { ref, onMounted } from "vue";
-import BusinessUnitService from "@/apis/BusinessUnitService";
+import CorporationService from "@/apis/CorporationService";
 
 const route = useRoute();
 const router = useRouter();
-
 const sortby = ref("desc");
-const bussinessId = ref(route.query.bussiness_id);
-const item_bussiness_by_id = ref({});
-let items_bussiness_history = ref([]);
+
+const corparationId = ref(route.query.corparation_id);
+const item_corparation_by_id = ref({});
+const items_corparation_history = ref([]);
 
 onMounted(async () => {
-  await handleLoadBusinessUnityId();
-  await handleLoadBusinessUnitHistory();
+  await handleLoadCorparationById();
+  await handleLoadCorparationHistory();
 });
 
-const handleLoadBusinessUnityId = async () => {
+const handleLoadCorparationById = async () => {
   try {
-    const result_ = await BusinessUnitService.getBusinessById(
-      bussinessId.value
+    const result_ = await CorporationService.getCoparationById(
+      corparationId.value
     );
     if (result_.data.is_success) {
-      item_bussiness_by_id.value = result_.data.data;
+      item_corparation_by_id.value = result_.data.data;
     } else {
       // Failed
     }
@@ -66,20 +61,23 @@ const handleLoadBusinessUnityId = async () => {
   }
 };
 
-const handleLoadBusinessUnitHistory = async () => {
+const handleLoadCorparationHistory = async () => {
   try {
-    const result_ = await HistoryLogService.getAllUserChangeLog(sortby.value, 13, bussinessId.value);
+    const result_ = await HistoryLogService.getAllUserChangeLog(
+      sortby.value,
+      12,
+      corparationId.value
+    );
     if (result_.data.is_success) {
-      const items = [];
+      items_corparation_history.value = [];
       result_.data.data.forEach((el) => {
-        items.push({
+        items_corparation_history.value.push({
           created_at: el.created_at,
-          type: item_bussiness_by_id.value.name_en || 'None',
+          type: item_corparation_by_id.value.name_en,
           changed_field: el.changed_field,
           changed_value: el.changed_value,
           user_email: el.user.email,
         });
-        items_bussiness_history.value = items;
       });
     } else {
       // Failed
@@ -95,6 +93,6 @@ const on_clicked_go_back = () => {
 
 const handleSort = async (tagSort) => {
   sortby.value = tagSort;
-  await handleLoadBusinessUnitHistory();
+  await handleLoadCorparationHistory();
 };
 </script>

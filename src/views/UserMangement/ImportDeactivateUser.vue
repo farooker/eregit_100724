@@ -18,10 +18,18 @@
     </div>
     <v-divider class="mt-5 mb-5"></v-divider>
     <div class="text-center ">
-      <v-btn rounded class="ma-2" color="black" style="width: 100px;" @Click="dismiss">
+      <v-btn rounded class="ma-2"
+             color="black"
+             style="width: 100px;"
+            :disabled="loading"
+            @Click="dismiss">
         <strong>ยกเลิก</strong>
       </v-btn>
-      <v-btn rounded class="ma-2" color="secondary" style="width: 100px;" @Click="submit">
+      <v-btn rounded class="ma-2"
+            color="secondary" style="width: 100px;"
+      :disabled="loading"
+      :loading="loading"
+      @Click="submit">
         <strong>ตกลง</strong>
       </v-btn>
     </div>
@@ -118,11 +126,11 @@ const submit = async (e) => {
         file.value = null;
         items.value = [];
         isValid.value = [];
+        dismiss();
       }
     } catch (e) {
       if (e.response) {
         const val = e.response.data
-        //console.log(val)
         handlingErrorsMessage(val.message, val?.data.error);
         return;
       }

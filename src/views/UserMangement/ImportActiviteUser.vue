@@ -2,7 +2,12 @@
   <div>
     <v-row justify="end" class="mt-2 mb-2">
       <v-col cols="2">
-        <v-btn variant="elevated" class="text-capitalize" color="secondary" block @click="download">
+        <v-btn variant="elevated"
+              class="text-capitalize"
+              color="secondary"
+              :disabled="loading"
+              block
+              @click="download">
           <v-icon left>mdi-microsoft-excel</v-icon>
           Download template
         </v-btn>
@@ -18,10 +23,19 @@
     </div>
     <v-divider class="mt-5 mb-5"></v-divider>
     <div class="text-center ">
-      <v-btn rounded class="ma-2" color="black" style="width: 100px;" @Click="dismiss">
+      <v-btn rounded class="ma-2"
+            color="black"
+            style="width: 100px;"
+            :disabled="loading"
+            @Click="dismiss">
         <strong>ยกเลิก</strong>
       </v-btn>
-      <v-btn rounded class="ma-2" color="secondary" style="width: 100px;" @Click="submit">
+      <v-btn rounded class="ma-2"
+            color="secondary"
+            style="width: 100px;"
+            :disabled="loading"
+            :loading="loading"
+            @Click="submit">
         <strong>ตกลง</strong>
       </v-btn>
     </div>
@@ -62,11 +76,10 @@ onMounted(() => {
 });
 const handleLoadCompaniesCodeAll = async () => {
   try {
-    loading.value.companies_code = true;
+    loading.value = true;
     const response = await compnayService.getCompanyAll();
     if (response.data?.is_success) {
       comapnies_code.value = Array.from(response.data.data, (i) => i.company_code)
-      console.log(Array.from(response.data.data, (i) => i.company_code))
     }
   } catch (e) {
     if (e.response) {
@@ -76,7 +89,7 @@ const handleLoadCompaniesCodeAll = async () => {
     }
     handlingErrorsMessage("unknown", e.message);
   } finally {
-     loading.value.companies_code = false;
+     loading.value = false;
   }
 }
 
@@ -115,7 +128,7 @@ const dismiss = () => {
 const download = async () => {
   try {
     loading.value = true;
-    const response = await userService.downloadTemplateActiviteUser();
+    const response = await userService.downloadCreateMultipleUserTemplate();
     const { data } = response
     const decode = Base64.toUint8Array(data)
     const blob = new Blob([decode], { type: 'xlsx' })
@@ -152,10 +165,12 @@ const submit = async (e) => {
     try {
       loading.value = true;
       const response = await userService.createMultipleUser(items.value);
+      console.log(response);
       if (response.data?.is_success) {
         file.value = null;
         items.value = [];
         isValid.value = [];
+        dismiss();
       }
     } catch (e) {
       if (e.response) {

@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container fluid>
     <h2>Mangement > RSP Policy</h2>
     <div class="mt-5">
       <v-row>
@@ -7,8 +7,8 @@
           <h3> Activate Policy</h3>
         </v-col>
         <v-col cols="2">
-          <v-btn class="me-2 text-none" color="secondary" prepend-icon="mdi-plus" variant="flat" height="40" rounded
-            to="/SDTeamMangement/RspPolicyUpsert" block>
+          <v-btn class="me-2 text-none" color="secondary" density="compact" prepend-icon="mdi-plus" variant="flat" rounded
+            to="/SDTeamMangement/RspPolicyUpsert">
             Create new
           </v-btn>
         </v-col>
@@ -72,16 +72,16 @@ const list_laoding = ref(false);
 const list_item = ref([]);
 const list_filter = ref({
   state :'deactivated',
-  offset: 1,
-  limit: 1,
+  offset: 0,
+  limit: 10,
   page : 1,
   pageSize: 1,
 });
 
 watch(menus_index, (newValue) => {
     list_filter.value.state = menus.value[newValue].state
-    list_filter.value.offset= 1;
-    list_filter.value.limit= 1;
+    list_filter.value.offset= 0;
+    list_filter.value.limit= 10;
     list_filter.value.page= 1;
     list_filter.value.pageSize= 1;
     getRspPolicyPagination();
@@ -117,7 +117,7 @@ onMounted(() => {
 const getRspPolicyState = async () => {
   try {
     activated_laoding.value = true;
-    const response = await RspService.getRspPolicyState('activated');
+    const response = await RspService.getRspPolicyState('active');
     if (response.data?.is_success) {
       activated_items.value = response.data?.data
     }
@@ -145,6 +145,8 @@ const getRspPolicyPagination = async () => {
     const itemsOffset = Number(headers['items-offset']);
     const itemsLimit = Number(headers['items-limit']);
     const itemsTotal = Number(headers['items-total']);
+
+    // console.error(itemsTotal)
 
     list_filter.value.offset = itemsOffset;
     list_filter.value.limit = itemsLimit;

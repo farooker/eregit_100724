@@ -17,8 +17,7 @@
     <v-main class="d-flex align-center justify-center">
       <v-container fluid>
         <div class="pa-7 ma-9">
-          <!-- {{ businessPartnerFormId.value.data.company.name_th }} -->
-          <!-- {{ businessPartnerFormId.company[0].name_th }} -->
+           <!-- <p>status: {{ status_code_bp_number }}</p> -->
           <v-card rounded class="mx-auto pa-4">
             <v-card-title class="d-flex align-center justify-center">
               <v-row dense no-gutters class="mb-4">
@@ -26,7 +25,6 @@
                   <h3>
                     แบบรายงานและเปิดเผยความขัดแย้งและผลประโยชน์
                     <!-- {{ formNumberOnUrl }} -->
-
                   </h3>
                 </v-col>
                 <v-row justify="center" align="center">
@@ -399,7 +397,7 @@ import { useAlerDisclosuretDialogDialog } from "@/components/dialogs/AlertDisclo
 const { showAlertDisclosure } = useAlerDisclosuretDialogDialog();
 import AlertDisclosureDialog from "@/components/dialogs/AlertDisclosureDialog.vue";
 
-import { useRoute, useRouter  } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import PartnerServive from "@/apis/PartnerServive";
 import { useErrorHandlingDialog } from "@/components/dialogs/ExceptionHandleDialogService";
 const route = useRoute();
@@ -415,6 +413,8 @@ const businessPartnerFormId = ref({});
 const registeredUserEmail = ref("");
 const user_id = ref("");
 const do_rsp_activity = ref(false);
+const status_code_completed_profile = ref(0);
+const status_code_bp_number = ref(0);
 // const bp_number = '01718091106000';
 const memberType = ref("");
 const input_data = ref({
@@ -536,8 +536,11 @@ const handleNext = async () => {
 
 onMounted(async () => {
   await getBusinessPartnerRegisterFormById();
+  if (status_code_completed_profile.value == 500){
+    await getBusinessPartnerByBpNumber(formNumberOnUrl.value);
+  }
   user_id.value = sessionStorage.getItem("userId");
-    // console.log("user_id", user_id.value);
+  // console.log("user_id", user_id.value);
   await getusers();
   await onLoadBusinessPartnerByBpNumberCondition1();
   if (!is_successfully.value) {
@@ -549,10 +552,15 @@ const getusers = async () => {
   try {
     const response = await UserService.getUserById(user_id.value);
     // email.value = response.data.data.email;
-    if(response.data.is_success){
-      memberType.value = response.data.data.member_type.id
+    if (response.data.is_success) {
+      memberType.value = response.data.data.member_type.id;
+      if(status_code_completed_profile.value == 500){
+        registeredUserEmail.value = response.data.data.email + " " + formatDate();
+
+      }
+
     }
-    console.log("memberType.value" ,memberType.value);
+    console.log("memberType.value", memberType.value);
   } catch (e) {
     if (e.response) {
       const val = e.response.data;
@@ -568,30 +576,56 @@ const getBusinessPartnerRegisterFormById = async () => {
     const response = await PartnerServive.getBusinessPartnerRegisterForm(
       formNumberOnUrl.value
     );
-    console.log(response.data.data.registered_user_email);
+    // console.log(response.data.data.registered_user_email);
 
     if (response.data?.is_success) {
+      status_code_completed_profile.value = 200;
       businessPartnerFormId.value = response.data.data;
       registeredUserEmail.value =
         response.data.data.registered_user_email + " " + formatDate();
 
-      // businessPartnerFormId.value.data.company.name_th
       input_data.value.taxpayer_id_number =
         businessPartnerFormId.value.taxpayer_number_id;
 
       input_data.value.company_name = businessPartnerFormId.value.name_th;
 
-      console.log("", businessPartnerFormId.value);
-      // input_data.value.firstname = businessPartnerFormId.value.name_th
-      // input_data.value.lastnamebusinessPartnerFormId = lastname
+      console.log("businessPartnerFormId", businessPartnerFormId.value);
     }
   } catch (e) {
     if (e.response) {
-      const val = e.response.data;
-      handlingErrorsMessage(val.message, val?.data.error);
+      status_code_completed_profile.value = 500;
+      // const val = e.response.data;
+      // handlingErrorsMessage(val.message, val?.data.error);
       return;
     }
     handlingErrorsMessage("unknown", e.message);
+  }
+};
+
+const getBusinessPartnerByBpNumber = async () => {
+  try {
+    const response = await PartnerServive.getBusinessPartnerByBpNumber(
+      formNumberOnUrl.value
+    );
+
+    if (response.data?.is_success) {
+      console.log("response.data?.is_success",response.data.data.taxpayer_id_number)
+
+      // status_code_bp_number.value = 200;
+      input_data.value.company_name = response?.data?.data?.name_th ?? null;
+      input_data.value.taxpayer_id_number = response?.data?.data?.taxpayer_id_number ?? null;
+      registeredUserEmail.value =
+      response.data.data.business_partner_profile_form.registered_user_email + " " + formatDate();
+      // do_rsp_activity.value = response.data?.data?.business_partner_type?.do_rsp_activity ?? null;
+    }
+  } catch (e) {
+    if (e.response) {
+      // status_code_bp_number.value = 500;
+      // const val = e.response.data;
+      // handlingErrorsMessage(val.message, val?.data.error);
+      return;
+    }
+    // handlingErrorsMessage("unknown", e.message);
   }
 };
 
@@ -609,8 +643,8 @@ const dataBodySave = ref({
 
 const handleForm = async () => {
   dataBodySave.value.form_number = route.query?.form_number ?? null;
-  dataBodySave.value.company_name = input_data.value.company_name;
-  dataBodySave.value.taxpayer_id_number = input_data.value.taxpayer_id_number;
+  dataBodySave.value.company_name = input_data.value.company_name ?? null;
+  dataBodySave.value.taxpayer_id_number = input_data.value.taxpayer_id_number ?? null;
   dataBodySave.value.title = input_data.value.select_title;
   dataBodySave.value.firstname = input_data.value.firstname;
   dataBodySave.value.lastname = input_data.value.lastname;
@@ -643,48 +677,51 @@ const handleForm = async () => {
       );
       if (response.data?.is_success) {
         await onCreatePartnerDocumentUploads();
-        const responsenewtask =
+
+        if(status_code_bp_number.value != 200){
           await PartnerServive.createNewRegisterAccountTask(
             formNumberOnUrl.value
           );
-        if (responsenewtask.data?.is_success) {
-        console.log("responsenewtask.data?.is_success",
-        responsenewtask.data?.is_success
+        }
 
-      )
-      console.log("do_rsp_activity", do_rsp_activity.value)
-      console.log("do_rsp_activity", memberType.value)
-      if(memberType.value ==2 && do_rsp_activity.value){
-        console.log("do_rsp_activity")
-          router.push({
-            path: '/SDTeamMangement/Survey/Document/1',
-            query: {
-              prev_completed: 'completed',
-              state: 'created',
-              bp_number: formNumberOnUrl.value
-            }
-          });
-      }else{
-        console.log("do_rsp_activity")
-        router.push({
-            path: '/VendorDashBoard',
-          });
-      }
-      // console.log("bp_number",formNumberOnUrl.value)
-      //     // handleToLogOutProfile(response.data.data?.form_number);
-      //     router.push({
-      //       path: '/SDTeamMangement/Survey/Document/1',
-      //       query: {
-      //         prev_completed: 'completed',
-      //         state: 'created',
-      //         bp_number: '01719322342000'
-      //       }
-      //     });
+        if ( response.data?.is_success) {
+          // console.log(
+          //   "responsenewtask.data?.is_success",
+          //   responsenewtask.data?.is_success
+          // );
+          // console.log("do_rsp_activity", do_rsp_activity.value);
+          // console.log("do_rsp_activity", memberType.value);
+          if (memberType.value == 2 && do_rsp_activity.value) {
+            console.log("do_rsp_activity");
+            router.push({
+              path: "/SDTeamMangement/Survey/Document/1",
+              query: {
+                prev_completed: "completed",
+                state: "created",
+                bp_number: formNumberOnUrl.value,
+              },
+            });
+          } else {
+            console.log("do_rsp_activity");
+            router.push({
+              path: "/VendorDashBoard",
+            });
+          }
+          // console.log("bp_number",formNumberOnUrl.value)
+          //     // handleToLogOutProfile(response.data.data?.form_number);
+          //     router.push({
+          //       path: '/SDTeamMangement/Survey/Document/1',
+          //       query: {
+          //         prev_completed: 'completed',
+          //         state: 'created',
+          //         bp_number: '01719322342000'
+          //       }
+          //     });
           // console.log("bp_number", bp_number)
-        //   router.push(
-        //   `/SDTeamMangement/Survey/Document/1?prev_completed=completed&state=created&bp_number=${formNumberOnUrl.value}`
-        //   // `/SDTeamMangement/Survey/Document/1?prev_completed=completed&state=created&bp_number=01713749080000`
-        // );
+          //   router.push(
+          //   `/SDTeamMangement/Survey/Document/1?prev_completed=completed&state=created&bp_number=${formNumberOnUrl.value}`
+          //   // `/SDTeamMangement/Survey/Document/1?prev_completed=completed&state=created&bp_number=01713749080000`
+          // );
         }
       }
     } catch (e) {
@@ -773,13 +810,15 @@ const onLoadBusinessPartnerByBpNumberCondition1 = async () => {
     );
 
     if (response.data?.is_success) {
+      status_code_bp_number.value = 200;
       is_successfully.value = response.data?.is_success;
       // businessPartnerFormBpNumber.value = response?.data?.data?? null;
-      do_rsp_activity.value = response.data?.data?.business_partner_type?.do_rsp_activity ?? null;
+      do_rsp_activity.value =
+        response.data?.data?.business_partner_type?.do_rsp_activity ?? null;
     }
-
   } catch (e) {
     if (e.response) {
+      status_code_bp_number.value = 500;
       // const val = e.response.data;
       // handlingErrorsMessage(val.message, val?.data.error);
       return;
@@ -790,16 +829,18 @@ const onLoadBusinessPartnerByBpNumberCondition1 = async () => {
 
 const onLoadBusinessPartnerByBpNumberCondition2 = async () => {
   try {
-    const responeformdetail = await PartnerServive.getRegisterFormDetail(formNumberOnUrl.value);
+    const responeformdetail = await PartnerServive.getRegisterFormDetail(
+      formNumberOnUrl.value
+    );
 
-if (responeformdetail.data?.is_success){
-  is_successfully.value = responeformdetail.data?.is_success;
-  detailFormBpNumber.value = responeformdetail.data.data
-  do_rsp_activity.value = detailFormBpNumber.value.business_partner_profile_form.business_partner_type.do_rsp_activity ?? null
-  // console.log("detailFormBpNumber",detailFormBpNumber.value.business_partner_register_form.taxpayer_number_id)
-
-}
-
+    if (responeformdetail.data?.is_success) {
+      is_successfully.value = responeformdetail.data?.is_success;
+      detailFormBpNumber.value = responeformdetail.data.data;
+      do_rsp_activity.value =
+        detailFormBpNumber.value.business_partner_profile_form
+          .business_partner_type.do_rsp_activity ?? null;
+      // console.log("detailFormBpNumber",detailFormBpNumber.value.business_partner_register_form.taxpayer_number_id)
+    }
   } catch (e) {
     if (e.response) {
       // const val = e.response.data;

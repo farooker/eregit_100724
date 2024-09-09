@@ -74,7 +74,7 @@
                 :is-vender="isVender"
                 :is-hide-button="isHideButton"
                 :business-partner-type="
-                  company_info.business_partner_role?.id.toString()
+                  company_info.business_partner_role?.id.toString() ?? '5'
                 "
                 v-show="step == 1 || step == 4"
                 class=""
@@ -112,7 +112,7 @@
                 v-if="step == 3 || step == 4"
                 class=""
                 :business-partner-role-id="
-                  company_info.business_partner_role.id
+                  company_info?.business_partner_role?.id ?? '5'
                 "
                 :is-vat-registered="
                   dataForm.partnerRegister.register.is_vat_registered
@@ -120,7 +120,11 @@
                 :business-partner-type-id="
                   dataForm.partnerRegister.register.business_partner_type
                 "
-                :company-ids="company_info.company.map((el) => el.id)"
+                :company-ids="
+                  company_info?.company
+                    ? company_info.company.map((el) => el.id)
+                    : []
+                "
                 :is-filled-book-bank="
                   dataForm.partnerInfo.bank_info.acc_number.length != 0
                 "

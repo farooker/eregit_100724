@@ -43,6 +43,8 @@ const handleSignOut = () => {
   sessionStorage.removeItem("auth_email");
   sessionStorage.removeItem("auth_modules");
   sessionStorage.removeItem("auth_reload");
+  sessionStorage.removeItem("bp_numbers");
+
   router.push({
     name: "SignInPage",
   });

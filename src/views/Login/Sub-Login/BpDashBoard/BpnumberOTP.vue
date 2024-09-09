@@ -1,4 +1,5 @@
 <template>
+  <ExceptionHandleDialog />
   <div style="background-color: lightgrey">
     <v-row align="center">
       <v-col cols="6">
@@ -39,7 +40,9 @@ const { handlingErrorsMessage } = useErrorHandlingDialog();
 import { useRouter } from "vue-router";
 import { ref, onMounted } from "vue";
 import { useRoute } from "vue-router";
+import ExceptionHandleDialog from "@/components/dialogs/ExceptionHandleDialog.vue";
 import { useSessionInfoStore } from "@/stores/papdStore";
+
 const store = useSessionInfoStore();
 
 const route = useRoute();
@@ -55,6 +58,24 @@ onMounted(async () => {
 const handleTryAgine = async () => {
   window.location.reload();
 };
+
+const handleVertifySuccess = async () => {
+  localStorage.removeItem("temp_new_register");
+  // sessionStorage.removeItem("auth_modules");
+  await handleAuthorization(email);
+  store.setsessionlinkstore(5,form_number,"VandorDashboardPage")
+  // router.push({
+  //   name: "NonDisclosure",
+  //   query: { form_number: form_number },
+  // });
+    router.push({
+    name: "TermCondition",
+  });
+};
+
+// const handleVertiFailed = (message) => {
+//   handlingErrorsMessage("Error", message);
+// };
 
 const getOptByEmail = async () => {
   try {
@@ -75,10 +96,11 @@ const getOptByEmail = async () => {
 const handleAuthorization = async (email) => {
   try {
     const response = await VerifyService.getAuthenInfo(email);
+    console.log("responeauthen",response.data?.is_success)
     if (response.data?.is_success) {
+
       console.log("authen", response.data.data[0]);
       const authInfo = response.data.data[0];
-      sessionStorage.setItem("userId", authInfo.id);
       sessionStorage.setItem("bp_numbers", authInfo.bp_number);
       const modulesId = Array.from(authInfo.modules, (x) => x.id);
       const modulesJson = JSON.stringify(modulesId);
@@ -94,24 +116,6 @@ const handleAuthorization = async (email) => {
     router.push("/Error?err=NOT_FOUND");
   }
 };
-
-const handleVertifySuccess = async () => {
-  localStorage.removeItem("temp_new_register");
-  // sessionStorage.removeItem("auth_modules");
-  await handleAuthorization(email);
-  store.setsessionlinkstore(3, form_number, "CompanyManagementNon");
-  // router.push({
-  //   name: "CompanyManagementNon",
-  //   query: { form_number: form_number },
-  // });
-  router.push({
-    name: "TermCondition",
-  });
-};
-
-// const handleVertiFailed = (message) => {
-//   handlingErrorsMessage("Error", message);
-// };
 </script>
 
 <style scoped>

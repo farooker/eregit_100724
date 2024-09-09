@@ -74,7 +74,34 @@ async function downloadFileV2(file_path) {
     const url = window.URL.createObjectURL(
       new Blob([blob], { type: mimeType })
     );
- 
+
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = file_path.substr(file_path.lastIndexOf("/") + 1);
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    window.URL.revokeObjectURL(url); // Clean up the object URL
+  } catch (error) {
+    console.error("Error downloading file:", error);
+  }
+}
+
+async function downloadFileV3(file_path) {
+  try {
+    const response = await fetch(file_path, {
+      mode: "cors", // Ensure CORS is enabled if fetching from a different domain
+    });
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const blob = await response.blob();
+    const mimeType =
+      response.headers.get("Content-Type") || "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+    const url = window.URL.createObjectURL(
+      new Blob([blob], { type: mimeType })
+    );
+
     const a = document.createElement("a");
     a.href = url;
     a.download = file_path.substr(file_path.lastIndexOf("/") + 1);
@@ -90,5 +117,6 @@ async function downloadFileV2(file_path) {
 export default {
   exportBase64,
   downloadFile,
-  downloadFileV2
+  downloadFileV2,
+  downloadFileV3
  }

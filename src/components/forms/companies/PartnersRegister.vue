@@ -236,7 +236,19 @@ const props = defineProps({
 });
 
 // const rest = ref();
-
+const dataInput = ref({
+  register: {
+    business_partner_type: "",
+    taxpayer_id_number: "",
+    is_vat_registered: "",
+    is_head_office: "",
+    branch_code: "",
+    company_category: "",
+    customer_category: "",
+    product_category: "",
+    business_register_type: "",
+  },
+});
 watchEffect(async () => {
   if (props.taxPayerIdNumber) {
     // rest.value = props.taxPayerIdNumber;
@@ -286,19 +298,7 @@ const radioRules = [(v) => !!v || "กรุณาเลือก 1 อัน"];
 const textRequired = [(v) => !!v || "กรุณากรอกข้อมูลให้ครบถ้วน"];
 
 const formPartnerRegister = ref(null);
-const dataInput = ref({
-  register: {
-    business_partner_type: "",
-    taxpayer_id_number: "",
-    is_vat_registered: "",
-    is_head_office: "",
-    branch_code: "",
-    company_category: "",
-    customer_category: "",
-    product_category: "",
-    business_register_type: "",
-  },
-});
+
 
 const otherCompCatagory = ref({
   name_en: "",
@@ -343,29 +343,26 @@ watchEffect(() => {
       props.taxPayerIdNumber.padStart(13, "0");
 });
 
+// watch(
+//   () => is_natural_person.value,
+//   (newValue) => {
+//     dataInput.value.register.taxpayer_id_number =
+//       props.taxPayerIdNumber.padStart(13, "0");
+//     emit("on-is-natural", newValue);
+//   },
+//   { deep: true }
+// );
+
 watch(
   () => is_natural_person.value,
   (newValue) => {
-    dataInput.value.register.taxpayer_id_number =
-      props.taxPayerIdNumber.padStart(13, "0");
-
-    // if (!newValue) {
-    //   if (taxBusinessRegisterType.value?.id)
-    //     dataInput.value.register.business_register_type =
-    //       taxBusinessRegisterType.value?.id?.toString().padStart(13, "0");
-    //   dataInput.value.register.taxpayer_id_number = "";
-    // } else if (props.taxPayerIdNumber) {
-    //   dataInput.value.register.business_register_type = "";
-    //   dataInput.value.register.taxpayer_id_number =
-    //     props.taxPayerIdNumber.padStart(13, "0");
-    // } else {
-    //   dataInput.value.register.business_register_type = "";
-    //   dataInput.value.register.taxpayer_id_number = "0000000000000";
-    // }
+    const taxPayerId = props.taxPayerIdNumber ?? "";
+    dataInput.value.register.taxpayer_id_number = taxPayerId.padStart(13, "0");
     emit("on-is-natural", newValue);
   },
   { deep: true }
 );
+
 
 // watch(
 //   () => is_service_government.value,

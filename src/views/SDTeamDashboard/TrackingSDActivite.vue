@@ -117,6 +117,17 @@
             Export ({{ SelectedCount }})
           </v-btn>
         </v-col>
+        <v-col cols="2">
+          <v-btn
+            to="/ShareMultiVandor"
+            block
+            class="text-capitalize"
+            color="black"
+          >
+            <v-icon left>mdi-microsoft-excel</v-icon>
+            import BP file
+          </v-btn>
+        </v-col>
       </v-row>
       <!-- {{selected_checked[0-1]}} -->
       <!-- {{selected_checked}} -->

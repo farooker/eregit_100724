@@ -47,27 +47,32 @@
 </template>
 
 <script setup>
-import { reactive } from "vue";
+import { ref, onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
 
 import ButtonControl from "@/components/controls/ButtonControl.vue";
+import BusinessUnitService from "@/apis/BusinessUnitService";
 
 const route = useRoute();
 const router = useRouter();
 
 const id = route.params.id;
 
-let data = reactive([]);
-data = {
-  id: 2,
-  name_th: "Residential",
-  name_en: "Residential",
-  purchasing_organization: "GL00",
-  corporation: {
-    id: 1,
-    name_th: "เฟรเซอร์ส พร็อพเพอร์ตี้ (ประเทศไทย)",
-    name_en: "Frasers Property Thailand",
-  },
+const data = ref({});
+
+onMounted(async () => {
+  await onLoadedBusinessById(id);
+});
+
+const onLoadedBusinessById = async (businessId) => {
+  try {
+    const response = await BusinessUnitService.getBusinessById(businessId);
+    if (response.data?.is_success) {
+      data.value = response.data.data;
+    }
+  } catch (error) {
+    // Failed
+  }
 };
 
 const on_go_to_back = () => {

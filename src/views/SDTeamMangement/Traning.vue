@@ -1,6 +1,6 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-  <v-container>
+  <v-container fluid>
     <h2>Mangement > Traning</h2>
     <div class="mt-5">
       <v-row justify="end">

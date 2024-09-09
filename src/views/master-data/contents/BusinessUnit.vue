@@ -15,6 +15,9 @@ import { useRouter } from "vue-router";
 import BusinessUnitService from "@/apis/BusinessUnitService";
 import { onMounted, reactive, ref } from "vue";
 
+import { useErrorHandlingDialog } from "@/components/dialogs/ExceptionHandleDialogService";
+const { handlingErrorsMessage } = useErrorHandlingDialog();
+
 const router = useRouter();
 
 const headers = reactive([
@@ -55,7 +58,12 @@ const handleFetchBusinessUnit = async () => {
       // Failed
     }
   } catch (error) {
-    // Failed
+    if (error.response) {
+      const val = error.response.data;
+      handlingErrorsMessage(val.message, val?.data.error);
+      return;
+    }
+    handlingErrorsMessage("Other Error", error.message);
   }
 };
 
@@ -66,15 +74,21 @@ onMounted(async () => {
 const handle_item_clicked = (event) => {
   const action = event.split(",");
   if (action[1] && action[1] === "view") {
+    const business = items.value[action[0]];
     router.push({
       name: "BusinessUnitDetail",
-      params: { id: items.value[0].id },
+      params: { id: business?.id },
     });
   }
 };
 
 const handle_history = (index) => {
   console.log("history: ", index);
-  router.push({ name: "HistoryTeamPage" });
+  router.push({
+    name: "HistoryBusinessPage",
+    query: {
+      business_id: business_units.value[0]?.id,
+    },
+  });
 };
 </script>

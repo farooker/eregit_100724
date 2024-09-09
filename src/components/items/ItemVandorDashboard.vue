@@ -642,19 +642,7 @@ const downloadRspSurvey = async () => {
       console.log("downloadRspSurvey:", response.data?.is_success)
       survey_url.value = response.data.data.file_url;
       console.log("getRspPolicyResults", survey_url.value);
-      // if (response.data.data && response.data.data.length > 0) {
-      //   now(true);
-      //   return;
-      // }
     }
-    // itemsPolicies.value = response.data.data;
-
-    // // rsp_policies_id.value = response.data.data[0].id;
-    // rsp_url.value = response.data.data[0].file_url;
-
-    // id.value = response.data.data[0].created_user.created_user_id;
-    // console.log("policie...", response.data.data[0].file_url);
-    // getUrlArraybuffer();
   } catch (e) {
     if (e.response) {
       const val = e.response.data;

@@ -1,6 +1,6 @@
 <template>
   <v-row justify="center">
-    <v-dialog v-model="isVisible" width="450" height="320">
+    <v-dialog persistent  v-model="isVisible" width="450" height="320">
       <v-card  color="secondary">
         <v-card-text class="ma-5">
           <v-row justify="center" class="pt-5">

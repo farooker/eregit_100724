@@ -396,6 +396,19 @@ const PermanentlyDeleteRspRolicy = async (_rsp_policy_id) => {
   });
 };
 
+//newSD_Management
+const getRspPolicyPagination = async (_state, _offset, _limit) => {
+  return await axiosBase({
+    method: "get",
+    url: `/rsp/get-rsp-policies`,
+    params: {
+      state: _state,
+      offset: _offset,
+      limit: _limit,
+    },
+  });
+};
+
 export default {
   getVendorRspStatus,
   sendFollowUpVendor,
@@ -428,4 +441,6 @@ export default {
   updateRspPolicy,
   exportRspPolicyResult,
   PermanentlyDeleteRspRolicy,
+
+  getRspPolicyPagination
 };

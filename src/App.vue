@@ -2,7 +2,7 @@
   <div id="app">
     <router-view />
     <!-- เนื้อหาของแอป -->
-    <div class="version">Version 1.1.1</div>
+    <div class="version">Version 2.0.1</div>
     </div>
   <!-- <Login /> -->
   <!-- <NewPassword /> -->
@@ -16,10 +16,10 @@
 
 </style>
 <script setup>
-import Login from "@/views/Login/LoginPage.vue";
-import NewPassword from "@/views/Login/NewPassword.vue";
-import LoginOtpPage from "@/views/Login/LoginOtpPage.vue";
-import EmployeeLogin from "@/views/Login/EmployeeLogin.vue";
+// import Login from "@/views/Login/LoginPage.vue";
+// import NewPassword from "@/views/Login/NewPassword.vue";
+// import LoginOtpPage from "@/views/Login/LoginOtpPage.vue";
+// import EmployeeLogin from "@/views/Login/EmployeeLogin.vue";
 </script>
 <style>
 #app {

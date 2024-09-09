@@ -47,7 +47,8 @@ const handleAuthorization = async (email) => {
         return;
       }
       sessionStorage.setItem("userId", authInfo.id);
-      sessionStorage.setItem("bp_numbers", authInfo.bp_number);
+      sessionStorage.setItem("popo", authInfo.bp_number);
+      sessionStorage.setItem("member_type", authInfo.member_type.id);
 
       const modulesId = Array.from(authInfo.modules, (x) => x.id);
       store.sessionInfo = authInfo;

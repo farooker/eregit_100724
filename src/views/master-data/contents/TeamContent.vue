@@ -25,6 +25,9 @@ import TeamService from "@/apis/TeamService";
 import { onMounted, ref, reactive } from "vue";
 const { showDialog } = useConfirmationDialog();
 
+import { useErrorHandlingDialog } from "@/components/dialogs/ExceptionHandleDialogService";
+const { handlingErrorsMessage } = useErrorHandlingDialog();
+
 const router = useRouter();
 
 const headers = reactive([
@@ -37,11 +40,11 @@ const headers = reactive([
   { text: "", value: "history", width: 1 },
 ]);
 
-let items = ref([]);
+const items = ref([]);
 
 const process_array = (inputArray) => {
   return inputArray.map((item) => ({
-    id: 1,
+    id: item.id,
     business_unit: item?.company?.business_unit?.name_th,
     business_unit_id: item?.company?.business_unit?.id,
     company: item?.company?.name_en,
@@ -66,7 +69,30 @@ const handleFetchTeams = async () => {
       // Failed
     }
   } catch (error) {
-    // Failed
+    if (error.response) {
+      const val = error.response.data;
+      handlingErrorsMessage(val.message, val?.data.error);
+      return;
+    }
+    handlingErrorsMessage("Other Error", error.message);
+  }
+};
+
+const handleDeleteItemById = async (team_id) => {
+  try {
+    const result_teams = await TeamService.deleteTeamById(team_id);
+    if (result_teams.data.is_success) {
+      await handleFetchTeams();
+    } else {
+      // Failed
+    }
+  } catch (error) {
+    if (error.response) {
+      const val = error.response.data;
+      handlingErrorsMessage(val.message, val?.data.error);
+      return;
+    }
+    handlingErrorsMessage("Other Error", error.message);
   }
 };
 
@@ -77,7 +103,8 @@ const on_go_to_create = () => {
 const handle_item_clicked = async (event) => {
   const result = event.split(",");
   if (result.length > 0 && result[1] === "edit") {
-    router.push({ name: "TeamManagement", params: { id: result[0] } });
+    const teamId = items.value[result[0]];
+    router.push({ name: "TeamManagement", params: { id: teamId?.id } });
   }
 
   if (result.length > 0 && result[1] === "delete") {
@@ -87,13 +114,19 @@ const handle_item_clicked = async (event) => {
     );
     if (is_ok) {
       console.log("Call api delete: ", result[0]);
+      await handleDeleteItemById(result[0])
     }
   }
 };
 
 const handle_history = (index) => {
   console.log("history: ", index);
-  router.push({ name: "HistoryTeamPage" });
+  router.push({
+    name: "HistoryTeamPage",
+    query: {
+      team_id: items.value[0]?.id,
+    },
+  });
 };
 
 onMounted(async () => {

@@ -41,8 +41,10 @@
 </template>
 
 <script setup>
-import { reactive } from "vue";
+import { ref, onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
+
+import CorporationService from "@/apis/CorporationService";
 
 import ButtonControl from "@/components/controls/ButtonControl.vue";
 
@@ -51,15 +53,21 @@ const router = useRouter();
 
 const id = route.params.id;
 
-let data = reactive([]);
-data = {
-  id: 1,
-  name_th: "เฟรเซอร์ส พร็อพเพอร์ตี้ (ประเทศไทย)",
-  name_en: "Frasers Property Thailand",
-  created_at: "2023-09-25T15:29:08Z",
-  created_user_id: 1,
-  updated_at: "2023-09-25T15:29:08Z",
-  updated_user_id: 1,
+const data = ref({});
+
+onMounted(async () => {
+  await onLoadedCompanyById(id);
+});
+
+const onLoadedCompanyById = async (coparationId) => {
+  try {
+    const response = await CorporationService.getCoparationById(coparationId);
+    if (response.data?.is_success) {
+      data.value = response.data.data;
+    }
+  } catch (error) {
+    // Failed
+  }
 };
 
 const on_go_to_back = () => {

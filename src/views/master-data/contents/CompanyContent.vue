@@ -15,6 +15,9 @@ import MasterTable from "@/components/tables/MasterTable.vue";
 import { ref, reactive, onMounted } from "vue";
 import { useRouter } from "vue-router";
 
+import { useErrorHandlingDialog } from "@/components/dialogs/ExceptionHandleDialogService";
+const { handlingErrorsMessage } = useErrorHandlingDialog();
+
 const router = useRouter();
 
 const headers = reactive([
@@ -57,20 +60,33 @@ const handleFetchCompanies = async () => {
       // Failed
     }
   } catch (error) {
-    // Failed
+    if (error.response) {
+      const val = error.response.data;
+      handlingErrorsMessage(val.message, val?.data.error);
+      return;
+    }
+    handlingErrorsMessage("Other Error", error.message);
   }
 };
 
 const handle_item_clicked = (event) => {
   const action = event.split(",");
   if (action[1] && action[1] === "view") {
-    router.push({ name: "CompanyDetail", params: { id: items.value[0].id } });
+    router.push({
+      name: "CompanyDetail",
+      params: { id: items.value[action[0]].id },
+    });
   }
 };
 
 const handle_history = (index) => {
   console.log("history: ", index);
-  router.push({ name: "HistoryTeamPage" });
+  router.push({
+    name: "HistoryCompanyPage",
+    query: {
+      company_id: companies.value[0]?.id,
+    },
+  });
 };
 
 onMounted(async () => {

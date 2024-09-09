@@ -102,7 +102,9 @@ const checkedUserExits = async () => {
       router.push({
         name: "SignUpPage",
         // query: { email: email, bp_number: code, to :'VandorDashboardPage' },
-        query: { email: dataInput.value.Email },
+        // query: { email: dataInput.value.Email },
+        // query: { email: email, form_number: code, to: 'VandorDashboardPage' },
+        query: { email: email, form_number: code, to: 'VandorDashboardPage' },
       });
     }
   }
@@ -113,8 +115,8 @@ const handleLoginSuccessfully = (dataInputLogin) => {
   localStorage.setItem("temp_new_register", dataInput.value.Password);
   sessionStorage.setItem("auth_email", dataInput.value.Email);
   router.push({
-    name: "LoginOtpPage",
-    query: { email: dataInput.value.Email },
+    name: "BpnumberOTP",
+    query: { email: dataInput.value.Email, form_number: code },
   });
 };
 

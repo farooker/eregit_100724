@@ -3,8 +3,6 @@
     <div class="box-froms">
       <v-row dense>
         <v-col cols="12" class="">
-          <!-- <h2>slgkjks   </h2> -->
-           {{ formNumberOnUrl }}
 
           <div class="d-flex align-center justify-center">
             <h3 class="py-5">Change Information</h3>
@@ -25,8 +23,6 @@
           />
 
           <AttacheDocumentProfile
-
-            class=""
             :business-partner-type-id="
               dataForm.partnerRegister.register.business_partner_type
             "
@@ -37,17 +33,7 @@
             @remove-file="handleFileRemoved"
           />
         </v-col>
-        <!-- <v-col
-              cols="6"
-              class="d-flex justify-end mt-5 mb-5"
-              v-if="isHideButton"
-            > -->
-        <!-- <ButtonControl
-                color="black"
-                text="แก้ไข"
-                @button-clicked="handleButtonClick"
-              /> -->
-        <!-- </v-col> -->
+
          <v-row>
         <v-col cols="12" class="d-flex justify-center mt-5 mb-5">
           <ButtonControl text="ส่ง" @button-clicked="handleButtonSend" />
@@ -62,7 +48,6 @@
 import { onBeforeMount, ref } from "vue";
 // import StepperControl from "@/components/controls/StepperControl.vue";
 import AttacheDocumentProfile from "@/components/forms/companies/AttacheProfile.vue";
-// import PartnersInfo from "@/components/forms/companies/PartnersInfo.vue";
 import CompleteProfileForm from "@/components/forms/companies/CompleteProfileForm.vue";
 import { watch } from "vue";
 
@@ -85,10 +70,8 @@ const router = useRouter();
 
 // const step = ref(1);
 const isHideButton = ref(false);
-
 const company_info = ref({});
-// const isVender = ref(true);
-// const toggle = ref(0);
+
 const formNumberOnUrl = ref("");
 const dataForm = ref({
   partnerRegister: {
@@ -168,10 +151,6 @@ const handleInputDocuments = async (documents) => {
 // };
 
 const handleNext = async () => {
-  // if (step.value < 4) {
-  //   step.value++;
-  // }
-  // if (step.value === 4) {
   if (
     await showAlert(
       "กรุณาตรวจสอบข้อมูลอีกครั้ง",
@@ -182,12 +161,6 @@ const handleNext = async () => {
   }
   // }
 };
-
-// const handleReverse = () => {
-//   if (step.value > 1) {
-//     // step.value--;
-//   }
-// };
 
 onBeforeMount(async () => {
   formNumberOnUrl.value = sessionStorage.getItem("bp_numbers");

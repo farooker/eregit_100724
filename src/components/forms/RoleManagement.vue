@@ -8,6 +8,8 @@
             <v-col cols="12">
               <v-text-field
                 variant="outlined"
+                readonly
+                bg-color="#dfdfdf"
                 v-model="localRoleName"
                 placeholder="กรอกชื่อ role"
                 :rules="[(v) => !!v || 'Name role is required']"
@@ -20,6 +22,8 @@
             <v-col cols="12">
               <v-text-field
                 variant="outlined"
+                readonly
+                bg-color="#dfdfdf"
                 v-model="localRoleDesc"
                 placeholder="กรอกรายละเอียด role"
                 :rules="[(v) => !!v || 'Description is required']"

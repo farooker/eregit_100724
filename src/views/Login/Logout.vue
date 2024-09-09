@@ -32,21 +32,22 @@
     </v-main>
   </v-app>
 </template>
- 
+
 <script setup>
 import { useRouter } from "vue-router";
 const router = useRouter();
- 
+
 const handleToBack = () => {
   sessionStorage.removeItem("auth_email");
   sessionStorage.removeItem("auth_modules");
   sessionStorage.removeItem("auth_reload");
+  sessionStorage.removeItem("bp_numbers");
   router.push({
     name: "SignInPage",
   });
 };
 </script>
- 
+
 <style scoped>
 h1 {
   font-size: 20px;

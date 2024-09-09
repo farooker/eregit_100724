@@ -1,4 +1,5 @@
 const navigate = [
+
   {
     id: 1,
     title:'Business partner list',
@@ -29,13 +30,37 @@ const navigate = [
     path: "/VendorDashBoard"
   },
 
-  // {
-  //   id: 7,
-  //   title:'Vendor Document',
-  //   icon: "mdi mdi-clipboard-list",
-  //   isActive: false,
-  //   path: "SDTeamMangement/Survey/Document/1"
-  // },
+  {
+    id: 10,
+    title:'User Management',
+    icon: "mdi mdi-account-cog",
+    isActive: false,
+    path: "/UserManagement"
+  },
+
+  {
+    id: 16,
+    title:'Role Management',
+    icon: "mdi mdi-account-lock",
+    isActive: false,
+    path: "/ListRolesPage"
+  },
+
+  {
+    id: 11,
+    title:'Master Data',
+    icon: "mdi mdi-help-circle",
+    isActive: false,
+    path: "/MasterDataManagement"
+  },
+
+  {
+    id: 19,
+    title:'SD team mangement',
+    icon: "mdi mdi-clipboard-list",
+    isActive: false,
+    path: "/SDTeamMangement/SDActiveMangement"
+  },
   // {
   //   id: 2,
   //   title:'User Management',

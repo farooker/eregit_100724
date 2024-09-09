@@ -13,15 +13,43 @@ const  getUserSearch = async (offset = 0,limit = 1000, sort_by= 'id:desc')=>{
   });
 }
 
-const  getUserById= async (userId)=>{
+const getUserById = async (userId) => {
   return await axiosBase({
-     method: 'get',
-    //  url: '/user/get-user/' + userId,
-     url: `/user/get-user/${userId}`,
-     data: {},
-   });
- }
+    method: 'get',
+    url: '/user/get-user/' + userId,
+  });
+}
 
+const  createdUser = async (p_email , p_memberTypeId , p_roleId , p_teamId)=>{
+  return await axiosBase({
+     method: 'post',
+     url: '/users/create-user',
+     data: {
+      email: p_email,
+      member_type_id: p_memberTypeId,
+      role_id: p_roleId,
+      team_id: p_teamId,
+      created_user_id  : 1
+     }
+   });
+}
+const  updatedUser = async (p_email , p_memberTypeId , p_roleId , p_teamId,_p_status)=>{
+  return await axiosBase({
+     method: 'post',
+     url: '/users/create-user',
+     data: {
+      email: p_email,
+      firstname: null,
+      lastname: null,
+      is_register:true,
+      is_active:_p_status,
+      member_type_id: p_memberTypeId,
+      role_id: p_roleId,
+      team_id: p_teamId,
+      updated_user_id  : 1
+     }
+   });
+}
 
 const  createMultipleUser = async (data = [])=>{
   return await axiosBase({
@@ -37,7 +65,7 @@ const  createMultipleUser = async (data = [])=>{
               team :i.team,
             }
         }),
-        created_user_id: Number(sessionStorage.getItem("userId")),
+      created_user_id : 1 //  mock id_user
      }
    });
 }
@@ -52,7 +80,7 @@ const  deactivateUser
               email : i.email
             }
         }),
-      updated_user_id : Number(sessionStorage.getItem("userId")),
+      updated_user_id : 16 //  mock
      }
    });
 }
@@ -78,6 +106,8 @@ export default {
   getUserSearch,
   downloadCreateMultipleUserTemplate,
   downloadDeactivateUserTemplate,
+  createdUser,
+  updatedUser,
   createMultipleUser,
   deactivateUser,
   getUserById

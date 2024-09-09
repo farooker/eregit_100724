@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container fluid>
     <h2>SD Active Mangement</h2>
     <v-card elevation="2" rounded="0" class="rounded-lg mt-3" v-for="(i, index) in item" :key="index" :to="i.path">
         <v-card-item class="ma-0">

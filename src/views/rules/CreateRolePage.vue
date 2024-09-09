@@ -1,7 +1,7 @@
 <template>
   <v-container fluid>
     <h3>User Management</h3>
-    <v-row justify="center">
+    <v-row justify="center" class="mt-5">
       <h3>{{ title }}</h3>
     </v-row>
     <v-row no-gutters dense>
@@ -17,14 +17,18 @@
       <h3>Permission Setting</h3>
     </v-row>
     <v-row no-gutters dense>
-      <permission-management
-        :headers="headers"
-        :role_id="role_id"
-        :desserts="desserts_module"
-        @submit_form="submit_from_new_role"
-        @on-delete-permission="on_delete_permision_item_in_db"
-        @on-permission-change="on_permission_item_change"
-      />
+      <v-col cols="12">
+        <v-form ref="form">
+          <permission-management
+            :headers="headers"
+            :role_id="role_id"
+            :desserts="desserts_module"
+            @submit_form="submit_from_new_role"
+            @on-delete-permission="on_delete_permision_item"
+            @on-permission-change="on_permission_item_change"
+          />
+        </v-form>
+      </v-col>
     </v-row>
     <v-footer color="transparent" style="margin-top: 120px">
       <v-row justify="center">
@@ -59,10 +63,15 @@ import ActionService from "@/apis/ActionService";
 import RoleService from "@/apis/RoleService";
 import PermissionService from "@/apis/PermissionService";
 
+import { useErrorHandlingDialog } from "@/components/dialogs/ExceptionHandleDialogService";
+const { handlingErrorsMessage } = useErrorHandlingDialog();
+
 import { onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
 
 const route = useRoute();
+const router = useRouter();
+
 const role_id = route.params.role_id;
 
 import { useConfirmationDialog } from "@/components/dialogs/ConfirmationDialogService";
@@ -70,16 +79,22 @@ import { reactive } from "vue";
 import { ref } from "vue";
 const { showDialog } = useConfirmationDialog();
 
-const router = useRouter();
+const form = ref(null);
 
-const desserts_module = reactive([]);
 const title = ref("");
 const role_name = ref("");
 const role_desc = ref("");
-let headers = ref([]);
-let action_all_mock = ref([]);
-let roles_mock = ref({});
-let permission_module_mock = ref({});
+
+const action_all_mock = ref([]);
+const roles_mock = ref({});
+const permission_module_mock = ref({});
+
+const headers = ref([]);
+const desserts_module = reactive([]);
+const role_permission_update = reactive({
+  role_id: role_id,
+  modules: [],
+});
 
 const handleFetchRoleById = async (role_id) => {
   try {
@@ -90,7 +105,12 @@ const handleFetchRoleById = async (role_id) => {
       // Failed
     }
   } catch (error) {
-    // Failed
+    if (error.response) {
+      const val = error.response.data;
+      handlingErrorsMessage(val.message, val?.data.error);
+      return;
+    }
+    handlingErrorsMessage("Other Error", error.message);
   }
 };
 
@@ -100,47 +120,17 @@ const handleFetchPermissionByRoleId = async (role_id) => {
       role_id
     );
     if (result_permission.data.is_success) {
-      permission_module_mock.value = {
-        role_id: 1,
-        module: [
-          {
-            id: 6,
-            name_th: "รายการพาร์ทเนอร์",
-            name_en: "Business partner list",
-            description: null,
-            action: [
-              {
-                id: 1,
-                name: "add",
-                description: null,
-              },
-              {
-                id: 2,
-                name: "get",
-                description: null,
-              },
-            ],
-          },
-          {
-            id: 1,
-            name_th: "สร้างใบสมัครใหม่",
-            name_en: "Create new register form",
-            description: null,
-            action: [
-              {
-                id: 1,
-                name: "add",
-                description: null,
-              },
-            ],
-          },
-        ],
-      };
+      permission_module_mock.value = result_permission.data.data;
     } else {
       // Failed
     }
   } catch (error) {
-    // Failed
+    if (error.response) {
+      const val = error.response.data;
+      handlingErrorsMessage(val.message, val?.data.error);
+      return;
+    }
+    handlingErrorsMessage("Other Error", error.message);
   }
 };
 
@@ -159,7 +149,33 @@ const handleFetchActions = async () => {
       // Failed
     }
   } catch (error) {
-    // Failed
+    if (error.response) {
+      const val = error.response.data;
+      handlingErrorsMessage(val.message, val?.data.error);
+      return;
+    }
+    handlingErrorsMessage("Other Error", error.message);
+  }
+};
+
+const handleUpdatePermissionById = async () => {
+  try {
+    const result_actions = await PermissionService.updatedPermissionById(
+      role_permission_update.role_id,
+      role_permission_update.modules
+    );
+    if (result_actions.data.is_success) {
+      router.push({ path: "/roles/ListRolesPage" });
+    } else {
+      // Failed
+    }
+  } catch (error) {
+    if (error.response) {
+      const val = error.response.data;
+      handlingErrorsMessage(val.message, val?.data.error);
+      return;
+    }
+    handlingErrorsMessage("Other Error", error.message);
   }
 };
 
@@ -182,18 +198,27 @@ onMounted(async () => {
 const generate_desserts = () => {
   if (permission_module_mock.value.module) {
     permission_module_mock.value.module.forEach((item) => {
+      const actions = [];
       let dessert = {
         permission: item.id,
       };
       action_all_mock.value.forEach((action) => {
         dessert[action.name] = item.action.some((obj) => obj.id === action.id);
+        if (dessert[action.name] === true)
+          actions.push({ action_id: action.id });
       });
       desserts_module.push(dessert);
+      role_permission_update.modules.push({
+        module_id: dessert.permission,
+        action: actions,
+      });
     });
   }
 };
 
 const submit_from_new_role = async () => {
+  const validObj = await form.value.validate();
+  if (!validObj.valid) return;
   if (!role_id) {
     const confirmed = await showDialog(
       "ยืนยันการบันทึก",
@@ -211,6 +236,7 @@ const submit_from_new_role = async () => {
     );
     if (confirmed) {
       console.log("บันทึกการเปลี่ยนแปลง");
+      await handleUpdatePermissionById();
     } else {
       console.log("cancelled.");
     }
@@ -218,13 +244,33 @@ const submit_from_new_role = async () => {
 };
 
 const on_permission_item_change = (item_permission) => {
-  console.log("on_permission_item_change: " + JSON.stringify(item_permission));
+  // console.log("on_permission_item_change: " + JSON.stringify(item_permission));
+  role_permission_update.modules = [];
+  item_permission.forEach((el) => {
+    const actionArr = Object.keys(el);
+    const actions = [];
+
+    for (let index = 1; index < actionArr.length; index++) {
+      const action_find = action_all_mock.value.find(
+        (action) => action.name === actionArr[index]
+      );
+      if (el[actionArr[index]] === true) {
+        if (action_find) actions.push({ action_id: action_find.id });
+      }
+    }
+    role_permission_update.modules.push({
+      module_id: el.permission,
+      action: actions,
+    });
+  });
+  console.log("new:", JSON.stringify(role_permission_update));
 };
 
-const on_delete_permision_item_in_db = (item_permission) => {
-  console.log(
-    "on_delete_permision_item_in_db: " + JSON.stringify(item_permission)
+const on_delete_permision_item = (item_permission) => {
+  const permissionIndex = desserts_module.findIndex(
+    (el) => el.permission === item_permission.permission
   );
+  if (permissionIndex > -1) desserts_module.splice(permissionIndex, 1);
 };
 
 const on_updated_role = (role) => {

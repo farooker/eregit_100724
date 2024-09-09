@@ -1,5 +1,6 @@
 <template>
   <v-row dense>
+    {{ props.businessPartnerTypeId }}
     <v-col cols="12"><h3 class="mt-8">เอกสารเพิ่มเติม</h3></v-col>
     <v-col cols="12">
       <v-card class="pa-5">
@@ -91,7 +92,10 @@ const handleInputFiles = (files) => {
 
 onMounted(async () => {
   await getDocumentRequire();
+if(props.businessPartnerTypeId){
   await getBusinessPartnerTypeId(props.businessPartnerTypeId)
+}
+
 });
 const businessPartnerType = ref({});
 const itemsRequireDocument = ref([]);

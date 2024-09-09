@@ -65,38 +65,32 @@
 </template>
 
 <script setup>
-import { reactive } from "vue";
+import { ref, onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
 
 import ButtonControl from "@/components/controls/ButtonControl.vue";
+import CompnayService from "@/apis/CompnayService";
 
 const route = useRoute();
 const router = useRouter();
 
 const id = route.params.id;
 
-let data = reactive([]);
-data = {
-  id: 1,
-  company_code: "1000",
-  name_th: "บริษัท แผ่นดินทอง พร็อพเพอร์ตี้ ดีเวลลอปเม้นท์ จำกัด (มหาชน)",
-  name_en: "Golden Land Property Development PLC.",
-  taxpayer_id_number: "0107537002273",
-  address_th:
-    "944 มิตรทาวน์ ออฟฟิศ ทาวเวอร์ ชั้นที่ 20 ถนนพระราม 4 แขวงวังใหม่ เขตปทุมวัน กรุงเทพมหานคร 10330",
-  address_en:
-    "20th Floor, Mitrtown Office Tower 944 Rama 4 Road, Wangmai, Pathumwan, Bangkok 10330",
-  business_unit: {
-    id: 1,
-    name_th: "Commercial",
-    name_en: "Commercial",
-    purchasing_organization: "GL00",
-    corporation: {
-      id: 1,
-      name_th: "เฟรเซอร์ส พร็อพเพอร์ตี้ (ประเทศไทย)",
-      name_en: "Frasers Property Thailand",
-    },
-  },
+let data = ref({});
+
+onMounted(async () => {
+  await onLoadedCompanyById(id);
+});
+
+const onLoadedCompanyById = async (companyId) => {
+  try {
+    const response = await CompnayService.getCompanyById(companyId);
+    if (response.data?.is_success) {
+      data.value = response.data.data;
+    }
+  } catch (error) {
+    // Failed
+  }
 };
 
 const on_go_to_back = () => {
