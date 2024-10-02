@@ -1,6 +1,6 @@
 <template>
   <v-container fluid>
-    <h3>History Log {{ companyId }}</h3>
+    <h3>History Log</h3>
     <history-table-view
       :headers="['Date And Time', 'Company', 'Change Action', 'Change By']"
       :desserts="items_company_history"
