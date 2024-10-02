@@ -39,6 +39,7 @@
           />
         </v-col>
         <v-col>
+          <!-- {{ computedRoleId }} -->
           <v-card style="border-radius: 0px">
             <history-control
               @link-clicked="onItemLogClicked"
@@ -108,6 +109,7 @@ const onItemEditClicked = () => {
 };
 
 const onItemLogClicked = () => {
+  // console.log(computedRoleId.value)
   emit("history-clicked", computedRoleId.value);
 };
 </script>

@@ -31,17 +31,22 @@ const createdTeam = async (company_id, name_th, name_en) => {
   });
 };
 
-const updatedTeamById = async (team_id, company_id, name_th, name_en, is_active = true) => {
+const updatedTeamById = async (
+  team_id,
+  company_id,
+  name_th,
+  name_en,
+  is_active = true
+) => {
   return await axiosBase({
     method: "post",
     url: "/master/update-team",
     data: {
-      team_id,
+      team_id: Number(team_id),
       company_id: company_id,
       name_th: name_th,
       is_active,
-      name_en: name_en,
-      created_user_id: 1,
+      updated_user_id: 1,
     },
   });
 };
@@ -51,11 +56,11 @@ const deleteTeamById = async (team_id) => {
     method: "delete",
     url: "/master/delete-team/" + team_id,
   });
-}
+};
 export default {
   getTeamAll,
   getTeamById,
   createdTeam,
   updatedTeamById,
-  deleteTeamById
+  deleteTeamById,
 };

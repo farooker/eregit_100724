@@ -113,8 +113,9 @@ const handle_item_clicked = async (event) => {
       "กรุณาตรวจสอบคุณไม่สามารถกลับมาแก้ไขได้\nคลิกปุ่มตกลง เพื่อดำเนินการ"
     );
     if (is_ok) {
-      console.log("Call api delete: ", result[0]);
-      await handleDeleteItemById(result[0])
+      const teamId = items.value[result[0]];
+      console.log("Call api delete: ", teamId);
+      await handleDeleteItemById(teamId?.id);
     }
   }
 };

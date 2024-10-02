@@ -50,6 +50,7 @@
         />
       </v-expansion-panels>
     </v-row>
+    {{ roles_mock.length }}
   </v-container>
 </template>
 
@@ -128,10 +129,12 @@ const handleFetchListPermissionByRoleId = async (role_id) => {
 const is_item_expan = ref(null);
 
 onMounted(async () => {
+  console.log("onMounted")
   await handleFetchActions();
   await handleFetchListRoles();
   for (let index = 0; index < roles_mock.value.length; index++) {
     const role_id = roles_mock.value[index]?.id;
+    // console.log(role_id)
     if (role_id) await handleFetchListPermissionByRoleId(role_id);
   }
   isLoading.value = false;

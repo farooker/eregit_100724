@@ -86,7 +86,6 @@ const role_name = ref("");
 const role_desc = ref("");
 
 const action_all_mock = ref([]);
-const roles_mock = ref({});
 const permission_module_mock = ref({});
 
 const headers = ref([]);
@@ -100,7 +99,9 @@ const handleFetchRoleById = async (role_id) => {
   try {
     const result_role = await RoleService.getRoleById(role_id);
     if (result_role.data.is_success) {
-      roles_mock.value = result_role.data.data;
+      const data = result_role.data.data;
+      role_name.value = data.name;
+      role_desc.value = data.description;
     } else {
       // Failed
     }
@@ -165,7 +166,7 @@ const handleUpdatePermissionById = async () => {
       role_permission_update.modules
     );
     if (result_actions.data.is_success) {
-      router.push({ path: "/roles/ListRolesPage" });
+      router.push({ path: "/ListRolesPage" });
     } else {
       // Failed
     }
@@ -186,8 +187,6 @@ onMounted(async () => {
     title.value = "Update Role & Permission";
     await handleFetchRoleById(role_id);
     await handleFetchPermissionByRoleId(role_id);
-    role_name.value = roles_mock.value.name;
-    role_desc.value = roles_mock.value.description;
     generate_desserts();
   } else {
     console.log("Without fetch role this is new form");

@@ -144,11 +144,13 @@ const onUpdateTeam = async () => {
 const handleInputCreate = (inputData) => {
   // console.log(JSON.stringify(inputData));
   dataInput.value = inputData;
+  console.log(dataInput.value)
 };
 
 const handleInputUpdate = (inputData) => {
   // console.log(JSON.stringify(inputData));
   dataInput.value = inputData;
+  console.log(dataInput.value)
 };
 
 const on_go_to_back = () => {
