@@ -68,15 +68,16 @@
                   variant="outlined"
                 ></v-text-field>
               </v-col>
-              <v-col cols="12"
-                ><AddressInputControlTH
-                  class="ml-4 mr-4"
-                  tag-desc="(TH Branch)"
-                  :is-not-team="true"
-                  :isDisableAddress="false"
-                  :address-item="data_input.address.th.info"
-                  @on-input="handleAddressTH"
-              /></v-col>
+              <v-col cols="12">
+                <AddressInputControlTH
+                  :rules="textRequired"
+                  tag-desc="(ภาษาไทย)"
+                  key-value="id"
+                  key-title="name_th"
+                  :is-disable-address="false"
+                  @on-input="handleAddressInputTh"
+                />
+              </v-col>
             </v-row>
           </v-card-text>
         </v-card>
@@ -103,13 +104,11 @@
               </v-col>
 
               <v-col cols="12">
-                <AddressInputControlEN
-                  tag-desc="(ภาษาอังกฤษ)"
-                  key-value="id"
-                  key-title="name_en"
-                  class="ml-5 mr-5"
-                  :address-item="data_input.address.en.info"
-                />
+                <ManaulAddressInputControl
+                :address-item="data_input.address.en.info"
+                tag-desc="(ภาษาอังกฤษ)"
+                @on-input="handleAddressInputEn"
+              />
               </v-col>
             </v-row>
           </v-card-text>
@@ -120,8 +119,8 @@
 </template>
 <script setup>
 import { ref, watch } from "vue";
-import AddressInputControlTH from "@/components/controls/AddressInputControl.vue";
-import AddressInputControlEN from "@/components/controls/AddressInputControl.vue";
+import AddressInputControlTH from "@/components/controls/AddressInputControlComp.vue";
+import ManaulAddressInputControl from "@/components/controls/ManaulAddressInputControl.vue";
 // import { useRouter } from "vue-router";
 
 const emit = defineEmits(["on-data-update"]);
@@ -187,8 +186,14 @@ watch(
 );
 // const router = useRouter();
 
-const handleAddressTH = (data_obj) => {
-  data_input.value.address.th.info = data_obj;
-  data_input.value.address.en.info = data_obj;
+const handleAddressInputTh = (addressLocation) => {
+  data_input.value.address.th.info = addressLocation;
+  data_input.value.address.en.info.zip_code_value =
+  addressLocation.zip_code_value;
+};
+
+const handleAddressInputEn = (addressLocation) => {
+  data_input.value.address.en.info = addressLocation;
 };
 </script>
+ 

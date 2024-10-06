@@ -572,7 +572,7 @@ const routes = [
           import("@/views/BusinessPartner/CreateBusinessPartner.vue"),
       },
       {
-        path: "/BusinessPartner/ChangInfo ",
+        path: "/BusinessPartner/ChangInfo",
         name: "ChangInfo",
         meta: {
           requiresAuth: true,

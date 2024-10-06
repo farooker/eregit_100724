@@ -1,6 +1,8 @@
 import axios from "axios";
 const _axios = axios.create();
-_axios.defaults.baseURL = "https://api-esg-nonprod.onefrasers.com/release/qas/v1"; //https://api-esg-dev.onefrasers.com/release/v1
+// _axios.defaults.baseURL = ""+import.meta.env.VITE_DEFAULTS_BASEURL
+_axios.defaults.baseURL = import.meta.env.VITE_DEFAULTS_BASEURL;
+
 
 _axios.defaults.headers.common["Authorization"] =
   "Bearer tXZFVTbtqM1hYqM5RFQb2Pl5NPN7uE9hAedkI/z2kJHDsdUD9DkN1hkqBOdB0v7XxCBQn1hfAkpWxpUa0duO+w==";
@@ -20,3 +22,4 @@ axios.interceptors.response.use((response) => {
 });
 
 export default _axios;
+ 

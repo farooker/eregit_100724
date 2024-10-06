@@ -9,19 +9,11 @@
     "
   >
     <v-form ref="registreForm" style="width: 100%; max-width: 600px">
-      <v-card
-        class="pa-7"
-        border="outlined"
-        style="border-radius: 20px; text-align: center"
-      >
+      <v-card class="pa-7" border="outlined" style="border-radius: 20px; text-align: center">
         <v-card-item dense>
           <v-row>
             <v-col class="d-flex justify-center">
-              <v-img
-                style="max-width: 200px"
-                class="mt-5"
-                src="/frasers.png"
-              ></v-img>
+              <v-img style="max-width: 200px" class="mt-5" src="/frasers.png"></v-img>
             </v-col>
           </v-row>
 
@@ -59,40 +51,46 @@
               margin-top: -15px;
             "
             v-if="customMessageErr"
-          >
-            {{ customMessageErr }}
-          </p>
+          >{{ customMessageErr }}</p>
 
           <div class="d-flex">
-            <v-checkbox
-              label="แสดงรหัสผ่าน"
-              v-model="Form.CheckPass"
-            ></v-checkbox>
-            <v-btn
-              variant="text"
-              @click="handleForgetPassword"
-              class="custom-underline mt-2"
-              ><h4>ลืมรหัสผ่าน</h4>
+            <v-checkbox label="แสดงรหัสผ่าน" v-model="Form.CheckPass"></v-checkbox>
+            <v-btn variant="text" @click="handleForgetPassword" class="custom-underline mt-2">
+              <h4>ลืมรหัสผ่าน</h4>
             </v-btn>
           </div>
 
-          <div
-            class="text-center pb-3 px-2 ma-0"
-            dense
-            justify="center"
-            align="center"
-          >
+          <div class="text-center pb-3 px-2 ma-0" dense justify="center" align="center">
             <v-btn
               size="x-large"
               @click="handleLoginClicked"
               :disabled="isDisabled"
               block
-              class="text-capitalize rounded-pill"
+              class="text-capitalize rounded-pill custom-font"
               color="red"
-            >
-              เข้าสู่ระบบ
-            </v-btn>
+            >เข้าสู่ระบบ</v-btn>
           </div>
+
+          <div class="or-divider">
+            <v-divider></v-divider>
+            <span class="or-text">หรือ</span>
+            <v-divider></v-divider>
+          </div>
+
+          <v-row class="text-center pa-5 ma-0" dense justify="center" align="center">
+            <v-col cols="12">
+              <!-- Set cols to 12 to take up the full width of the row -->
+              <v-btn
+                size="x-large"
+                block
+                class="text-capitalize rounded-pill custom-font"
+                color="grey-lighten-2"
+                @click="getAuthenticationVerifyToken"
+              >
+                <v-icon class="mr-4">mdi mdi-account-group</v-icon>เข้าสู่ระบบ สำหรับพนักงาน FPT
+              </v-btn>
+            </v-col>
+          </v-row>
         </v-card-item>
       </v-card>
     </v-form>
@@ -102,28 +100,33 @@
 <script setup>
 import { ref, onBeforeMount } from "vue";
 import VerifyService from "@/apis/VerifyService";
+// import UserService from "@/apis/UserService";
+import AuthService from "@/apis/OAuthService";
+// import axios from "axios";
 const Form = ref({
   Email: "",
-  Password: "",
+  Password: ""
 });
 
 const customMessageErr = ref("");
+const accessToken = ref("");
+
 
 const registreForm = ref(null);
-const textRequired = [(v) => !!v || "กรุณากรอกข้อมูลให้ครบถ้วน"];
+const textRequired = [v => !!v || "กรุณากรอกข้อมูลให้ครบถ้วน"];
 const passwordRules = [
-  (v) => !!v || "กรุณากรอกรหัสผ่าน",
-  (v) =>
+  v => !!v || "กรุณากรอกรหัสผ่าน",
+  v =>
     v.length >= 8 ||
     "รหัสผ่านไม่ตรงตามเงื่อนไข กรุณาตรวจสอบความยาวตัวอักษร ตัวเลข หรือ สัญลักษณ์",
-  (v) =>
+  v =>
     /[A-Z]/.test(v) ||
     "รหัสผ่านไม่ตรงตามเงื่อนไข กรุณาตรวจสอบความยาวตัวอักษร ตัวเลข หรือ สัญลักษณ์",
-  (v) =>
+  v =>
     /[a-z]/.test(v) ||
     "รหัสผ่านไม่ตรงตามเงื่อนไข กรุณาตรวจสอบความยาวตัวอักษร ตัวเลข หรือ สัญลักษณ์",
-  (v) => /[0-9]/.test(v) || "รหัสผ่านต้องมีอย่างน้อยหนึ่งตัวเลข",
-  (v) => /[\W_]/.test(v) || "รหัสผ่านต้องมีอย่างน้อยหนึ่งสัญลักษณ์",
+  v => /[0-9]/.test(v) || "รหัสผ่านต้องมีอย่างน้อยหนึ่งตัวเลข",
+  v => /[\W_]/.test(v) || "รหัสผ่านต้องมีอย่างน้อยหนึ่งสัญลักษณ์"
 ];
 const counter = ref(0);
 
@@ -133,7 +136,7 @@ const emit = defineEmits([
   "on-forget-password",
   "on-clicked-login",
   "on-login-success",
-  "on-login-failed",
+  "on-login-failed"
 ]);
 
 const handleForgetPassword = () => {
@@ -144,7 +147,7 @@ const totalSeconds = ref(900);
 const formattedTime = ref("15:00");
 const isDisabled = ref(false);
 
-const formatTime = (seconds) => {
+const formatTime = seconds => {
   const minutes = Math.floor(seconds / 60);
   const secs = seconds % 60;
   return (
@@ -240,6 +243,31 @@ onBeforeMount(() => {
   Form.value.Email = urlParams.get("accessible_email");
   console.log(urlParams.get("accessible_email"));
 });
+
+const getAuthenticationVerifyToken = async () => {
+  try {
+    const response = await AuthService.getAuthToken();
+    if (response.data?.success && response.data?.data.accessToken) {
+      accessToken.value = response.data?.data.accessToken
+      sessionStorage.setItem("accessToken", accessToken.value);
+
+      const responseVertify = await AuthService.verifyToken(
+        response.data?.data.accessToken
+      );
+      // console.log("eww", response.data?.data.accessToken)
+      if (responseVertify.data?.success) {
+        console.log("response", responseVertify.data.data.url);
+        // await axios.get(responseVertify.data.data.url);
+        // window.open(responseVertify.data.data.url)
+        window.location.href = responseVertify.data.data.url;
+      }
+    }
+  } catch (e) {
+    if (e.response) {
+      return;
+    }
+  }
+};
 </script>
 
 <style scoped>
@@ -250,5 +278,25 @@ onBeforeMount(() => {
 
 .v-field {
   box-shadow: rgba(100, 100, 111, 0.2) 0px 0px 6px 0px !important;
+}
+
+.or-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 0;
+}
+.or-divider v-divider {
+  width: 45%;
+}
+.or-text {
+  margin: 0 15px;
+  font-weight: bold;
+  color: gray;
+}
+
+.custom-font {
+  font-family: 'YourFontFamily', sans-serif; /* กำหนดฟอนต์ที่ต้องการ */
+  font-size:20px; /* กำหนดขนาดฟอนต์ตามที่ต้องการ */
 }
 </style>

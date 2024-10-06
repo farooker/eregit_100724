@@ -512,12 +512,22 @@ const createImportVendors = async (import_bp_file_id) => {
     method: "post",
     url: "/partner/import-vendors",
     data: {
-      import_bp_file_id, 
+      import_bp_file_id,
       created_user_id: Number(sessionStorage.getItem("userId")),
     },
   });
 };
 
+const createShareChangeInfo = async (body) => {
+  return await axiosBase({
+    method: "post",
+    url: "/partner/share-change-information-form",
+    data: {
+      ...body,
+      created_user_id: Number(sessionStorage.getItem("userId")),
+    },
+  });
+};
 
 
 export default {
@@ -566,5 +576,6 @@ export default {
   createBusinessPartnerCompleteProfile,
   downloadCreateMultipleVendoeTemplate,
   createValidateImportVendors,
-  createImportVendors
+  createImportVendors,
+  createShareChangeInfo
 };

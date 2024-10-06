@@ -357,10 +357,10 @@
 
                 <v-col cols="12" md="4">
                   <v-row dense class="pa-10">
-                    <!-- <v-col cols="12">
+                    <v-col cols="12">
                       <v-btn
                         block
-                        :disabled="true"
+
                         class="text-capitalize rounded-pill"
                         color="blue-darken-2"
                         :to="{
@@ -370,7 +370,7 @@
                           },
                         }"
                       >Chang Info.</v-btn>
-                    </v-col> -->
+                    </v-col>
                     <!-- <v-col cols="12">
                       <v-btn
                         block

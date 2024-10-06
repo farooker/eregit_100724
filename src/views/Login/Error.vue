@@ -67,6 +67,13 @@ onMounted(() => {
       desc: "กรุณาติดต่อ Frasers Propoty Thailand เพื่อทำรายการใหม่",
     };
   }
+
+  if (err == "NOT_MODULES") {
+    errDesc.value = {
+      title: "คุณไม่มีสิทธิ์การใช้งานระบบ FPT-SQS ",
+      desc: "หากท่านต้องการใช้งานกรุณาติดต่อ th.fpt.sqs.support@frasersproperty.com",
+    };
+  }
   // sessionStorage.removeItem('auth_email');
   //sessionStorage.removeItem('auth_modules');
 });

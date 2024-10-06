@@ -1,175 +1,195 @@
 <template>
-  <v-container>
-    <div class="d-flex align-center justify-center">
-      <h2 class="py-5">Change Information</h2>
+  <div>
+    <!-- ฟอร์มเพิ่มบัญชีธนาคาร -->
+    <h2 class="py-3">เพิ่มบัญชีธนาคาร</h2>
+    <div v-for="(info, index) in changeBankInformation.filter(info => info.remark === 'เพิ่ม')" :key="index" class="mb-5">
+      <v-card class="pa-4">
+        <v-text-field
+          v-model="info.bank_account_name"
+          placeholder="ชื่อบัญชี (ภาษาอังกฤษ)"
+          required
+          variant="outlined"
+          density="compact"
+        ></v-text-field>
+
+        <v-select
+          v-model="info.bank_id"
+          :items="itemBanks"
+          item-value="id"
+          item-title="display"
+          density="compact"
+          variant="outlined"
+          placeholder="ธนาคาร"
+          required
+        ></v-select>
+
+        <v-text-field
+          v-model="info.bank_branch"
+          placeholder="สาขาธนาคาร"
+          required
+          variant="outlined"
+          density="compact"
+        ></v-text-field>
+
+        <v-text-field
+          v-model="info.bank_account_number"
+          placeholder="เลขที่บัญชี"
+          required
+          :rules="bankAccountRules"
+          variant="outlined"
+          density="compact"
+        ></v-text-field>
+      </v-card>
     </div>
+    <!-- ปุ่มเพิ่มฟิลด์ใหม่ -->
+    <ButtonControl
+      icon="mdi mdi-plus"
+      text="เพิ่ม"
+      @button-clicked="addNewField('เพิ่ม')"
+    />
 
-    <div class="d-flex align-center justify-center">
-      <h2 class="pa-5">บัญชีธนาคาร</h2>
+    <!-- ฟอร์มยกเลิกบัญชีธนาคาร -->
+    <h2 class="py-3">ยกเลิกบัญชีธนาคาร</h2>
+    <div v-for="(info, index) in changeBankInformation.filter(info => info.remark === 'ลบ')" :key="index" class="mb-5">
+      <v-card class="pa-4">
+        <v-text-field
+          v-model="info.bank_account_name"
+          placeholder="ชื่อบัญชี (ภาษาอังกฤษ)"
+          required
+          variant="outlined"
+          density="compact"
+        ></v-text-field>
+
+        <v-select
+          v-model="info.bank_id"
+          :items="itemBanks"
+          item-value="id"
+          item-title="display"
+          density="compact"
+          variant="outlined"
+          placeholder="ธนาคาร"
+          required
+        ></v-select>
+
+        <v-text-field
+          v-model="info.bank_branch"
+          placeholder="สาขาธนาคาร"
+          required
+          variant="outlined"
+          density="compact"
+        ></v-text-field>
+
+        <v-text-field
+          v-model="info.bank_account_number"
+          placeholder="เลขที่บัญชี"
+          required
+          :rules="bankAccountRules"
+          variant="outlined"
+          density="compact"
+        ></v-text-field>
+      </v-card>
     </div>
-
-    <v-row dense class="mb-5">
-      <v-col cols="12"><h2>เพิ่มบัญชีธนาคาร</h2></v-col>
-      <v-col cols="12">
-        <v-card>
-          <v-row dense no-gutters>
-            <v-col cols="12">
-              <v-card-title>
-                <h6>ชื่อบัญชี (ภาษาอังกฤษ)</h6>
-              </v-card-title>
-              <v-text-field
-                class="ml-4 mr-4"
-                density="compact"
-                v-model="data_input.account_name_en"
-                dense
-                variant="outlined"
-              ></v-text-field>
-            </v-col>
-
-            <v-col cols="12">
-              <v-card-title>
-                <h6>ธนาคาร</h6>
-              </v-card-title>
-              <v-select
-                class="ml-4 mr-4"
-                v-model="data_input.bank"
-                :items="data_input.item_bank"
-                item-value="id"
-                item-title="name"
-                density="compact"
-                variant="outlined"
-              ></v-select>
-            </v-col>
-
-            <v-col cols="12">
-              <v-card-title>
-                <h6>สาขาธนาคาร</h6>
-              </v-card-title>
-              <v-text-field
-                class="ml-4 mr-4"
-                density="compact"
-                v-model="data_input.branch_account"
-                dense
-                variant="outlined"
-              ></v-text-field>
-            </v-col>
-
-            <v-col cols="12">
-              <v-card-title>
-                <h6>เลขที่บัญชี</h6>
-              </v-card-title>
-              <v-text-field
-                class="ml-4 mr-4"
-                density="compact"
-                v-model="data_input.account_number"
-                dense
-                variant="outlined"
-              ></v-text-field>
-            </v-col>
-          </v-row>
-        </v-card>
-      </v-col>
-    </v-row>
-
-    <v-row dense class="mt-9">
-      <v-col cols="12"><h2>ยกเลิกบัญชีธนาคาร</h2></v-col>
-      <v-col cols="12">
-        <v-card>
-          <v-row dense no-gutters>
-            <v-col cols="12">
-              <v-card-title>
-                <h6>ชื่อบัญชี (ภาษาอังกฤษ)</h6>
-              </v-card-title>
-              <v-text-field
-                class="ml-4 mr-4"
-                density="compact"
-                v-model="data_input.account_name_de"
-                dense
-                variant="outlined"
-              ></v-text-field>
-            </v-col>
-
-            <v-col cols="12">
-              <v-card-title>
-                <h6>ธนาคาร</h6>
-              </v-card-title>
-              <v-select
-                class="ml-4 mr-4"
-                v-model="data_input.bank_de"
-                :items="data_input.item_bank"
-                item-value="id"
-                item-title="name"
-                density="compact"
-                variant="outlined"
-              ></v-select>
-            </v-col>
-
-            <v-col cols="12">
-              <v-card-title>
-                <h6>สาขาธนาคาร</h6>
-              </v-card-title>
-              <v-text-field
-                class="ml-4 mr-4"
-                density="compact"
-                v-model="data_input.branch_account_de"
-                dense
-                variant="outlined"
-              ></v-text-field>
-            </v-col>
-
-            <v-col cols="12">
-              <v-card-title>
-                <h6>เลขที่บัญชี</h6>
-              </v-card-title>
-              <v-text-field
-                class="ml-4 mr-4"
-                density="compact"
-                v-model="data_input.account_number_de"
-                dense
-                variant="outlined"
-              ></v-text-field>
-            </v-col>
-          </v-row>
-        </v-card>
-      </v-col>
-    </v-row>
-  </v-container>
+    <!-- ปุ่มเพิ่มฟิลด์ใหม่สำหรับการยกเลิก -->
+    <ButtonControl
+      icon="mdi mdi-plus"
+      text="เพิ่ม"
+      @button-clicked="addNewField('ลบ')"
+    />
+  </div>
 </template>
+
 <script setup>
-import { ref, watch } from "vue";
-// import { useRouter } from "vue-router";
+import { ref, watch, onMounted } from "vue";
+import OtherService from "@/apis/OtherService";
+import ButtonControl from "@/components/controls/ButtonControl.vue";
+
 const emit = defineEmits(["on-data-update"]);
-const data_input = ref({
-  account_name_en: "",
-  branch_account: "",
-  account_number: "",
 
-  account_name_de: "",
-  branch_account_de: "",
-  account_number_de: "",
+// ข้อมูลธนาคารที่สามารถเลือกได้
+const itemBanks = ref([]);
 
-  bank: null,
-  bank_de: null,
+// ข้อมูลเริ่มต้น (จาก API หรือข้อมูลที่ได้)
+const changeBankInformation = ref([
+  {
+    bank_account_name: "",
+    bank_id: null,
+    bank_branch: "",
+    bank_account_number: "",
+    remark: "เพิ่ม"
+  },
+  {
+    bank_account_name: "",
+    bank_id: null,
+    bank_branch: "",
+    bank_account_number: "",
+    remark: "ลบ"
+  }
+]);
 
-  item_bank: [
-    {
-      id: 0,
-      name: "test1",
-    },
-    {
-      id: 1,
-      name: "test9",
-    },
-  ],
+onMounted(async () => {
+  await getBanks();
 });
 
+// สังเกตการเปลี่ยนแปลงของข้อมูลแล้วส่งข้อมูลออกไปยัง parent
 watch(
-  data_input.value,
+  changeBankInformation.value,
   (newValue) => {
     emit("on-data-update", newValue);
-    console.log("ddddd", data_input.value);
   },
   { deep: true }
 );
-// const router = useRouter();
+
+// Validation rule สำหรับเลขที่บัญชีธนาคาร
+const bankAccountRules = [
+  (v) => !!v || "กรุณากรอกเลขที่บัญชี",
+  (v) => /^[A-Z0-9]+$/.test(v) || "เลขและตัวอักษรภาษาอังกฤษพิมพ์ใหญ่เท่านั้น"
+];
+
+// ฟังก์ชันสำหรับเพิ่มข้อมูลธนาคารใหม่
+const addNewField = (remark) => {
+  if (remark === "เพิ่ม") {
+    // ใช้ unshift เพื่อเพิ่มข้อมูลไปที่จุดเริ่มต้น
+    changeBankInformation.value.unshift({
+      bank_account_name: "",
+      bank_id: null,
+      bank_branch: "",
+      bank_account_number: "",
+      remark: "เพิ่ม"
+    });
+  } else {
+    // ใช้ push สำหรับ remark 'ลบ'
+    changeBankInformation.value.push({
+      bank_account_name: "",
+      bank_id: null,
+      bank_branch: "",
+      bank_account_number: "",
+      remark: "ลบ"
+    });
+  }
+};
+
+// ฟังก์ชันดึงข้อมูลธนาคารจาก API
+const getBanks = async () => {
+  try {
+    const response = await OtherService.getBanksAll();
+    if (response.data?.is_success) {
+      itemBanks.value = response.data.data.map((item) => ({
+        ...item,
+        display: `${item.bank_key} - ${item.name_th}`,
+        id: item.id.toString()
+      }));
+    }
+  } catch (e) {
+    if (e.response) {
+      return;
+    }
+  }
+};
 </script>
+
+<style scoped>
+h2 {
+  font-size: 1.5rem;
+  color: #333;
+}
+</style>
