@@ -1,7 +1,7 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-  <v-container>
-    <div style="margin-left: 150px; margin-right: 150px">
+  <v-container fluid>
+    <div>
       <h2>Mangement > Survey</h2>
       <!-- <v-stepper
       v-model="stepper"
@@ -39,7 +39,7 @@
         >
       </v-stepper-header>
     </v-stepper> -->
-      <v-col color="12" style="margin-left: 150px; margin-top: 0px">
+      <v-col color="12" style="margin-left: 0px; margin-top: 0px">
         <StepperControl
           :currentStepNumber="stepper"
           :titles="[
@@ -165,274 +165,274 @@ const itemQuestion = ref([]);
 const itemOtherQuest = ref([]);
 
 const mock_step2 = {
-   nameQuestionnaire : {
-        title: "แบบสำรวจด้านความยังยืนคู่ค้า 2023",
-        description : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi, ratione debitis quis est labore voluptatibus! Eaque cupiditate minima, at placeat totam, magni doloremque veniam neque porro libero rerum unde voluptatem!",
+  nameQuestionnaire: {
+    title: "แบบสำรวจด้านความยังยืนคู่ค้า 2023",
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi, ratione debitis quis est labore voluptatibus! Eaque cupiditate minima, at placeat totam, magni doloremque veniam neque porro libero rerum unde voluptatem!",
+  },
+  createQuestionnaire: [
+    {
+      id: 3,
+      index: 1,
+      typeQuestionCard: "None",
+      data: {
+        controlType: "Paragraph",
+        metaData: {
+          question: "แบบสำรวจด้านความยังยืนคู่ค้า 2023",
+          answer: "",
+          isRequired: true,
+        },
+      },
     },
-    createQuestionnaire :[
+    {
+      id: 3,
+      index: 2,
+      typeQuestionCard: "None",
+      data: {
+        controlType: "Multichoice",
+        metaData: {
+          question: "Multichoice",
+          isRequired: true,
+          answer: null,
+          choices: [
+            {
+              title: "chioce",
+              answer: "ตอบ-1",
+              nextQuestion: 1,
+            },
+            {
+              title: "chioce",
+              answer: "ตอบ-2",
+              nextQuestion: 3,
+            },
+            {
+              title: "other",
+              answer: "เพิมเติม",
+              specify: "",
+              nextQuestion: "",
+            },
+          ],
+        },
+      },
+    },
+    {
+      id: 3,
+      index: 3,
+      typeQuestionCard: "None",
+      data: {
+        controlType: "Checkbox",
+        metaData: {
+          question: "Checkbox",
+          isRequired: true,
+          answer: [],
+          choices: [
+            {
+              title: "chioce",
+              answer: "ตอบ-1",
+            },
+            {
+              title: "chioce",
+              answer: "ตอบ-2",
+            },
+            {
+              title: "other",
+              answer: "เพิมเติม",
+              specify: "",
+            },
+          ],
+        },
+      },
+    },
+    {
+      id: 3,
+      index: 4,
+      typeQuestionCard: "None",
+      data: {
+        controlType: "Dropdown",
+        metaData: {
+          question: "Dropdown",
+          isRequired: true,
+          answer: null,
+          choices: [
+            {
+              answer: "item-1",
+              nextQuestion: 2,
+            },
+            {
+              answer: "item-2",
+              nextQuestion: 2,
+            },
+          ],
+        },
+      },
+    },
+    {
+      id: 3,
+      index: 5,
+      typeQuestionCard: "None",
+      data: {
+        controlType: "Uploads",
+        metaData: {
+          question: "Uploads files",
+          isRequired: true,
+          files: null,
+        },
+      },
+    },
+  ],
+};
+
+const mock_preview_third = {
+  nameQuestionnaire: {
+    title: "แบบสำรวจด้านความยังยืนคู่ค้า 2023",
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi, ratione debitis quis est labore voluptatibus! Eaque cupiditate minima, at placeat totam, magni doloremque veniam neque porro libero rerum unde voluptatem!",
+  },
+  createQuestionnaire: [
+    {
+      id: "0",
+      title: "header",
+      data: [
         {
-          id: 3,
+          id: "0",
           index: 1,
-          typeQuestionCard: "None",
+          typeQuestionCard: "Align",
           data: {
-            controlType: "Paragraph",
+            controlType: "Multichoice",
             metaData: {
-              question: "แบบสำรวจด้านความยังยืนคู่ค้า 2023",
-              answer:"",
+              question: "Radio",
               isRequired: true,
+              totalScore: 15,
+              answer: null,
+              choices: [
+                {
+                  title: "chioce",
+                  isAlign: true,
+                  score: "10",
+                  answer: "chioce-1",
+                  nextQuestion: 2,
+                },
+                {
+                  title: "chioce",
+                  isAlign: false,
+                  score: "15",
+                  answer: "chioce-2",
+                  nextQuestion: 2,
+                },
+                {
+                  title: "other",
+                  isAlign: true,
+                  score: "10",
+                  answer: "ระบุ",
+                  specify: "",
+                  nextQuestion: 2,
+                },
+              ],
             },
           },
         },
         {
-          id: 3,
+          id: "1",
           index: 2,
           typeQuestionCard: "None",
+          data: {
+            controlType: "Paragraph",
+            metaData: {
+              question: "Paragraph",
+              answer: "",
+              isRequire: true,
+            },
+          },
+        },
+        {
+          id: "2",
+          index: 3,
+          typeQuestionCard: "Align",
+          data: {
+            controlType: "Checkbox",
+            metaData: {
+              question: "Checkbox",
+              isRequired: true,
+              isAlign: true,
+              totalScore: 25,
+              answer: [],
+              choices: [
+                {
+                  title: "chioce",
+                  score: "10",
+                  answer: "chioce-1",
+                  isAlign: true,
+                },
+                {
+                  title: "chioce",
+                  score: "15",
+                  answer: "chioce-2",
+                  isAlign: false,
+                },
+                {
+                  title: "other",
+                  score: "15",
+                  answer: "เพิมเติม",
+                  specify: "",
+                  isAlign: false,
+                },
+              ],
+            },
+          },
+        },
+        {
+          id: "3",
+          index: 4,
+          typeQuestionCard: "None",
+          data: {
+            controlType: "Uploads",
+            metaData: {
+              question: "File",
+              isRequire: false,
+              files: null,
+            },
+          },
+        },
+      ],
+    },
+    {
+      id: "1",
+      title: "header+",
+      data: [
+        {
+          id: "0",
+          index: 1,
+          typeQuestionCard: "Align",
           data: {
             controlType: "Multichoice",
             metaData: {
               question: "Multichoice",
-              isRequired: true,
-              answer :null,
+              isRequired: false,
+              totalScore: 15,
+              answer: null,
               choices: [
                 {
                   title: "chioce",
-                  answer: "ตอบ-1",
-                  nextQuestion: 1,
-                },
-                {
-                  title: "chioce",
-                  answer: "ตอบ-2",
-                  nextQuestion: 3,
+                  isAlign: true,
+                  score: "15",
+                  answer: "Multichoice",
+                  nextQuestion: 2,
                 },
                 {
                   title: "other",
+                  isAlign: false,
                   answer: "เพิมเติม",
-                  specify :"",
+                  specify: "",
                   nextQuestion: "",
                 },
               ],
             },
           },
         },
-        {
-          id: 3,
-          index: 3,
-          typeQuestionCard: "None",
-          data: {
-            controlType: "Checkbox",
-            metaData: {
-              question: "Checkbox",
-              isRequired: true,
-              answer :[],
-              choices: [
-                {
-                  title: "chioce",
-                  answer: "ตอบ-1",
-                },
-                {
-                  title: "chioce",
-                  answer: "ตอบ-2",
-                },
-                {
-                  title: "other",
-                  answer: "เพิมเติม",
-                  specify :""
-                },
-              ],
-            },
-          },
-        },
-        {
-          id: 3,
-          index: 4,
-          typeQuestionCard: "None",
-          data: {
-            controlType: "Dropdown",
-            metaData: {
-              question: "Dropdown",
-              isRequired: true,
-              answer :null,
-              choices: [
-                {
-                  answer: "item-1",
-                  nextQuestion: 2,
-                },
-                {
-                  answer: "item-2",
-                  nextQuestion: 2,
-                },
-              ],
-            },
-          },
-        },
-        {
-          id: 3,
-          index: 5,
-          typeQuestionCard: "None",
-          data: {
-            controlType: "Uploads",
-            metaData: {
-              question: "Uploads files",
-              isRequired: true,
-              files: null,
-            },
-          },
-        },
-      ]
-}
-
-const mock_preview_third = {
-  nameQuestionnaire : {
-        title: "แบบสำรวจด้านความยังยืนคู่ค้า 2023",
-        description : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi, ratione debitis quis est labore voluptatibus! Eaque cupiditate minima, at placeat totam, magni doloremque veniam neque porro libero rerum unde voluptatem!",
+      ],
     },
-  createQuestionnaire :[
-          {
-            id: "0",
-            title: "header",
-            data: [
-              {
-                id: "0",
-                index: 1,
-                typeQuestionCard: "Align",
-                data: {
-                  controlType: "Multichoice",
-                  metaData: {
-                    question: "Radio",
-                    isRequired: true,
-                    totalScore: 15,
-                    answer: null,
-                    choices: [
-                      {
-                        title: "chioce",
-                        isAlign: true,
-                        score: "10",
-                        answer: "chioce-1",
-                        nextQuestion: 2,
-                      },
-                      {
-                        title: "chioce",
-                        isAlign: false,
-                        score: "15",
-                        answer: "chioce-2",
-                        nextQuestion: 2,
-                      },
-                      {
-                        title: "other",
-                        isAlign: true,
-                        score: "10",
-                        answer: "ระบุ",
-                        specify :"",
-                        nextQuestion: 2,
-                      },
-                    ],
-                  },
-                },
-              },
-              {
-                id: "1",
-                index: 2,
-                typeQuestionCard: "None",
-                data: {
-                  controlType: "Paragraph",
-                  metaData: {
-                    question: "Paragraph",
-                    answer: "",
-                    isRequire: true,
-                  },
-                },
-              },
-              {
-                id: "2",
-                index: 3,
-                typeQuestionCard: "Align",
-                data: {
-                  controlType: "Checkbox",
-                  metaData: {
-                    question: "Checkbox",
-                    isRequired: true,
-                    isAlign: true,
-                    totalScore: 25,
-                    answer :[],
-                    choices: [
-                      {
-                        title: "chioce",
-                        score: "10",
-                        answer: "chioce-1",
-                        isAlign: true,
-                      },
-                      {
-                        title: "chioce",
-                        score: "15",
-                        answer: "chioce-2",
-                        isAlign: false,
-                      },
-                      {
-                        title: "other",
-                        score: "15",
-                        answer: "เพิมเติม",
-                        specify :"",
-                        isAlign: false,
-                      },
-                    ],
-                  },
-                },
-              },
-              {
-                id: "3",
-                index: 4,
-                typeQuestionCard: "None",
-                data: {
-                  controlType: "Uploads",
-                  metaData: {
-                    question: "File",
-                    isRequire: false,
-                    files: null
-                  },
-                },
-              },
-            ],
-          },
-          {
-            id: "1",
-            title: "header+",
-            data: [
-              {
-                id: "0",
-                index: 1,
-                typeQuestionCard: "Align",
-                data: {
-                  controlType: "Multichoice",
-                  metaData: {
-                    question: "Multichoice",
-                    isRequired: false,
-                    totalScore: 15,
-                    answer : null,
-                    choices: [
-                      {
-                        title: "chioce",
-                        isAlign: true,
-                        score: "15",
-                        answer: "Multichoice",
-                        nextQuestion: 2,
-                      },
-                      {
-                        title: "other",
-                        isAlign: false,
-                        answer: "เพิมเติม",
-                        specify :"",
-                        nextQuestion: "",
-                      },
-                    ],
-                  },
-                },
-              },
-            ],
-          },
-        ]
-}
-
-
+  ],
+};
 
 const handleItemSuevayOhterUpdate = (data) => {
   itemOtherQuest.value = data;

@@ -51,6 +51,18 @@ const getRspSurveysAll = async (
   });
 };
 
+const getRspSurveys = async (_state, _offset, _limit) => {
+  return await axiosBase({
+    method: "get",
+    url: `/rsp/get-rsp-surveys`,
+    params: {
+      state: _state,
+      offset: _offset,
+      limit: _limit,
+    },
+  });
+};
+
 const getRspPolicies = async (state = "active") => {
   return await axiosBase({
     method: "get",
@@ -441,6 +453,7 @@ export default {
   updateRspPolicy,
   exportRspPolicyResult,
   PermanentlyDeleteRspRolicy,
+  getRspSurveys,
 
   getRspPolicyPagination
 };

@@ -27,7 +27,7 @@ const props = defineProps({
     type: Array,
     default: () => [
       "ข้อมูลคู่ค้า",
-      "ที่อยู่",
+      "ที่อยู่สำนักงานใหญ่",
       "ที่อยู่สาขา",
       "ข้อมูลเพิ่มเติม",
     ],
@@ -35,8 +35,8 @@ const props = defineProps({
 });
 
 const currentStep = ref(props.currentStepNumber);
-const itemsTitle = reactive(props.titles);
-const totalSteps = itemsTitle.length;
+const itemsTitle = reactive(props.titles)
+const totalSteps = 4;
 
 watch(props, (newValue) => {
   currentStep.value = newValue.currentStepNumber;
@@ -58,20 +58,20 @@ const getStepTitle = (step) => {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-left: 132px;
 }
 
 .step-container {
   display: flex;
   align-items: center;
-  position: relative;
-  width: 200px;
+  flex-grow: 0.1;
 }
 
 .step {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-left: -80px;
+  margin-right: -50px;
   position: relative;
 }
 
@@ -84,7 +84,6 @@ const getStepTitle = (step) => {
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 2;
 }
 
 .step-completed .step-title {
@@ -107,23 +106,14 @@ const getStepTitle = (step) => {
   background-color: lightgray;
 }
 
-.step-container:not(:last-child) .step::after {
-  content: '';
-    position: absolute;
-    top: 30%;
-    left: 60%;
-    transform: translateY(-50%);
-    width: 100%;
-    width: 210px;
-    height: 5px;
-    background-color: lightgray;
-    z-index: 0;
+.line {
+  height: 5px;
+  background-color: lightgray;
+  flex-grow: 1;
+  margin-top: -25px;
 }
 
-.step-container:not(:last-child) .step-active::after{
-  background-color: lightgray;
-}
-.step-container:not(:last-child) .step-completed::after {
+.line-active {
   background-color: red;
 }
 </style>

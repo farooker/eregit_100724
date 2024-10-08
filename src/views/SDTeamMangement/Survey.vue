@@ -56,17 +56,17 @@
   import paginationUtils from '@/utils/paginationUtils'
   import { useErrorHandlingDialog } from '@/components/dialogs/ExceptionHandleDialogService'
   const { handlingErrorsMessage } = useErrorHandlingDialog();
-
+  
   import { useConfirmationDialog } from '@/components/dialogs/ConfirmationDialogService'
   const { showDialog } = useConfirmationDialog();
-
+  
   const menus_index = ref(0);
   const menus = ref([]);
-
-
+  
+  
   const actived_laoding = ref(false);
   const actived_items = ref([]);
-
+  
   const list_laoding = ref(false);
   const list_item = ref([]);
   const list_filter = ref({
@@ -76,8 +76,8 @@
     page : 1,
     pageSize: 1,
   });
-
-
+  
+  
   watch(menus_index, (newValue) => {
     list_filter.value.state = menus.value[newValue].state
     list_filter.value.offset= 0;
@@ -132,11 +132,11 @@
       const itemsOffset = Number(headers['items-offset']);
       const itemsLimit = Number(headers['items-limit']);
       const itemsTotal = Number(headers['items-total']);
-
+  
       list_filter.value.offset = itemsOffset;
       list_filter.value.limit = itemsLimit;
       list_filter.value.pageSize = paginationUtils.pageSize(itemsLimit,itemsTotal)
-
+  
       if (response.data?.is_success) {
         list_item.value = response.data?.data
       }
@@ -151,8 +151,8 @@
       list_laoding.value = false;
     }
   }
-
-
+  
+  
   const actionMenus = (surveyId,action)=>{
      switch(action){
       case 'DELETE':
@@ -166,7 +166,7 @@
         break;
       }
   }
-
+  
   const handleDelete = async (rspSurveyId) => {
     //e.preventDefault()
     const confirmed = await showDialog('ยืนยันลบ', 'กรุณาตรวจสอบคลิกปุ่ม "ตกลง" เพื่อดำเนินการ');
@@ -185,7 +185,7 @@
       console.log('Action cancelled.');
     }
   };
-
+  
   const handlePremanentlyDelete = async (rspSurveyId) => {
     //e.preventDefault()
     const confirmed = await showDialog('ยืนยัน Premanently', 'กรุณาตรวจสอบคลิกปุ่ม "ตกลง" เพื่อดำเนินการ');
@@ -223,3 +223,4 @@
     }
   };
   </script>
+  
