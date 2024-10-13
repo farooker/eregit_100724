@@ -15,7 +15,7 @@
         density="compact"
       ></v-text-field>
     </v-col>
-    <v-col cols="12" v-for="(item, index) in metaData.answers" :key="index">
+    <v-col cols="12" v-for="(item, index) in metaData.choices" :key="index">
       <v-row dense v-if="item.title === 'chioce'">
         <v-col cols="1" class="d-flex justify-end"
           ><v-icon>mdi mdi-radiobox-blank</v-icon></v-col
@@ -125,7 +125,7 @@ const propsVar = defineProps({
       return {
         question: "",
         isRequired: false,
-        answers: [],
+        choices: [],
       };
     },
   },
@@ -138,7 +138,7 @@ const propsVar = defineProps({
 let metaData = ref(propsVar.metaDataMultiChoiceNone);
 
 const addChoice = () => {
-  metaData.value.answers.push({
+  metaData.value.choices.push({
     title: "chioce",
     isChecked: false,
     answer: "",
@@ -147,16 +147,17 @@ const addChoice = () => {
 };
 
 const addOther = () => {
-  metaData.value.answers.push({
+  metaData.value.choices.push({
     title: "other",
     isChecked: false,
+    specify: "",
     answer: "",
     nextQuestion: "",
   });
 };
 
 const onIconClick = (index) => {
-  metaData.value.answers.splice(index, 1);
+  metaData.value.choices.splice(index, 1);
 };
 
 const emit = defineEmits(["on-update", "on-remove"]);

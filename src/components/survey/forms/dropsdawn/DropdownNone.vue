@@ -18,7 +18,7 @@
     <v-col
       class="ml-2"
       cols="12"
-      v-for="(item, index) in metaData.answers"
+      v-for="(item, index) in metaData.choices"
       :key="index"
     >
       <v-row dense>
@@ -92,7 +92,7 @@ const propsVar = defineProps({
       return {
         question: "",
         isRequired: false,
-        answers: [],
+        choices: [],
       };
     },
   },
@@ -105,11 +105,11 @@ const propsVar = defineProps({
 let metaData = ref(propsVar.metaDataDropdownNone);
 
 const addChoice = () => {
-  metaData.value.answers.push({ answer: "", nextQuestion: "" });
+  metaData.value.choices.push({ answer: "", nextQuestion: "" });
 };
 
 const onIconClick = (index) => {
-  metaData.value.answers.splice(index, 1);
+  metaData.value.choices.splice(index, 1);
 };
 
 const emit = defineEmits(["on-update", "on-remove"]);

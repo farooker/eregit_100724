@@ -27,7 +27,7 @@
         density="compact"
       ></v-text-field>
     </v-col>
-    <v-col cols="12" v-for="(item, index) in metaData.answers" :key="index">
+    <v-col cols="12" v-for="(item, index) in metaData.choices" :key="index">
       <v-row dense v-if="item.title === 'chioce'">
         <v-col cols="1" class="d-flex justify-end"
           ><v-icon>mdi mdi-radiobox-blank</v-icon></v-col
@@ -53,6 +53,7 @@
           <v-text-field
             class="centered-placeholder"
             placeholder="คะแนนคำตอบ"
+            type="number"
             required
             :rules="[(v) => !!v || 'Required.']"
             variant="outlined"
@@ -95,6 +96,7 @@
             class="centered-placeholder"
             placeholder="คะแนนคำตอบ"
             required
+            type="number"
             :rules="[(v) => !!v || 'Required.']"
             variant="outlined"
             v-model="item.score"
@@ -158,7 +160,7 @@ const propsVar = defineProps({
         question: "",
         isRequired: false,
         totalScore: 0,
-        answers: [],
+        choices: [],
       };
     },
   },
@@ -171,7 +173,7 @@ const propsVar = defineProps({
 let metaData = ref(propsVar.metaDataMultiChoiceScore);
 
 const addChoice = () => {
-  metaData.value.answers.push({
+  metaData.value.choices.push({
     title: "chioce",
     isChecked: false,
     score: "",
@@ -181,23 +183,24 @@ const addChoice = () => {
 };
 
 const addOther = () => {
-  metaData.value.answers.push({
+  metaData.value.choices.push({
     title: "other",
     isChecked: false,
     score: "",
     answer: "",
+    specify: "",
     nextQuestion: "",
   });
 };
 
 const onIconClick = (index) => {
-  metaData.value.answers.splice(index, 1);
+  metaData.value.choices.splice(index, 1);
 };
 
 const emit = defineEmits(["on-update", "on-remove"]);
 
 watch(metaData.value, (newValue) => {
-  metaData.value.totalScore = newValue.answers.reduce((max, answer) => {
+  metaData.value.totalScore = newValue.choices.reduce((max, answer) => {
     const score = Number(answer.score);
     return score > max ? score : max;
   }, 0);
