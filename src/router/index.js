@@ -432,15 +432,38 @@ const routes = [
         },
         component: () => import("@/views/SDTeamMangement/Survey.vue"),
       },
-      // {
-      //   path: "/SDTeamMangement/Survey/Created",
-      //   name: "SurveyCreatePage",
-      //   meta: {
-      //     requiresAuth: true,
-      //     module_id: null,
-      //   },
-      //   component: () => import("@/views/SDTeamMangement/SurveyCreate.vue"),
-      // },
+
+      {
+        path: "/SDTeamMangement/Survey/Created",
+        name: "SurveyCreatePage",
+        meta: {
+          requiresAuth: true,
+          module_id: 19,
+        },
+        component: () => import("@/views/SDTeamMangement/SurveyCreate.vue"),
+      },
+////////
+{
+  path: "/SDTeamMangement/Survey/Preview/QuestionSecond",
+  name: "SurveyPreviewSecondPage",
+  meta: {
+    requiresAuth: true,
+    module_id: 19,
+  },
+  component: () => import("@/views/SDTeamMangement/SurveyPreview/QuestionSecond.vue"),
+},
+
+{
+  path: "/SDTeamMangement/Survey/Preview/QuestionThird",
+  name: "SurveyPreviewThirdPage",
+  meta: {
+    requiresAuth: true,
+    module_id: 19,
+  },
+  component: () => import("@/views/SDTeamMangement/SurveyPreview/QuestionThird.vue"),
+},
+
+///////////////////
       {
         path: "/SDTeamMangement/Traning",
         name: "TraningPage",
