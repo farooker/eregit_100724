@@ -98,7 +98,7 @@ const infoActive = ref({
   items: [],
   state: 'active',
   offset: 0,
-  limit: 1,
+  limit: 50,
   page: 1,
   pageSize: 1,
 });
@@ -107,7 +107,7 @@ const infoMenus = ref({
   items: [],
   state: 'inactive',
   offset: 0,
-  limit: 1,
+  limit: 50,
   page: 1,
   pageSize: 1,
 });
@@ -135,13 +135,11 @@ onMounted(() => {
       dropdown: 'INACTIVE_RECENTLY'
     },
   ]
-  handleGetRspTrainingActive();
-  handleGetRspTrainingInfoMenus();
 });
 watch(menus_index, (newValue) => {
     infoMenus.value.state = menus.value[newValue].state;
     infoMenus.value.offset= 0;
-    infoMenus.value.limit= 1;
+    infoMenus.value.limit= 50;
     infoMenus.value.page= 1;
     infoMenus.value.pageSize= 1;
     handleGetRspTrainingInfoMenus();
@@ -206,6 +204,7 @@ const handleGetRspTrainingInfoMenus = async () => {
   try {
     infoMenus.value.loading = true;
     infoMenus.value.items = [];
+    console.log('xxx: ',infoMenus.value.limit)
     const response = await RspService.getRspTraining(
                           infoMenus.value.state,
                           infoMenus.value.offset,
