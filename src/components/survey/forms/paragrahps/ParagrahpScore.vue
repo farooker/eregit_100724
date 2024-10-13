@@ -20,6 +20,7 @@
         class="centered-placeholder"
         placeholder="คะแนนคำถาม"
         v-model="metaData.totalScore"
+        type="number"
         required
         :rules="[(v) => !!v || 'Required.']"
         variant="outlined"

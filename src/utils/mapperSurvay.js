@@ -489,4 +489,6 @@ const MapperSurvay = (data, rspSurvayActive, rspActivityStatusId) => {
   return { mySurvayStructureTwo, mySurvayStructureThree };
 };
 
+
+
 export default { MapperSurvay };

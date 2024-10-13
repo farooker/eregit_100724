@@ -30,7 +30,7 @@
     <v-col
       class="ml-2"
       cols="12"
-      v-for="(item, index) in metaData.answers"
+      v-for="(item, index) in metaData.choices"
       :key="index"
     >
       <v-row dense>
@@ -59,6 +59,7 @@
             placeholder="คะแนนคำตอบ"
             v-model="item.score"
             required
+            type="number"
             :rules="[(v) => !!v || 'Required.']"
             variant="outlined"
             density="compact"
@@ -125,7 +126,7 @@ const propsVar = defineProps({
         isRequired: false,
         isAlign: false,
         totalScore: 0,
-        answers: [],
+        choices: [],
       };
     },
   },
@@ -134,7 +135,7 @@ const propsVar = defineProps({
 let metaData = ref(propsVar.metaDataDropdownAlign);
 
 const addChoice = () => {
-  metaData.value.answers.push({
+  metaData.value.choices.push({
     score: "",
     isAlign: true,
     answer: "",
@@ -143,13 +144,13 @@ const addChoice = () => {
 };
 
 const onIconClick = (index) => {
-  metaData.value.answers.splice(index, 1);
+  metaData.value.choices.splice(index, 1);
 };
 
 const emit = defineEmits(["on-update", "on-remove"]);
 
 watch(metaData.value, (newValue) => {
-  metaData.value.totalScore = newValue.answers.reduce((max, answer) => {
+  metaData.value.totalScore = newValue.choices.reduce((max, answer) => {
     const score = Number(answer.score);
     return score > max ? score : max;
   }, 0);

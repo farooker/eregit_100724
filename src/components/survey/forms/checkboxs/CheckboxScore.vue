@@ -20,6 +20,7 @@
         class="centered-placeholder"
         placeholder="คะแนนคำถาม"
         v-model="metaData.totalScore"
+        color="gray"
         disabled
         variant="outlined"
         required
@@ -27,7 +28,7 @@
         density="compact"
       ></v-text-field>
     </v-col>
-    <v-col cols="12" v-for="(item, index) in metaData.answers" :key="index">
+    <v-col cols="12" v-for="(item, index) in metaData.choices" :key="index">
       <v-row dense v-if="item.title === 'chioce'">
         <v-col cols="1" class="d-flex justify-end"
           ><v-icon> mdi mdi-checkbox-blank-outline </v-icon>
@@ -55,6 +56,7 @@
           <v-text-field
             class="centered-placeholder"
             placeholder="คะแนนคำตอบ"
+            type="number"
             variant="outlined"
             v-model="item.score"
             required
@@ -89,6 +91,7 @@
             :rules="[(v) => !!v || 'Required.']"
             placeholder="คะแนนคำตอบ"
             variant="outlined"
+            type="number"
             v-model="item.score"
             density="compact"
           ></v-text-field>
@@ -140,7 +143,7 @@ const propsVar = defineProps({
         question: "",
         isRequired: false,
         totalScore: 0,
-        answers: [],
+        choices: [],
       };
     },
   },
@@ -149,7 +152,7 @@ const propsVar = defineProps({
 let metaData = ref(propsVar.metaDataCheckboxScore);
 
 const addChoice = () => {
-  metaData.value.answers.push({
+  metaData.value.choices.push({
     title: "chioce",
     isChecked: false,
     score: "",
@@ -158,7 +161,7 @@ const addChoice = () => {
 };
 
 const addOther = () => {
-  metaData.value.answers.push({
+  metaData.value.choices.push({
     title: "other",
     isChecked: false,
     score: "",
@@ -167,13 +170,13 @@ const addOther = () => {
 };
 
 const onIconClick = (index) => {
-  metaData.value.answers.splice(index, 1);
+  metaData.value.choices.splice(index, 1);
 };
 
 const emit = defineEmits(["on-update", "on-remove"]);
 
 watch(metaData.value, (newValue) => {
-  metaData.value.totalScore = newValue.answers.reduce(
+  metaData.value.totalScore = newValue.choices.reduce(
     (sum, answer) => sum + Number(answer.score),
     0
   );

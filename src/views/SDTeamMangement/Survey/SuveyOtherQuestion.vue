@@ -1,8 +1,6 @@
 <template>
   <v-row dense>
-    <v-col cols="12">
-
-    </v-col>
+    <v-col cols="12"> </v-col>
     <v-col cols="12">
       <draggable
         v-model="items_question"
@@ -13,7 +11,7 @@
         <template v-slot:item="{ element, index }">
           <v-row>
             <v-col cols="12">
-              <v-form ref="form">
+              <!-- <v-form ref="form"> -->
                 <QuestionOption
                   :type="element.typeQuestionCard"
                   :id="element.id.toString()"
@@ -23,7 +21,7 @@
                   @on-update="handleQuestionUpdate"
                   @on-remove="handleQuestionRemove"
                 />
-              </v-form>
+              <!-- </v-form> -->
             </v-col>
           </v-row>
         </template>
@@ -46,7 +44,7 @@ import { ref, watch } from "vue";
 import draggable from "vuedraggable";
 import QuestionOption from "@/components/survey/QuestionOption.vue";
 
-const emit = defineEmits(["on-data-input"])
+const emit = defineEmits(["on-data-input"]);
 
 const items_question = ref([]);
 
@@ -80,7 +78,7 @@ const handleAddQuestion = () => {
 };
 
 watch(items_question.value, (newValue) => {
-  console.log(JSON.stringify(newValue));
-  emit("on-data-input", items_question.value)
+  // console.log(JSON.stringify(newValue));
+  emit("on-data-input", newValue);
 });
 </script>

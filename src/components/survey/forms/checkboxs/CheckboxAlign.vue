@@ -24,10 +24,11 @@
         disabled
         v-model="metaData.totalScore"
         variant="outlined"
+        color="gray"
         density="compact"
       ></v-text-field>
     </v-col>
-    <v-col cols="12" v-for="(item, index) in metaData.answers" :key="index">
+    <v-col cols="12" v-for="(item, index) in metaData.choices" :key="index">
       <v-row dense v-if="item.title === 'chioce'">
         <v-col cols="1" class="d-flex justify-end"
           ><v-icon> mdi mdi-checkbox-blank-outline </v-icon>
@@ -66,6 +67,7 @@
             placeholder="คะแนนคำตอบ"
             variant="outlined"
             required
+            type="number"
             :rules="[(v) => !!v || 'Required.']"
             v-model="item.score"
             density="compact"
@@ -170,7 +172,7 @@ const propsVar = defineProps({
         isRequired: false,
         isAlign: false,
         totalScore: 0,
-        answers: [],
+        choices: [],
       };
     },
   },
@@ -179,7 +181,7 @@ const propsVar = defineProps({
 let metaData = ref(propsVar.metaDataCheckboxAlign);
 
 const addChoice = () => {
-  metaData.value.answers.push({
+  metaData.value.choices.push({
     title: "chioce",
     isChecked: false,
     score: "",
@@ -189,7 +191,7 @@ const addChoice = () => {
 };
 
 const addOther = () => {
-  metaData.value.answers.push({
+  metaData.value.choices.push({
     title: "other",
     isChecked: false,
     score: "",
@@ -199,18 +201,18 @@ const addOther = () => {
 };
 
 const onIconClick = (index) => {
-  metaData.value.answers.splice(index, 1);
+  metaData.value.choices.splice(index, 1);
 };
 
 const emit = defineEmits(["on-update", "on-remove"]);
 
 watch(metaData.value, (newValue) => {
-  metaData.value.totalScore = newValue.answers.reduce(
+  metaData.value.totalScore = newValue.choices.reduce(
     (sum, answer) => sum + Number(answer.score),
     0
   );
   // emit("on-update", { check_box_align: newValue });
-  emit("on-update", newValue );
+  emit("on-update", newValue);
   // console.log(JSON.stringify({ check_box_align: newValue }));
 });
 </script>

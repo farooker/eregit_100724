@@ -26,6 +26,7 @@
           v-model="item_title"
           variant="solo"
           density="compact"
+          :rules="[(v) => !!v || 'Required']"
         ></v-text-field>
       </v-col>
       <v-col cols="2">
@@ -38,17 +39,17 @@
       <template v-slot:item="{ element, index }">
         <v-row>
           <v-col cols="12">
-            <v-form ref="form">
-              <QuestionOption
-                :type="element.typeQuestionCard"
-                :id="element.id.toString()"
-                :index="Number(index)"
-                :data="element.data"
-                :count-question="items_question.length"
-                @on-update="handleQuestionUpdate"
-                @on-remove="handleQuestionRemove"
-              />
-            </v-form>
+            <!-- <v-form ref="form"> -->
+            <QuestionOption
+              :type="element.typeQuestionCard"
+              :id="element.id.toString()"
+              :index="Number(index)"
+              :data="element.data"
+              :count-question="items_question.length"
+              @on-update="handleQuestionUpdate"
+              @on-remove="handleQuestionRemove"
+            />
+            <!-- </v-form> -->
           </v-col>
         </v-row>
       </template>

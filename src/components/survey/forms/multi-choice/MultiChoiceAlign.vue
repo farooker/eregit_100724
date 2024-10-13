@@ -24,9 +24,11 @@
         :rules="[(v) => !!v || 'Required.']"
         variant="outlined"
         density="compact"
+        disabled
+        color="grey"
       ></v-text-field>
     </v-col>
-    <v-col cols="12" v-for="(item, index) in metaData.answers" :key="index">
+    <v-col cols="12" v-for="(item, index) in metaData.choices" :key="index">
       <v-row dense v-if="item.title === 'chioce'">
         <v-col cols="1" class="d-flex justify-end"
           ><v-icon>mdi mdi-radiobox-blank</v-icon></v-col
@@ -64,6 +66,7 @@
             class="centered-placeholder"
             placeholder="คะแนนคำตอบ"
             variant="outlined"
+            type="number"
             required
             :rules="[(v) => !!v || 'Required.']"
             density="compact"
@@ -115,6 +118,7 @@
           <v-text-field
             class="centered-placeholder"
             placeholder="คะแนนคำตอบ"
+            type="number"
             variant="outlined"
             required
             :rules="[(v) => !!v || 'Required.']"
@@ -179,7 +183,7 @@ const propsVar = defineProps({
         question: "",
         isRequired: false,
         totalScore: 0,
-        answers: [],
+        choices: [],
       };
     },
   },
@@ -192,7 +196,7 @@ const propsVar = defineProps({
 let metaData = ref(propsVar.metaDataMultiChoiceAlign);
 
 const addChoice = () => {
-  metaData.value.answers.push({
+  metaData.value.choices.push({
     title: "chioce",
     isChecked: false,
     isAlign: true,
@@ -203,24 +207,25 @@ const addChoice = () => {
 };
 
 const addOther = () => {
-  metaData.value.answers.push({
+  metaData.value.choices.push({
     title: "other",
     isChecked: false,
     isAlign: true,
     score: "",
+    specify: "",
     answer: "",
     nextQuestion: "",
   });
 };
 
 const onIconClick = (index) => {
-  metaData.value.answers.splice(index, 1);
+  metaData.value.choices.splice(index, 1);
 };
 
 const emit = defineEmits(["on-update", "on-remove"]);
 
 watch(metaData.value, (newValue) => {
-  metaData.value.totalScore = newValue.answers.reduce((max, answer) => {
+  metaData.value.totalScore = newValue.choices.reduce((max, answer) => {
     const score = Number(answer.score);
     return score > max ? score : max;
   }, 0);

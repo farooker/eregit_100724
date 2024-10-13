@@ -23,6 +23,7 @@
         required
         v-model="metaData.totalScore"
         disabled
+        color="gray"
         :rules="[(v) => !!v || 'Required.']"
         density="compact"
       ></v-text-field>
@@ -30,7 +31,7 @@
     <v-col
       class="ml-2"
       cols="12"
-      v-for="(item, index) in metaData.answers"
+      v-for="(item, index) in metaData.choices"
       :key="index"
     >
       <v-row dense>
@@ -60,6 +61,7 @@
             v-model="item.score"
             variant="outlined"
             required
+            type="number"
             :rules="[(v) => !!v || 'Required.']"
             density="compact"
           ></v-text-field>
@@ -115,7 +117,7 @@ const propsVar = defineProps({
         question: "",
         isRequired: false,
         totalScore: 0,
-        answers: [],
+        choices: [],
       };
     },
   },
@@ -128,17 +130,17 @@ const propsVar = defineProps({
 let metaData = ref(propsVar.metaDataDropdownScore);
 
 const addChoice = () => {
-  metaData.value.answers.push({ answer: "", score: "", nextQuestion: "" });
+  metaData.value.choices.push({ answer: "", score: "", nextQuestion: "" });
 };
 
 const onIconClick = (index) => {
-  metaData.value.answers.splice(index, 1);
+  metaData.value.choices.splice(index, 1);
 };
 
 const emit = defineEmits(["on-update", "on-remove"]);
 
 watch(metaData.value, (newValue) => {
-  metaData.value.totalScore = newValue.answers.reduce((max, answer) => {
+  metaData.value.totalScore = newValue.choices.reduce((max, answer) => {
     const score = Number(answer.score);
     return score > max ? score : max;
   }, 0);
