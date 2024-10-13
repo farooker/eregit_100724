@@ -44,7 +44,8 @@ const updatedTeamById = async (
     data: {
       team_id: Number(team_id),
       company_id: company_id,
-      name_th: name_th,
+      name_th,
+      name_en,
       is_active,
       updated_user_id: 1,
     },

@@ -114,9 +114,20 @@ async function downloadFileV3(file_path) {
   }
 }
 
+const getBase64 = (file) => {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = (error) => reject(error);
+  });
+};
+
+
 export default {
   exportBase64,
   downloadFile,
   downloadFileV2,
-  downloadFileV3
+  downloadFileV3,
+  getBase64
  }

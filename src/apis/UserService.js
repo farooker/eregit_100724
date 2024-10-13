@@ -76,7 +76,7 @@ const createMultipleUser = async (data = []) => {
           email: i.email,
           member_type: i.member_type,
           role: i.role,
-          company_code: i.company_code,
+          company_code: i.company_code.toString(),
           team: i.team,
         };
       }),

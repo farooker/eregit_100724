@@ -102,8 +102,8 @@ const onCreateTeam = async () => {
   try {
     const response = await TeamService.createdTeam(
       dataInput.value.company,
-      dataInput.value.name_en,
       dataInput.value.name_th,
+      dataInput.value.name_en,
       dataInput.value.is_status
     );
     if (response.data?.is_success) {
@@ -124,8 +124,8 @@ const onUpdateTeam = async () => {
     const response = await TeamService.updatedTeamById(
       id,
       dataInput.value.company,
-      dataInput.value.name_en,
       dataInput.value.name_th,
+      dataInput.value.name_en,
       dataInput.value.is_status
     );
     if (response.data?.is_success) {

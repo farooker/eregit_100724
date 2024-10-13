@@ -409,7 +409,137 @@ const getRspPolicyPagination = async (_state, _offset, _limit) => {
   });
 };
 
+// traning
+const getRspTraining = async (
+  _state,
+  _offset,
+  _limit,
+  _roleId,
+  _dateFrom,
+  _dateTo
+) => {
+  return await axiosBase({
+    method: "get",
+    url: `/rsp/get-rsp-training`,
+    params: {
+      state: _state,
+      offset: _offset,
+      limit: _limit,
+      role_id: _roleId,
+      created_from: _dateFrom,
+      created_to: _dateTo,
+    },
+  });
+};
+
+
+const createRspTraining = async (name, file, role_id, active_at) => {
+
+  return await axiosBase({
+    method: "post",
+    url: `/rsp/create-rsp-training`,
+    data: {
+      name: name,
+      data: file,
+      role_id: role_id.toString(),
+      published_at: new Date(active_at),
+      created_user_id: 1,
+    },
+  });
+};
+
+const updateRspTraining = async (
+  training_id,
+  name,
+  file,
+  role_id,
+  active_at
+) => {
+  return await axiosBase({
+    method: "post",
+    url: `/rsp/update-rsp-training`,
+    data: {
+      rsp_training_id: training_id,
+      name: name,
+      data: file,
+      role_id: role_id,
+      published_at: active_at,
+      updated_user_id: 123,
+    },
+  });
+};
+
+const exportRspTrainingResult = async (rsp_training_id) => {
+  return await axiosBase({
+    method: "get",
+    url: `/rsp/export-rsp-training-result/${rsp_training_id}`,
+    data: {},
+  });
+};
+
+const activateRspTraining = async (_rsp_traning_id) => {
+  return await axiosBase({
+    method: "post",
+    url: `/rsp/activate-rsp-training`,
+    data: {
+      rsp_training_id: _rsp_traning_id,
+      updated_user_id: 1,
+    },
+  });
+};
+const deactivateRspTraining = async (_rsp_traning_id) => {
+  return await axiosBase({
+    method: "post",
+    url: `/rsp/deactivate-rsp-training`,
+    data: {
+      rsp_training_id: _rsp_traning_id,
+      updated_user_id: 1,
+    },
+  });
+};
+const undeleteRspTraining = async (_rsp_traning_id) => {
+  return await axiosBase({
+    method: "post",
+    url: `/rsp/undelete-rsp-training`,
+    data: {
+      rsp_training_id: _rsp_traning_id,
+      updated_user_id: 1,
+    },
+  });
+};
+const deleteRspTraining = async (_rsp_traning_id) => {
+  return await axiosBase({
+    method: "post",
+    url: `/rsp/delete-rsp-training`,
+    data: {
+      rsp_training_id: _rsp_traning_id,
+      updated_user_id: 1,
+    },
+  });
+};
+
+const permanentlyDeleteRspTraining = async (_rsp_traning_id) => {
+  return await axiosBase({
+    method: "post",
+    url: `/rsp/permanently-delete-rsp-training`,
+    data: {
+      rsp_training_id: _rsp_traning_id,
+      updated_user_id: 1,
+    },
+  });
+};
+
+
 export default {
+  getRspTraining,
+  createRspTraining,
+  updateRspTraining,
+  activateRspTraining,
+  deactivateRspTraining,
+  undeleteRspTraining,
+  deleteRspTraining,
+  permanentlyDeleteRspTraining,
+  exportRspTrainingResult,
   getVendorRspStatus,
   sendFollowUpVendor,
   sendFollowUpVendors,

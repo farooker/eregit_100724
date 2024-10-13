@@ -6,7 +6,7 @@
       <v-row justify="end">
         <v-col cols="2">
           <FilterTraning :roles_id="filter.roleId" :date_from="filter.dateFrom" :date_to="filter.dateTo"
-            @roles_id="filter.roleId = $event" @date_from="filter.dateFrom = $event" @date_to="filter.dateTo = $event" />
+            @roles_id="filter.roleId = $event" @date_from="filter.dateFrom = $event" @date_to="filter.dateTo = $event" @search="onSearch" />
         </v-col>
       </v-row>
       <v-row>
@@ -69,7 +69,7 @@
   </v-container>
 </template>
 <script setup>
-import { ref, onBeforeMount , watch } from 'vue';
+import { ref , watch, onMounted } from 'vue';
 // eslint-disable-next-line no-unused-vars
 import RspService from '@/apis/RspService';
 import ItemRspTraning from '@/components/items/ItemRspTraning.vue'
@@ -97,7 +97,7 @@ const infoActive = ref({
   loading: false,
   items: [],
   state: 'active',
-  offset: 1,
+  offset: 0,
   limit: 1,
   page: 1,
   pageSize: 1,
@@ -106,12 +106,12 @@ const infoMenus = ref({
   loading: false,
   items: [],
   state: 'inactive',
-  offset: 1,
+  offset: 0,
   limit: 1,
   page: 1,
   pageSize: 1,
 });
-onBeforeMount(() => {
+onMounted(() => {
   menus.value = [
     {
       title: 'Inactive Traning',
@@ -140,7 +140,7 @@ onBeforeMount(() => {
 });
 watch(menus_index, (newValue) => {
     infoMenus.value.state = menus.value[newValue].state;
-    infoMenus.value.offset= 1;
+    infoMenus.value.offset= 0;
     infoMenus.value.limit= 1;
     infoMenus.value.page= 1;
     infoMenus.value.pageSize= 1;
@@ -161,6 +161,11 @@ const handlePaginationInfoMenusEvent = (page) => {
   infoMenus.value.offset = paginationUtils.pageOffset(page, infoActive.value.limit);
   handleGetRspTrainingInfoMenus();
 }
+
+const onSearch = () => {
+  handleGetRspTrainingActive();
+  handleGetRspTrainingInfoMenus();
+}
 const handleGetRspTrainingActive = async () => {
   try {
     infoActive.value.loading = true;
@@ -172,6 +177,7 @@ const handleGetRspTrainingActive = async () => {
                             filter.value.roleId,
                             filter.value.dateFrom,
                             filter.value.dateTo);
+
     const headers = response.headers;
     const itemsOffset = Number(headers['items-offset']);
     const itemsLimit = Number(headers['items-limit']);
@@ -259,6 +265,7 @@ const handleDeactived = async (rspTraningId) => {
         const response = await RspService.deactivateRspTraining(rspTraningId);
         if (response) {
           handleGetRspTrainingActive()
+          handleGetRspTrainingInfoMenus()
         }
     }
   }
@@ -278,6 +285,7 @@ const handleActivated = async (rspTraningId) => {
     if (confirmed) {
         const response = await RspService.activateRspTraining(rspTraningId);
         if (response) {
+          handleGetRspTrainingActive()
           handleGetRspTrainingInfoMenus()
         }
     }
@@ -350,4 +358,3 @@ const handleDeactivatedTraning = async (rspTraningId) => {
 };
 
 </script>
-
