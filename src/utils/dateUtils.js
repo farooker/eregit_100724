@@ -1,4 +1,10 @@
 
+
+const convertToISOFormat = (inputDate)=>{
+  const [day, month, year] = inputDate.split('/');
+  return  `${year}-${month}-${day}T00:00:00Z`;
+}
+
 const parseDdMmYyyy =(dateString)=>{
   const originalDate = new Date(dateString);
   // const day = originalDate.getDate();
@@ -48,4 +54,4 @@ const parseDdMmYyWithTimeAndSeconds = (dateString) => {
 
 
 
-export default { parseDdMmYyyy,parseDdMmYy, parseDdMmYyWithTimeAndSeconds,formattedYearMonthDay }
+export default { parseDdMmYyyy,parseDdMmYy, parseDdMmYyWithTimeAndSeconds,formattedYearMonthDay ,convertToISOFormat}

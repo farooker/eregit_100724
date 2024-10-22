@@ -454,7 +454,7 @@ const createRspTraining = async (name, file, role_id, active_at) => {
       name: name,
       data: file,
       role_id: role_id.toString(),
-      published_at: new Date(active_at),
+      published_at: active_at,
       created_user_id: 1,
     },
   });
